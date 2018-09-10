@@ -1,27 +1,6 @@
 import { TAB } from 'components/Header/components/constants';
 
-type StaticNetworkIds =
-  | 'ETH'
-  | 'Ropsten'
-  | 'Kovan'
-  | 'Rinkeby'
-  | 'ETC'
-  | 'UBQ'
-  | 'EXP'
-  | 'POA'
-  | 'TOMO'
-  | 'ELLA'
-  | 'MUSIC'
-  | 'ETSC'
-  | 'EGEM'
-  | 'CLO'
-  | 'RSK'
-  | 'RSK_TESTNET'
-  | 'GO'
-  | 'GO_TESTNET'
-  | 'EOSC'
-  | 'ESN'
-  | 'AQUA';
+type StaticNetworkIds = 'ETH';
 
 export interface BlockExplorerConfig {
   name: string;

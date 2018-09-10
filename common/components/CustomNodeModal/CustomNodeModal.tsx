@@ -113,7 +113,7 @@ class CustomNodeModal extends React.Component<Props, State> {
 
     const staticNetwrks = Object.keys(staticNetworks).map(net => {
       console.log(net);
-      var labelnet;
+      let labelnet;
       if (net === 'ETH') {
         labelnet = 'EXC';
       }

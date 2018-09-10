@@ -5,31 +5,7 @@ import {
   InsecureWalletName,
   SecureWalletName
 } from 'config/data';
-import {
-  ELLA_DEFAULT,
-  ETC_LEDGER,
-  ETC_TREZOR,
-  ETC_SAFE_T,
-  ETH_DEFAULT,
-  ETH_LEDGER,
-  ETH_TESTNET,
-  ETH_TREZOR,
-  ETH_SAFE_T,
-  EXP_DEFAULT,
-  POA_DEFAULT,
-  TOMO_DEFAULT,
-  UBQ_DEFAULT,
-  MUSIC_DEFAULT,
-  ETSC_DEFAULT,
-  EGEM_DEFAULT,
-  CLO_DEFAULT,
-  RSK_MAINNET,
-  RSK_TESTNET,
-  GO_DEFAULT,
-  EOSC_DEFAULT,
-  ESN_DEFAULT,
-  AQUA_DEFAULT
-} from 'config/dpaths';
+import { ETH_DEFAULT, ETH_LEDGER, ETH_TESTNET, ETH_TREZOR, ETH_SAFE_T } from 'config/dpaths';
 import { makeExplorer } from 'utils/helpers';
 import { TAB } from 'components/Header/components/constants';
 import * as types from './types';

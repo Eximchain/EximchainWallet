@@ -18,7 +18,7 @@ import * as types from './types';
 
 export const STATIC_NETWORKS_INITIAL_STATE: types.ConfigStaticNetworksState = {
   ETH: {
-    id: 'EXC',
+    id: 'ETH',
     name: 'Eximchain',
     unit: 'EXC',
     chainId: 1,

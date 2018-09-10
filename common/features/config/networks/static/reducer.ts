@@ -5,16 +5,16 @@ import {
   InsecureWalletName,
   SecureWalletName
 } from 'config/data';
-import { ETH_DEFAULT, ETH_LEDGER, ETH_TESTNET, ETH_TREZOR, ETH_SAFE_T } from 'config/dpaths';
+import { ETH_DEFAULT, ETH_LEDGER, ETH_TREZOR, ETH_SAFE_T } from 'config/dpaths';
 import { makeExplorer } from 'utils/helpers';
-import { TAB } from 'components/Header/components/constants';
+// import { TAB } from 'components/Header/components/constants';
 import * as types from './types';
 
-const testnetDefaultGasPrice = {
-  min: 0.1,
-  max: 40,
-  initial: 4
-};
+// const testnetDefaultGasPrice = {
+//   min: 0.1,
+//   max: 40,
+//   initial: 4
+// };
 
 export const STATIC_NETWORKS_INITIAL_STATE: types.ConfigStaticNetworksState = {
   ETH: {

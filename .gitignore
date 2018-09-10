@@ -61,4 +61,4 @@ package-lock.json
 .wwp-cache
 
 # MacOSX
-.DS_Store
+.DS_Storenode_modules/

@@ -12,7 +12,7 @@ import * as sagas from './sagas';
 
 const networkState = configNetworksStaticReducer.staticNetworksReducer(undefined, {} as any);
 const network = networkState.ETH;
-const nonEstimateNetwork = networkState.ETC;
+// const nonEstimateNetwork = networkState.ETC;
 
 describe('fetchEstimates*', () => {
   const gen = cloneableGenerator(sagas.fetchEstimates)();
@@ -44,13 +44,13 @@ describe('fetchEstimates*', () => {
     expect(gen.next().value).toEqual(select(configSelectors.getNetworkConfig));
   });
 
-  it('Should use network default gas price settings if network shouldn’t estimate', () => {
-    const noEstimateGen = gen.clone();
-    expect(noEstimateGen.next(nonEstimateNetwork).value).toEqual(
-      call(sagas.setDefaultEstimates, nonEstimateNetwork)
-    );
-    expect(noEstimateGen.next().done).toBeTruthy();
-  });
+  // it('Should use network default gas price settings if network shouldn’t estimate', () => {
+  //   const noEstimateGen = gen.clone();
+  //   expect(noEstimateGen.next(Network).value).toEqual(
+  //     call(sagas.setDefaultEstimates, nonEstimateNetwork)
+  //   );
+  //   expect(noEstimateGen.next().done).toBeTruthy();
+  // });
 
   it('Should select getOffline', () => {
     expect(gen.next(network).value).toEqual(select(configMetaSelectors.getOffline));

@@ -20,20 +20,21 @@ $back-spacing: 10px;
     padding-top: $branding-spacing-top;
     background: color(control-bg);
     z-index: 1;
-    border-bottom: 1px solid shade-dark(0.1);
-
+    // border-bottom: 1px solid shade-dark(0.1);
+    padding-bottom: 15px;
     .is-osx & {
       padding-top: $electron-osx-control-spacing + $branding-spacing-top - 5;
     }
 
     &-logo {
-      margin-left: -1px;
+      margin-left: 9px;
+      margin-right: 10px;
       height: 35px;
       margin-bottom: 10px;
-      background-image: url('~assets/images/logo-mycrypto-transparent.svg');
+      background-image: url('~assets/images/logo-eximchain-blue.svg');
       background-position: center;
       background-repeat: no-repeat;
-      background-size: auto 100%;
+      background-size: 100%;
       cursor: pointer;
 
       @include theme(dark) {
@@ -114,7 +115,7 @@ $back-spacing: 10px;
       text-align: left;
       padding: $back-spacing 0 8px $back-spacing;
       color: shade-dark(0.2);
-      border-bottom: 1px solid shade-dark(0.05);
+      // border-bottom: 1px solid shade-dark(0.05);
       background: color(control-bg);
 
       .is-osx & {
@@ -151,11 +152,12 @@ $back-spacing: 10px;
 
     &.is-active {
       color: color(link-color);
-      background: shade-dark(0.03);
+      // background: shade-dark(0.03);
     }
 
     &:hover {
       color: color(link-hover-color);
+      background: shade-dark(0.03);
     }
 
     &-icon {

@@ -25,8 +25,8 @@ export const STATIC_NETWORKS_INITIAL_STATE: types.ConfigStaticNetworksState = {
     isCustom: false,
     color: '#007896',
     blockExplorer: makeExplorer({
-      name: 'Etherscan',
-      origin: 'https://etherscan.io'
+      name: 'blk.io',
+      origin: 'http://168.61.47.117:5000/blocks/latest/1'
     }),
     tokenExplorer: {
       name: ethPlorer,

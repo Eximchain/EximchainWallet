@@ -15,15 +15,22 @@ $speed: 500ms;
 }
 
 @mixin decrypt-title {
-  text-align: center;
-  line-height: 1;
+  text-align: left;
+  padding-left: 10px;
+  line-height: 1.4;
   margin: $space 0 2rem;
   font-weight: normal;
+  font-size: 22px;
   animation: decrypt-enter $speed ease 1;
+}
+
+.WalletDecrypt > div {
+  height : 100%;
 }
 
 .WalletDecrypt {
   position: relative;
+  height:100%;
 
   &-wallets {
     margin: 0 -$space-md;
@@ -34,7 +41,7 @@ $speed: 500ms;
 
     &-row {
       display: flex;
-      justify-content: center;
+      justify-content: left;
       flex-wrap: wrap;
       margin-bottom: 10px;
 
@@ -56,8 +63,12 @@ $speed: 500ms;
 
   &-decrypt {
     position: relative;
-    text-align: center;
+    text-align: left;
+    padding-left: 10px;
     padding-bottom: $space;
+    margin: 0 -$space-md;
+    height: 100%;
+
 
     @media (max-width: $screen-md) {
       padding-bottom: $space * 2;
@@ -72,12 +83,12 @@ $speed: 500ms;
       opacity: 0.4;
       transition: opacity 120ms ease, transform 120ms ease;
 
-      @media (max-width: $screen-md) {
-        top: auto;
-        bottom: -10px;
-        left: 50%;
-        transform: translateX(-50%);
-      }
+      // @media (max-width: $screen-md) {
+      //   top: auto;
+      //   bottom: -10px;
+      //   left: 50%;
+      //   transform: translateX(-50%);
+      // }
 
       &:hover,
       &:focus {
@@ -90,8 +101,8 @@ $speed: 500ms;
 
       .fa {
         position: relative;
-        top: -2px;
-        font-size: 11px;
+        // top: -2px;
+        font-size: 14px;
       }
     }
 
@@ -100,9 +111,15 @@ $speed: 500ms;
     }
 
     &-form {
-      max-width: 480px;
+      // max-width: 480px;
       margin: 0 auto;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-bottom: 100px;
     }
+
     &-label {
       opacity: 0.8;
       font-weight: 300;

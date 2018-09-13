@@ -265,7 +265,8 @@ const WalletDecrypt = withRouter<Props>(
       return (
         <div className="WalletDecrypt-decrypt">
           <button className="WalletDecrypt-decrypt-back" onClick={this.clearWalletChoice}>
-            <i className="fa fa-arrow-left" /> {translate('CHANGE_WALLET')}
+            <i className="fa fa-arrow-left" />
+            {/* {translate('CHANGE_WALLET')} */}
           </button>
           <h2 className="WalletDecrypt-decrypt-title">
             {!selectedWallet.isReadOnly &&
@@ -273,6 +274,7 @@ const WalletDecrypt = withRouter<Props>(
                 $wallet: translateRaw(selectedWallet.lid)
               })}
           </h2>
+
           <section className="WalletDecrypt-decrypt-form">
             <Errorable
               errorMessage={`Oops, looks like ${translateRaw(
@@ -438,7 +440,7 @@ const WalletDecrypt = withRouter<Props>(
       const selectedWallet = this.getSelectedWallet();
       const decryptionComponent = this.getDecryptionComponent();
       return (
-        <div>
+        <div className="Tab-content-pane">
           {!hidden && (
             <article className="Tab-content-pane">
               <div className="WalletDecrypt">

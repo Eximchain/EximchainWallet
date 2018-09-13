@@ -4,7 +4,7 @@
 // Prefer pixels of rem in this file, Electron shouldn't be responsive in the
 // same way the content is.
 $branding-spacing-top: 12px;
-$back-spacing: 10px;
+$back-spacing: 20px;
 
 .ElectronNav {
   transition: transform 300ms ease;
@@ -23,12 +23,12 @@ $back-spacing: 10px;
     // border-bottom: 1px solid shade-dark(0.1);
     padding-bottom: 15px;
     .is-osx & {
-      padding-top: $electron-osx-control-spacing + $branding-spacing-top - 5;
+      padding-top: $electron-osx-control-spacing + $branding-spacing-top;
     }
 
     &-logo {
-      margin-left: 9px;
-      margin-right: 10px;
+      margin-left: 19px;
+      margin-right: 20px;
       height: 35px;
       margin-bottom: 10px;
       background-image: url('~assets/images/logo-eximchain-blue.svg');
@@ -71,21 +71,23 @@ $back-spacing: 10px;
 
   &-status {
     margin: 12px 0;
-    padding-left: 10px;
+    padding-left: 20px;
+    font-size: 13px;
   }
 
   &-controls {
     margin: 10px 0;
-    padding: 0 10px;
+    padding: 0 20px;
 
     &-btn {
       @include reset-button;
       display: flex;
       align-items: center;
       width: 100%;
-      color: shade-dark(0.5);
-      font-size: 12px;
+      color: color(gray);
+      font-size: 14px;
       padding: 6px 0;
+      font-weight: 300;
 
       &-icon {
         font-size: 11px;
@@ -144,20 +146,21 @@ $back-spacing: 10px;
     display: block;
     height: 48px;
     line-height: 48px;
-    padding: 0 0 0 10px;
+    padding: 0 0 0 20px;
     // border-bottom: 1px solid shade-dark(0.08);
-    color: color(text-color);
+    color: color(gray);
     font-size: 14px;
-    font-weight: normal;
+    font-weight: 300;
 
     &.is-active {
       color: color(link-color);
+      font-weight: 400;
       // background: shade-dark(0.03);
     }
 
     &:hover {
-      color: color(link-hover-color);
-      background: shade-dark(0.03);
+      color:  color(gray);
+      // background: shade-dark(0.03);
     }
 
     &-icon {

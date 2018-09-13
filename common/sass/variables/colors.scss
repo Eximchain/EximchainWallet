@@ -1,16 +1,16 @@
 $brand-primary: #0667D0;
-$brand-info: #163151;
-$brand-success: #5dba5a;
-$brand-warning: #ff9800;
-$brand-danger: #db5846;
+$brand-info: #214885;
+$brand-success: #34B47E;
+$brand-warning: #F6BE7D;
+$brand-danger: #CC4149;
 
 $dark-rgb: 0, 0, 0;
 $light-rgb: 255, 255, 255;
 
 $gray-base: #000;
 $gray-darker: #1c1c1c;
-$gray-dark: #333;
-$gray: #737373;
+$gray-dark: #2B333F;
+$gray: #626B76;
 $gray-light: #9a9a9a;
 $gray-lighter: #ececec;
 $gray-lightest: #fafafa;
@@ -61,7 +61,7 @@ $theme-light: (
   white-clearer: rgba(#fff, 0.7),
   white-clearest: rgba(#fff, 0.6),
 
-  body-bg: $gray-lightest,
+  body-bg: #fff,
   pane-bg: #fff,
 
   footer-bg: $brand-info,
@@ -71,7 +71,7 @@ $theme-light: (
   text-color-inverted: #fff,
 
   link-color: $brand-primary,
-  link-hover-color: darken($brand-primary, 10%),
+  link-hover-color: #267EDC,
 
   tab-color: $brand-info,
   tab-border: #ececec,
@@ -161,11 +161,11 @@ $theme-dark: (
   footer-bg: $gray-light,
   footer-border: $gray-light,
 
-  text-color: #fff,
+  text-color: $gray-dark,
   text-color-inverted: #fff,
 
-  link-color: lighten($brand-primary, 10%),
-  link-hover-color: lighten($brand-primary, 20%),
+  link-color: $brand-primary,
+  link-hover-color: #267EDC,
 
   tab-color: $gray-base,
   tab-border: $gray-base,

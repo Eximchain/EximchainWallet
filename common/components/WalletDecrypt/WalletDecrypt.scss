@@ -34,9 +34,20 @@ $speed: 500ms;
 
   &-wallets {
     margin: 0 -$space-md;
+    padding-top: $electron-osx-control-spacing + 12px;
+
 
     &-title {
+      position: fixed;
+      top: 0;
+      height: 80px;
+      width: 100%;
+      padding-top: $electron-osx-control-spacing + 2px;
+      left: 220px;
+      z-index: 1000;
       @include decrypt-title;
+      background-color: white;
+      margin: 0;
     }
 
     &-row {

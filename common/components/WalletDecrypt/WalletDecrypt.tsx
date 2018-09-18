@@ -133,7 +133,7 @@ const WalletDecrypt = withRouter<Props>(
       [SecureWalletName.LEDGER_NANO_S]: {
         lid: 'X_LEDGER',
         icon: LedgerIcon,
-        description: 'ADD_HARDWAREDESC',
+        description: 'ADD_LEDGERDESC',
         component: LedgerNanoSDecrypt,
         initialParams: {},
         unlock: this.props.setWallet,
@@ -142,7 +142,7 @@ const WalletDecrypt = withRouter<Props>(
       [SecureWalletName.TREZOR]: {
         lid: 'X_TREZOR',
         icon: TrezorIcon,
-        description: 'ADD_HARDWAREDESC',
+        description: 'ADD_TREZORDESC',
         component: TrezorDecrypt,
         initialParams: {},
         unlock: this.props.setWallet,
@@ -152,7 +152,7 @@ const WalletDecrypt = withRouter<Props>(
       [SecureWalletName.SAFE_T]: {
         lid: 'X_SAFE_T',
         icon: SafeTIcon,
-        description: 'ADD_HARDWAREDESC',
+        description: 'ADD_SAFE-TMINIDESC',
         component: SafeTminiDecrypt,
         initialParams: {},
         unlock: this.props.setWallet,
@@ -162,7 +162,7 @@ const WalletDecrypt = withRouter<Props>(
       [SecureWalletName.PARITY_SIGNER]: {
         lid: 'X_PARITYSIGNER',
         icon: ParitySignerIcon,
-        description: 'ADD_PARITY_DESC',
+        description: 'ADD_PARITY_DESC_2',
         component: ParitySignerDecrypt,
         initialParams: {},
         unlock: this.props.setWallet,

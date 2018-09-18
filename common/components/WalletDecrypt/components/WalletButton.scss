@@ -15,7 +15,7 @@
 .WalletButton {
   position: relative;
   flex: 1;
-  height: 100px;
+  height: auto;
   max-width: 400px;
   min-width: 200px;
   padding: 15px 15px;
@@ -154,24 +154,24 @@
   }
 
   &--small {
-    height: 105px;
-    max-width: 180px;
-    min-width: 160px;
-    margin: 0 $space-sm $space-md;
-    padding: 20px 15px;
+    // height: 105px;
+    // max-width: 180px;
+    // min-width: 160px;
+    // margin: 0 $space-sm $space-md;
+    // padding: 20px 15px;
 
     .WalletButton {
       &-title {
-        font-size: $font-size-bump;
-        margin-bottom: $space-sm;
+        // font-size: $font-size-bump;
+        // margin-bottom: $space-sm;
       }
 
       &-icons {
         &-icon {
-          margin-left: 6px;
+          // margin-left: 6px;
 
           .fa {
-            font-size: $font-size-bump;
+            // font-size: $font-size-bump;
           }
         }
       }

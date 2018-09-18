@@ -4,6 +4,8 @@ $brand-success: #34B47E;
 $brand-warning: #F6BE7D;
 $brand-danger: #CC4149;
 
+$blue-01: #F0F6FD;
+
 $dark-rgb: 0, 0, 0;
 $light-rgb: 255, 255, 255;
 
@@ -32,6 +34,8 @@ $theme-light: (
   brand-primary-darker: darken($brand-primary, 12%),
   brand-primary-light: lighten($brand-primary, 6%),
   brand-primary-lighter: lighten($brand-primary, 12%),
+
+  blue-01: $blue-01,
 
   brand-success: $brand-success,
   brand-success-dark: darken($brand-success, 6%),

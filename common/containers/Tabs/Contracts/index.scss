@@ -1,6 +1,6 @@
 @import "common/sass/variables";
 
-.BroadcastTx {
+.ContractSection {
   // max-width: 520px;
   // margin: 0 auto;
   position: relative;
@@ -17,7 +17,7 @@
     font-size: 22px;
   }
 
-  &-help {
+  &-subtitle {
     max-width: 1040px;
     margin: 0 0 $space * 2;
     color: color(gray);
@@ -30,8 +30,8 @@
     // flex-wrap: wrap;
     // justify-content: center;
     margin: $space 0;
-    // padding-left: 10px;
-    // padding-right: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
     // width: 100%;
     text-align: left;
   }

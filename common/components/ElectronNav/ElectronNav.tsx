@@ -36,15 +36,16 @@ class ElectronNav extends React.Component<Props, State> {
     const { panelContent, isPanelOpen } = this.state;
 
     return (
-      <div
-        className={classnames({
-          ElectronNav: true,
-          'is-panel-open': isPanelOpen
-        })}
-      >
+      <div className={classnames({ElectronNav: true, 'is-panel-open': isPanelOpen})} >
         <div className="ElectronNav-branding">
-          <div className="ElectronNav-branding-logo" onClick={this.toggleTheme} />
+          <div className="ElectronNav-branding-logo"
+            {/* onClick={this.toggleTheme} */}>
+          </div>
         </div>
+
+        <button className="ElectronNav-status ElectronNav-controls-btn" onClick={this.openNodeSelect}>
+          <NetworkStatus /><i className="ElectronNav-controls-btn-icon fa fa-arrow-circle-right" />
+        </button>
 
         <ul className="ElectronNav-links">
           {navigationLinks.map(link => (
@@ -61,16 +62,8 @@ class ElectronNav extends React.Component<Props, State> {
         <div className="ElectronNav-controls">
           <button className="ElectronNav-controls-btn" onClick={this.openLanguageSelect}>
             Change Language
-            <i className="ElectronNav-controls-btn-icon fa fa-arrow-circle-right" />
+                    <i className="ElectronNav-controls-btn-icon fa fa-arrow-circle-right" />
           </button>
-          <button className="ElectronNav-controls-btn" onClick={this.openNodeSelect}>
-            Change Network
-            <i className="ElectronNav-controls-btn-icon fa fa-arrow-circle-right" />
-          </button>
-        </div>
-
-        <div className="ElectronNav-status">
-          <NetworkStatus />
         </div>
 
         <div className="ElectronNav-panel">

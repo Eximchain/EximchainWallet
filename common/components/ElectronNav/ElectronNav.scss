@@ -17,33 +17,35 @@ $back-spacing: 20px;
     position: -webkit-sticky;
     position: sticky;
     top: 0;
-    padding-top: $branding-spacing-top;
+    // padding-top: $branding-spacing-top;
     background: color(control-bg);
     z-index: 1;
     // border-bottom: 1px solid shade-dark(0.1);
-    padding-bottom: 15px;
+    // padding-bottom: 15px;
     .is-osx & {
-      padding-top: $electron-osx-control-spacing + $branding-spacing-top;
+      padding-top: $electron-osx-control-spacing
+      // + $branding-spacing-top
+      ;
     }
 
     &-logo {
-      margin-left: 19px;
-      margin-right: 20px;
+      margin-left: 18px;
+      margin-right: 19px;
       height: 35px;
-      margin-bottom: 10px;
-      background-image: url('~assets/images/logo-eximchain-blue.svg');
+      margin-bottom: 2px;
+      background-image: url('~assets/images/logo-myquorumwallet.svg');
       background-position: center;
       background-repeat: no-repeat;
       background-size: 100%;
-      cursor: pointer;
+      // cursor: pointer;
 
       @include theme(dark) {
         background-image: url('~assets/images/logo-mycrypto.svg');
       }
-
-      &:hover {
-        opacity: 0.8;
-      }
+      //
+      // &:hover {
+      //   opacity: 0.8;
+      // }
     }
 
     &-beta {
@@ -71,13 +73,13 @@ $back-spacing: 20px;
 
   &-status {
     margin: 12px 0;
-    padding-left: 20px;
-    font-size: 13px;
+    // padding-left: 20px;
+    font-size: 12px;
   }
 
   &-controls {
     margin: 10px 0;
-    padding: 0 20px;
+    // padding: 0 20px;
 
     &-btn {
       @include reset-button;
@@ -85,8 +87,9 @@ $back-spacing: 20px;
       align-items: center;
       width: 100%;
       color: color(gray);
-      font-size: 14px;
-      padding: 6px 0;
+      font-size: 12px;
+      padding: 0 0 20px 6px;
+      padding-left: 20px;
       font-weight: 300;
 
       &-icon {
@@ -140,6 +143,8 @@ $back-spacing: 20px;
 .ElectronNavLink {
   display: block;
   margin: 0;
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
   @include ellipsis;
 
   &-link {
@@ -155,12 +160,17 @@ $back-spacing: 20px;
     &.is-active {
       color: color(link-color);
       font-weight: 400;
-      // background: shade-dark(0.03);
+      background: color(blue-01);
+      &:hover {
+        color: color(brand-primary);
+;
+      }
     }
 
     &:hover {
-      color:  color(gray);
-      // background: shade-dark(0.03);
+      color: color(gray);
+      opacity: 1;
+      background: shade-dark(0.03);
     }
 
     &-icon {

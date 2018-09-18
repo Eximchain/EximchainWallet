@@ -52,11 +52,12 @@ class BroadcastTx extends Component<Props> {
                   <h1 className="BroadcastTx-title text-center">
                     {translate('BROADCAST_TX_TITLE')}
                   </h1>
+
                   <p className="BroadcastTx-help text-center">
                     {translate('BROADCAST_TX_DESCRIPTION')}
                   </p>
 
-                  <div className="input-group-wrapper InteractForm-interface">
+                  <div className="BroadcastTx-input input-group-wrapper InteractForm-interface">
                     <label className="input-group">
                       <div className="input-group-header">{translate('SEND_SIGNED')}</div>
                       <Input

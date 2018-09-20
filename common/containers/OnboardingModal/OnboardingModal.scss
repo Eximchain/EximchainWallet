@@ -14,10 +14,13 @@
   h1 {
     @include onboarding-modal-slide-heading;
     color: color(text-color);
+    font-weight: 400;
   }
   p,
   li {
     @include onboarding-modal-slide-text;
+    // font-size: 16px;
+    color: color(gray);
   }
   ul {
     padding-left: 20px;
@@ -31,7 +34,8 @@
     border-radius: 6px 6px 0 0;
 
     img {
-      transform: scale(0.5);
+      // transform: scale(0.5);
+      padding: 0 10px;
     }
 
     @media (min-width: 500px) {
@@ -55,7 +59,9 @@
         flex: 1;
 
         img {
-          transform: scale(0.7);
+          // transform: scale(0.9);
+          padding: 0 10px;
+
         }
       }
       &-middle {
@@ -82,17 +88,37 @@
     justify-content: center;
     padding: 0 2rem;
     overflow-y: auto;
+    position: relative;
+    width: 100%;
 
     > section {
       min-height: 0;
     }
+    &-topsection {
+      position: absolute;
+      top: 0;
+      left: 0;
+      margin-top: 2rem;
+      margin-left: 2rem;
+      margin-right: 2rem;
+      padding-right: 3rem;
+      width: inherit;
+      height: 95%;
+
+    }
     // A couple of slides that require scrolling need to overcome
     // the inability for padding to take effect.
+
+    .FirstSlide,
     .SecondSlide,
     .ThirdSlide,
     .FourthSlide {
       button {
+        position: absolute;
+        bottom: 0;
+        right: 0;
         margin-bottom: 2rem;
+        margin-right: 4rem;
       }
     }
   }

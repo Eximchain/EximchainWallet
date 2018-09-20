@@ -4,8 +4,13 @@
   .horizontal {
     display: none;
   }
+
   li {
     @include onboarding-modal-slide-text;
+  }
+  section {
+    width: 100%;
+    // margin-right: 2rem;
   }
 
   @media (min-width: 700px) {

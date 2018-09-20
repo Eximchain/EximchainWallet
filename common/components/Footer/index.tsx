@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { translateRaw } from 'translations';
-import logo from 'assets/images/logo-mycrypto.svg';
+import logo from 'assets/images/logo-myquorumwallet-white.svg';
 import {
   donationAddressMap,
   VERSION,

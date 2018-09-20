@@ -133,15 +133,15 @@
 
 @mixin onboarding-modal-slide-heading {
   font-size: 20px;
-  font-family: Lato, sans-serif;
+  font-family: 'Inter UI', sans-serif;
   font-weight: 900;
   color: $heading-text-color;
 
   @media (min-width: 500px) {
-    font-size: 24px;
+    font-size: 22px;
   }
   @media (min-width: 800px) {
-    font-size: 30px;
+    font-size: 22px;
   }
 }
 
@@ -152,6 +152,6 @@
     font-size: 18px;
   }
   @media (min-width: 800px) {
-    font-size: 20px;
+    font-size: 16px;
   }
 }

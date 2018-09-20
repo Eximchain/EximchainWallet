@@ -35,7 +35,15 @@
     }
   }
   &-input {
-    margin-top: 70px;
+    // margin-top: 70px;
+    margin: 0 auto;
+
+    max-width: 520px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
   }
   }
 }

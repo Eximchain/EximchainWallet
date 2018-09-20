@@ -13,13 +13,15 @@ export default class ENSClass extends React.Component<{}> {
         <div className="Tab-content">
           <section className="Tab-content-pane">
             <div className="ENS">
-              <h1 className="ENS-title">Ethereum Name Service</h1>
-              <p className="ENS-description">
+              <div className="ENS-topsection">
+              <h1 className="ENS-topsection-title">Ethereum Name Service</h1>
+              <p className="ENS-topsection-description">
                 {translate('ENS_DESCRIPTION', {
                   $ens_docs: 'https://ens.readthedocs.io/en/latest/introduction.html',
                   $example_donation_addr: donationAddressMap.ETH.substr(0, 8)
                 })}
               </p>
+              </div>
               <NameInput />
             </div>
           </section>

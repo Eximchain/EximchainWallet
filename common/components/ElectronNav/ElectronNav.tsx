@@ -36,15 +36,20 @@ class ElectronNav extends React.Component<Props, State> {
     const { panelContent, isPanelOpen } = this.state;
 
     return (
-      <div className={classnames({ElectronNav: true, 'is-panel-open': isPanelOpen})} >
+      <div
+        className={classnames({
+          ElectronNav: true,
+          'is-panel-open': isPanelOpen
+        })}
+      >
         <div className="ElectronNav-branding">
           <div className="ElectronNav-branding-logo"
-            {/* onClick={this.toggleTheme} */}>
-          </div>
+          />
         </div>
 
         <button className="ElectronNav-status ElectronNav-controls-btn" onClick={this.openNodeSelect}>
           <NetworkStatus /><i className="ElectronNav-controls-btn-icon fa fa-arrow-circle-right" />
+
         </button>
 
         <ul className="ElectronNav-links">

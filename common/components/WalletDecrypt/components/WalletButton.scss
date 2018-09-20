@@ -1,25 +1,26 @@
 @import 'common/sass/variables';
 @import 'common/sass/mixins';
 
-@keyframes wallet-button-enter {
-  0% {
-    opacity: 0;
-    transform: translateY(6px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0px);
-  }
-}
+// @keyframes wallet-button-enter {
+//   0% {
+//     opacity: 0;
+//     transform: translateY(6px);
+//   }
+//   100% {
+//     opacity: 1;
+//     transform: translateY(0px);
+//   }
+// }
 
 .WalletButton {
   position: relative;
   flex: 1;
   height: auto;
-  max-width: 400px;
-  min-width: 200px;
+  // max-width: 400px;
+  min-width: 300px;
   padding: 15px 15px;
   margin: 0 $space-md $space;
+  margin-bottom: 20px;
 
   background: color(control-bg);
   // box-shadow: 0 1px 4px rgba(#000, 0.2);
@@ -106,8 +107,9 @@
   }
 
   &-example {
-    font-size: $font-size-xs;
-    color: color(brand-danger-light);
+    font-size: $font-size-small;
+    font-weight: 300;
+    color: color(gray-light);
     @include ellipsis;
   }
 
@@ -179,8 +181,17 @@
   }
 
   // Mobile handling
+  @media screen and (max-width: $screen-md) {
+    min-width: 220px;
+  }
+  @media screen and (max-width: $screen-sm) {
+    min-width: 200px;
+  }
   @media screen and (max-width: $screen-xs) {
-    padding: 16px;
+    padding: 14px;
+    margin-bottom: 10px;
+    min-width: 200px;
+
 
     &,
     &--small {

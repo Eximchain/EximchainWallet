@@ -268,7 +268,7 @@ const WalletDecrypt = withRouter<Props>(
             <i className="fa fa-arrow-left" />
             {/* {translate('CHANGE_WALLET')} */}
           </button>
-          <h2 className="WalletDecrypt-decrypt-title">
+          <h2 className="WalletDecrypt-title">
             {!selectedWallet.isReadOnly &&
               translate('UNLOCK_WALLET', {
                 $wallet: translateRaw(selectedWallet.lid)
@@ -336,8 +336,8 @@ const WalletDecrypt = withRouter<Props>(
                 />
               );
             })}
-          </div>
-          <div className="WalletDecrypt-wallets-row">
+          {/* </div> */}
+          {/* <div className="WalletDecrypt-wallets-row"> */}
             {SECURE_WALLETS.map((walletType: SecureWalletName) => {
               const wallet = this.WALLETS[walletType];
               return (
@@ -372,9 +372,9 @@ const WalletDecrypt = withRouter<Props>(
                 />
               );
             })}
-          </div>
+          {/* </div> */}
 
-          <div className="WalletDecrypt-wallets-row">
+          {/* <div className="WalletDecrypt-wallets-row"> */}
             {INSECURE_WALLETS.map((walletType: InsecureWalletName) => {
               const wallet = this.WALLETS[walletType];
               return (

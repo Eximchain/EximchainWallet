@@ -1,18 +1,18 @@
 @import 'common/sass/variables';
 @import 'common/sass/mixins';
 
-$speed: 500ms;
+$speed: 1ms;
 
-@keyframes decrypt-enter {
-  0% {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0px);
-  }
-}
+// @keyframes decrypt-enter {
+//   0% {
+//     opacity: 0;
+//     transform: translateY(8px);
+//   }
+//   100% {
+//     opacity: 1;
+//     transform: translateY(0px);
+//   }
+// }
 
 @mixin decrypt-title {
   text-align: left;
@@ -32,6 +32,25 @@ $speed: 500ms;
   position: relative;
   height:100%;
 
+  &-title {
+    position: fixed;
+    top: 0;
+    height: 80px;
+    width: 100%;
+    padding-top: $electron-osx-control-spacing + 2px;
+    text-align: left;
+    padding-left: 20px;
+    line-height: 1.4;
+    margin: $space 0 2rem;
+    font-weight: normal;
+    font-size: 22px;
+    left: 220px;
+    // @include decrypt-title;
+    background-color: white;
+    z-index: 1030;
+    margin: 0;
+  }
+
   &-wallets {
     margin: 0 -$space-md;
     padding-top: $electron-osx-control-spacing + 12px;
@@ -44,7 +63,7 @@ $speed: 500ms;
       width: 100%;
       padding-top: $electron-osx-control-spacing + 2px;
       left: 220px;
-      z-index: 1000;
+      z-index: 900;
       @include decrypt-title;
       background-color: white;
       margin: 0;
@@ -54,7 +73,7 @@ $speed: 500ms;
       display: flex;
       justify-content: left;
       flex-wrap: wrap;
-      margin-bottom: 10px;
+      // margin-bottom: 10px;
 
       @media screen and (max-width: $screen-xs) {
         margin: 0;
@@ -76,13 +95,13 @@ $speed: 500ms;
     position: relative;
     text-align: left;
     padding-left: 10px;
-    padding-bottom: $space;
+    // padding-bottom: $space;
     margin: 0 -$space-md;
     height: 100%;
 
 
     @media (max-width: $screen-md) {
-      padding-bottom: $space * 2;
+      // padding-bottom: $space * 2;
     }
 
     &-back {
@@ -90,9 +109,10 @@ $speed: 500ms;
       position: absolute;
       top: 0;
       left: 0;
-      line-height: $font-size-large;
+      line-height: 2.2rem;
       opacity: 0.4;
-      transition: opacity 120ms ease, transform 120ms ease;
+      // transition: opacity 120ms ease, transform 120ms ease;
+      z-index: 1040;
 
       // @media (max-width: $screen-md) {
       //   top: auto;
@@ -128,7 +148,8 @@ $speed: 500ms;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding-bottom: 100px;
+      padding-top: 50px;
+      // padding-bottom: $space;
     }
 
     &-label {

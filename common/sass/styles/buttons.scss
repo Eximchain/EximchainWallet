@@ -54,6 +54,7 @@
 
 .btn {
   display: inline-block;
+  border-radius: 6px;
   margin-bottom: 0;
   font-weight: normal;
   text-align: center;
@@ -196,6 +197,7 @@
     color(brand-primary-dark),
     color(brand-primary-darker),
     color(brand-primary-darker),
+
   );
 }
 

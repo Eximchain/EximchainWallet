@@ -4,9 +4,38 @@
   &-form {
     text-align: center;
 
-    &-desc {
-      max-width: 580px;
-      margin: 0 auto $space;
+    &-topsection {
+      position: fixed;
+      top: 0;
+      height: 100px;
+      width: 100%;
+      padding-top: $electron-osx-control-spacing + 2px;
+      left: 220px;
+      z-index: 1000;
+      background-color: white;
+      margin: 0;
+      padding-left: 10px;
+      padding-right: 10px;
+
+    &-title {
+      text-align: left;
+      line-height: 1.4;
+      margin-bottom: 3px;
+      margin-top: 0;
+      font-weight: normal;
+      font-size: 22px;
     }
+
+    &-desc {
+      // max-width: 580px;
+      // margin: 0 auto $space;
+      margin: 0 0 $space * 2;
+      color: color(gray);
+      text-align: left;
+    }
+  }
+  &-input {
+    margin-top: 70px;
+  }
   }
 }

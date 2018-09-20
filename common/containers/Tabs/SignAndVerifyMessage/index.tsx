@@ -36,6 +36,10 @@ export default class SignAndVerifyMessage extends Component<RouteComponentProps<
 
     return (
       <TabSection>
+        <div className="ContractSection-topsection">
+          <h1 className="ContractSection-topsection-title">{translate('GENERATE_SIGNANDVERIFY_TITLE')}</h1>
+          <p className="ContractSection-topsection-subtitle">{translate('GENERATE_SIGNANDVERIFY_DESC')}</p>
+        </div>
         <section className="Tab-content SignAndVerifyMsg">
           <SubTabs tabs={tabs} match={match} location={location} history={history} />
           <Switch>

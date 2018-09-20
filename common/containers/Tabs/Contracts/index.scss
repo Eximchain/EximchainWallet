@@ -7,12 +7,23 @@
   text-align: center;
   margin: 0 -$space-md 0 0;
 
+  &-topsection {
+    position: fixed;
+    top: 0;
+    height: 100px;
+    width: 100%;
+    padding-top: $electron-osx-control-spacing + 2px;
+    padding-left: 10px;
+    left: 220px;
+    z-index: 1000;
+    background-color: white;
+    margin: 0;
+
   h1 {
     text-align: left;
-    // padding-left: 10px;
     line-height: 1.4;
     margin-bottom: 3px;
-    // margin: $space 0 2rem;
+    margin-top: 0;
     font-weight: normal;
     font-size: 22px;
   }
@@ -24,6 +35,8 @@
     text-align: left;
     // padding-left: 10px;
     }
+
+  }
 
   &-input {
     // display: flex;

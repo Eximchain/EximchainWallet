@@ -47,26 +47,33 @@ class CheckTransaction extends React.Component<Props, State> {
     const { hash } = this.state;
     const CHECK_TX_KEY =
       network.id === 'ETH'
-        ? 'CHECK_TX_STATUS_DESCRIPTION_MULTIPLE'
-        : 'CHECK_TX_STATUS_DESCRIPTION_2';
+        ?
+        'CHECK_TX_STATUS_DESCRIPTION_MULTIPLE'
+        :
+        'CHECK_TX_STATUS_DESCRIPTION_2'
+        ;
 
     return (
       <TabSection>
         <div className="CheckTransaction Tab-content">
           <section className="CheckTransaction-form Tab-content-pane">
-            <h1 className="CheckTransaction-form-title">{translate('CHECK_TX_STATUS_TITLE')}</h1>
-            <p className="CheckTransaction-form-desc">
+            <div className="CheckTransaction-form-topsection">
+            <h1 className="CheckTransaction-form-topsection-title">{translate('CHECK_TX_STATUS_TITLE')}</h1>
+            <p className="CheckTransaction-form-topsection-desc">
               {translate('CHECK_TX_STATUS_DESCRIPTION_1')}
-              {!network.isCustom &&
+              {/* {!network.isCustom &&
                 translate(CHECK_TX_KEY, {
                   $block_explorer: network.blockExplorer.name,
                   $block_explorer_link: network.blockExplorer.origin,
                   // On ETH networks, we also show Etherchain. Otherwise, these variables are ignored
                   $block_explorer_2: etherChainExplorerInst.name,
                   $block_explorer_link_2: etherChainExplorerInst.origin
-                })}
+                })} */}
             </p>
+            </div>
+            <section className="CheckTransaction-form-input">
             <TxHashInput hash={hash} onSubmit={this.handleHashSubmit} />
+            </section>
           </section>
 
           {hash && (

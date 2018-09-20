@@ -1,39 +1,55 @@
 @import "common/sass/variables";
 
 .BroadcastTx {
-  // max-width: 520px;
+  // max-width: 1040px;
   // margin: 0 auto;
   position: relative;
-  text-align: center;
+  text-align: left;
+  width: 100%;
+  box-sizing: border-box;
   margin: 0 -$space-md 0 0;
+  // display: flex;
+  // justify-content: left;
+  // flex-wrap: wrap;
+
+
+  &-topsection {
+    position: fixed;
+    top: 0;
+    height: 100px;
+    // width: inherit;
+    padding-top: $electron-osx-control-spacing + 2px;
+    left: 220px;
+    z-index: 1000;
+    background-color: white;
+    margin: 0;
+    padding-left: 10px;
+    padding-right: 10px;
 
   h1 {
     text-align: left;
-    // padding-left: 10px;
     line-height: 1.4;
     margin-bottom: 3px;
-    // margin: $space 0 2rem;
+    margin-top: 0;
     font-weight: normal;
     font-size: 22px;
   }
 
   &-help {
-    max-width: 1040px;
     margin: 0 0 $space * 2;
     color: color(gray);
     text-align: left;
-    // padding-left: 10px;
     }
+  }
 
   &-input {
     // display: flex;
     // flex-wrap: wrap;
-    // justify-content: center;
+    // justify-content: left;
     margin: $space 0;
-    // padding-left: 10px;
-    // padding-right: 10px;
-    // width: 100%;
     text-align: left;
+    width: 100%;
+    max-width: 1040px;
   }
 
 
@@ -41,9 +57,7 @@
   &-qr {
     max-width: 15rem;
     margin: 1rem auto;
-    // padding-left: 20px;
-    // padding-right: 20px;
     width: 100%;
-    text-align: center;
+    text-align: left;
   }
 }

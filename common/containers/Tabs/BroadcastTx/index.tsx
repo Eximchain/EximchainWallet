@@ -48,12 +48,12 @@ class BroadcastTx extends Component<Props> {
               exact={true}
               path={currentPath}
               render={() => (
-                <div className="BroadcastTx">
-                  <h1 className="BroadcastTx-title text-center">
+                <div className="BroadcastTx-topsection">
+                  <h1 className="BroadcastTx-topsection-title text-center">
                     {translate('BROADCAST_TX_TITLE')}
                   </h1>
 
-                  <p className="BroadcastTx-help text-center">
+                  <p className="BroadcastTx-topsection-help text-center">
                     {translate('BROADCAST_TX_DESCRIPTION')}
                   </p>
 

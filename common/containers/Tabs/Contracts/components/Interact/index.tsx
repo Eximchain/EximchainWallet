@@ -57,7 +57,7 @@ class InteractClass extends Component<Props, State> {
     return (
       <main className="Interact Tab-content-pane" role="main">
         <InteractForm {...interactProps} />
-        <hr />
+        {/* <hr /> */}
         {showExplorer &&
           currentContract && (
             <InteractExplorer contractFunctions={Contract.getFunctions(currentContract)} />

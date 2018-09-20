@@ -2,6 +2,9 @@
 
 .SubTabs {
   margin-top: $space-xs;
+  padding-top: 65px;
+  padding-bottom: 20px;
+
 
   .is-electron & {
     margin-top: 0;
@@ -10,6 +13,8 @@
   &-tabs {
     display: inline-block;
     white-space: nowrap;
+    border-radius: 4px;
+
 
     &-link {
       display: inline-block;
@@ -18,19 +23,46 @@
       min-width: 80px;
       text-align: center;
       font-weight: 300;
-      color: color(tab-color);
-      border-bottom: 2px solid color(tab-border);
-      transition-duration: 100ms;
-      opacity: 0.7;
+      color: color(gray);
+      background-color: color(gray-lighter);
+
+      // border: 1px solid color(gray-light);
+      transition-duration: 80ms;
+      // opacity: 1;
+
+
+      &:first-child {
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
+        border-right: none;
+
+
+        &.is-active {
+          border-right: 1px solid color(tab-active-border);
+        }
+      }
+      &:last-child {
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+        // margin-left: -2px;
+        border-left: none;
+        &.is-active {
+          border-left: 1px solid color(tab-active-border);
+
+        }
+
+      }
 
       &:hover {
         opacity: 1;
-        color: color(tab-active-color);
+        color: inherit;
+        background-color: shade-dark(.15);
       }
 
       &.is-active {
-        color: color(tab-active-color);
-        border-bottom-color: color(tab-active-border);
+        color: white;
+        background-color: color(brand-primary);
+        border-color: color(tab-active-border);
         opacity: 1;
       }
 

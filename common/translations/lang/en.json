@@ -519,7 +519,7 @@
     "SWAP_SEND_TO": "Send **$origin_amount** **$origin_label** to:",
     "SWAP_TIME_LIMIT_WARNING": "Orders that take too long will have to be processed manually and may delay the amount of time it takes to receive your coins.",
     "SWAP_RECOMMENDED_TX_FEES": "[Please use the recommended TX fees]($link)",
-    "ENS_DESCRIPTION": "The [Ethereum Name Service]($ens_docs) (ENS) is a distributed, open, and extensible naming system based on the Ethereum blockchain. Once you have a name, you can tell your friends to send ETH to `ensdomain.eth` instead of `$example_donation_addr...`",
+    "ENS_DESCRIPTION": "The [Ethereum Name Service]($ens_docs) (ENS) is a distributed, open, and extensible naming system based on the Ethereum blockchain.",
     "ENS_INVALID_INPUT": "Must be at least 7 characters, no special characters",
     "ENS_DOMAIN_OWNED": "**$name** is already owned",
     "ENS_DOMAIN_AUCTION": "An auction has started for **$name**",

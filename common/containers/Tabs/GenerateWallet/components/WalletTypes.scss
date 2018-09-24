@@ -11,7 +11,7 @@ $divider-size: 60px;
    top: 0;
    height: 100px;
    width: 100%;
-   padding-top: $electron-osx-control-spacing + 2px;
+   padding-top: $electron-osx-control-spacing - 10px;
    left: 220px;
    z-index: 1000;
    background-color: white;
@@ -36,7 +36,7 @@ $divider-size: 60px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    padding-top: 65px;
+    padding-top: 46px;
     margin: $space 0;
     text-align: left;
   }

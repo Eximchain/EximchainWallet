@@ -18,7 +18,7 @@
     top: 0;
     height: 100px;
     // width: inherit;
-    padding-top: $electron-osx-control-spacing + 2px;
+    padding-top: $electron-osx-control-spacing - 10px;
     left: 220px;
     z-index: 1000;
     background-color: white;

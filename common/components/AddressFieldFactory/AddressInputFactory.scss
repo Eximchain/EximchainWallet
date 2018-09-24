@@ -26,15 +26,16 @@
   }
 
   &-identicon {
-    padding-top: $space-md;
+    padding-top: 1.8rem;
+    padding-right: 1.5rem;
     transform: translateX(20%);
 
     @media (max-width: $screen-sm) {
-      padding-top: 1.5rem;
+      padding-top: 1.85rem;
 
       .Identicon {
-        width: 3.4rem !important;
-        height: 3.4rem !important;
+        width: 3rem !important;
+        height: 3rem !important;
       }
     }
 

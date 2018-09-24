@@ -52,8 +52,11 @@ class ElectronNav extends React.Component<Props, State> {
 
         </button>
 
+
         <ul className="ElectronNav-links">
           {navigationLinks.map(link => (
+            <button className="ElectronNav-controls-btn">
+              <i className=" fa fa-arrow-circle-right" />
             <NavigationLink
               key={link.to}
               link={link}
@@ -61,8 +64,10 @@ class ElectronNav extends React.Component<Props, State> {
               className="ElectronNavLink"
               isNotEnabled={false}
             />
+            </button>
           ))}
         </ul>
+
 
         <div className="ElectronNav-controls">
           <button className="ElectronNav-controls-btn" onClick={this.openLanguageSelect}>

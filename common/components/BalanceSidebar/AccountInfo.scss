@@ -2,6 +2,10 @@
 @import 'common/sass/mixins';
 
 .AccountInfo {
+
+  // h5 {
+  //   text-transform: uppercase;
+  // }
   &-copy {
     display: inline-block;
     cursor: pointer;
@@ -37,7 +41,7 @@
   }
 
   &-section {
-    margin: $space 0;
+    margin: 0 0 $space 0;
 
     &:first-child {
       margin-top: 0;
@@ -73,7 +77,7 @@
 
   &-address,
   &-list {
-    padding-left: $space;
+    padding-left: 0;
   }
 
   &-address {

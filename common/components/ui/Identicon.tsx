@@ -19,7 +19,7 @@ interface StateProps {
 type Props = OwnProps & StateProps;
 
 const Identicon: React.SFC<Props> = props => {
-  const size = props.size || '4rem';
+  const size = props.size || '3rem';
   const { address, isValidAddress, className = '' } = props;
   const identiconDataUrl = isValidAddress(address) ? makeBlockie(address) : '';
 

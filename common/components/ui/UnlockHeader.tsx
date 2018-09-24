@@ -44,10 +44,10 @@ export class UnlockHeader extends React.PureComponent<Props, State> {
               onClick={this.toggleisExpanded}
             >
               <span>
+                <i className="fa fa-refresh" />
                 <span className="hidden-xs UnlockHeader-open-text">
                   {translate('CHANGE_WALLET')}
                 </span>
-                <i className="fa fa-refresh" />
               </span>
             </button>
           )}

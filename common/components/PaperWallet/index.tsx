@@ -3,7 +3,7 @@ import html2canvas from 'html2canvas';
 import { addHexPrefix, toChecksumAddress } from 'ethereumjs-util';
 
 import notesBg from 'assets/images/notes-bg.png';
-import sidebarImg from 'assets/images/print-sidebar.png';
+import sidebarImg from 'assets/images/print-sidebar.svg';
 import { Identicon, QRCode } from 'components/ui';
 import './index.scss';
 

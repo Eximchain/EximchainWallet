@@ -152,7 +152,7 @@ class AccountInfo extends React.Component<Props, State> {
           </ul>
         </div>
 
-        {(!!blockExplorer || !!tokenExplorer) && (
+        {/* {(!!blockExplorer || !!tokenExplorer) && (
           <div className="AccountInfo-section">
             <h5 className="AccountInfo-section-header">{translate('SIDEBAR_TRANSHISTORY')}</h5>
             <ul className="AccountInfo-list">
@@ -179,7 +179,7 @@ class AccountInfo extends React.Component<Props, State> {
               )}
             </ul>
           </div>
-        )}
+        )} */}
       </div>
     );
   }

@@ -5,8 +5,10 @@ import { AppState } from 'features/reducers';
 import { walletSelectors } from 'features/wallet';
 import EquivalentValues from './EquivalentValues';
 import AccountInfo from './AccountInfo';
-import Promos from './Promos';
+// import Promos from './Promos';
 import TokenBalances from './TokenBalances';
+import './index.scss';
+
 
 interface Block {
   name: string;
@@ -31,11 +33,11 @@ export class BalanceSidebar extends React.Component<StateProps> {
         name: 'Account Info',
         content: <AccountInfo wallet={wallet} />
       },
-      {
-        name: 'Promos',
-        isFullWidth: true,
-        content: <Promos />
-      },
+      // {
+      //   name: 'Promos',
+      //   isFullWidth: true,
+      //   content: <Promos />
+      // },
       {
         name: 'Token Balances',
         content: <TokenBalances />

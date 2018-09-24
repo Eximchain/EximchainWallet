@@ -19,8 +19,8 @@ import { NotificationState } from './notifications/types';
 import { notificationsReducer } from './notifications/reducer';
 import { OnboardingState } from './onboarding/types';
 import { onboardingReducer } from './onboarding/reducer';
-import { ParitySignerState } from './paritySigner/types';
-import { paritySignerReducer } from './paritySigner/reducer';
+// import { ParitySignerState } from './paritySigner/types';
+// import { paritySignerReducer } from './paritySigner/reducer';
 import { RatesState } from './rates/types';
 import { ratesReducer } from './rates/reducer';
 import { ScheduleState } from './schedule/types';
@@ -48,7 +48,7 @@ export interface AppState {
   transaction: TransactionState;
   transactions: TransactionsState;
   message: MessageState;
-  paritySigner: ParitySignerState;
+  // paritySigner: ParitySignerState;
   addressBook: AddressBookState;
   gas: GasState;
   schedule: ScheduleState;
@@ -69,7 +69,7 @@ export default combineReducers<AppState>({
   transaction: transactionReducer,
   transactions: transactionsReducer,
   message: messageReducer,
-  paritySigner: paritySignerReducer,
+  // paritySigner: paritySignerReducer,
   addressBook: addressBookReducer,
   gas: gasReducer,
   schedule: scheduleReducer,

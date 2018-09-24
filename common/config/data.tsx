@@ -73,7 +73,6 @@ export enum SecureWalletName {
   LEDGER_NANO_S = 'ledgerNanoS',
   TREZOR = 'trezor',
   SAFE_T = 'safeTmini',
-  PARITY_SIGNER = 'paritySigner'
 }
 
 export enum HardwareWalletName {

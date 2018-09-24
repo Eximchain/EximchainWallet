@@ -7,7 +7,6 @@ import { ledgerReferralURL, trezorReferralURL } from 'config';
 import Template from './Template';
 import MetamaskIcon from 'assets/images/wallets/metamask.svg';
 import HardwareWalletIcon from 'assets/images/wallets/hardware.svg';
-import ParitySignerIcon from 'assets/images/wallets/parity-signer.svg';
 import FileIcon from 'assets/images/wallets/file.svg';
 import './WalletTypes.scss';
 
@@ -105,28 +104,28 @@ const WalletSuggestions: React.SFC<WalletSuggestionsProps> = ({ showGenerate }) 
         }
       ]
     },
-    {
-      name: translate('X_PARITYSIGNER'),
-      description: translate('ADD_PARITY_DESC'),
-      type: 'parity',
-      icon: ParitySignerIcon,
-      bullets: [
-        // translate('WALLET_SUGGESTION_PARITYSIGNER_1'),
-        translate('WALLET_SUGGESTION_PARITYSIGNER_2'),
-        translate('WALLET_SUGGESTION_PARITYSIGNER_3')
-        // translate('WALLET_SUGGESTION_PARITYSIGNER_4')
-      ],
-      links: [
-        {
-          text: translate('DOWNLOAD_PHONE_APP', { $os: 'iOS' }),
-          href: 'https://itunes.apple.com/us/app/parity-signer/id1218174838'
-        },
-        {
-          text: translate('DOWNLOAD_PHONE_APP', { $os: 'Android' }),
-          href: 'https://play.google.com/store/apps/details?id=com.nativesigner'
-        }
-      ]
-    }
+    // {
+    //   name: translate('X_PARITYSIGNER'),
+    //   description: translate('ADD_PARITY_DESC'),
+    //   type: 'parity',
+    //   icon: ParitySignerIcon,
+    //   bullets: [
+    //     // translate('WALLET_SUGGESTION_PARITYSIGNER_1'),
+    //     translate('WALLET_SUGGESTION_PARITYSIGNER_2'),
+    //     translate('WALLET_SUGGESTION_PARITYSIGNER_3')
+    //     // translate('WALLET_SUGGESTION_PARITYSIGNER_4')
+    //   ],
+    //   links: [
+    //     {
+    //       text: translate('DOWNLOAD_PHONE_APP', { $os: 'iOS' }),
+    //       href: 'https://itunes.apple.com/us/app/parity-signer/id1218174838'
+    //     },
+    //     {
+    //       text: translate('DOWNLOAD_PHONE_APP', { $os: 'Android' }),
+    //       href: 'https://play.google.com/store/apps/details?id=com.nativesigner'
+    //     }
+    //   ]
+    // }
   ];
 
   if (process.env.BUILD_DOWNLOADABLE) {

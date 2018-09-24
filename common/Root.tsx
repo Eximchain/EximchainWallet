@@ -20,7 +20,7 @@ import SupportPage from 'containers/Tabs/SupportPage';
 import ErrorScreen from 'components/ErrorScreen';
 import PageNotFound from 'components/PageNotFound';
 import LogOutPrompt from 'components/LogOutPrompt';
-import QrSignerModal from 'containers/QrSignerModal';
+// import QrSignerModal from 'containers/QrSignerModal';
 import OnboardingModal from 'containers/OnboardingModal';
 import NewAppReleaseModal from 'components/NewAppReleaseModal';
 import PalettePage from 'components/Palette';
@@ -113,7 +113,7 @@ class RootClass extends Component<Props, State> {
               {routes}
               <LegacyRoutes />
               <LogOutPrompt />
-              <QrSignerModal />
+              {/* <QrSignerModal /> */}
               {process.env.BUILD_ELECTRON && <NewAppReleaseModal />}
             </React.Fragment>
           </Router>

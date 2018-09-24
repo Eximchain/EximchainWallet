@@ -10,7 +10,8 @@ export interface NavigationLink {
 export const navigationLinks: NavigationLink[] = [
   {
     name: 'NAV_VIEW',
-    to: '/account'
+    to: '/account',
+    icon: 'eye'
   },
   {
     name: 'NAV_GENERATEWALLET',

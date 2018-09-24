@@ -139,13 +139,6 @@ $divider-size: 60px;
     // border-top-color: #f79220;
   }
 
-  &.is-parity {
-    // border-top-color: #444;
-
-    @include theme(dark) {
-      // border-top-color: #FFF;
-    }
-  }
 
   &.is-generate {
     // border-top-color: color(brand-danger);

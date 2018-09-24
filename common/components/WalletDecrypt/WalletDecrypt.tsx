@@ -16,7 +16,6 @@ import {
 } from 'config';
 import translate, { translateRaw } from 'translations';
 import { isWeb3NodeAvailable } from 'libs/nodes/web3';
-import { wikiLink as paritySignerHelpLink } from 'libs/wallet/non-deterministic/parity';
 import { AppState } from 'features/reducers';
 import * as derivedSelectors from 'features/selectors';
 import { walletActions } from 'features/wallet';
@@ -25,7 +24,6 @@ import { notificationsActions } from 'features/notifications';
 import LedgerIcon from 'assets/images/wallets/ledger.svg';
 import TrezorIcon from 'assets/images/wallets/trezor.svg';
 import SafeTIcon from 'assets/images/wallets/safe-t.svg';
-import ParitySignerIcon from 'assets/images/wallets/parity-signer.svg';
 import { Errorable } from 'components';
 import { DisabledWallets } from './disables';
 import { getWeb3ProviderInfo } from 'utils/web3';
@@ -40,7 +38,6 @@ import {
   ViewOnlyDecrypt,
   Web3Decrypt,
   WalletButton,
-  ParitySignerDecrypt,
   InsecureWalletWarning
 } from './components';
 import './WalletDecrypt.scss';
@@ -159,15 +156,6 @@ const WalletDecrypt = withRouter<Props>(
         // TODO - Update with the right id once available
         helpLink: 'https://www.archos.com/fr/products/crypto/faq.html'
       },
-      [SecureWalletName.PARITY_SIGNER]: {
-        lid: 'X_PARITYSIGNER',
-        icon: ParitySignerIcon,
-        description: 'ADD_PARITY_DESC_2',
-        component: ParitySignerDecrypt,
-        initialParams: {},
-        unlock: this.props.setWallet,
-        helpLink: paritySignerHelpLink
-      },
       [InsecureWalletName.KEYSTORE_FILE]: {
         lid: 'X_KEYSTORE2',
         example: 'UTC--2017-12-15T17-35-22.547Z--6be6e49e82425a5aa56396db03512f2cc10e95e8',
@@ -281,7 +269,7 @@ const WalletDecrypt = withRouter<Props>(
                 selectedWallet.lid
               )} is not supported by your browser`}
               onError={this.clearWalletChoice}
-              shouldCatch={selectedWallet.lid === this.WALLETS.paritySigner.lid}
+              shouldCatch={selectedWallet.lid}
             >
               <selectedWallet.component
                 value={this.state.value}

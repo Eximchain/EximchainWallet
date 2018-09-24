@@ -3,7 +3,6 @@ export * from './InsecureWalletWarning';
 export * from './Keystore';
 export * from './LedgerNano';
 export * from './Mnemonic';
-export * from './ParitySigner';
 export * from './PrivateKey';
 export * from './Trezor';
 export * from './SafeT';

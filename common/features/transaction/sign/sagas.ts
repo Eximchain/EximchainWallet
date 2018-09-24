@@ -8,7 +8,7 @@ import { StaticNetworkConfig } from 'types/network';
 import { transactionToRLP, signTransactionWithSignature } from 'utils/helpers';
 import * as derivedSelectors from 'features/selectors';
 import { getNetworkConfig } from 'features/config/selectors';
-import { paritySignerTypes, paritySignerActions } from 'features/paritySigner';
+// import { paritySignerTypes, paritySignerActions } from 'features/paritySigner';
 import { walletSelectors } from 'features/wallet';
 import { notificationsActions } from 'features/notifications';
 import { transactionFieldsActions } from '../fields';

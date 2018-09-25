@@ -16,9 +16,11 @@ $speed: 1ms;
 
 @mixin decrypt-title {
   text-align: left;
-  padding-left: 10px;
+  // padding-left: 10px;
   line-height: 1.4;
-  margin: $space 0 2rem;
+  // margin: $space 0 2rem;
+  margin-bottom: 3px;
+  margin-top: 0;
   font-weight: normal;
   font-size: 22px;
   animation: decrypt-enter $speed ease 1;
@@ -36,9 +38,6 @@ $speed: 1ms;
   height:100%;
 
   &-title {
-    // position: relative;
-    // top: 0;
-    // height: 80px;
     width: 100%;
     padding-top: 2px;
     text-align: left;
@@ -55,21 +54,35 @@ $speed: 1ms;
   }
 
   &-wallets {
-    margin: 0 -$space-md;
-    padding-top: $electron-osx-control-spacing - 10px;
+    margin: 0 - $space-md;
+    // padding-top: 46px;
+    // margin: 1rem 0;
+    padding-top: $electron-osx-control-spacing + 25px;
 
-
-    &-title {
+    &-topsection {
       position: fixed;
       top: 0;
-      height: 68px;
+      height: 100px;
       width: 100%;
       padding-top: $electron-osx-control-spacing - 10px;
       left: 220px;
       z-index: 900;
-      @include decrypt-title;
       background-color: white;
       margin: 0;
+      padding-left: 10px;
+      padding-right: 10px;
+
+    &-title {
+      @include decrypt-title;
+      // margin: 0;
+    }
+
+    &-description {
+      margin: 0 0 $space * 2;
+      color: color(gray);
+      text-align: left;
+      }
+
     }
 
     &-row {

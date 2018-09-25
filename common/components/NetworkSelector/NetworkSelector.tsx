@@ -107,12 +107,6 @@ class NetworkSelector extends React.Component<Props> {
     return (
       <div className="NetworkSelector">
         {options.core}
-        {/* <button className="NetworkSelector-alts" onClick={this.toggleShowAltNetworks}>
-          <i className="fa fa-flask" />
-          {translate(isShowingAltNetworks ? 'HIDE_THING' : 'SHOW_THING', {
-            $thing: translateRaw('NETWORKS_ALTERNATIVE')
-          })}
-        </button> */}
         {isShowingAltNetworks && options.alt}
         <button className="NetworkSelector-add" onClick={this.props.openCustomNodeModal}>
           <i className="fa fa-plus" />

@@ -23,7 +23,6 @@ import { transactionFieldsActions } from 'features/transaction';
 import { notificationsActions } from 'features/notifications';
 import LedgerIcon from 'assets/images/wallets/ledger.svg';
 import TrezorIcon from 'assets/images/wallets/trezor.svg';
-// import SafeTIcon from 'assets/images/wallets/safe-t.svg';
 import { Errorable } from 'components';
 import { DisabledWallets } from './disables';
 import { getWeb3ProviderInfo } from 'utils/web3';
@@ -34,7 +33,6 @@ import {
   PrivateKeyDecrypt,
   PrivateKeyValue,
   TrezorDecrypt,
-  // SafeTminiDecrypt,
   ViewOnlyDecrypt,
   Web3Decrypt,
   WalletButton,

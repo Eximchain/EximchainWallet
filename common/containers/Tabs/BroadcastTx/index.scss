@@ -7,10 +7,10 @@
   text-align: left;
   width: 100%;
   box-sizing: border-box;
-  margin: 0 -$space-md 0 0;
-  // display: flex;
-  // justify-content: left;
-  // flex-wrap: wrap;
+  margin: 0;
+  display: flex;
+  justify-content: left;
+  flex-wrap: wrap;
 
 
   &-topsection {
@@ -21,9 +21,11 @@
     left: 220px;
     z-index: 1000;
     background-color: white;
-    margin: 0;
+    margin: 0 20px 0 0;
     padding-left: 10px;
     padding-right: 10px;
+    width: 100%;
+    max-width: 1040px;
 
   h1 {
     text-align: left;
@@ -42,14 +44,33 @@
   }
 
   &-input {
-    // display: flex;
-    // flex-wrap: wrap;
-    // justify-content: left;
-    margin: $space 0;
+    margin: $space $space 0 0;
     text-align: left;
     width: 100%;
-    max-width: 1040px;
-  }
+    max-width: 500px;
+    padding-right: 20px;
+     .input-group {
+       // margin: 0 500px 0 0;
+       width: 100%;
+       // max-width: 600px;
+       margin-left: 0;
+       // padding-right: 20px;
+     }
+
+     @media (max-width: $screen-lg) {
+        max-width: 1040px;
+       }
+       @media (max-width: $screen-md) {
+          max-width: 780px;
+         }
+         @media (max-width: $screen-sm) {
+            max-width: 600px;
+           }
+           @media (max-width: $screen-xs) {
+              max-width: 440px;
+             }
+     }
+
 
 
 

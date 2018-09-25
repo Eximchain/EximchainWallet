@@ -14,7 +14,7 @@ $gray-darker: #1c1c1c;
 $gray-dark: #2B333F;
 $gray: #626B76;
 $gray-light: #9a9a9a;
-$gray-lighter: #ececec;
+$gray-lighter: #E0E3E8;
 $gray-lightest: #fafafa;
 
 $theme-light: (
@@ -83,8 +83,9 @@ $theme-light: (
   tab-active-border: $brand-primary,
 
   control-bg: #fff,
-  control-color: $gray-dark,
-  control-border: #e5ecf3,
+  default-button-bg: #F0F2F4,
+  control-color: #0F2952,
+  control-border: #E0E3E8,
   control-disabled-bg: $gray-lightest,
   control-disabled-color: $gray-dark,
   control-disabled-border: #e6e6e6,

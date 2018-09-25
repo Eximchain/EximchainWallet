@@ -3,7 +3,7 @@
 
 .Notifications {
   position: fixed;
-  bottom: 0;
+  top: 0;
   left: 0;
   right: 0;
   z-index: $zindex-alerts;
@@ -11,10 +11,10 @@
 
 .Notification {
   position: relative;
-  padding: 1.25rem 1rem;
-  margin: 0 0 1px;
+  padding: 1.5rem 1rem;
+  margin: 0;
   font-weight: 300;
-  font-size: $font-size-bump;
+  font-size: $font-size-small;
   box-shadow: 0 1px rgba(#fff, 0.4);
 
   @include theme(dark) {
@@ -85,6 +85,8 @@
       }
       @media screen and (max-width: $screen-xs) {
         left: 1%;
+        margin-top: 44px;
+
       }
     }
 
@@ -164,28 +166,28 @@
 }
 
 .NotificationAnimation {
-  &-enter,
-  &-exit {
-    transition: opacity 250ms ease, transform 250ms ease;
-  }
-
-  &-enter {
-    opacity: 0;
-    transform: translateY(100%);
-
-    &-active {
-      opacity: 1;
-      transform: translateY(0%);
-    }
-  }
-
-  &-exit {
-    opacity: 1;
-    transform: translateY(0%);
-
-    &-active {
-      opacity: 0;
-      transform: translateY(100%);
-    }
-  }
+  // &-enter,
+  // &-exit {
+  //   transition: opacity 200ms ease, transform 200ms ease;
+  // }
+  //
+  // &-enter {
+  //   opacity: 0;
+  //   transform: translateY(100%);
+  //
+  //   &-active {
+  //     opacity: 1;
+  //     transform: translateY(0%);
+  //   }
+  // }
+  //
+  // &-exit {
+  //   opacity: 1;
+  //   transform: translateY(0%);
+  //
+  //   &-active {
+  //     opacity: 0;
+  //     transform: translateY(100%);
+  //   }
+  // }
 }

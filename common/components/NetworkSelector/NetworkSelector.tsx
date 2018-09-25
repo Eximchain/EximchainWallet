@@ -112,12 +112,12 @@ class NetworkSelector extends React.Component<Props> {
           {translate(isShowingAltNetworks ? 'HIDE_THING' : 'SHOW_THING', {
             $thing: translateRaw('NETWORKS_ALTERNATIVE')
           })}
-        </button>
+        </button> */}
         {isShowingAltNetworks && options.alt}
         <button className="NetworkSelector-add" onClick={this.props.openCustomNodeModal}>
           <i className="fa fa-plus" />
           {translate('NODE_ADD')}
-        </button> */}
+        </button>
       </div>
     );
   }

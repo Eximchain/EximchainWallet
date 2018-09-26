@@ -91,8 +91,23 @@ $back-spacing: 20px;
       font-weight: 300;
 
       &-icon {
-        font-size: 11px;
+        font-size: 12px;
         margin-left: 4px;
+        padding-right: 5px;
+        &.is-online {
+          color: color(brand-success);
+          margin-left: 0px;
+        }
+
+        &.is-offline {
+          color: color(brand-danger);
+          margin-left: 0px;
+        }
+
+        &.is-connecting {
+          color: color(brand-warning);
+          margin-left: 0px;
+        }
       }
 
       &:hover {
@@ -115,14 +130,21 @@ $back-spacing: 20px;
       display: flex;
       align-items: center;
       width: 100%;
+      border-bottom: 1px solid color(gray-lighter);
+      font-size: 14px;
+      // max-width: 190px;
       text-align: left;
-      padding: $back-spacing 0 8px $back-spacing;
-      color: shade-dark(0.2);
+      margin-left: 20px;
+      // margin-top: 20px;
+      // margin-right: 28px;
+      padding: 8px 0px;
+      color: color(gray);
       // border-bottom: 1px solid shade-dark(0.05);
       background: color(control-bg);
 
       .is-osx & {
-        padding-top: $electron-osx-control-spacing + $back-spacing;
+        padding-top:
+        $electron-osx-control-spacing;
       }
 
       &-icon {

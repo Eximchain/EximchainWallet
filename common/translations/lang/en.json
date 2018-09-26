@@ -605,7 +605,7 @@
     "SHOW_THING": "Show $thing",
     "HIDE_THING": "Hide $thing",
     "NO_CONTRACTS_AVAILABLE": "No contracts available",
-    "NETWORK_STATUS_ONLINE": "$network Network",
+    "NETWORK_STATUS_ONLINE": "$network",
     "NETWORK_STATUS_OFFLINE": "Disconnected from $network network",
     "NETWORK_STATUS_CONNECTING": "Connecting...",
     "APP_UPDATE_TITLE": "New App Version Available",

@@ -58,7 +58,7 @@ class TrezorDecryptClass extends PureComponent<Props, State> {
     return (
       <div className="TrezorDecrypt">
         <button
-          className="TrezorDecrypt-decrypt btn btn-primary btn-lg btn-block"
+          className="TrezorDecrypt-decrypt btn btn-primary btn-lg"
           onClick={this.handleNullConnect}
           disabled={isLoading}
         >
@@ -72,11 +72,13 @@ class TrezorDecryptClass extends PureComponent<Props, State> {
           )}
         </button>
 
-        <NewTabLink className="TrezorDecrypt-buy btn btn-sm btn-default" href={trezorReferralURL}>
-          {translate('ORDER_TREZOR')}
-        </NewTabLink>
-
         <div className={`TrezorDecrypt-error alert alert-danger ${showErr}`}>{error || '-'}</div>
+
+        <div>
+          <NewTabLink className="TrezorDecrypt-buy btn btn-sm btn-default" href={trezorReferralURL}>
+            {translate('ORDER_TREZOR')}
+          </NewTabLink>
+        </div>
 
         <div className="TrezorDecrypt-help">
           <NewTabLink href="https://support.mycrypto.com/accessing-your-wallet/how-to-use-your-trezor-with-mycrypto.html">

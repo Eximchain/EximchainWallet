@@ -3,7 +3,7 @@ import {
   discordURL,
   ledgerReferralURL,
   trezorReferralURL,
-  safeTReferralURL,
+  // safeTReferralURL,
   ethercardReferralURL,
   keepkeyReferralURL,
   steelyReferralURL
@@ -14,31 +14,31 @@ interface Link {
   text: string;
 }
 
-export const DOWNLOAD_MYCRYPTO_LINK = 'https://download.mycrypto.com/';
+export const DOWNLOAD_MYCRYPTO_LINK = 'https://download.myquorumwallet.com/';
 
 export const socialMediaLinks: Link[] = [
   {
-    link: 'https://twitter.com/mycrypto',
+    link: 'https://twitter.com/myquorumwallet',
     text: 'twitter'
   },
   {
-    link: 'https://www.facebook.com/mycryptoHQ/',
+    link: 'https://www.facebook.com/myquorumwallet/',
     text: 'facebook'
   },
   {
-    link: 'https://medium.com/@mycrypto',
+    link: 'https://medium.com/@myquorumwallet',
     text: 'medium'
   },
   {
-    link: 'https://www.linkedin.com/company/mycrypto',
+    link: 'https://www.linkedin.com/company/myquorumwallet',
     text: 'linkedin'
   },
   {
-    link: 'https://github.com/MyCryptoHQ',
+    link: 'https://github.com/myquorumwallet',
     text: 'github'
   },
   {
-    link: 'https://www.reddit.com/r/mycrypto/',
+    link: 'https://www.reddit.com/r/myquorumwallet/',
     text: 'reddit'
   },
   {
@@ -49,7 +49,7 @@ export const socialMediaLinks: Link[] = [
 
 export const productLinks: Link[] = [
   {
-    link: 'https://legacy.mycrypto.com/',
+    link: 'https://legacy.myquorumwallet.com/',
     text: translateRaw('OLD_MYCRYPTO')
   },
   {
@@ -85,10 +85,10 @@ export const affiliateLinks: Link[] = [
     link: trezorReferralURL,
     text: translateRaw('TREZOR_REFERAL')
   },
-  {
-    link: safeTReferralURL,
-    text: translateRaw('SAFE_T_REFERAL')
-  },
+  // {
+  //   link: safeTReferralURL,
+  //   text: translateRaw('SAFE_T_REFERAL')
+  // },
   {
     link: keepkeyReferralURL,
     text: translateRaw('KEEPKEY_REFERRAL')

@@ -54,19 +54,25 @@ class CheckTransaction extends React.Component<Props, State> {
       <TabSection>
         <div className="CheckTransaction Tab-content">
           <section className="CheckTransaction-form Tab-content-pane">
-            <h1 className="CheckTransaction-form-title">{translate('CHECK_TX_STATUS_TITLE')}</h1>
-            <p className="CheckTransaction-form-desc">
-              {translate('CHECK_TX_STATUS_DESCRIPTION_1')}
-              {!network.isCustom &&
+            <div className="CheckTransaction-form-topsection">
+              <h1 className="CheckTransaction-form-topsection-title">
+                {translate('CHECK_TX_STATUS_TITLE')}
+              </h1>
+              <p className="CheckTransaction-form-topsection-desc">
+                {translate('CHECK_TX_STATUS_DESCRIPTION_1')}
+                {/* {!network.isCustom &&
                 translate(CHECK_TX_KEY, {
                   $block_explorer: network.blockExplorer.name,
                   $block_explorer_link: network.blockExplorer.origin,
                   // On ETH networks, we also show Etherchain. Otherwise, these variables are ignored
                   $block_explorer_2: etherChainExplorerInst.name,
                   $block_explorer_link_2: etherChainExplorerInst.origin
-                })}
-            </p>
-            <TxHashInput hash={hash} onSubmit={this.handleHashSubmit} />
+                })} */}
+              </p>
+            </div>
+            <section className="CheckTransaction-form-input">
+              <TxHashInput hash={hash} onSubmit={this.handleHashSubmit} />
+            </section>
           </section>
 
           {hash && (

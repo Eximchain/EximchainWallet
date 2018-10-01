@@ -1,18 +1,20 @@
-$brand-primary: #007896;
-$brand-info: #163151;
-$brand-success: #5dba5a;
-$brand-warning: #ff9800;
-$brand-danger: #db5846;
+$brand-primary: #0667D0;
+$brand-info: #214885;
+$brand-success: #34B47E;
+$brand-warning: #F6BE7D;
+$brand-danger: #CC4149;
+
+$blue-01: #F0F6FD;
 
 $dark-rgb: 0, 0, 0;
 $light-rgb: 255, 255, 255;
 
 $gray-base: #000;
 $gray-darker: #1c1c1c;
-$gray-dark: #333;
-$gray: #737373;
+$gray-dark: #2B333F;
+$gray: #626B76;
 $gray-light: #9a9a9a;
-$gray-lighter: #ececec;
+$gray-lighter: #E0E3E8;
 $gray-lightest: #fafafa;
 
 $theme-light: (
@@ -32,6 +34,8 @@ $theme-light: (
   brand-primary-darker: darken($brand-primary, 12%),
   brand-primary-light: lighten($brand-primary, 6%),
   brand-primary-lighter: lighten($brand-primary, 12%),
+
+  blue-01: $blue-01,
 
   brand-success: $brand-success,
   brand-success-dark: darken($brand-success, 6%),
@@ -61,7 +65,7 @@ $theme-light: (
   white-clearer: rgba(#fff, 0.7),
   white-clearest: rgba(#fff, 0.6),
 
-  body-bg: $gray-lightest,
+  body-bg: #fff,
   pane-bg: #fff,
 
   footer-bg: $brand-info,
@@ -71,7 +75,7 @@ $theme-light: (
   text-color-inverted: #fff,
 
   link-color: $brand-primary,
-  link-hover-color: darken($brand-primary, 10%),
+  link-hover-color: #267EDC,
 
   tab-color: $brand-info,
   tab-border: #ececec,
@@ -79,8 +83,9 @@ $theme-light: (
   tab-active-border: $brand-primary,
 
   control-bg: #fff,
-  control-color: $gray-dark,
-  control-border: #e5ecf3,
+  default-button-bg: #F0F2F4,
+  control-color: #0F2952,
+  control-border: #E0E3E8,
   control-disabled-bg: $gray-lightest,
   control-disabled-color: $gray-dark,
   control-disabled-border: #e6e6e6,
@@ -161,11 +166,11 @@ $theme-dark: (
   footer-bg: $gray-light,
   footer-border: $gray-light,
 
-  text-color: #fff,
+  text-color: $gray-dark,
   text-color-inverted: #fff,
 
-  link-color: lighten($brand-primary, 10%),
-  link-hover-color: lighten($brand-primary, 20%),
+  link-color: $brand-primary,
+  link-hover-color: #267EDC,
 
   tab-color: $gray-base,
   tab-border: $gray-base,

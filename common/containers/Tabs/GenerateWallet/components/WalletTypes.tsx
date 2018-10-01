@@ -7,7 +7,6 @@ import { ledgerReferralURL, trezorReferralURL } from 'config';
 import Template from './Template';
 import MetamaskIcon from 'assets/images/wallets/metamask.svg';
 import HardwareWalletIcon from 'assets/images/wallets/hardware.svg';
-import ParitySignerIcon from 'assets/images/wallets/parity-signer.svg';
 import FileIcon from 'assets/images/wallets/file.svg';
 import './WalletTypes.scss';
 
@@ -49,6 +48,7 @@ interface WalletSuggestionsProps {
 
 interface WalletSuggestion {
   name: React.ReactElement<string>;
+  description?: string;
   type: string;
   icon: string;
   bullets: React.ReactElement<string>[];
@@ -63,12 +63,13 @@ const WalletSuggestions: React.SFC<WalletSuggestionsProps> = ({ showGenerate }) 
   const suggestions: WalletSuggestion[] = [
     {
       name: translate('X_HARDWARE_WALLET'),
+      description: translate('ADD_HARDWAREDESC'),
       type: 'hardware',
       icon: HardwareWalletIcon,
       bullets: [
-        translate('WALLET_SUGGESTION_HARDWARE_1'),
+        // translate('WALLET_SUGGESTION_HARDWARE_1'),
         translate('WALLET_SUGGESTION_HARDWARE_2'),
-        translate('WALLET_SUGGESTION_HARDWARE_3'),
+        // translate('WALLET_SUGGESTION_HARDWARE_3'),
         translate('WALLET_SUGGESTION_HARDWARE_4')
       ],
       links: [
@@ -84,6 +85,7 @@ const WalletSuggestions: React.SFC<WalletSuggestionsProps> = ({ showGenerate }) 
     },
     {
       name: translate('X_METAMASK'),
+      description: translate('X_METAMASKDESC'),
       type: 'metamask',
       icon: MetamaskIcon,
       bullets: [
@@ -101,40 +103,42 @@ const WalletSuggestions: React.SFC<WalletSuggestionsProps> = ({ showGenerate }) 
           href: 'https://metamask.io/'
         }
       ]
-    },
-    {
-      name: translate('X_PARITYSIGNER'),
-      type: 'parity',
-      icon: ParitySignerIcon,
-      bullets: [
-        translate('WALLET_SUGGESTION_PARITYSIGNER_1'),
-        translate('WALLET_SUGGESTION_PARITYSIGNER_2'),
-        translate('WALLET_SUGGESTION_PARITYSIGNER_3'),
-        translate('WALLET_SUGGESTION_PARITYSIGNER_4')
-      ],
-      links: [
-        {
-          text: translate('DOWNLOAD_PHONE_APP', { $os: 'iOS' }),
-          href: 'https://itunes.apple.com/us/app/parity-signer/id1218174838'
-        },
-        {
-          text: translate('DOWNLOAD_PHONE_APP', { $os: 'Android' }),
-          href: 'https://play.google.com/store/apps/details?id=com.nativesigner'
-        }
-      ]
     }
+    // {
+    //   name: translate('X_PARITYSIGNER'),
+    //   description: translate('ADD_PARITY_DESC'),
+    //   type: 'parity',
+    //   icon: ParitySignerIcon,
+    //   bullets: [
+    //     // translate('WALLET_SUGGESTION_PARITYSIGNER_1'),
+    //     translate('WALLET_SUGGESTION_PARITYSIGNER_2'),
+    //     translate('WALLET_SUGGESTION_PARITYSIGNER_3')
+    //     // translate('WALLET_SUGGESTION_PARITYSIGNER_4')
+    //   ],
+    //   links: [
+    //     {
+    //       text: translate('DOWNLOAD_PHONE_APP', { $os: 'iOS' }),
+    //       href: 'https://itunes.apple.com/us/app/parity-signer/id1218174838'
+    //     },
+    //     {
+    //       text: translate('DOWNLOAD_PHONE_APP', { $os: 'Android' }),
+    //       href: 'https://play.google.com/store/apps/details?id=com.nativesigner'
+    //     }
+    //   ]
+    // }
   ];
 
   if (process.env.BUILD_DOWNLOADABLE) {
     suggestions[1] = {
       name: translate('NAV_GENERATEWALLET'),
+      description: translate('NAV_GENERATEWALLETDESC'),
       type: 'generate',
       icon: FileIcon,
       bullets: [
-        translate('WALLET_SUGGESTION_GENERATE_1'),
+        // translate('WALLET_SUGGESTION_GENERATE_1'),
         translate('WALLET_SUGGESTION_GENERATE_2'),
-        translate('WALLET_SUGGESTION_GENERATE_3'),
-        translate('WALLET_SUGGESTION_GENERATE_4'),
+        // translate('WALLET_SUGGESTION_GENERATE_3'),
+        // translate('WALLET_SUGGESTION_GENERATE_4'),
         <span key="warning" className="is-danger">
           <i className="fa fa-exclamation-triangle" />
           {translate('WALLET_SUGGESTION_GENERATE_5')}
@@ -151,9 +155,12 @@ const WalletSuggestions: React.SFC<WalletSuggestionsProps> = ({ showGenerate }) 
 
   return (
     <React.Fragment>
-      <h1 className="WalletTypes-title">{translate('GENERATE_WALLET_TITLE')}</h1>
-      <p className="WalletTypes-subtitle">{translate('GENERATE_WALLET_SUGGESTIONS')}</p>
-
+      <div className="WalletTypes-topsection">
+        <h1 className="WalletTypes-topsection-title">{translate('GENERATE_WALLET_TITLE')}</h1>
+        <p className="WalletTypes-topsection-subtitle">
+          {translate('GENERATE_WALLET_SUGGESTIONS')}
+        </p>
+      </div>
       <div className="WalletTypes-suggestions">
         {suggestions.map(sug => (
           <div className={`WalletSuggestion is-${sug.type}`}>
@@ -161,6 +168,7 @@ const WalletSuggestions: React.SFC<WalletSuggestionsProps> = ({ showGenerate }) 
               <img className="WalletSuggestion-name-icon" src={sug.icon} />
               {sug.name}
             </h3>
+            <p className="WalletSuggestion-description">{sug.description}</p>
 
             <ul className="WalletSuggestion-features">
               {sug.bullets.map((b, idx) => (

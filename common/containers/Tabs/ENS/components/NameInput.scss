@@ -2,8 +2,13 @@
 
 .ENSInput {
   max-width: 520px;
-  padding: $space-sm 0;
+  // padding: $space-sm 0;
   margin: 0 auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  // padding-top: 50px;
 
   &-button {
     .Spinner {

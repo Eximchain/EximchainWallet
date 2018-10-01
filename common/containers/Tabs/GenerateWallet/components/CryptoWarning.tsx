@@ -32,13 +32,13 @@ const CryptoWarning: React.SFC<{}> = () => (
       <p className="CryptoWarning-text">
         {isMobile
           ? `
-          MyCrypto requires certain features for secure wallet generation
+          MyQuorumWallet requires certain features for secure wallet generation
           that your browser doesn't offer. You can still securely use the site
           otherwise. To generate a wallet, please use your device's default
           browser, or switch to a laptop or desktop computer.
         `
           : `
-          MyCrypto requires certain features for secure wallet generation
+          MyQuorumWallet requires certain features for secure wallet generation
           that your browser doesn't offer. You can still securely use the site
           otherwise. To generate a wallet, upgrade to one of the following
           browsers:

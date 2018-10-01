@@ -43,8 +43,16 @@ class ElectronNav extends React.Component<Props, State> {
         })}
       >
         <div className="ElectronNav-branding">
-          <div className="ElectronNav-branding-logo" onClick={this.toggleTheme} />
+          <div className="ElectronNav-branding-logo" />
         </div>
+
+        <button
+          className="ElectronNav-status ElectronNav-controls-btn"
+          onClick={this.openNodeSelect}
+        >
+          <NetworkStatus />
+          <i className="ElectronNav-controls-btn-icon fa fa-caret-down" />
+        </button>
 
         <ul className="ElectronNav-links">
           {navigationLinks.map(link => (
@@ -61,21 +69,13 @@ class ElectronNav extends React.Component<Props, State> {
         <div className="ElectronNav-controls">
           <button className="ElectronNav-controls-btn" onClick={this.openLanguageSelect}>
             Change Language
-            <i className="ElectronNav-controls-btn-icon fa fa-arrow-circle-right" />
+            <i className="ElectronNav-controls-btn-icon fa fa-chevron-right" />
           </button>
-          <button className="ElectronNav-controls-btn" onClick={this.openNodeSelect}>
-            Change Network
-            <i className="ElectronNav-controls-btn-icon fa fa-arrow-circle-right" />
-          </button>
-        </div>
-
-        <div className="ElectronNav-status">
-          <NetworkStatus />
         </div>
 
         <div className="ElectronNav-panel">
           <button className="ElectronNav-panel-back" onClick={this.closePanel}>
-            <i className="ElectronNav-panel-back-icon fa fa-arrow-circle-left" />
+            <i className="ElectronNav-panel-back-icon fa fa-chevron-left" />
             {translate('MODAL_BACK')}
           </button>
           <div className="ElectronNav-panel-content">{panelContent}</div>

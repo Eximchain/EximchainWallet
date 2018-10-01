@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import { AppState } from 'features/reducers';
 import { onboardingSelectors } from 'features/onboarding';
 import { Modal } from 'components/v2';
-import logo from 'assets/images/logo-mycrypto-white.svg';
+import logo from 'assets/images/logo-myquorumwallet-white.svg';
 import chest from 'assets/images/icn-chest.svg';
-import bankVsMyCrypto from 'assets/images/icn-bank-vs-mycrypto.svg';
+import bankVsMyCrypto from 'assets/images/icn-bank-vs-myquorumwallet.svg';
 import vault from 'assets/images/icn-vault.svg';
 import champagne from 'assets/images/icn-champagne.svg';
 import { ProgressDots } from './components';
@@ -19,7 +19,7 @@ interface StateProps {
 
 function OnboardingModal({ currentSlide }: StateProps) {
   const images = [chest, bankVsMyCrypto, vault, champagne];
-  const logoImage = <img src={logo} alt="MyCrypto logo" />;
+  const logoImage = <img src={logo} alt="MyQuorumWallet logo white" />;
   const slideImage = <img src={images[currentSlide - 1]} alt="Slide art" />;
   const slides = [
     <FirstSlide key={1} />,
@@ -40,7 +40,9 @@ function OnboardingModal({ currentSlide }: StateProps) {
             <ProgressDots />
           </section>
         </section>
-        <section className="OnboardingModal-middle">{slide}</section>
+        <section className="OnboardingModal-middle">
+          <div className="OnboardingModal-middle-topsection">{slide}</div>
+        </section>
         <section className="OnboardingModal-bottom">
           {slideImage}
           <ProgressDots />

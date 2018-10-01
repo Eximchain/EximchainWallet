@@ -4,7 +4,7 @@
 // Prefer pixels of rem in this file, Electron shouldn't be responsive in the
 // same way the content is.
 $branding-spacing-top: 12px;
-$back-spacing: 10px;
+$back-spacing: 20px;
 
 .ElectronNav {
   transition: transform 300ms ease;
@@ -17,32 +17,33 @@ $back-spacing: 10px;
     position: -webkit-sticky;
     position: sticky;
     top: 0;
-    padding-top: $branding-spacing-top;
+    // padding-top: $branding-spacing-top;
     background: color(control-bg);
     z-index: 1;
-    border-bottom: 1px solid shade-dark(0.1);
-
+    // border-bottom: 1px solid shade-dark(0.1);
+    // padding-bottom: 15px;
     .is-osx & {
-      padding-top: $electron-osx-control-spacing + $branding-spacing-top - 5;
+      padding-top: $electron-osx-control-spacing - $branding-spacing-top;
     }
 
     &-logo {
-      margin-left: -1px;
+      margin-left: 18px;
+      margin-right: 19px;
       height: 35px;
-      margin-bottom: 10px;
-      background-image: url('~assets/images/logo-mycrypto-transparent.svg');
+      margin-bottom: 2px;
+      background-image: url('~assets/images/logo-myquorumwallet.svg');
       background-position: center;
       background-repeat: no-repeat;
-      background-size: auto 100%;
-      cursor: pointer;
+      background-size: 100%;
+      // cursor: pointer;
 
       @include theme(dark) {
-        background-image: url('~assets/images/logo-mycrypto.svg');
+        background-image: url('~assets/images/logo-myquorumwallet-white.svg');
       }
-
-      &:hover {
-        opacity: 0.8;
-      }
+      //
+      // &:hover {
+      //   opacity: 0.8;
+      // }
     }
 
     &-beta {
@@ -70,25 +71,43 @@ $back-spacing: 10px;
 
   &-status {
     margin: 12px 0;
-    padding-left: 10px;
+    // padding-left: 20px;
+    font-size: 12px;
   }
 
   &-controls {
     margin: 10px 0;
-    padding: 0 10px;
+    // padding: 0 20px;
 
     &-btn {
       @include reset-button;
       display: flex;
       align-items: center;
       width: 100%;
-      color: shade-dark(0.5);
+      color: color(gray);
       font-size: 12px;
-      padding: 6px 0;
+      padding: 0 0 20px 6px;
+      padding-left: 20px;
+      font-weight: 300;
 
       &-icon {
-        font-size: 11px;
+        font-size: 12px;
         margin-left: 4px;
+        padding-right: 5px;
+        &.is-online {
+          color: color(brand-success);
+          margin-left: 0px;
+        }
+
+        &.is-offline {
+          color: color(brand-danger);
+          margin-left: 0px;
+        }
+
+        &.is-connecting {
+          color: color(brand-warning);
+          margin-left: 0px;
+        }
       }
 
       &:hover {
@@ -111,14 +130,21 @@ $back-spacing: 10px;
       display: flex;
       align-items: center;
       width: 100%;
+      border-bottom: 1px solid color(gray-lighter);
+      font-size: 14px;
+      // max-width: 190px;
       text-align: left;
-      padding: $back-spacing 0 8px $back-spacing;
-      color: shade-dark(0.2);
-      border-bottom: 1px solid shade-dark(0.05);
+      margin-left: 20px;
+      // margin-top: 20px;
+      // margin-right: 28px;
+      padding: 8px 0px;
+      color: color(gray);
+      // border-bottom: 1px solid shade-dark(0.05);
       background: color(control-bg);
 
       .is-osx & {
-        padding-top: $electron-osx-control-spacing + $back-spacing;
+        padding-top:
+        $electron-osx-control-spacing;
       }
 
       &-icon {
@@ -137,25 +163,34 @@ $back-spacing: 10px;
 .ElectronNavLink {
   display: block;
   margin: 0;
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
   @include ellipsis;
 
   &-link {
     display: block;
     height: 48px;
     line-height: 48px;
-    padding: 0 0 0 10px;
-    border-bottom: 1px solid shade-dark(0.08);
-    color: color(text-color);
+    padding: 0 0 0 20px;
+    // border-bottom: 1px solid shade-dark(0.08);
+    color: color(gray);
     font-size: 14px;
-    font-weight: normal;
+    font-weight: 300;
 
     &.is-active {
       color: color(link-color);
-      background: shade-dark(0.03);
+      font-weight: 400;
+      background: color(blue-01);
+      &:hover {
+        color: color(brand-primary);
+        background: color(blue-01);
+      }
     }
 
     &:hover {
-      color: color(link-hover-color);
+      color: color(gray);
+      opacity: 1;
+      background: shade-dark(0.03);
     }
 
     &-icon {

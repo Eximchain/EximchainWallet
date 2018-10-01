@@ -79,7 +79,7 @@ class LedgerNanoSDecryptClass extends PureComponent<Props, State> {
         </div>
 
         <button
-          className="LedgerDecrypt-decrypt btn btn-primary btn-lg btn-block"
+          className="LedgerDecrypt-decrypt btn btn-primary btn-lg"
           onClick={this.handleNullConnect}
           disabled={isLoading}
         >
@@ -93,11 +93,13 @@ class LedgerNanoSDecryptClass extends PureComponent<Props, State> {
           )}
         </button>
 
-        <NewTabLink className="LedgerDecrypt-buy btn btn-sm btn-default" href={ledgerReferralURL}>
-          {translate('LEDGER_REFERRAL_2')}
-        </NewTabLink>
-
         <div className={`LedgerDecrypt-error alert alert-danger ${showErr}`}>{error || '-'}</div>
+
+        <div>
+          <NewTabLink className="LedgerDecrypt-buy btn btn-sm btn-default" href={ledgerReferralURL}>
+            {translate('LEDGER_REFERRAL_2')}
+          </NewTabLink>
+        </div>
 
         <div className="LedgerDecrypt-help">
           <HelpLink article={HELP_ARTICLE.HOW_TO_USE_LEDGER}>

@@ -3,15 +3,19 @@
 
 .Tab {
   &-content {
-    min-height: 50%;
+    height: 100%;
 
     &-pane {
       background: color(pane-bg);
       min-height: 1.5rem;
-      padding: 1.5rem 2rem;
+      padding: 0;
       margin: 0 auto 1rem;
-      box-shadow: $tab-box-shadow;
-      border-radius: 2px;
+      height: 100%;
+      // border-style: solid;
+      // border-width: 1px;
+      // border-color: color(gray-lighter);
+      // box-shadow: $tab-box-shadow;
+      // border-radius: 6px;
 
       &.is-full-width {
         background: none;

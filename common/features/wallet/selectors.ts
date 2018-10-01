@@ -3,9 +3,7 @@ import { WalletConfig } from 'libs/wallet/config';
 import { IWallet } from 'libs/wallet/IWallet';
 import { LedgerWallet } from 'libs/wallet/deterministic/ledger';
 import { TrezorWallet } from 'libs/wallet/deterministic/trezor';
-import { SafeTWallet } from 'libs/wallet/deterministic/safe-t';
 import Web3Wallet from 'libs/wallet/non-deterministic/web3';
-import ParitySignerWallet from 'libs/wallet/non-deterministic/parity';
 import { AppState } from 'features/reducers';
 
 export function getWalletInst(state: AppState): IWallet | null | undefined {
@@ -23,7 +21,6 @@ export function isWalletFullyUnlocked(state: AppState): boolean | null | undefin
 export interface IWalletType {
   isWeb3Wallet: boolean;
   isHardwareWallet: boolean;
-  isParitySignerWallet: boolean;
 }
 
 export const getWallet = (state: AppState) => state.wallet;
@@ -33,10 +30,8 @@ export const getWalletType = (state: AppState): IWalletType => {
   const isWeb3Wallet = wallet instanceof Web3Wallet;
   const isLedgerWallet = wallet instanceof LedgerWallet;
   const isTrezorWallet = wallet instanceof TrezorWallet;
-  const isSafeTWallet = wallet instanceof SafeTWallet;
-  const isParitySignerWallet = wallet instanceof ParitySignerWallet;
-  const isHardwareWallet = isLedgerWallet || isTrezorWallet || isSafeTWallet;
-  return { isWeb3Wallet, isHardwareWallet, isParitySignerWallet };
+  const isHardwareWallet = isLedgerWallet || isTrezorWallet;
+  return { isWeb3Wallet, isHardwareWallet };
 };
 
 export const isUnlocked = (state: AppState) => !!getWalletInst(state);

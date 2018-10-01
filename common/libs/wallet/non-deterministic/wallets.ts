@@ -6,7 +6,7 @@ import { fromV3 } from 'libs/web-workers';
 import { signWrapper, determineKeystoreType, KeystoreTypes } from './helpers';
 import Web3Wallet from './web3';
 import AddressOnlyWallet from './address';
-import ParitySignerWallet from './parity';
+// import ParitySignerWallet from './parity';
 
 const EncryptedPrivateKeyWallet = (encryptedPrivateKey: string, password: string) =>
   signWrapper(fromPrivateKey(decryptPrivKey(encryptedPrivateKey, password)));
@@ -60,7 +60,7 @@ export {
   UtcWallet,
   Web3Wallet,
   AddressOnlyWallet,
-  ParitySignerWallet,
+  // ParitySignerWallet,
   getUtcWallet,
   getPrivKeyWallet,
   getKeystoreWallet

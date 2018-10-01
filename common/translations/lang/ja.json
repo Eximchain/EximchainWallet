@@ -80,6 +80,9 @@
     "ADD_LABEL_8": "パスワード (随意) ",
     "ADD_WEB3DESC": "自分のブラウザーあるいは拡張から接続して署名してください",
     "ADD_HARDWAREDESC": "Connect & sign via your hardware wallet",
+    "ADD_LEDGERDESC": "Connect & sign via your hardware wallet",
+    "ADD_TREZORDESC": "Connect & sign via your hardware wallet",
+    "ADD_SAFE-TMINIDESC": "Connect & sign via your hardware wallet",
     "MYWAL_NICK": "お財布ニックネーム ",
     "MYWAL_ADDRESS": "お財布アドレス ",
     "MYWAL_BAL": "残高 ",
@@ -554,6 +557,6 @@
     "NO_CONTRACTS_AVAILABLE": "契約がありません",
     "NETWORK_STATUS_ONLINE": "$network ネットワークに接続されました",
     "NETWORK_STATUS_OFFLINE": "$network ネットワークから切断されました",
-    "NETWORK_STATUS_CONNECTING": "接続中..."  
+    "NETWORK_STATUS_CONNECTING": "接続中..."
   }
 }

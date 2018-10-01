@@ -172,7 +172,7 @@ class EquivalentValues extends React.Component<Props, State> {
       <div className="EquivalentValues">
         <div className="EquivalentValues-header">
           <h5 className="EquivalentValues-title">{translate('SIDEBAR_EQUIV')}</h5>
-          <Select
+          {/* <Select
             name="equivalentValues"
             // TODO: Update type
             value={equivalentValues as any}
@@ -180,7 +180,7 @@ class EquivalentValues extends React.Component<Props, State> {
             onChange={this.selectOption as any}
             clearable={false}
             searchable={false}
-          />
+          /> */}
         </div>
 
         {isOffline ? (

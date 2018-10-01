@@ -18,7 +18,7 @@ export class Notifications extends React.Component<Props, {}> {
       <TransitionGroup className="Notifications" aria-live="polite">
         {this.props.notifications.map(n => {
           return (
-            <CSSTransition classNames="NotificationAnimation" timeout={500} key={n.id}>
+            <CSSTransition classNames="NotificationAnimation" timeout={0} key={n.id}>
               <NotificationRow notification={n} onClose={this.props.closeNotification} />
             </CSSTransition>
           );

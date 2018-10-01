@@ -1,17 +1,83 @@
 @import "common/sass/variables";
 
 .BroadcastTx {
-  max-width: 520px;
-  margin: 0 auto;
+  // max-width: 1040px;
+  // margin: 0 auto;
+  position: relative;
+  text-align: left;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  display: flex;
+  justify-content: left;
+  flex-wrap: wrap;
+
+
+  &-topsection {
+    position: fixed;
+    top: 0;
+    height: 100px;
+    padding-top: $electron-osx-control-spacing - 10px;
+    left: 220px;
+    z-index: 1000;
+    background-color: white;
+    margin: 0 20px 0 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 100%;
+    max-width: 1040px;
+
+  h1 {
+    text-align: left;
+    line-height: 1.4;
+    margin-bottom: 3px;
+    margin-top: 0;
+    font-weight: normal;
+    font-size: 22px;
+  }
 
   &-help {
-    margin-bottom: $space * 1.5;
+    margin: 0 0 $space * 2;
+    color: color(gray);
+    text-align: left;
+    }
   }
+
+  &-input {
+    margin: $space $space 0 0;
+    text-align: left;
+    width: 100%;
+    max-width: 500px;
+    padding-right: 20px;
+     .input-group {
+       // margin: 0 500px 0 0;
+       width: 100%;
+       // max-width: 600px;
+       margin-left: 0;
+       // padding-right: 20px;
+     }
+
+     @media (max-width: $screen-lg) {
+        max-width: 1040px;
+       }
+       @media (max-width: $screen-md) {
+          max-width: 780px;
+         }
+         @media (max-width: $screen-sm) {
+            max-width: 600px;
+           }
+           @media (max-width: $screen-xs) {
+              max-width: 440px;
+             }
+     }
+
+
+
 
   &-qr {
     max-width: 15rem;
     margin: 1rem auto;
     width: 100%;
-    text-align: center;
+    text-align: left;
   }
 }

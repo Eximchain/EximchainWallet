@@ -8,7 +8,7 @@ import { padLeftEven } from 'libs/values';
 import Web3Node from 'libs/nodes/web3';
 import * as configNodesSelectors from 'features/config/nodes/selectors';
 import { notificationsActions } from 'features/notifications';
-import { paritySignerTypes, paritySignerActions } from 'features/paritySigner';
+// import { paritySignerTypes, paritySignerActions } from 'features/paritySigner';
 import { walletSelectors } from 'features/wallet';
 import * as types from './types';
 import * as actions from './actions';
@@ -58,29 +58,29 @@ function* signLocalMessage(wallet: IFullWallet, msg: string): SagaIterator {
   );
 }
 
-function* signParitySignerMessage(wallet: IFullWallet, msg: string): SagaIterator {
-  const address = yield apply(wallet, wallet.getAddressString);
-  const data = yield call(messageToData, msg);
-
-  yield put(paritySignerActions.requestMessageSignature(address, data));
-
-  const { payload: sig }: paritySignerTypes.FinalizeSignatureAction = yield take(
-    paritySignerTypes.ParitySignerActions.FINALIZE_SIGNATURE
-  );
-
-  if (!sig) {
-    throw new Error(translateRaw('ERROR_38'));
-  }
-
-  yield put(
-    actions.signLocalMessageSucceeded({
-      address,
-      msg,
-      sig,
-      version: '2'
-    })
-  );
-}
+// function* signParitySignerMessage(wallet: IFullWallet, msg: string): SagaIterator {
+//   const address = yield apply(wallet, wallet.getAddressString);
+//   const data = yield call(messageToData, msg);
+//
+//   yield put(paritySignerActions.requestMessageSignature(address, data));
+//
+//   const { payload: sig }: paritySignerTypes.FinalizeSignatureAction = yield take(
+//     paritySignerTypes.ParitySignerActions.FINALIZE_SIGNATURE
+//   );
+//
+//   if (!sig) {
+//     throw new Error(translateRaw('ERROR_38'));
+//   }
+//
+//   yield put(
+//     actions.signLocalMessageSucceeded({
+//       address,
+//       msg,
+//       sig,
+//       version: '2'
+//     })
+//   );
+// }
 
 function* handleMessageRequest(action: types.SignMessageRequestedAction): SagaIterator {
   const walletType: walletSelectors.IWalletType = yield select(walletSelectors.getWalletType);

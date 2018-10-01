@@ -1,6 +1,6 @@
 .SignMessage {
   text-align: center;
-  padding-top: 30px;
+  // padding-top: 30px;
 
   &-label {
     float: left;
@@ -22,7 +22,10 @@
 
   &-help {
     font-size: 13px;
-    font-style: italic;
+    // font-style: italic;
+    font-weight: 300;
+    color: #626B76;
+    // color: color(brand-success-darker);
     margin-bottom: 1rem;
   }
 

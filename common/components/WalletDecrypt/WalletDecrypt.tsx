@@ -16,7 +16,6 @@ import {
 } from 'config';
 import translate, { translateRaw } from 'translations';
 import { isWeb3NodeAvailable } from 'libs/nodes/web3';
-import { wikiLink as paritySignerHelpLink } from 'libs/wallet/non-deterministic/parity';
 import { AppState } from 'features/reducers';
 import * as derivedSelectors from 'features/selectors';
 import { walletActions } from 'features/wallet';
@@ -24,8 +23,6 @@ import { transactionFieldsActions } from 'features/transaction';
 import { notificationsActions } from 'features/notifications';
 import LedgerIcon from 'assets/images/wallets/ledger.svg';
 import TrezorIcon from 'assets/images/wallets/trezor.svg';
-import SafeTIcon from 'assets/images/wallets/safe-t.svg';
-import ParitySignerIcon from 'assets/images/wallets/parity-signer.svg';
 import { Errorable } from 'components';
 import { DisabledWallets } from './disables';
 import { getWeb3ProviderInfo } from 'utils/web3';
@@ -36,11 +33,9 @@ import {
   PrivateKeyDecrypt,
   PrivateKeyValue,
   TrezorDecrypt,
-  SafeTminiDecrypt,
   ViewOnlyDecrypt,
   Web3Decrypt,
   WalletButton,
-  ParitySignerDecrypt,
   InsecureWalletWarning
 } from './components';
 import './WalletDecrypt.scss';
@@ -133,7 +128,7 @@ const WalletDecrypt = withRouter<Props>(
       [SecureWalletName.LEDGER_NANO_S]: {
         lid: 'X_LEDGER',
         icon: LedgerIcon,
-        description: 'ADD_HARDWAREDESC',
+        description: 'ADD_LEDGERDESC',
         component: LedgerNanoSDecrypt,
         initialParams: {},
         unlock: this.props.setWallet,
@@ -142,35 +137,16 @@ const WalletDecrypt = withRouter<Props>(
       [SecureWalletName.TREZOR]: {
         lid: 'X_TREZOR',
         icon: TrezorIcon,
-        description: 'ADD_HARDWAREDESC',
+        description: 'ADD_TREZORDESC',
         component: TrezorDecrypt,
         initialParams: {},
         unlock: this.props.setWallet,
         helpLink:
           'https://support.mycrypto.com/accessing-your-wallet/how-to-use-your-trezor-with-mycrypto.html'
       },
-      [SecureWalletName.SAFE_T]: {
-        lid: 'X_SAFE_T',
-        icon: SafeTIcon,
-        description: 'ADD_HARDWAREDESC',
-        component: SafeTminiDecrypt,
-        initialParams: {},
-        unlock: this.props.setWallet,
-        // TODO - Update with the right id once available
-        helpLink: 'https://www.archos.com/fr/products/crypto/faq.html'
-      },
-      [SecureWalletName.PARITY_SIGNER]: {
-        lid: 'X_PARITYSIGNER',
-        icon: ParitySignerIcon,
-        description: 'ADD_PARITY_DESC',
-        component: ParitySignerDecrypt,
-        initialParams: {},
-        unlock: this.props.setWallet,
-        helpLink: paritySignerHelpLink
-      },
       [InsecureWalletName.KEYSTORE_FILE]: {
         lid: 'X_KEYSTORE2',
-        example: 'UTC--2017-12-15T17-35-22.547Z--6be6e49e82425a5aa56396db03512f2cc10e95e8',
+        example: 'An encrypted version of your private key.',
         component: KeystoreDecrypt,
         initialParams: {
           file: '',
@@ -181,7 +157,7 @@ const WalletDecrypt = withRouter<Props>(
       },
       [InsecureWalletName.MNEMONIC_PHRASE]: {
         lid: 'X_MNEMONIC',
-        example: 'brain surround have swap horror cheese file distinct',
+        example: 'A list of words which store all the information needed to unlock a wallet.',
         component: MnemonicDecrypt,
         initialParams: {},
         unlock: this.props.unlockMnemonic,
@@ -189,7 +165,7 @@ const WalletDecrypt = withRouter<Props>(
       },
       [InsecureWalletName.PRIVATE_KEY]: {
         lid: 'X_PRIVKEY2',
-        example: 'f1d0e0789c6d40f399ca90cc674b7858de4c719e0d5752a60d5d2f6baa45d4c9',
+        example: 'This key allows you to use the tokens on your wallet.',
         component: PrivateKeyDecrypt,
         initialParams: {
           key: '',
@@ -200,7 +176,7 @@ const WalletDecrypt = withRouter<Props>(
       },
       [MiscWalletName.VIEW_ONLY]: {
         lid: 'VIEW_ADDR',
-        example: donationAddressMap.ETH,
+        example: "Look up an address' balance and other info.",
         component: ViewOnlyDecrypt,
         initialParams: {},
         unlock: this.props.setWallet,
@@ -265,21 +241,23 @@ const WalletDecrypt = withRouter<Props>(
       return (
         <div className="WalletDecrypt-decrypt">
           <button className="WalletDecrypt-decrypt-back" onClick={this.clearWalletChoice}>
-            <i className="fa fa-arrow-left" /> {translate('CHANGE_WALLET')}
+            <i className="fa fa-arrow-left" />
+            {/* {translate('CHANGE_WALLET')} */}
           </button>
-          <h2 className="WalletDecrypt-decrypt-title">
+          <h2 className="WalletDecrypt-title">
             {!selectedWallet.isReadOnly &&
               translate('UNLOCK_WALLET', {
                 $wallet: translateRaw(selectedWallet.lid)
               })}
           </h2>
+
           <section className="WalletDecrypt-decrypt-form">
             <Errorable
               errorMessage={`Oops, looks like ${translateRaw(
                 selectedWallet.lid
               )} is not supported by your browser`}
               onError={this.clearWalletChoice}
-              shouldCatch={selectedWallet.lid === this.WALLETS.paritySigner.lid}
+              shouldCatch={selectedWallet.lid}
             >
               <selectedWallet.component
                 value={this.state.value}
@@ -314,7 +292,14 @@ const WalletDecrypt = withRouter<Props>(
 
       return (
         <div className="WalletDecrypt-wallets">
-          <h2 className="WalletDecrypt-wallets-title">{translate('DECRYPT_ACCESS')}</h2>
+          <div className="WalletDecrypt-wallets-topsection">
+            <h2 className="WalletDecrypt-wallets-topsection-title">
+              {translate('DECRYPT_ACCESS')}
+            </h2>
+            <p className="WalletDecrypt-wallets-topsection-description">
+              {translate('WALLETDECRYPT_DESCRIPTION')}
+            </p>
+          </div>
 
           <div className="WalletDecrypt-wallets-row">
             {HARDWARE_WALLETS.map((walletType: SecureWalletName) => {
@@ -334,8 +319,8 @@ const WalletDecrypt = withRouter<Props>(
                 />
               );
             })}
-          </div>
-          <div className="WalletDecrypt-wallets-row">
+            {/* </div> */}
+            {/* <div className="WalletDecrypt-wallets-row"> */}
             {SECURE_WALLETS.map((walletType: SecureWalletName) => {
               const wallet = this.WALLETS[walletType];
               return (
@@ -370,9 +355,9 @@ const WalletDecrypt = withRouter<Props>(
                 />
               );
             })}
-          </div>
+            {/* </div> */}
 
-          <div className="WalletDecrypt-wallets-row">
+            {/* <div className="WalletDecrypt-wallets-row"> */}
             {INSECURE_WALLETS.map((walletType: InsecureWalletName) => {
               const wallet = this.WALLETS[walletType];
               return (
@@ -438,7 +423,7 @@ const WalletDecrypt = withRouter<Props>(
       const selectedWallet = this.getSelectedWallet();
       const decryptionComponent = this.getDecryptionComponent();
       return (
-        <div>
+        <div className="Tab-content-pane">
           {!hidden && (
             <article className="Tab-content-pane">
               <div className="WalletDecrypt">

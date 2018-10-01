@@ -1,12 +1,48 @@
 @import 'common/sass/variables';
 
 .ENS {
-  &-title {
-    text-align: center;
-  }
+  height: 100%;
 
-  &-description {
-    max-width: 800px;
-    margin: 0 auto $space;
+  &-topsection {
+    position: fixed;
+    top: 0;
+    height: 100px;
+    width: 100%;
+    padding-top: $electron-osx-control-spacing + 2px;
+    padding-left: 10px;
+    left: 220px;
+    z-index: 1000;
+    background-color: white;
+    margin: 0;
+
+    &-title {
+      text-align: left;
+      line-height: 1.4;
+      margin-bottom: 3px;
+      margin-top: 0;
+      font-weight: normal;
+      font-size: 22px;
+    }
+
+    &-description {
+      max-width: 1040px;
+      margin: 0 0 $space * 2;
+      color: color(gray);
+      text-align: left;
+
+      @media screen and (max-width: $screen-lg) {
+        max-width: $screen-md - $electron-sidebar-width - 240px;
+      }
+      @media screen and (max-width: $screen-md) {
+        max-width: $screen-md - $electron-sidebar-width - 240px;
+      }
+      @media screen and (max-width: $screen-sm) {
+        max-width: $screen-sm - $electron-sidebar-width - 300px;
+      }
+      @media screen and (max-width: $screen-xs) {
+        max-width: $screen-sm - $electron-sidebar-width - 500px;
+      }
+
+    }
   }
 }

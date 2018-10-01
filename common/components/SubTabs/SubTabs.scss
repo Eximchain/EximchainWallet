@@ -2,35 +2,88 @@
 
 .SubTabs {
   margin-top: $space-xs;
+  padding-bottom: 40px;
+
+
 
   .is-electron & {
     margin-top: 0;
   }
+  &-contracts {
+    padding-top: 50px;
 
+  }
+  &-sidebar {
+    // position: fixed;
+    // top: auto;
+    // right: 0;
+    padding-left: 30px;
+  }
   &-tabs {
     display: inline-block;
     white-space: nowrap;
+    border-radius: 4px;
+
 
     &-link {
       display: inline-block;
-      padding: 8px;
-      font-size: $font-size-base;
+      padding: 6px 10px;
+      font-size: $font-size-small;
       min-width: 80px;
       text-align: center;
-      font-weight: 300;
-      color: color(tab-color);
-      border-bottom: 2px solid color(tab-border);
-      transition-duration: 100ms;
-      opacity: 0.7;
+      font-weight: 400;
+      color: #626B76;
+      background-color: white;
+
+      border: 1px solid #E0E3E8;
+      transition-duration: 80ms;
+      // opacity: 1;
+
+
+      &:first-child {
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
+        border-right: none;
+
+
+        &.is-active {
+          border-right: 1px solid color(tab-active-border);
+        }
+      }
+      &:nth-child(n + 1) {
+        border-right: none;
+
+
+        &.is-active {
+          border-right: 1px solid color(tab-active-border);
+          border-left: 1px solid color(tab-active-border);
+
+        }
+      }
+      &:last-child {
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+        // margin-left: -2px;
+        // border-left: none;
+        border-right: 1px solid #E0E3E8;
+
+        &.is-active {
+          border-left: 1px solid color(tab-active-border);
+
+        }
+
+      }
 
       &:hover {
         opacity: 1;
-        color: color(tab-active-color);
+        color: #626B76;
+        background-color: #F7F8F9;
       }
 
       &.is-active {
-        color: color(tab-active-color);
-        border-bottom-color: color(tab-active-border);
+        color: white;
+        background-color: color(brand-primary);
+        border-color: color(tab-active-border);
         opacity: 1;
       }
 

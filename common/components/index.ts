@@ -20,7 +20,6 @@ export { default as WalletDecrypt } from './WalletDecrypt';
 export { default as TogglablePassword } from './TogglablePassword';
 export { default as GenerateKeystoreModal } from './GenerateKeystoreModal';
 export { default as TransactionStatus } from './TransactionStatus';
-export { default as ParityQrSigner } from './ParityQrSigner';
 export { default as ElectronNav } from './ElectronNav';
 export { default as AddressBookTable } from './AddressBookTable';
 export { default as Errorable } from './Errorable';

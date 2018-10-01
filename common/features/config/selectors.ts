@@ -175,9 +175,9 @@ export function isWalletFormatSupportedOnNetwork(state: AppState, format: Wallet
   }
 
   // Parity signer on RSK
-  if (chainId === 30 || (chainId === 31 && format === SecureWalletName.PARITY_SIGNER)) {
-    return false;
-  }
+  // if (chainId === 30 || (chainId === 31 && format === SecureWalletName.PARITY_SIGNER)) {
+  //   return false;
+  // }
 
   // All other wallet formats are supported
   return true;

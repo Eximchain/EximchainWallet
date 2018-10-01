@@ -73,18 +73,6 @@
   dependencies:
     events "^2.0.0"
 
-"@parity/erc681@0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@parity/erc681/-/erc681-0.1.1.tgz#0ade5233751011c15d5e75bd2bb583a9ba450a5e"
-
-"@parity/qr-signer@0.3.1":
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/@parity/qr-signer/-/qr-signer-0.3.1.tgz#00a983c7311a3d14701fae0b95f014e8a2a77618"
-  dependencies:
-    "@parity/erc681" "0.1.1"
-    qrcode-generator "1.4.0"
-    react-qr-reader "2.1.0"
-
 "@sindresorhus/is@^0.7.0":
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.7.0.tgz#9a06f4f137ee84d7df0460c1fdb1135ffa6c50fd"

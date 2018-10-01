@@ -6,19 +6,37 @@ $divider-size: 60px;
 .WalletTypes {
   text-align: center;
 
+ &-topsection {
+   position: fixed;
+   top: 0;
+   height: 100px;
+   width: 100%;
+   padding-top: $electron-osx-control-spacing - 10px;
+   left: 220px;
+   z-index: 1000;
+   background-color: white;
+   margin: 0;
+
   &-title {
-    margin-bottom: $space;
+    margin-top: 0;
+    margin-bottom: 3px;
+
   }
 
   &-subtitle {
     max-width: 1040px;
-    margin: 0 auto $space * 2;
+    margin: 0 0 $space * 2;
+    color: color(gray);
+    text-align: left;
+    padding-left: 10px;
+  }
   }
 
   &-suggestions {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    padding-top: 46px;
     margin: $space 0;
     text-align: left;
   }
@@ -93,44 +111,37 @@ $divider-size: 60px;
   display: flex;
   flex-direction: column;
   border: 1px solid shade-dark(0.12);
-  box-shadow: 0 3px 2px rgba(0, 0, 0, 0.12);
+  // box-shadow: 0 3px 2px rgba(0, 0, 0, 0.12);
   background: color(control-bg);
-  border-radius: 4px;
+  border-radius: 6px;
   transition: transform 100ms ease, box-shadow 100ms ease;
-
   &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+    // transform: translateY(-2px);
+    // box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
   }
+
 }
 
 .WalletSuggestion {
   flex: 1;
-  max-width: 340px;
-  min-width: 300px;
-  margin: 0 $space $space * 2;
+  // max-width: 340px;
+  min-width: 250px;
+  margin: 0 10px $space * 2;
   padding: $space;
   border-radius: 4px;
-  border-top: 3px solid;
+  // border-top: 3px solid;
 
   &.is-hardware {
-    border-top-color: #41ccb4;
+    // border-top-color: #41ccb4;
   }
 
   &.is-metamask {
-    border-top-color: #f79220;
+    // border-top-color: #f79220;
   }
 
-  &.is-parity {
-    border-top-color: #444;
-
-    @include theme(dark) {
-      border-top-color: #FFF;
-    }
-  }
 
   &.is-generate {
-    border-top-color: color(brand-danger);
+    // border-top-color: color(brand-danger);
   }
 
   @media (max-width: $screen-sm) {
@@ -141,8 +152,8 @@ $divider-size: 60px;
   }
 
   &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+    // transform: translateY(-2px);
+    // box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
   }
 
   &-name {
@@ -150,11 +161,13 @@ $divider-size: 60px;
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: center;
-    justify-content: center;
-    margin: $space-xs 0 $space;
+    font-size: $font-size-medium;
+    font-weight: 400;
+    justify-content: left;
+    margin: $space-xs 0 3px;
 
     &-icon {
-      height: 28px;
+      height: 20px;
       margin-right: $space-md;
       opacity: 0.8;
 
@@ -164,9 +177,18 @@ $divider-size: 60px;
     }
   }
 
+  &-description {
+    color: color(gray-light);
+    font-size: $font-size-small;
+    font-weight: 300;
+    padding-bottom: 2rem;
+  }
+
   &-features {
     flex: 1;
     padding-left: 1.25rem;
+    font-size: 15px;
+    color:color(gray-dark);
 
     .fa {
       margin-right: 4px;

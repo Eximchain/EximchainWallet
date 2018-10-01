@@ -606,7 +606,7 @@
     "HIDE_THING": "Hide $thing",
     "NO_CONTRACTS_AVAILABLE": "No contracts available",
     "NETWORK_STATUS_ONLINE": "$network",
-    "NETWORK_STATUS_OFFLINE": "Disconnected from $network network",
+    "NETWORK_STATUS_OFFLINE": "$network (Disconnected)",
     "NETWORK_STATUS_CONNECTING": "Connecting...",
     "APP_UPDATE_TITLE": "New App Version Available",
     "APP_UPDATE_BODY": "An updated version of the MyQuorumWallet app has just been released! You can upgrade to the new version by downloading it from our GitHub release page.",

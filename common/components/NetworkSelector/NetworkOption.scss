@@ -50,7 +50,10 @@ $left-border-size: 2px;
       }
 
       &:hover {
+
         &:before {
+          background-color: white !important;
+
           border-color: shade-dark(0.3);
         }
       }
@@ -90,8 +93,8 @@ $left-border-size: 2px;
       @include reset-button;
       width: 20px;
       height: 20px;
-      font-size: 10px;
-      color: shade-dark(0.2);
+      font-size: 12px;
+      color: color(gray-light);
       border-radius: 100%;
       transition-property: color, background-color, transform;
       transition-duration: 75ms;
@@ -103,7 +106,7 @@ $left-border-size: 2px;
       }
 
       &.is-expanded {
-        color: shade-dark(0.6);
+        color: color(gray-dark);
         transform: rotate(180deg);
       }
     }

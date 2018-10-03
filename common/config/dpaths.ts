@@ -1,40 +1,40 @@
 export const ETH_DEFAULT: DPath = {
-  label: 'Default (ETH)',
+  label: 'Default (EXC)',
   value: "m/44'/60'/0'/0"
 };
 
 export const ETH_TREZOR: DPath = {
-  label: 'TREZOR (ETH)',
+  label: 'TREZOR (EXC)',
   value: "m/44'/60'/0'/0"
 };
 
 export const ETH_SAFE_T: DPath = {
-  label: 'Safe-T (ETH)',
+  label: 'Safe-T (EXC)',
   value: "m/44'/60'/0'/0"
 };
 
 export const ETH_LEDGER: DPath = {
-  label: 'Ledger (ETH)',
+  label: 'Ledger (EXC)',
   value: "m/44'/60'/0'"
 };
 
 export const ETC_LEDGER: DPath = {
-  label: 'Ledger (ETC)',
+  label: 'Ledger (EXC)',
   value: "m/44'/60'/160720'/0'"
 };
 
 export const ETC_TREZOR: DPath = {
-  label: 'TREZOR (ETC)',
+  label: 'TREZOR (EXC)',
   value: "m/44'/61'/0'/0"
 };
 
 export const ETC_SAFE_T: DPath = {
-  label: 'Safe-T (ETC)',
+  label: 'Safe-T (EXC)',
   value: "m/44'/61'/0'/0"
 };
 
 export const ETH_TESTNET: DPath = {
-  label: 'Testnet (ETH)',
+  label: 'Testnet (EXC)',
   value: "m/44'/1'/0'/0"
 };
 

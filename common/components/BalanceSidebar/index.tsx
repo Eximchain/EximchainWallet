@@ -40,11 +40,11 @@ export class BalanceSidebar extends React.Component<StateProps> {
       {
         name: 'Token Balances',
         content: <TokenBalances />
-      },
-      {
-        name: 'Equivalent Values',
-        content: <EquivalentValues />
       }
+      // {
+      //   name: 'Equivalent Values',
+      //   content: <EquivalentValues />
+      // }
     ];
 
     return (

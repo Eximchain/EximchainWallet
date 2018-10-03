@@ -52,19 +52,19 @@ export const gasPriceDefaults: GasPriceSetting = {
 
 export const MINIMUM_PASSWORD_LENGTH = 12;
 
-export const knowledgeBaseURL = 'https://support.mycrypto.com';
-export const ledgerReferralURL = 'https://www.ledgerwallet.com/r/1985?path=/products/';
-export const trezorReferralURL = 'https://shop.trezor.io?a=mycrypto.com';
+export const knowledgeBaseURL = 'https://support.eximchain.com';
+export const ledgerReferralURL = 'https://www.ledger.com/';
+export const trezorReferralURL = 'https://shop.trezor.io';
 // TODO - Update url
-export const bitboxReferralURL = 'https://digitalbitbox.com/?ref=mycrypto';
+// export const bitboxReferralURL = 'https://digitalbitbox.com/';
 // TODO - Update url, this is MEW's
-export const bityReferralURL = 'https://bity.com/af/jshkb37v';
+// export const bityReferralURL = 'https://bity.com/af/jshkb37v';
 // TODO - add the real referral url once you know it
-export const shapeshiftReferralURL = 'https://shapeshift.io';
-export const ethercardReferralURL =
-  'https://ether.cards/?utm_source=mycrypto&utm_medium=cpm&utm_campaign=site';
-export const keepkeyReferralURL = 'https://keepkey.go2cloud.org/aff_c?offer_id=1&aff_id=4086';
-export const steelyReferralURL = 'https://stee.ly/2Hcl4RE';
+// export const shapeshiftReferralURL = 'https://shapeshift.io';
+// export const ethercardReferralURL =
+//   'https://ether.cards/?utm_source=mycrypto&utm_medium=cpm&utm_campaign=site';
+// export const keepkeyReferralURL = 'https://keepkey.go2cloud.org/aff_c?offer_id=1&aff_id=4086';
+// export const steelyReferralURL = 'https://stee.ly/2Hcl4RE';
 
 export enum SecureWalletName {
   WEB3 = 'web3',

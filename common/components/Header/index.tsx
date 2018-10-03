@@ -85,7 +85,7 @@ class Header extends Component<Props, State> {
                 src={logo}
                 height="64px"
                 width="245px"
-                alt="MyCrypto logo"
+                alt="Eximchain Wallet logo"
               />
             </Link>
             <div className="Header-branding-right">

@@ -132,7 +132,7 @@ const WalletDecrypt = withRouter<Props>(
         component: LedgerNanoSDecrypt,
         initialParams: {},
         unlock: this.props.setWallet,
-        helpLink: 'https://support.ledgerwallet.com/hc/en-us/articles/115005200009'
+        helpLink: 'https://support.eximchain.com/'
       },
       [SecureWalletName.TREZOR]: {
         lid: 'X_TREZOR',
@@ -142,7 +142,7 @@ const WalletDecrypt = withRouter<Props>(
         initialParams: {},
         unlock: this.props.setWallet,
         helpLink:
-          'https://support.mycrypto.com/accessing-your-wallet/how-to-use-your-trezor-with-mycrypto.html'
+          'https://support.eximchain.com/'
       },
       [InsecureWalletName.KEYSTORE_FILE]: {
         lid: 'X_KEYSTORE2',

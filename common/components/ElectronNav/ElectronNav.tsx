@@ -65,7 +65,6 @@ class ElectronNav extends React.Component<Props, State> {
             />
           ))}
         </ul>
-
         {/* <div className="ElectronNav-controls">
           <button className="ElectronNav-controls-btn" onClick={this.openLanguageSelect}>
             Change Language

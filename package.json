@@ -1,9 +1,9 @@
 {
-  "name": "MyCrypto",
-  "author": "MyCryptoHQ",
+  "name": "Eximchain Wallet",
+  "author": "Eximchain",
   "version": "1.3.0",
   "main": "main.js",
-  "description": "MyCrypto web and electron app",
+  "description": "Eximchain Wallet web and electron app",
   "repository": "https://github.com/MyCryptoHQ/MyCrypto",
   "engines": {
     "node": ">= 8.0.0",

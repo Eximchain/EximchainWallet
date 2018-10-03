@@ -1,5 +1,5 @@
 If you're having an issue with unlocking your wallet, a transaction, a swap,
-or an ENS auction, please email support@mycrypto.com. Github issues are for
+or an ENS auction, please email support@eximchain.com. Github issues are for
 development only, and support questions that aren't bugs or feature requests
 will not be answered.
 

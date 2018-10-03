@@ -16,17 +16,17 @@ export default function FourthSlide() {
           <HardwareWalletChoice
             image={trezor}
             text={translateRaw('ONBOARDING_TEXT_27')}
-            link="https://shop.trezor.io/?a=mycrypto.com"
+            link="https://shop.trezor.io/"
           />
           <HardwareWalletChoice
             image={ledger}
             text={translateRaw('ONBOARDING_TEXT_28')}
-            link="https://www.ledgerwallet.com/r/1985?path=/products/"
+            link="https://www.ledgerwallet.com/"
           />
         </section>
         <p>
           {translate('ONBOARDING_TEXT_29', {
-            $link: 'https://support.mycrypto.com/'
+            $link: 'https://support.eximchain.com/'
           })}
         </p>
         <OnboardingButton />

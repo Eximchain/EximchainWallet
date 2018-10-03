@@ -60,7 +60,7 @@ export default class Footer extends React.PureComponent<Props, State> {
                   {link.text}
                 </NewTabLink>
               ))}
-              <NewTabLink href="mailto:press@mycrypto.com">
+              <NewTabLink href="mailto:press@eximchain.com">
                 {translateRaw('FOOTER_PRESS')}
               </NewTabLink>
             </div>
@@ -73,17 +73,17 @@ export default class Footer extends React.PureComponent<Props, State> {
                 src={logo}
                 height="55px"
                 width="auto"
-                alt="MyCrypto logo"
+                alt="Eximchain Wallet logo"
               />
             </NewTabLink>
 
             <div className="Footer-about-links">
-              <NewTabLink href="https://mycrypto.com">MyCrypto.com</NewTabLink>
+              <NewTabLink href="https://wallet.eximchain.com">Eximchain Wallet</NewTabLink>
               <NewTabLink href={knowledgeBaseURL}>{translateRaw('FOOTER_SUPPORT')}</NewTabLink>
-              <NewTabLink href="https://about.mycrypto.com">
+              <NewTabLink href="https://wallet.eximchain.com/about">
                 {translateRaw('FOOTER_TEAM')}
               </NewTabLink>
-              <NewTabLink href="https://about.mycrypto.com/privacy/">
+              <NewTabLink href="https://wallet.eximchain.com/privacy/">
                 {translateRaw('FOOTER_PRIVACY_POLICY')}
               </NewTabLink>
             </div>
@@ -92,7 +92,7 @@ export default class Footer extends React.PureComponent<Props, State> {
 
             <div className="Footer-about-legal">
               <div className="Footer-about-legal-text">
-                © {new Date().getFullYear()} MyCrypto, Inc.
+                © {new Date().getFullYear()} EXIMCHAIN.
               </div>
               <div className="Footer-about-legal-text">
                 <a onClick={this.toggleModal}>{translateRaw('DISCLAIMER')}</a>

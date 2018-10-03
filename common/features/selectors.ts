@@ -69,18 +69,14 @@ export function getDisabledWallets(state: AppState): any {
   // Some wallets are unavailable offline
   if (isOffline) {
     addReason(
-      [SecureWalletName.WEB3, SecureWalletName.TREZOR, SecureWalletName.SAFE_T],
+      [SecureWalletName.WEB3, SecureWalletName.TREZOR],
       'This wallet cannot be accessed offline'
     );
   }
 
   // Some wallets are disabled on certain platforms
   if (process.env.BUILD_ELECTRON) {
-    addReason([SecureWalletName.WEB3], 'This wallet is not supported in the MyCrypto app');
-    addReason(
-      [SecureWalletName.SAFE_T],
-      'Coming soon. Please use the MyCrypto.com website in the meantime'
-    );
+    addReason([SecureWalletName.WEB3], 'This wallet is not supported in the Eximchain Wallet app');
   }
 
   // Dedupe and sort for consistency

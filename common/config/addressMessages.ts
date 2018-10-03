@@ -15,7 +15,7 @@ export const ADDRESS_MESSAGES: { [key: string]: AddressMessage } = {
       'This address has been associated with an issue with the Ledger Chrome App. Do not send to this address. Monitor [their Twitter account](https://twitter.com/LedgerHQ) for updates.'
   },
   '0x4bbeEB066eD09B7AEd07bF39EEe0460DFa261520': {
-    msg: 'Thank you for donating to MyCrypto. TO THE MOON!'
+    msg: 'Thank you for donating to Eximchain Wallet.'
   },
   '0x75aa7b0d02532f3833b66c7f0ad35376d373ddf8': {
     gasLimit: 300000,

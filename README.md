@@ -1,9 +1,8 @@
-# MyCrypto Web & Desktop Apps
+# Eximchain Wallet Web & Desktop Apps
 
 [![Coverage Status](https://coveralls.io/repos/github/MyCryptoHQ/MyCrypto/badge.svg?branch=develop)](https://coveralls.io/github/MyCryptoHQ/MyCrypto?branch=develop)
 
-* **Just looking to download?** Grab our [latest release](https://github.com/MyCryptoHQ/MyCrypto/releases).
-* **Looking for the old site?** Check out [https://legacy.mycrypto.com](https://legacy.mycrypto.com) or the source at [MyCryptoHQ/mycrypto.com](https://github.com/MyCryptoHQ/mycrypto.com)
+* **Just looking to download?** Grab our [latest release](https://wallet.eximchain.com/download).
 
 ## Requirements
 
@@ -13,7 +12,7 @@
 
 <sub>\*Higher versions should work fine, but may cause inconsistencies. It's suggested you run 8.9.4 using `nvm`.</sub>
 <br/>
-<sub>**npm is NOT supported for package management. MyCrypto uses yarn.lock to ensure sub-dependency versions are pinned, so yarn is required to install node_modules</sub>
+<sub>**npm is NOT supported for package management. Eximchain Wallet uses yarn.lock to ensure sub-dependency versions are pinned, so yarn is required to install node_modules</sub>
 <br/>
 <sub>\***Python 3 is **not** supported, since our dependencies use `node-gyp`.</sub>
 
@@ -137,7 +136,7 @@ yarn test:int
 └── webpack_config - Webpack configuration
 ```
 
-### More information is available on the [Wiki Pages](https://github.com/MyCryptoHQ/MyCrypto/wiki)
+### More information is available on the [Wiki Pages](https://support.eximchain.com)
 
 ## Thanks & Support
 

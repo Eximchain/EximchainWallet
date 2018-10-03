@@ -26,7 +26,7 @@ export const STATIC_NETWORKS_INITIAL_STATE: types.ConfigStaticNetworksState = {
     color: '#007896',
     blockExplorer: makeExplorer({
       name: 'blk.io',
-      origin: 'http://168.61.47.117:5000/blocks/latest/1'
+      origin: 'http://168.61.47.117:5000/'
     }),
     tokenExplorer: {
       name: ethPlorer,

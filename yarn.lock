@@ -6742,10 +6742,6 @@ jsprim@^1.2.2:
     json-schema "0.2.3"
     verror "1.10.0"
 
-jsqr@^1.0.1:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/jsqr/-/jsqr-1.0.4.tgz#e2ea353fa81007708efab7d95b2652a7254c10dd"
-
 jssha@2.3.1:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/jssha/-/jssha-2.3.1.tgz#147b2125369035ca4b2f7d210dc539f009b3de9a"
@@ -9059,10 +9055,6 @@ qr.js@0.0.0:
   version "0.0.0"
   resolved "https://registry.yarnpkg.com/qr.js/-/qr.js-0.0.0.tgz#cace86386f59a0db8050fa90d9b6b0e88a1e364f"
 
-qrcode-generator@1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/qrcode-generator/-/qrcode-generator-1.4.0.tgz#23521ae5d13658adb745a38f19e00c00f9b8488c"
-
 qrcode.react@0.8.0:
   version "0.8.0"
   resolved "https://registry.yarnpkg.com/qrcode.react/-/qrcode.react-0.8.0.tgz#413b31cc3b62910e39513f7bead945e01c4c34fb"
@@ -9309,14 +9301,6 @@ react-markdown@3.3.0:
 react-onclickoutside@^6.5.0:
   version "6.7.1"
   resolved "https://registry.yarnpkg.com/react-onclickoutside/-/react-onclickoutside-6.7.1.tgz#6a5b5b8b4eae6b776259712c89c8a2b36b17be93"
-
-react-qr-reader@2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/react-qr-reader/-/react-qr-reader-2.1.0.tgz#f429c196675a710926da1cc9057223b79358da75"
-  dependencies:
-    jsqr "^1.0.1"
-    prop-types "^15.5.8"
-    webrtc-adapter "^6.1.1"
 
 react-reconciler@^0.7.0:
   version "0.7.0"
@@ -10021,12 +10005,6 @@ rst-selector-parser@^2.2.3:
     lodash.flattendeep "^4.4.0"
     nearley "^2.7.10"
 
-rtcpeerconnection-shim@^1.2.10:
-  version "1.2.11"
-  resolved "https://registry.yarnpkg.com/rtcpeerconnection-shim/-/rtcpeerconnection-shim-1.2.11.tgz#df2b2456020365daf26bf8c135523bca2deb252b"
-  dependencies:
-    sdp "^2.6.0"
-
 run-async@^2.0.0, run-async@^2.2.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/run-async/-/run-async-2.3.0.tgz#0371ab4ae0bdd720d4166d7dfda64ff7a445a6c0"
@@ -10190,14 +10168,6 @@ scss-tokenizer@^0.2.3:
   dependencies:
     js-base64 "^2.1.8"
     source-map "^0.4.2"
-
-sdp@^2.6.0:
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/sdp/-/sdp-2.7.0.tgz#02b64ea0c29d73179afa19794e466b123b1b29f3"
-
-sdp@^2.7.0:
-  version "2.7.3"
-  resolved "https://registry.yarnpkg.com/sdp/-/sdp-2.7.3.tgz#ed177eb4074aa3213e150e74a9ab2d06ae6e5dbf"
 
 secp256k1@^3.0.1:
   version "3.5.0"
@@ -12114,13 +12084,6 @@ webpack@4.5.0:
     uglifyjs-webpack-plugin "^1.2.4"
     watchpack "^1.5.0"
     webpack-sources "^1.0.1"
-
-webrtc-adapter@^6.1.1:
-  version "6.1.5"
-  resolved "https://registry.yarnpkg.com/webrtc-adapter/-/webrtc-adapter-6.1.5.tgz#df72e4af5cb6675656c896db0d1187695359220b"
-  dependencies:
-    rtcpeerconnection-shim "^1.2.10"
-    sdp "^2.7.0"
 
 what-input@5.0.5:
   version "5.0.5"

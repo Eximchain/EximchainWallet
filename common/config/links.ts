@@ -14,66 +14,66 @@ interface Link {
   text: string;
 }
 
-export const DOWNLOAD_MYCRYPTO_LINK = 'https://download.myquorumwallet.com/';
+export const DOWNLOAD_MYCRYPTO_LINK = 'https://wallet.eximchain.com/download';
 
 export const socialMediaLinks: Link[] = [
   {
-    link: 'https://twitter.com/myquorumwallet',
+    link: 'https://twitter.com/eximchainexc',
     text: 'twitter'
   },
   {
-    link: 'https://www.facebook.com/myquorumwallet/',
+    link: 'https://www.facebook.com/eximchain/',
     text: 'facebook'
   },
   {
-    link: 'https://medium.com/@myquorumwallet',
+    link: 'https://medium.com/@eximchain',
     text: 'medium'
   },
   {
-    link: 'https://www.linkedin.com/company/myquorumwallet',
+    link: 'https://www.linkedin.com/company/eximchain',
     text: 'linkedin'
   },
   {
-    link: 'https://github.com/myquorumwallet',
+    link: 'https://github.com/Eximchain',
     text: 'github'
-  },
-  {
-    link: 'https://www.reddit.com/r/myquorumwallet/',
-    text: 'reddit'
-  },
-  {
-    link: discordURL,
-    text: 'discord'
   }
+  // {
+  //   link: 'https://www.reddit.com/r/myquorumwallet/',
+  //   text: 'reddit'
+  // },
+  // {
+  //   link: discordURL,
+  //   text: 'discord'
+  // }
 ];
 
 export const productLinks: Link[] = [
-  {
-    link: 'https://legacy.myquorumwallet.com/',
-    text: translateRaw('OLD_MYCRYPTO')
-  },
-  {
-    link:
-      'https://chrome.google.com/webstore/detail/etheraddresslookup/pdknmigbbbhmllnmgdfalmedcmcefdfn',
-    text: translateRaw('ETHER_ADDRESS_LOOKUP')
-  },
-  {
-    link:
-      'https://chrome.google.com/webstore/detail/ethersecuritylookup/bhhfhgpgmifehjdghlbbijjaimhmcgnf',
-    text: translateRaw('ETHER_SECURITY_LOOKUP')
-  },
-  {
-    link: 'https://etherscamdb.info/',
-    text: translateRaw('ETHERSCAMDB')
-  },
-  {
-    link: 'https://legacy.mycrypto.com/helpers.html',
-    text: translateRaw('FOOTER_HELP_AND_DEBUGGING')
-  },
-  {
-    link: 'https://hackerone.com/mycrypto',
-    text: translateRaw('FOOTER_HACKERONE')
-  }
+  // {
+  //   link: 'https://legacy.myquorumwallet.com/',
+  //   text: translateRaw('OLD_MYCRYPTO')
+  // },
+  // {
+  //   link:
+  //     'https://chrome.google.com/webstore/detail/etheraddresslookup/pdknmigbbbhmllnmgdfalmedcmcefdfn',
+  //   text: translateRaw('ETHER_ADDRESS_LOOKUP')
+  // },
+  // {
+  //   link:
+  //     'https://chrome.google.com/webstore/detail/ethersecuritylookup/bhhfhgpgmifehjdghlbbijjaimhmcgnf',
+  //   text: translateRaw('ETHER_SECURITY_LOOKUP')
+  // },
+  // {
+  //   link: 'https://etherscamdb.info/',
+  //   text: translateRaw('ETHERSCAMDB')
+  // },
+  // {
+  //   link: 'https://legacy.mycrypto.com/helpers.html',
+  //   text: translateRaw('FOOTER_HELP_AND_DEBUGGING')
+  // },
+  // {
+  //   link: 'https://hackerone.com/mycrypto',
+  //   text: translateRaw('FOOTER_HACKERONE')
+  // }
 ];
 
 export const affiliateLinks: Link[] = [
@@ -84,40 +84,36 @@ export const affiliateLinks: Link[] = [
   {
     link: trezorReferralURL,
     text: translateRaw('TREZOR_REFERAL')
-  },
-  // {
-  //   link: safeTReferralURL,
-  //   text: translateRaw('SAFE_T_REFERAL')
-  // },
-  {
-    link: keepkeyReferralURL,
-    text: translateRaw('KEEPKEY_REFERRAL')
-  },
-  {
-    link: steelyReferralURL,
-    text: translateRaw('STEELY_REFERRAL')
-  },
-  {
-    link: ethercardReferralURL,
-    text: translateRaw('ETHERCARD_REFERAL')
   }
+  // {
+  //   link: keepkeyReferralURL,
+  //   text: translateRaw('KEEPKEY_REFERRAL')
+  // },
+  // {
+  //   link: steelyReferralURL,
+  //   text: translateRaw('STEELY_REFERRAL')
+  // },
+  // {
+  //   link: ethercardReferralURL,
+  //   text: translateRaw('ETHERCARD_REFERAL')
+  // }
 ];
 
 export const partnerLinks: Link[] = [
-  {
-    link: 'https://metamask.io/',
-    text: 'MetaMask'
-  },
-  {
-    link: 'https://infura.io/',
-    text: 'Infura'
-  },
-  {
-    link: 'https://etherscan.io/',
-    text: 'Etherscan'
-  },
-  {
-    link: 'https://etherchain.org/',
-    text: 'Etherchain'
-  }
+  // {
+  //   link: 'https://metamask.io/',
+  //   text: 'MetaMask'
+  // },
+  // {
+  //   link: 'https://infura.io/',
+  //   text: 'Infura'
+  // },
+  // {
+  //   link: 'https://etherscan.io/',
+  //   text: 'Etherscan'
+  // },
+  // {
+  //   link: 'https://etherchain.org/',
+  //   text: 'Etherchain'
+  // }
 ];

@@ -28,13 +28,13 @@ export default function ThirdSlide() {
               </ul>
             </li>
             <li>
-              {translate('ONBOARDING_TEXT_23', {
+              {/* {translate('ONBOARDING_TEXT_23', {
                 $link: 'https://etherscamdb.info/'
-              })}
+              })} */}
             </li>
             <li>
               {translate('ONBOARDING_TEXT_24', {
-                $link: 'https://download.myquorumwallet.com/'
+                $link: 'https://wallet.eximchain.com/download'
               })}
             </li>
           </ul>

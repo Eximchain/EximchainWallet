@@ -41,7 +41,7 @@ class NameInput extends Component<Props, State> {
               isValid={!!domainToCheck && isValidDomain}
               className="border-rad-right-0"
               type="text"
-              placeholder="myquorumwallet"
+              placeholder="Eximchain Wallet"
               onChange={this.onChange}
               onFocus={this.onFocus}
               onBlur={this.onBlur}

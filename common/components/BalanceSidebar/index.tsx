@@ -37,10 +37,10 @@ export class BalanceSidebar extends React.Component<StateProps> {
       //   isFullWidth: true,
       //   content: <Promos />
       // },
-      {
-        name: 'Token Balances',
-        content: <TokenBalances />
-      }
+      // {
+      //   name: 'Token Balances',
+      //   content: <TokenBalances />
+      // }
       // {
       //   name: 'Equivalent Values',
       //   content: <EquivalentValues />

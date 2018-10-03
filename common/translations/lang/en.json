@@ -485,7 +485,7 @@
     "CONFIRM_TX_FROM": "From",
     "CONFIRM_TX_TO": "To",
     "CONFIRM_TX_VIA_CONTRACT": "via the $unit contract",
-    "MNEMONIC_FINAL_DESCRIPTION": "All done, you’re now ready to access your wallet. Just follow these 4 steps whenever you want to access your wallet.",
+    "MNEMONIC_FINAL_DESCRIPTION": "All done, you’re now ready to access your wallet.",
     "CREATE_FINAL_STEP_1": "Open Eximchain Wallet",
     "CREATE_FINAL_STEP_2": "Go to View & Send",
     "CREATE_FINAL_STEP_3": "Select your wallet type",

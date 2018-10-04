@@ -1,7 +1,5 @@
 # Eximchain Wallet Web & Desktop Apps
 
-<!-- [![Coverage Status](https://coveralls.io/repos/github/MyCryptoHQ/MyCrypto/badge.svg?branch=develop)](https://coveralls.io/github/MyCryptoHQ/MyCrypto?branch=develop) -->
-
 * **Just looking to download?** Grab our [latest release](https://github.com/Eximchain/EximchainWallet).
 
 ## Requirements

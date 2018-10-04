@@ -1,10 +1,10 @@
 If you're contributing translations, please follow the contributor guidelines
-at https://github.com/MyCryptoHQ/MyCrypto/wiki/Contributor-Guidelines#providing-translations
+at https://github.com/Eximchain/EximchainWallet
 
 ---
 
 If you're contributing code, please link to the issue it resolves and follow the
-contributor guidelines at https://github.com/MyCryptoHQ/MyCrypto/wiki/Contributor-Guidelines#contributing-code and fill out the following template:
+contributor guidelines at https://github.com/Eximchain/EximchainWallet and fill out the following template:
 
 Closes #(issue number goes here)
 

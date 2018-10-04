@@ -594,7 +594,7 @@ describe('transaction: Sagas', () => {
               put(
                 notificationsActions.showNotification(
                   'warning',
-                  `The cost of gas is higher than your balance. Total cost: ${totalCost} >  Your Ether balance: ${etherBalance}`
+                  `The cost of gas is higher than your balance. Total cost: ${totalCost} >  Your EXC balance: ${etherBalance}`
                 )
               )
             );

@@ -15,7 +15,7 @@ const GenerateWalletTemplate: React.SFC<Props> = ({ children, hideBack, onBack }
     {children}
     {!hideBack && (
       <Link className="GenerateWallet-back" to="/generate" onClick={onBack}>
-        <i className="fa fa-arrow-left" /> {translate('MODAL_BACK')}
+        <i className="fa fa-arrow-left" />
       </Link>
     )}
   </div>

@@ -19,35 +19,35 @@ interface Props {
 
 const FinalSteps: React.SFC<Props> = ({ walletType }) => {
   const steps = [
-    {
-      name: translate('CREATE_FINAL_STEP_1'),
-      image: process.env.BUILD_ELECTRON ? OpenAppImage : OpenWebImage
-    },
-    {
-      name: translate('CREATE_FINAL_STEP_2'),
-      image: process.env.BUILD_ELECTRON ? TabAppImage : TabWebImage
-    }
+    // {
+    //   name: translate('CREATE_FINAL_STEP_1'),
+    //   image: process.env.BUILD_ELECTRON ? OpenAppImage : OpenWebImage
+    // },
+    // {
+    //   name: translate('CREATE_FINAL_STEP_2'),
+    //   image: process.env.BUILD_ELECTRON ? TabAppImage : TabWebImage
+    // }
   ];
 
-  if (walletType === WalletType.Keystore) {
-    steps.push({
-      name: translate('CREATE_FINAL_STEP_3'),
-      image: SelectKeystoreImage
-    });
-    steps.push({
-      name: translate('CREATE_FINAL_STEP_4_KEYSTORE'),
-      image: ProvideKeystoreImage
-    });
-  } else if (walletType === WalletType.Mnemonic) {
-    steps.push({
-      name: translate('CREATE_FINAL_STEP_3'),
-      image: SelectMnemonicImage
-    });
-    steps.push({
-      name: translate('CREATE_FINAL_STEP_4_MNEMONIC'),
-      image: ProvideMnemonicImage
-    });
-  }
+  // if (walletType === WalletType.Keystore) {
+  //   steps.push({
+  //     name: translate('CREATE_FINAL_STEP_3'),
+  //     image: SelectKeystoreImage
+  //   });
+  //   steps.push({
+  //     name: translate('CREATE_FINAL_STEP_4_KEYSTORE'),
+  //     image: ProvideKeystoreImage
+  //   });
+  // } else if (walletType === WalletType.Mnemonic) {
+  //   steps.push({
+  //     name: translate('CREATE_FINAL_STEP_3'),
+  //     image: SelectMnemonicImage
+  //   });
+  //   steps.push({
+  //     name: translate('CREATE_FINAL_STEP_4_MNEMONIC'),
+  //     image: ProvideMnemonicImage
+  //   });
+  // }
 
   return (
     <div className="FinalSteps">

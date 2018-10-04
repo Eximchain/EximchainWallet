@@ -49,7 +49,7 @@ export default class DownloadWallet extends Component<Props, State> {
           </div>
 
           <button
-            className="DlWallet-continue btn btn-danger"
+            className="DlWallet-continue btn btn-primary"
             role="button"
             onClick={this.handleContinue}
             disabled={!hasDownloadedWallet}

@@ -171,7 +171,7 @@ class DeterministicWalletsModalClass extends React.PureComponent<Props, State> {
                       ))}
                     </select>
                   </td>
-                  <td>{translate('ACTION_5')}</td>
+                  {/* <td>{translate('ACTION_5')}</td> */}
                 </tr>
               </thead>
               <tbody>{wallets.map(wallet => this.renderWalletRow(wallet))}</tbody>
@@ -324,7 +324,7 @@ class DeterministicWalletsModalClass extends React.PureComponent<Props, State> {
             <span className="DWModal-addresses-table-na">N/A</span>
           )}
         </td>
-        <td>
+        {/* <td>
           <a
             target="_blank"
             href={`https://ethplorer.io/address/${wallet.address}`}
@@ -332,7 +332,7 @@ class DeterministicWalletsModalClass extends React.PureComponent<Props, State> {
           >
             <i className="DWModal-addresses-table-more" />
           </a>
-        </td>
+        </td> */}
       </tr>
     );
   }

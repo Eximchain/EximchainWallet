@@ -1,11 +1,11 @@
 {
-  "name": "MyCrypto",
+  "name": "Eximchain Wallet",
   "manifest_version": 1,
   "start_url": ".",
-  "theme_color": "#163151",
-  "background_color": "#163151",
+  "theme_color": "#267EDC",
+  "background_color": "#267EDC",
   "display": "standalone",
-  "description": "MyCrypto.com is a free, open-source, client-side interface for generating Ethereum wallets & more",
+  "description": "Eximchain Wallet is a free, open-source, client-side interface for generating and managing EXC wallets.",
   "default_locale": "en",
   "icons": [
     {

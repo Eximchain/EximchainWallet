@@ -19,7 +19,7 @@ class DetailsClass extends Component<StateProps> {
     const { node: { network, service } } = this.props;
     return (
       <div className="tx-modal-details">
-        <label className="input-group">
+        {/* <label className="input-group">
           <div className="input-group-header">{translate('NETWORK')}</div>
           <Input
             isValid={true}
@@ -29,7 +29,7 @@ class DetailsClass extends Component<StateProps> {
               $network: network
             })} - ${translateRaw('PROVIDED_BY', { $service: service })}`}
           />
-        </label>
+        </label> */}
 
         <SerializedTransaction
           withSerializedTransaction={(_, fields) => {

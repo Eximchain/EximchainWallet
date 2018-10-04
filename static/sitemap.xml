@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url><loc>https://myquorumwallet.com</loc><priority>0.5</priority></url>
-<url><loc>https://myquorumwallet.com/</loc><priority>0.5</priority></url>
-<url><loc>https://myquorumwallet.com/account</loc><priority>0.5</priority></url>
-<url><loc>https://myquorumwallet.com/generate</loc><priority>0.5</priority></url>
-<url><loc>https://myquorumwallet.com/swap</loc><priority>0.5</priority></url>
-<url><loc>https://myquorumwallet.com/contracts</loc><priority>0.5</priority></url>
-<url><loc>https://myquorumwallet.com/ens</loc><priority>0.5</priority></url>
-<url><loc>https://myquorumwallet.com/sign-and-verify-message</loc><priority>0.5</priority></url>
-<url><loc>https://myquorumwallet.com/tx-status</loc><priority>0.5</priority></url>
-<url><loc>https://myquorumwallet.com/pushTx</loc><priority>0.5</priority></url>
+<url><loc>https://wallet.eximchain.com</loc><priority>0.5</priority></url>
+<url><loc>https://wallet.eximchain.com</loc><priority>0.5</priority></url>
+<url><loc>https://wallet.eximchain.com/account</loc><priority>0.5</priority></url>
+<url><loc>https://wallet.eximchain.com/generate</loc><priority>0.5</priority></url>
+<url><loc>https://wallet.eximchain.com/swap</loc><priority>0.5</priority></url>
+<url><loc>https://wallet.eximchain.com/contracts</loc><priority>0.5</priority></url>
+<url><loc>https://wallet.eximchain.com/ens</loc><priority>0.5</priority></url>
+<url><loc>https://wallet.eximchain.com/sign-and-verify-message</loc><priority>0.5</priority></url>
+<url><loc>https://wallet.eximchain.com/tx-status</loc><priority>0.5</priority></url>
+<url><loc>https://wallet.eximchain.com/pushTx</loc><priority>0.5</priority></url>
 </urlset>

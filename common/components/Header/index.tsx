@@ -6,7 +6,7 @@ import classnames from 'classnames';
 import { ANNOUNCEMENT_MESSAGE, ANNOUNCEMENT_TYPE, languages } from 'config';
 import { NetworkConfig } from 'types/network';
 import { getKeyByValue } from 'utils/helpers';
-import logo from 'assets/images/logo-myquorumwallet-white.svg';
+import logo from 'assets/images/logo-eximchain-wallet-white.svg';
 import { OldDropDown } from 'components/ui';
 import {
   configSelectors,

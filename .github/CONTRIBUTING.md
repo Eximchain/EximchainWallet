@@ -1,1 +1,1 @@
-Please see the [Contributor Guidelines on the wiki](https://github.com/MyCryptoHQ/MyCrypto/wiki/Contributor-Guidelines).
+Please see the [Guidelines on the repo](https://github.com/Eximchain/EximchainWallet).

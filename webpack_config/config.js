@@ -15,15 +15,15 @@ const paths = {
 module.exports = {
   // Configuration
   port: process.env.HTTPS ? 3443 : 3000,
-  title: 'MyCrypto',
+  title: 'EximchainWallet',
   // description < 200 characters
-  description: 'MyCrypto is a free, open-source interface for interacting with the blockchain.',
-  url: 'https://mycrypto.com/',
+  description: 'Eximchain is a free, open-source interface for interacting with the Eximchain blockchain.',
+  url: 'https://wallet.eximchain.com/',
   type: 'website',
   // img < 5MB
   img: path.join(paths.assets, 'images/link-preview.png'),
   twitter: {
-    creator: '@MyCrypto'
+    creator: '@EximchainEXC'
   },
   path: paths,
 

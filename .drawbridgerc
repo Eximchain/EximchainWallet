@@ -1,16 +1,16 @@
 {
     "environments": {
         "develop": {
-            "gitUrl": "git@github.com:MyCryptoHQ/MyCrypto.git",
+            "gitUrl": "git@github.com:Eximchain/EximchainWallet.git",
             "distFolder": "dist/prod",
             "buildCommand": "yarn && npm run build"
         },
         "beta": {
-            "gitUrl": "git@github.com:MyCryptoHQ/MyCrypto-Beta.git",
+            "gitUrl": "git@github.com:Eximchain/EximchainWallet.git",
             "distFolder": "docs"
         },
         "prod": {
-            "gitUrl": "git@github.com:MyCryptoHQ/MyCrypto-Production.git",
+            "gitUrl": "git@github.com:Eximchain/EximchainWallet.git",
             "distFolder": "docs"
         }
     }

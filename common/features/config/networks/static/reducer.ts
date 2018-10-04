@@ -24,10 +24,10 @@ export const STATIC_NETWORKS_INITIAL_STATE: types.ConfigStaticNetworksState = {
     chainId: 1,
     isCustom: false,
     color: '#007896',
-    blockExplorer: makeExplorer({
-      name: 'blk.io',
-      origin: 'http://168.61.47.117:5000/'
-    }),
+    // blockExplorer: makeExplorer({
+    //   name: 'blk.io',
+    //   origin: 'http://168.61.47.117:5000/'
+    // }),
     tokenExplorer: {
       name: ethPlorer,
       address: ETHTokenExplorer

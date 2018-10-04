@@ -36,17 +36,17 @@ export const etherChainExplorerInst = makeExplorer({
 });
 
 export const donationAddressMap = {
-  BTC: '32oirLEzZRhi33RCXDF9WHJjEb8RsrSss3',
-  ETH: '0x4bbeEB066eD09B7AEd07bF39EEe0460DFa261520',
-  REP: '0x4bbeEB066eD09B7AEd07bF39EEe0460DFa261520',
+  BTC: '1DvFt7r6Hxxwa1FeXgiqJtGDgz4EAgjDvP',
+  ETH: '0x55718cCc2Da2E64c1ABef86D9367C821857A45c3',
+  ZEC: 't1MiCwtEvi6PHAYUNHTpjwoauBPpU5GNfjz',
   XMR:
     '4GdoN7NCTi8a5gZug7PrwZNKjvHFmKeV11L6pNJPgj5QNEHsN6eeX3DaAQFwZ1ufD4LYCZKArktt113W7QjWvQ7CW7F7tDFvS511SNfZV7'
 };
 
 export const gasEstimateCacheTime = 60000;
 export const gasPriceDefaults: GasPriceSetting = {
-  min: 1,
-  max: 60,
+  min: 0,
+  max: 100,
   initial: 20
 };
 

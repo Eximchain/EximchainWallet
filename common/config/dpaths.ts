@@ -38,86 +38,6 @@ export const ETH_TESTNET: DPath = {
   value: "m/44'/1'/0'/0"
 };
 
-export const EXP_DEFAULT: DPath = {
-  label: 'Default (EXP)',
-  value: "m/44'/40'/0'/0"
-};
-
-export const UBQ_DEFAULT: DPath = {
-  label: 'Default (UBQ)',
-  value: "m/44'/108'/0'/0"
-};
-
-export const POA_DEFAULT: DPath = {
-  label: 'Default (POA)',
-  value: "m/44'/60'/0'/0"
-};
-
-export const TOMO_DEFAULT: DPath = {
-  label: 'Default (TOMO)',
-  value: "m/44'/1'/0'/0"
-};
-
-export const ELLA_DEFAULT: DPath = {
-  label: 'Default (ELLA)',
-  value: "m/44'/163'/0'/0"
-};
-
-export const MUSIC_DEFAULT: DPath = {
-  label: 'Default (MUSIC)',
-  value: "m/44'/60'/0'/0"
-};
-
-export const ETSC_DEFAULT: DPath = {
-  label: 'Default (ETSC)',
-  value: "m/44'/1128'/0'/0"
-};
-
-export const EGEM_DEFAULT: DPath = {
-  label: 'Default (EGEM)',
-  value: "m/44'/1987'/0'/0"
-};
-
-export const CLO_DEFAULT: DPath = {
-  label: 'Default (CLO)',
-  value: "m/44'/820'/0'/0"
-};
-
-export const ETH_SINGULAR: DPath = {
-  label: 'SingularDTV',
-  value: "m/0'/0'/0'"
-};
-
-export const RSK_TESTNET: DPath = {
-  label: 'Testnet (RSK)',
-  value: "m/44'/37310'/0'/0"
-};
-
-export const RSK_MAINNET: DPath = {
-  label: 'Mainnet (RSK)',
-  value: "m/44'/137'/0'/0"
-};
-
-export const GO_DEFAULT: DPath = {
-  label: 'Default (GO)',
-  value: "m/44'/6060'/0'/0"
-};
-
-export const EOSC_DEFAULT: DPath = {
-  label: 'Default (EOSC)',
-  value: "m/44'/2018'/0'/0"
-};
-
-export const ESN_DEFAULT: DPath = {
-  label: 'Default (ESN)',
-  value: "m/44'/31102'/0'/0"
-};
-
-export const AQUA_DEFAULT: DPath = {
-  label: 'Default (AQUA)',
-  value: "m/44'/60'/0'/0"
-};
-
 export const DPaths: DPath[] = [
   ETH_DEFAULT,
   ETH_TREZOR,
@@ -125,27 +45,11 @@ export const DPaths: DPath[] = [
   ETH_LEDGER,
   ETC_LEDGER,
   ETC_TREZOR,
-  ETC_SAFE_T,
-  ETH_TESTNET,
-  EXP_DEFAULT,
-  UBQ_DEFAULT,
-  POA_DEFAULT,
-  TOMO_DEFAULT,
-  ELLA_DEFAULT,
-  MUSIC_DEFAULT,
-  ETSC_DEFAULT,
-  EGEM_DEFAULT,
-  CLO_DEFAULT,
-  RSK_MAINNET,
-  RSK_TESTNET,
-  GO_DEFAULT,
-  EOSC_DEFAULT,
-  ESN_DEFAULT,
-  AQUA_DEFAULT
+  ETC_SAFE_T
 ];
 
 // PATHS TO BE INCLUDED REGARDLESS OF WALLET FORMAT
-export const EXTRA_PATHS = [ETH_SINGULAR];
+export const EXTRA_PATHS = [];
 
 // Full length deterministic wallet paths from BIP44
 // https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki

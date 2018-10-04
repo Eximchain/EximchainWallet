@@ -169,11 +169,6 @@ export function isValidPath(dPath: string) {
     return true;
   }
 
-  // SingularDTV is incorrect due to using a 0 instead of a 44 as the purpose
-  if (dPath === ETH_SINGULAR.value) {
-    return true;
-  }
-
   return dPathRegex.test(dPath);
 }
 

@@ -49,9 +49,9 @@ export default class NewAppReleaseModal extends React.PureComponent<{}, State> {
         handleClose={this.close}
         maxWidth={520}
       >
-        <h4>
+        <p>
           {translateRaw('APP_UPDATE_BODY')} {this.versionCompareStr()}
-        </h4>
+        </p>
       </Modal>
     );
   }

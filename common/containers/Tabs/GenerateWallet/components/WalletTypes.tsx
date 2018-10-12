@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import translate, { translateRaw } from 'translations';
 import { WalletType } from '../GenerateWallet';
 import { NewTabLink } from 'components/ui';
-import { ledgerReferralURL, trezorReferralURL } from 'config';
+import { trezorReferralURL } from 'config';
 import Template from './Template';
 import MetamaskIcon from 'assets/images/wallets/metamask.svg';
 import HardwareWalletIcon from 'assets/images/wallets/hardware.svg';
@@ -74,36 +74,32 @@ const WalletSuggestions: React.SFC<WalletSuggestionsProps> = ({ showGenerate }) 
       ],
       links: [
         {
-          text: translate('LEDGER_REFERRAL_1'),
-          href: ledgerReferralURL
-        },
-        {
           text: translate('TREZOR_REFERAL'),
           href: trezorReferralURL
         }
       ]
-    },
-    {
-      name: translate('X_METAMASK'),
-      description: translate('X_METAMASKDESC'),
-      type: 'metamask',
-      icon: MetamaskIcon,
-      bullets: [
-        translate('WALLET_SUGGESTION_METAMASK_1'),
-        translate('WALLET_SUGGESTION_METAMASK_2'),
-        translate('WALLET_SUGGESTION_METAMASK_3'),
-        translate('WALLET_SUGGESTION_METAMASK_4'),
-        translate('WALLET_SUGGESTION_METAMASK_5')
-      ],
-      links: [
-        {
-          text: translate('ACTION_13', {
-            $thing: translateRaw('X_METAMASK')
-          }),
-          href: 'https://metamask.io/'
-        }
-      ]
     }
+    // {
+    //   name: translate('X_METAMASK'),
+    //   description: translate('X_METAMASKDESC'),
+    //   type: 'metamask',
+    //   icon: MetamaskIcon,
+    //   bullets: [
+    //     translate('WALLET_SUGGESTION_METAMASK_1'),
+    //     translate('WALLET_SUGGESTION_METAMASK_2'),
+    //     translate('WALLET_SUGGESTION_METAMASK_3'),
+    //     translate('WALLET_SUGGESTION_METAMASK_4'),
+    //     translate('WALLET_SUGGESTION_METAMASK_5')
+    //   ],
+    //   links: [
+    //     {
+    //       text: translate('ACTION_13', {
+    //         $thing: translateRaw('X_METAMASK')
+    //       }),
+    //       href: 'https://metamask.io/'
+    //     }
+    //   ]
+    // }
     // {
     //   name: translate('X_PARITYSIGNER'),
     //   description: translate('ADD_PARITY_DESC'),

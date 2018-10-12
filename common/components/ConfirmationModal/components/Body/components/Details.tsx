@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addHexPrefix } from 'ethereumjs-util';
 
-import translate, { translateRaw } from 'translations';
+import translate from 'translations';
 import { NodeConfig } from 'types/node';
-import { CodeBlock, Input } from 'components/ui';
+import { CodeBlock } from 'components/ui';
 import { AppState } from 'features/reducers';
 import { configNodesSelectors } from 'features/config';
 import { SerializedTransaction } from 'components/renderCbs';
@@ -16,7 +16,7 @@ interface StateProps {
 
 class DetailsClass extends Component<StateProps> {
   public render() {
-    const { node: { network, service } } = this.props;
+    // const { node: { , } } = this.props;
     return (
       <div className="tx-modal-details">
         {/* <label className="input-group">

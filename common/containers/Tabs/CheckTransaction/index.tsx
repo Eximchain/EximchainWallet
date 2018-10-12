@@ -2,7 +2,6 @@ import React from 'react';
 import { RouteComponentProps } from 'react-router';
 import { connect } from 'react-redux';
 
-import { etherChainExplorerInst } from 'config/data';
 import translate from 'translations';
 import { getParamFromURL } from 'utils/helpers';
 import { NetworkConfig } from 'types/network';
@@ -45,10 +44,10 @@ class CheckTransaction extends React.Component<Props, State> {
   public render() {
     const { network } = this.props;
     const { hash } = this.state;
-    const CHECK_TX_KEY =
-      network.id === 'ETH'
-        ? 'CHECK_TX_STATUS_DESCRIPTION_MULTIPLE'
-        : 'CHECK_TX_STATUS_DESCRIPTION_2';
+    // const CHECK_TX_KEY =
+    //   network.id === 'ETH'
+    //     ? 'CHECK_TX_STATUS_DESCRIPTION_MULTIPLE'
+    //     : 'CHECK_TX_STATUS_DESCRIPTION_2';
 
     return (
       <TabSection>

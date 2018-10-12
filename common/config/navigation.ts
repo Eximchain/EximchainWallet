@@ -40,15 +40,15 @@ export const navigationLinks: NavigationLink[] = [
   {
     name: 'NAV_BROADCAST',
     to: '/pushTx'
-  }
+  },
   // {
   //   name: 'NAV_SUPPORT_US',
   //   to: '/support-us',
   //   disabled: !process.env.BUILD_ELECTRON
   // },
-  // {
-  //   name: 'NAV_HELP',
-  //   to: knowledgeBaseURL,
-  //   external: true
-  // }
-].filter(link => !link.disabled);
+  {
+    name: 'NAV_HELP',
+    to: knowledgeBaseURL,
+    external: true
+  }
+];

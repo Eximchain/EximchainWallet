@@ -112,11 +112,6 @@ class ElectronNav extends React.Component<Props, State> {
       }
     }, 300);
   };
-
-  private toggleTheme = () => {
-    const theme = this.props.theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT;
-    this.props.changeTheme(theme);
-  };
 }
 
 export default connect(

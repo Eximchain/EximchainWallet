@@ -86,8 +86,8 @@ interface ExplorerConfig {
 export function makeExplorer(expConfig: ExplorerConfig): BlockExplorerConfig {
   const config: ExplorerConfig = {
     // Defaults
-    txPath: 'tx',
-    addressPath: 'address',
+    txPath: 'transaction',
+    addressPath: 'account',
     blockPath: 'block',
     ...expConfig
   };

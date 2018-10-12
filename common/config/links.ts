@@ -1,12 +1,12 @@
 import { translateRaw } from 'translations';
 import {
-  discordURL,
+  // discordURL,
   ledgerReferralURL,
-  trezorReferralURL,
+  trezorReferralURL
   // safeTReferralURL,
-  ethercardReferralURL,
-  keepkeyReferralURL,
-  steelyReferralURL
+  // ethercardReferralURL,
+  // keepkeyReferralURL,
+  // steelyReferralURL
 } from './data';
 
 interface Link {
@@ -39,9 +39,7 @@ export const socialMediaLinks: Link[] = [
   }
 ];
 
-export const productLinks: Link[] = [
-
-];
+export const productLinks: Link[] = [];
 
 export const affiliateLinks: Link[] = [
   {
@@ -52,9 +50,6 @@ export const affiliateLinks: Link[] = [
     link: trezorReferralURL,
     text: translateRaw('TREZOR_REFERAL')
   }
-
 ];
 
-export const partnerLinks: Link[] = [
-
-];
+export const partnerLinks: Link[] = [];

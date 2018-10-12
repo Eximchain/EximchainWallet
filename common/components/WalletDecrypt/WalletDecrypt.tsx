@@ -11,8 +11,7 @@ import {
   InsecureWalletName,
   MiscWalletName,
   WalletName,
-  knowledgeBaseURL,
-  donationAddressMap
+  knowledgeBaseURL
 } from 'config';
 import translate, { translateRaw } from 'translations';
 import { isWeb3NodeAvailable } from 'libs/nodes/web3';
@@ -141,8 +140,7 @@ const WalletDecrypt = withRouter<Props>(
         component: TrezorDecrypt,
         initialParams: {},
         unlock: this.props.setWallet,
-        helpLink:
-          'https://support.eximchain.com/'
+        helpLink: 'https://support.eximchain.com/'
       },
       [InsecureWalletName.KEYSTORE_FILE]: {
         lid: 'X_KEYSTORE2',

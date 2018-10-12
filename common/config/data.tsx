@@ -6,7 +6,7 @@ import { makeExplorer } from 'utils/helpers';
 import translate from 'translations';
 
 export const languages = require('./languages.json');
-export const discordURL = 'https://discord.gg/VSaTXEA';
+// export const discordURL = 'https://discord.gg/VSaTXEA';
 
 // Displays in the footer
 export const VERSION = packageJson.version;

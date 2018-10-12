@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import translate, { translateRaw } from 'translations';
+import translate from 'translations';
 import { NodeConfig } from 'types/node';
 import { NetworkConfig } from 'types/network';
 import { AppState } from 'features/reducers';
@@ -143,10 +143,6 @@ class NetworkSelector extends React.Component<Props> {
     this.setState({
       expandedNetwork: network === this.state.expandedNetwork ? null : network
     });
-  };
-
-  private toggleShowAltNetworks = () => {
-    this.setState({ isShowingAltNetworks: !this.state.isShowingAltNetworks });
   };
 }
 

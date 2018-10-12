@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { etherChainExplorerInst } from 'config/data';
 import translate, { translateRaw } from 'translations';
 import { IWallet, HardwareWallet, Balance } from 'libs/wallet';
 import { NetworkConfig } from 'types/network';
@@ -9,7 +8,7 @@ import { AppState } from 'features/reducers';
 import { configSelectors, configMetaSelectors } from 'features/config';
 import { walletActions } from 'features/wallet';
 import Spinner from 'components/ui/Spinner';
-import { UnitDisplay, NewTabLink } from 'components/ui';
+import { UnitDisplay } from 'components/ui';
 import AccountAddress from './AccountAddress';
 import './AccountInfo.scss';
 
@@ -76,14 +75,6 @@ class AccountInfo extends React.Component<Props, State> {
   public render() {
     const { network, isOffline, balance, toChecksumAddress, wallet } = this.props;
     const { address, showLongBalance, confirmAddr } = this.state;
-
-    let blockExplorer;
-    let tokenExplorer;
-    if (!network.isCustom) {
-      // this is kind of ugly but its the result of typeguards, maybe we can find a cleaner solution later on such as just dedicating it to a selector
-      blockExplorer = network.blockExplorer;
-      tokenExplorer = network.tokenExplorer;
-    }
 
     return (
       <div>

@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Select from 'react-select';
 import BN from 'bn.js';
 import { chain, flatMap } from 'lodash';
 
@@ -126,7 +125,8 @@ class EquivalentValues extends React.Component<Props, State> {
 
   public render(): JSX.Element {
     const { balance, isOffline, tokenBalances, rates, network, ratesError } = this.props;
-    const { equivalentValues, options } = this.state;
+    const { equivalentValues } = this.state;
+
     const isFetching =
       !balance || balance.isPending || !tokenBalances || Object.keys(rates).length === 0;
     const pairRates = this.generateValues(equivalentValues.label, equivalentValues.value);

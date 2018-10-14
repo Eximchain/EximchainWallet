@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 
-import { SecureWalletName, ledgerReferralURL, HELP_ARTICLE } from 'config';
+import { SecureWalletName, HELP_ARTICLE } from 'config';
 import translate, { translateRaw } from 'translations';
 import { LedgerWallet } from 'libs/wallet';
 import { NetworkConfig } from 'types/network';

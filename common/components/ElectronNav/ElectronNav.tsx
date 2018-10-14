@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
 import translate from 'translations';
-import { navigationLinks, Theme } from 'config';
+import { navigationLinks } from 'config';
 import NavigationLink from 'components/NavigationLink';
 import NetworkSelect from './NetworkSelect';
 import LanguageSelect from './LanguageSelect';
@@ -83,13 +83,13 @@ class ElectronNav extends React.Component<Props, State> {
     );
   }
 
-  private openLanguageSelect = () => {
-    const panelContent = <LanguageSelect closePanel={this.closePanel} />;
-    this.setState({
-      panelContent,
-      isPanelOpen: true
-    });
-  };
+  // private openLanguageSelect = () => {
+  //   const panelContent = <LanguageSelect closePanel={this.closePanel} />;
+  //   this.setState({
+  //     panelContent,
+  //     isPanelOpen: true
+  //   });
+  // };
 
   private openNodeSelect = () => {
     const panelContent = <NetworkSelect closePanel={this.closePanel} />;

@@ -28,9 +28,7 @@ class SupportFooter extends React.PureComponent<Props, {}> {
       destinationAddress,
       paymentAddress,
       reference,
-      provider,
-      shapeshiftRates,
-      bityRates
+      provider
     } = this.props;
     const pair = origin && destination ? origin.label + destination.label : 'BTCETH';
     // const rates = provider === 'shapeshift' ? shapeshiftRates.byId : bityRates.byId;
@@ -42,6 +40,7 @@ class SupportFooter extends React.PureComponent<Props, {}> {
     const serviceProvider = provider.charAt(0).toUpperCase() + provider.slice(1);
     let mailBody;
     let fallbackBody;
+    //we dont have rates regarding eth to exc swaps so not sure what to do here. -Andrew
     if (pair && rates && rates[pair]) {
       mailBody = encodeURI(`Please include the below if this issue is regarding your order.
 

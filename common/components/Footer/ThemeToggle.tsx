@@ -27,10 +27,10 @@ class ThemeToggle extends React.Component<Props> {
     );
   }
 
-  private toggleTheme = () => {
-    const theme = this.props.theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT;
-    this.props.changeTheme(theme);
-  };
+  // private toggleTheme = () => {
+  //   const theme = this.props.theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT;
+  //   this.props.changeTheme(theme);
+  // };
 }
 
 export default connect(

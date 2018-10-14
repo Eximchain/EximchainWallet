@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 
-import { shapeshiftReferralURL, bitboxReferralURL } from 'config';
+// import { shapeshiftReferralURL, bitboxReferralURL } from 'config';
 import translate from 'translations';
 import { RestartSwapAction } from 'features/swap/types';
 import bityLogo from 'assets/images/logo-bity.svg';

@@ -45,11 +45,11 @@ class SendTransaction extends React.Component<Props> {
         name: translate('NAV_SENDETHER'),
         disabled: !!wallet && !!wallet.isReadOnly
       },
-      {
-        path: 'request',
-        name: translate('NAV_REQUESTPAYMENT'),
-        disabled: this.props.requestDisabled
-      },
+      // {
+      //   path: 'request',
+      //   name: translate('NAV_REQUESTPAYMENT'),
+      //   disabled: this.props.requestDisabled
+      // },
       {
         path: 'info',
         name: translate('NAV_VIEWWALLET')

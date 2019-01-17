@@ -16,6 +16,14 @@
 
 @font-face {
   font-family: 'Inter UI';
+  src: url('../assets/fonts/Inter-UI-SemiBold.woff2') format('woff2'),
+    url('../assets/fonts/Inter-UI-SemiBold.woff') format('woff');
+  font-style: normal;
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'Inter UI';
   src: url('../assets/fonts/Inter-UI-Bold.woff2') format('woff2'),
     url('../assets/fonts/Inter-UI-Bold.woff') format('woff');
   font-style: normal;

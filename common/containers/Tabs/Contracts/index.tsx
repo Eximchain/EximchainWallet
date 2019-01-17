@@ -30,9 +30,9 @@ class Contracts extends Component<RouteComponentProps<{}>> {
     return (
       <TabSection isUnavailableOffline={true}>
         <div className="ContractSection-topsection">
-          <h1 className="ContractSection-topsection-title">
+          <h2 className="ContractSection-topsection-title">
             {translate('GENERATE_CONTRACT_TITLE')}
-          </h1>
+          </h2>
           <p className="ContractSection-topsection-subtitle">
             {translate('GENERATE_CONTRACT_DESC')}
           </p>

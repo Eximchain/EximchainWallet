@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { RouteComponentProps, Switch, Route, Redirect } from 'react-router';
 import './index.scss';
 
-
 import translate from 'translations';
 import TabSection from 'containers/TabSection';
 import SubTabs from 'components/SubTabs';
@@ -39,9 +38,9 @@ export default class SignAndVerifyMessage extends Component<RouteComponentProps<
     return (
       <TabSection>
         <div className="ContractSection-topsection">
-          <h1 className="ContractSection-topsection-title">
+          <h2 className="ContractSection-topsection-title">
             {translate('GENERATE_SIGNANDVERIFY_TITLE')}
-          </h1>
+          </h2>
           <p className="ContractSection-topsection-subtitle">
             {translate('GENERATE_SIGNANDVERIFY_DESC')}
           </p>

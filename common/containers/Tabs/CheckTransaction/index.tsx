@@ -54,9 +54,9 @@ class CheckTransaction extends React.Component<Props, State> {
         <div className="CheckTransaction Tab-content">
           <section className="CheckTransaction-form Tab-content-pane">
             <div className="CheckTransaction-form-topsection">
-              <h1 className="CheckTransaction-form-topsection-title">
+              <h2 className="CheckTransaction-form-topsection-title">
                 {translate('CHECK_TX_STATUS_TITLE')}
-              </h1>
+              </h2>
               <p className="CheckTransaction-form-topsection-desc">
                 {translate('CHECK_TX_STATUS_DESCRIPTION_1')}
                 {/* {!network.isCustom &&

@@ -18,8 +18,14 @@ $divider-size: 60px;
    margin: 0;
 
   &-title {
+    // position: fixed;
     margin-top: 0;
     margin-bottom: 3px;
+    text-align: left;
+    font-size: 22px;
+    // left: 220px;
+    padding-left: 10px;
+
 
   }
 

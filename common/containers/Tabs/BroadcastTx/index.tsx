@@ -49,9 +49,9 @@ class BroadcastTx extends Component<Props> {
               path={currentPath}
               render={() => (
                 <div className="BroadcastTx-topsection">
-                  <h1 className="BroadcastTx-topsection-title text-center">
+                  <h2 className="BroadcastTx-topsection-title text-center">
                     {translate('BROADCAST_TX_TITLE')}
-                  </h1>
+                  </h2>
 
                   <p className="BroadcastTx-topsection-help text-center">
                     {translate('BROADCAST_TX_DESCRIPTION')}

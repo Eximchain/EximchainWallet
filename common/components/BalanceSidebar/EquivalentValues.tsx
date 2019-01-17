@@ -13,9 +13,9 @@ import { configSelectors, configMetaSelectors } from 'features/config';
 import { ratesActions } from 'features/rates';
 import { walletTypes } from 'features/wallet';
 import { UnitDisplay, Spinner } from 'components/ui';
-import btcIco from 'assets/images/bitcoin.png';
+// import btcIco from 'assets/images/bitcoin.png';
 import ethIco from 'assets/images/ether.png';
-import repIco from 'assets/images/augur.png';
+// import repIco from 'assets/images/augur.png';
 import './EquivalentValues.scss';
 
 interface AllValue {

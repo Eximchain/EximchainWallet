@@ -3,25 +3,11 @@
 
 $speed: 1ms;
 
-// @keyframes decrypt-enter {
-//   0% {
-//     opacity: 0;
-//     transform: translateY(8px);
-//   }
-//   100% {
-//     opacity: 1;
-//     transform: translateY(0px);
-//   }
-// }
-
 @mixin decrypt-title {
   text-align: left;
-  // padding-left: 10px;
   line-height: 1.4;
-  // margin: $space 0 2rem;
   margin-bottom: 3px;
   margin-top: 0;
-  font-weight: normal;
   font-size: 22px;
   animation: decrypt-enter $speed ease 1;
 }
@@ -74,7 +60,6 @@ $speed: 1ms;
 
     &-title {
       @include decrypt-title;
-      // margin: 0;
     }
 
     &-description {

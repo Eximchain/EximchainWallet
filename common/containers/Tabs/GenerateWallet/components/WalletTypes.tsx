@@ -152,7 +152,7 @@ const WalletSuggestions: React.SFC<WalletSuggestionsProps> = ({ showGenerate }) 
   return (
     <React.Fragment>
       <div className="WalletTypes-topsection">
-        <h1 className="WalletTypes-topsection-title">{translate('GENERATE_WALLET_TITLE')}</h1>
+        <h2 className="WalletTypes-topsection-title">{translate('GENERATE_WALLET_TITLE')}</h2>
         <p className="WalletTypes-topsection-subtitle">
           {translate('GENERATE_WALLET_SUGGESTIONS')}
         </p>

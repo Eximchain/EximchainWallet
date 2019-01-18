@@ -94,13 +94,13 @@
           margin-right: $space-xs;
           background-size: 100%;
 
-          // &.is-ETH {
-          //   background-image: url('~assets/images/ether.png');
-          // }
-          //
-          // &.is-BTC {
-          //   background-image: url('~assets/images/bitcoin.png');
-          // }
+          &.is-ETH {
+            background-image: url('~assets/images/ether.png');
+          }
+
+          &.is-BTC {
+            background-image: url('~assets/images/bitcoin.png');
+          }
         }
       }
 

@@ -2,7 +2,7 @@ import React from 'react';
 
 import translate, { translateRaw } from 'translations';
 import trezor from 'assets/images/icn-trezor-new.svg';
-import ledger from 'assets/images/icn-ledger-nano.svg';
+// import ledger from 'assets/images/icn-ledger-nano.svg';
 import { HardwareWalletChoice, OnboardingButton } from '../components';
 import './FourthSlide.scss';
 
@@ -18,17 +18,7 @@ export default function FourthSlide() {
             text={translateRaw('ONBOARDING_TEXT_27')}
             link="https://shop.trezor.io/"
           />
-          <HardwareWalletChoice
-            image={ledger}
-            text={translateRaw('ONBOARDING_TEXT_28')}
-            link="https://www.ledgerwallet.com/"
-          />
         </section>
-        <p>
-          {translate('ONBOARDING_TEXT_29', {
-            $link: 'https://support.eximchain.com/'
-          })}
-        </p>
         <OnboardingButton />
       </section>
     </section>

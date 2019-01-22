@@ -27,11 +27,6 @@ export default function ThirdSlide() {
                 <li>{translate('ONBOARDING_TEXT_22')}</li>
               </ul>
             </li>
-            <li>
-              {translate('ONBOARDING_TEXT_24', {
-                $link: 'https://wallet.eximchain.com/download'
-              })}
-            </li>
           </ul>
         </section>
         <OnboardingButton />

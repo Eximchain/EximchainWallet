@@ -18,8 +18,8 @@ export default function getWindow() {
   window = new BrowserWindow({
     title: APP_TITLE,
     backgroundColor: '#fbfbfb',
-    width: 1220,
-    height: process.platform === 'darwin' ? 680 : 720,
+    width: 1070,
+    height: process.platform === 'darwin' ? 650 : 690,
     minWidth: 480,
     minHeight: 400,
     titleBarStyle: 'hidden',

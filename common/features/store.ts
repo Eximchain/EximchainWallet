@@ -1,5 +1,5 @@
 import { bindActionCreators } from 'redux';
-
+// import { renderToString } from 'react-dom'
 import { shepherdProvider, getShepherdPending, getShepherdOffline } from 'libs/nodes';
 import { configMetaActions, configMetaSelectors } from 'features/config';
 import { notificationsActions } from 'features/notifications';
@@ -27,9 +27,9 @@ window.addEventListener('load', () => {
       lostNetworkNotif: () =>
         notificationsActions.showNotification(
           'danger',
-          `You’ve lost your connection to the network, check your internet
-    connection or try changing networks from the dropdown at the
-    top right of the page.`,
+          `You’re not connected to the network. Please check your internet
+    connection or try changing networks from the dropdown in the
+    left sidebar. If you haven't synced an Eximchain Node, visit eximchain.zendesk.com for instructions.`,
           Infinity
         ),
 

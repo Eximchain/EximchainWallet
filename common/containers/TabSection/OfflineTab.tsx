@@ -9,7 +9,10 @@ const OfflineTab: React.SFC<{}> = () => (
         <i className="fa fa-wifi fa-stack-1x" />
         <i className="fa fa-ban fa-stack-2x" />
       </div>
-      <h1 className="OfflineTab-message">This feature is unavailable while offline</h1>
+      <br />
+      <br />
+      <br />
+      <p className="OfflineTab-message">This feature is unavailable while offline</p>
     </div>
   </section>
 );

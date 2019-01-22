@@ -65,7 +65,7 @@ const WalletSuggestions: React.SFC<WalletSuggestionsProps> = ({ showGenerate }) 
       name: translate('X_HARDWARE_WALLET'),
       description: translate('ADD_HARDWAREDESC'),
       type: 'hardware',
-      icon: HardwareWalletIcon,
+      // icon: HardwareWalletIcon,
       bullets: [
         // translate('WALLET_SUGGESTION_HARDWARE_1'),
         translate('WALLET_SUGGESTION_HARDWARE_2'),
@@ -129,7 +129,7 @@ const WalletSuggestions: React.SFC<WalletSuggestionsProps> = ({ showGenerate }) 
       name: translate('NAV_GENERATEWALLET'),
       description: translate('NAV_GENERATEWALLETDESC'),
       type: 'generate',
-      icon: FileIcon,
+      // icon: FileIcon,
       bullets: [
         // translate('WALLET_SUGGESTION_GENERATE_1'),
         translate('WALLET_SUGGESTION_GENERATE_2'),

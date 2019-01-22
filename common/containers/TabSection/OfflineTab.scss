@@ -13,14 +13,23 @@
 
 .OfflineTab {
   text-align: center;
+  color: #5D6977;
 
+.Tab-content-pane{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+    .fa-stack {
+      margin: 0 auto 0 auto;  }
+    }
   &-icon {
     opacity: 0.8;
 
     .fa-ban {
       color: color(brand-danger);
-      animation: ban-wifi 500ms ease 200ms 1;
+      animation: ban-wifi 200ms ease 200ms 1;
       animation-fill-mode: both;
     }
+
   }
 }

@@ -174,7 +174,7 @@ $divider-size: 60px;
 
     &-icon {
       height: 20px;
-      margin-right: $space-md;
+      // margin-right: $space-md;
       opacity: 0.8;
 
       @include theme(dark) {
@@ -184,7 +184,7 @@ $divider-size: 60px;
   }
 
   &-description {
-    color: color(gray-light);
+    color: color(gray);
     font-size: $font-size-small;
     font-weight: 300;
     padding-bottom: 2rem;

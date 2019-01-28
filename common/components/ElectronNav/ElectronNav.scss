@@ -17,11 +17,11 @@ $back-spacing: 20px;
     position: -webkit-sticky;
     position: sticky;
     top: 0;
+    z-index: 1;
+    padding-bottom: 10px;
     // padding-top: $branding-spacing-top;
     // background: #F8F9FA;
-    z-index: 1;
     // border-bottom: 1px solid shade-dark(0.1);
-    // padding-bottom: 15px;
     .is-osx & {
       padding-top: $electron-osx-control-spacing - $branding-spacing-top;
     }
@@ -72,7 +72,6 @@ $back-spacing: 20px;
 
   &-status {
     margin: 12px 0;
-    // padding-left: 20px;
     font-size: 12px;
   }
 

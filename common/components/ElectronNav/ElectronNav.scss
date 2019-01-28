@@ -27,10 +27,10 @@ $back-spacing: 20px;
     }
 
     &-logo {
-      margin-left: 20px;
+      margin-left: 17px;
       margin-right: 0px;
       height: 60px;
-      max-width: 120px;
+      max-width: 110px;
       // margin-bottom: 20px;
       background-image: url('~assets/images/logo-eximchain-wallet-blue.svg');
       background-position: center;
@@ -92,7 +92,7 @@ $back-spacing: 20px;
       font-weight: 300;
 
       &-icon {
-        font-size: 12px;
+        font-size: 18px;
         margin-left: 4px;
         padding-right: 5px;
         color: #B4BAC4;
@@ -187,19 +187,22 @@ $back-spacing: 20px;
     &.is-active {
       color: #1F2F47;
       font-weight: 400;
-      background: #E7E9EC;
+      // background: #E7E9EC;
+      border-left: solid #1F2F47 4px;
+      padding: 0 0 0 16px;
+
 
 
       &:hover {
         color: #1F2F47;
-        background: #E7E9EC;
+        background: none;
       }
     }
 
     &:hover {
-      color: color(gray);
+      color: #1F2F47;
       opacity: 1;
-      background: #F0F2F4;
+      // background: #F0F2F4;
     }
 
     &-icon {

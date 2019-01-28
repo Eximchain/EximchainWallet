@@ -23,6 +23,7 @@ $speed: 1ms;
   position: relative;
   height:100%;
 
+
   &-title {
     width: 100%;
     padding-top: 2px;
@@ -43,14 +44,14 @@ $speed: 1ms;
     margin: 0 - $space-md;
     // padding-top: 46px;
     // margin: 1rem 0;
-    padding-top: $electron-osx-control-spacing + 45px;
+    padding-top: $electron-osx-control-spacing + 23px;
 
     &-topsection {
       position: fixed;
       top: 0;
-      height: 100px;
+      height: auto;
       width: 100%;
-      padding-top: $electron-osx-control-spacing - 10px;
+      padding-top: $electron-osx-control-spacing - 20px;
       left: 220px;
       z-index: 900;
       background-color: white;
@@ -59,7 +60,7 @@ $speed: 1ms;
       margin-top: 0;
       padding-left: 10px;
       padding-right: 10px;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       border-bottom: solid .5px #F0F2F4;
 
     &-title {
@@ -67,9 +68,10 @@ $speed: 1ms;
     }
 
     &-description {
-      margin: 0 0 $space * 2;
+      margin: 0 0 $space;
       color: color(gray);
       text-align: left;
+      font-size: 13px;
       }
 
     }
@@ -78,6 +80,7 @@ $speed: 1ms;
       display: flex;
       justify-content: left;
       flex-wrap: wrap;
+      margin: 0;
       // margin-bottom: 10px;
 
       @media screen and (max-width: $screen-xs) {

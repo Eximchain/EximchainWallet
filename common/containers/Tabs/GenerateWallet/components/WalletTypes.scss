@@ -9,32 +9,28 @@ $divider-size: 60px;
  &-topsection {
    position: fixed;
    top: 0;
-   height: 100px;
+   height: auto;
    width: 100%;
-   padding-top: $electron-osx-control-spacing - 10px;
+   padding-top: $electron-osx-control-spacing - 20px;
    left: 220px;
    z-index: 1000;
    background-color: white;
    margin: 0;
 
   &-title {
-    // position: fixed;
     margin-top: 0;
     margin-bottom: 3px;
     text-align: left;
-    font-size: 22px;
-    // left: 220px;
-    padding-left: 10px;
+    font-size: 18px;
 
 
   }
 
   &-subtitle {
     max-width: 1040px;
-    margin: 0 0 $space * 2;
+    margin: 0 0 18px 0;
     color: color(gray);
     text-align: left;
-    padding-left: 10px;
   }
   }
 
@@ -43,7 +39,7 @@ $divider-size: 60px;
     flex-wrap: wrap;
     justify-content: center;
     padding-top: 46px;
-    margin: $space 0;
+    // margin: $space 0;
     text-align: left;
   }
 

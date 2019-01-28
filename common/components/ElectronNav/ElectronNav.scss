@@ -167,20 +167,21 @@ $back-spacing: 20px;
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
   @include ellipsis;
-  padding: 2px 0 2px 0;
+  padding: 6px 0 6px 0;
 
 
 
   &-link {
     display: block;
-    height: 32px;
-    line-height: 32px;
+    height: 24px;
+    line-height: 24px;
     padding: 0 0 0 20px;
+    font-weight: 400;
 
     // border-bottom: 1px solid shade-dark(0.08);
-    color: color(gray);
+    color: #617085;
     font-size: 13px;
-    font-weight: 300;
+    // font-weight: 300;
     // margin-right: 12px;
 
     &.is-active {

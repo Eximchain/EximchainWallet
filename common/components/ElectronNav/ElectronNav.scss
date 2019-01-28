@@ -169,29 +169,24 @@ $back-spacing: 20px;
   @include ellipsis;
   padding: 6px 0 6px 0;
 
-
-
   &-link {
     display: block;
     height: 24px;
     line-height: 24px;
     padding: 0 0 0 20px;
     font-weight: 400;
-
-    // border-bottom: 1px solid shade-dark(0.08);
     color: #617085;
     font-size: 13px;
+    // border-bottom: 1px solid shade-dark(0.08);
     // font-weight: 300;
     // margin-right: 12px;
 
     &.is-active {
       color: #1F2F47;
       font-weight: 400;
-      // background: #E7E9EC;
       border-left: solid #1F2F47 4px;
       padding: 0 0 0 16px;
-
-
+      // background: #E7E9EC;
 
       &:hover {
         color: #1F2F47;

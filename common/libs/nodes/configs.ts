@@ -8,7 +8,7 @@ export const makeNodeName = (network: string, name: string) => {
 export const NODE_CONFIGS: { [key in StaticNetworkIds]: RawNodeConfig[] } = {
   ETH: [
     {
-      name: makeNodeName('ETH', 'mycrypto'),
+      name: makeNodeName('ETH', 'eximchain wallet'),
       type: 'rpc',
       service: 'Localhost',
       url: 'http://localhost:22000'

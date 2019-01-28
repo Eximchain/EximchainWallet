@@ -80,6 +80,6 @@ export enum Platforms {
   LINUX_x86 = 'linux-x86-64'
 }
 
-export type Name = 'MyCrypto';
+export type Name = 'Eximchain Wallet';
 
 export type VersionNumber = string;

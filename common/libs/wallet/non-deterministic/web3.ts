@@ -76,7 +76,7 @@ export default class Web3Wallet implements IFullWallet {
     // const networkConfig = getNetworkByChainId(configuredStore.getState(), netId);
 
     if (!networkConfig) {
-      throw new Error(`MyCrypto doesn’t support the network with chain ID '${netId}'`);
+      throw new Error(`Eximchain Wallet doesn’t support the network with chain ID '${netId}'`);
     } else if (this.network !== networkConfig.id) {
       throw new Error(
         `Expected MetaMask / Mist network to be ${this.network}, but got ${

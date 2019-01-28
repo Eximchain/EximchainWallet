@@ -18,7 +18,7 @@ $back-spacing: 20px;
     position: sticky;
     top: 0;
     // padding-top: $branding-spacing-top;
-    background: color(control-bg);
+    // background: #F8F9FA;
     z-index: 1;
     // border-bottom: 1px solid shade-dark(0.1);
     // padding-bottom: 15px;
@@ -27,11 +27,11 @@ $back-spacing: 20px;
     }
 
     &-logo {
-      margin-left: 14px;
+      margin-left: 20px;
       margin-right: 0px;
       height: 60px;
-      max-width: 160px;
-      margin-bottom: 20px;
+      max-width: 120px;
+      // margin-bottom: 20px;
       background-image: url('~assets/images/logo-eximchain-wallet-blue.svg');
       background-position: center;
       background-repeat: no-repeat;
@@ -95,6 +95,7 @@ $back-spacing: 20px;
         font-size: 12px;
         margin-left: 4px;
         padding-right: 5px;
+        color: #B4BAC4;
         &.is-online {
           color: color(brand-success);
           margin-left: 0px;
@@ -141,7 +142,7 @@ $back-spacing: 20px;
       padding: 8px 0px;
       color: color(gray);
       // border-bottom: 1px solid shade-dark(0.05);
-      background: color(control-bg);
+      background: #F8F9FA;
 
       .is-osx & {
         padding-top:
@@ -163,35 +164,42 @@ $back-spacing: 20px;
 // Styling for common/components/NavigationLink, with custom classname
 .ElectronNavLink {
   display: block;
-  margin: 0;
-  border-top-right-radius: 100px;
-  border-bottom-right-radius: 100px;
+  margin: 0 12px 0 0;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
   @include ellipsis;
+  padding: 2px 0 2px 0;
+
+
 
   &-link {
     display: block;
-    height: 48px;
-    line-height: 48px;
+    height: 32px;
+    line-height: 32px;
     padding: 0 0 0 20px;
+
     // border-bottom: 1px solid shade-dark(0.08);
     color: color(gray);
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 300;
+    // margin-right: 12px;
 
     &.is-active {
-      color: color(link-color);
+      color: #1F2F47;
       font-weight: 400;
-      background: color(blue-01);
+      background: #E7E9EC;
+
+
       &:hover {
-        color: color(brand-primary);
-        background: color(blue-01);
+        color: #1F2F47;
+        background: #E7E9EC;
       }
     }
 
     &:hover {
       color: color(gray);
       opacity: 1;
-      background: shade-dark(0.03);
+      background: #F0F2F4;
     }
 
     &-icon {

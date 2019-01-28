@@ -8,7 +8,7 @@ $speed: 1ms;
   line-height: 1.4;
   margin-bottom: 3px;
   margin-top: 0;
-  font-size: 22px;
+  font-size: 18px;
   animation: decrypt-enter $speed ease 1;
 }
 
@@ -31,7 +31,7 @@ $speed: 1ms;
     line-height: 1.4;
     margin: $space 0 2rem;
     font-weight: normal;
-    font-size: 22px;
+    font-size: 18px;
     left: 220px;
     // @include decrypt-title;
     background-color: white;
@@ -43,7 +43,7 @@ $speed: 1ms;
     margin: 0 - $space-md;
     // padding-top: 46px;
     // margin: 1rem 0;
-    padding-top: $electron-osx-control-spacing + 25px;
+    padding-top: $electron-osx-control-spacing + 45px;
 
     &-topsection {
       position: fixed;
@@ -54,9 +54,13 @@ $speed: 1ms;
       left: 220px;
       z-index: 900;
       background-color: white;
-      margin: 0;
+      margin-left: 0;
+      margin-right: 0;
+      margin-top: 0;
       padding-left: 10px;
       padding-right: 10px;
+      margin-bottom: 20px;
+      border-bottom: solid .5px #F0F2F4;
 
     &-title {
       @include decrypt-title;

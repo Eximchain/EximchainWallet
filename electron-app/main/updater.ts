@@ -102,7 +102,7 @@ export default function(mainWindow: BrowserWindow) {
 }
 
 function resetWindowFromUpdates(window: BrowserWindow) {
-  window.setTitle('MyCrypto');
+  window.setTitle('Eximchain Wallet');
   window.setProgressBar(-1); // Clears progress bar
 }
 

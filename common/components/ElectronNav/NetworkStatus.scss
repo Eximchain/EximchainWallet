@@ -5,8 +5,8 @@
   align-items: center;
 
   &-icon {
-    width: 10px;
-    height: 10px;
+    width: 14px;
+    height: 14px;
     margin-right: 4px;
     border-radius: 3.5px;
 
@@ -24,7 +24,8 @@
   }
 
   &-text {
-    color: color(gray);
-    font-size: 12px;
+    color: #1F2F47;
+    font-size: 13px;
+    font-weight: 500;
   }
 }

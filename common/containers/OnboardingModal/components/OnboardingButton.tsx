@@ -23,7 +23,7 @@ type Props = OwnProps & StateProps & DispatchProps;
 function OnboardingButton({ className = '', currentSlide, completeOnboarding, setSlide }: Props) {
   const fullClassName = `OnboardingButton ${className}`;
   const nextSlide = currentSlide + 1;
-  const isOnFinalSlide = nextSlide > 4;
+  const isOnFinalSlide = nextSlide > 3;
   const changeSlide = () => setSlide(nextSlide);
   const onClick = isOnFinalSlide ? completeOnboarding : changeSlide;
   const text = isOnFinalSlide ? 'Get started' : 'Next';

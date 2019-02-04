@@ -651,7 +651,7 @@
     "SELECT_FROM_ADDRESS_BOOK": "Select from your address book",
     "RECENT_ADDRESS_NUMBER": "Recent Address #$number",
     "ONBOARDING_TEXT_1": "Welcome to Eximchain Wallet",
-    "ONBOARDING_TEXT_2": "Please read the next few screens for your own safety. Your funds could be stolen if you do not pay attention to these warnings.",
+    "ONBOARDING_TEXT_2": "You control your account, you own your info, and no additional fees are added.",
     "ONBOARDING_TEXT_3": "With Banks:",
     "ONBOARDING_TEXT_4": "They control your account",
     "ONBOARDING_TEXT_5": "They own your info",

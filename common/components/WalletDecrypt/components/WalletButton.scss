@@ -23,42 +23,45 @@
   margin-bottom: 20px;
 
   background: color(control-bg);
-  // box-shadow: 0 1px 4px rgba(#000, 0.2);
   border-style: solid;
   border-width: 1px;
   border-color: color(gray-lighter);
   border-radius: 6px;
   text-align: left;
   cursor: pointer;
-  transition: transform 150ms ease, box-shadow 150ms ease;
-  animation: wallet-button-enter 400ms ease 1;
-  animation-fill-mode: backwards;
+  // box-shadow: 0 1px 4px rgba(#000, 0.2);
+  // transition: transform 150ms ease, box-shadow 150ms ease;
+  // animation: wallet-button-enter 400ms ease 1;
+  // animation-fill-mode: backwards;
 
   @for $i from 0 to 6 {
     &:nth-child(#{$i}) {
-      animation-delay: 100ms + ($i * 60ms);
+      // animation-delay: 100ms + ($i * 60ms);
     }
   }
 
   &:not(.is-disabled) {
     &:hover,
     &:focus {
-      // transform: translateY(-2px);
       z-index: 2;
-      box-shadow: 0 1px 4px rgba(#000, 0.06), 0 2px 6px rgba(#000, 0.06);
+      border-color: color(brand-primary-light);
+      // box-shadow: 0 1px 4px rgba(#000, 0.06), 0 2px 6px rgba(#000, 0.06);
+      // transform: translateY(-2px);
+
 
       .WalletButton-title {
-        color: shade-dark(.65);
+        // color: shade-dark(.8);
 
         &-icon {
-          opacity: .65;
+          // opacity: .8;
         }
       }
     }
 
     &:active {
-      transform: translateY(-1px);
-      box-shadow: 0 1px 2px rgba(#000, 0.2), 0 3px 4px rgba(#000, 0.2);
+      // background-color: #F0F6FD;
+      // transform: translateY(-1px);
+      // box-shadow: 0 1px 2px rgba(#000, 0.2), 0 3px 4px rgba(#000, 0.2);
     }
   }
 

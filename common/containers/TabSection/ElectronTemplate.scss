@@ -6,9 +6,10 @@
   flex-direction: row;
 
   &-sidebar,
-  &-content {
+  &-content
+  {
     position: relative;
-    overflow: none;
+    overflow: auto;
   }
 
   &-sidebar {
@@ -21,6 +22,7 @@
   &-content {
     padding: 50px 20px;
     flex: 1;
+    // overflow: none;
 
     &-tab {
       height: 100%;

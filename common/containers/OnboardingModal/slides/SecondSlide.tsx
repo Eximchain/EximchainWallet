@@ -2,19 +2,35 @@ import React from 'react';
 
 import translate from 'translations';
 import { OnboardingButton } from '../components';
-import './SecondSlide.scss';
 
-export default function SecondSlide() {
+export default function ThirdSlide() {
   return (
-    <section className="SecondSlide">
+    <section className="ThirdSlide">
       <section>
-        <h1>{translate('ONBOARDING_TEXT_8')}</h1>
-
-        <p>{translate('ONBOARDING_TEXT_9')}</p>
-
-        <OnboardingButton className="horizontal" />
+        <h1>{translate('ONBOARDING_TEXT_13')}</h1>
+        <ul>
+          <li>{translate('ONBOARDING_TEXT_14')}</li>
+          <li>{translate('ONBOARDING_TEXT_15')}</li>
+          <li>{translate('ONBOARDING_TEXT_16')}</li>
+          <li>{translate('ONBOARDING_TEXT_17')}</li>
+        </ul>
       </section>
-      <OnboardingButton className="vertical" />
+      <section>
+        <section>
+          <h1>{translate('ONBOARDING_TEXT_18')}</h1>
+          <ul>
+            <li>
+              {translate('ONBOARDING_TEXT_19')}
+              <ul>
+                <li>{translate('ONBOARDING_TEXT_20')}</li>
+                <li>{translate('ONBOARDING_TEXT_21')}</li>
+                <li>{translate('ONBOARDING_TEXT_22')}</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+        <OnboardingButton />
+      </section>
     </section>
   );
 }

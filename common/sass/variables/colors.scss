@@ -1,7 +1,7 @@
-$brand-primary: #0667D0;
-$brand-info: #214885;
-$brand-success: #34B47E;
-$brand-warning: #F6BE7D;
+$brand-primary: #267EDC;
+$brand-info: #1F4A8A;
+$brand-success: #27A96B;
+$brand-warning: #F2B46C;
 $brand-danger: #CC4149;
 
 $blue-01: #F0F6FD;
@@ -32,7 +32,7 @@ $theme-light: (
   brand-primary: $brand-primary,
   brand-primary-dark: darken($brand-primary, 6%),
   brand-primary-darker: darken($brand-primary, 12%),
-  brand-primary-light: lighten($brand-primary, 6%),
+  brand-primary-light: #79B4F2,
   brand-primary-lighter: lighten($brand-primary, 12%),
 
   blue-01: $blue-01,

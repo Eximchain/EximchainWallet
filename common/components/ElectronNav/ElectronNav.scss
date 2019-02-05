@@ -23,7 +23,7 @@ $back-spacing: 20px;
     // background: #F8F9FA;
     // border-bottom: 1px solid shade-dark(0.1);
     .is-osx & {
-      padding-top: $electron-osx-control-spacing - $branding-spacing-top;
+      padding-top: $electron-osx-control-spacing ;
     }
 
     &-logo {
@@ -87,7 +87,7 @@ $back-spacing: 20px;
       color: color(gray);
       font-size: 12px;
       padding: 0 0 20px 6px;
-      padding-left: 20px;
+      padding-left: 23px;
       font-weight: 300;
 
       &-icon {
@@ -167,13 +167,13 @@ $back-spacing: 20px;
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
   @include ellipsis;
-  padding: 6px 0 6px 0;
+  padding: 8px 0 8px 0;
 
   &-link {
     display: block;
-    height: 24px;
-    line-height: 24px;
-    padding: 0 0 0 20px;
+    height: 20px;
+    line-height: 20px;
+    padding: 0 0 0 24px;
     font-weight: 400;
     color: #617085;
     font-size: 13px;
@@ -183,9 +183,9 @@ $back-spacing: 20px;
 
     &.is-active {
       color: #1F2F47;
-      font-weight: 400;
-      border-left: solid #1F2F47 4px;
-      padding: 0 0 0 16px;
+      font-weight: 600;
+      border-left: solid #1F2F47 5px;
+      padding: 0 0 0 19px;
       // background: #E7E9EC;
 
       &:hover {

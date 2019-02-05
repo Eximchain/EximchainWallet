@@ -8,9 +8,8 @@ import logo from 'assets/images/logo-eximchain-wallet-white.svg';
 import chest from 'assets/images/icn-chest.svg';
 import bankVsMyCrypto from 'assets/images/icn-bank-vs-eximchain-wallet.svg';
 import vault from 'assets/images/icn-vault.svg';
-import champagne from 'assets/images/icn-champagne.svg';
 import { ProgressDots } from './components';
-import { FirstSlide, SecondSlide, ThirdSlide, FourthSlide } from './slides';
+import { FirstSlide, SecondSlide, ThirdSlide } from './slides';
 import './OnboardingModal.scss';
 
 interface StateProps {
@@ -18,15 +17,10 @@ interface StateProps {
 }
 
 function OnboardingModal({ currentSlide }: StateProps) {
-  const images = [chest, bankVsMyCrypto, vault, champagne];
+  const images = [bankVsMyCrypto, vault, chest];
   const logoImage = <img src={logo} alt="Eximchain Wallet logo white" />;
   const slideImage = <img src={images[currentSlide - 1]} alt="Slide art" />;
-  const slides = [
-    <FirstSlide key={1} />,
-    <SecondSlide key={2} />,
-    <ThirdSlide key={3} />,
-    <FourthSlide key={4} />
-  ];
+  const slides = [<FirstSlide key={1} />, <SecondSlide key={2} />, <ThirdSlide key={3} />];
   const slide = slides[currentSlide - 1];
 
   return (

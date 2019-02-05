@@ -16,7 +16,7 @@ interface DispatchProps {
 type Props = StateProps & DispatchProps;
 
 function ProgressDots({ currentStep, setSlide }: Props) {
-  const dots = new Array(4).fill('ProgressDots-dot');
+  const dots = new Array(3).fill('ProgressDots-dot');
 
   // Replace the active page with a different dot.
   dots[currentStep - 1] = 'ProgressDots-dot ProgressDots-dot--active';

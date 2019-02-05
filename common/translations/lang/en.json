@@ -30,6 +30,8 @@
     "NAV_VIEW": "View & Send",
     "NAV_GENERATEWALLET": "Create New Wallet",
     "NAV_GENERATEWALLETDESC": "Generate your own private key for free (least secure)",
+    "NAV_GOVERNANCE": "Governance",
+    "NAV_GOVERNANCEDESC": "Participate in governance",
     "NAV_HELP": "Help ",
     "NAV_SIGN": "Sign & Verify Message",
     "NAV_BROADCAST": "Broadcast Tx",

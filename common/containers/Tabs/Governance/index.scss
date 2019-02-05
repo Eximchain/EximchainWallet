@@ -1,0 +1,61 @@
+@import "common/sass/variables";
+
+.ContractSection {
+  // max-width: 520px;
+  // margin: 0 auto;
+  position: relative;
+  text-align: center;
+  margin: 0 -$space-md 0 0;
+
+  &-topsection {
+    position: fixed;
+    top: 0;
+    height: 100px;
+    width: 100%;
+    padding-top: $electron-osx-control-spacing - 10px;
+    padding-left: 10px;
+    left: 220px;
+    z-index: 1000;
+    background-color: white;
+    margin: 0;
+
+  h2 {
+    text-align: left;
+    line-height: 1.4;
+    margin-bottom: 3px;
+    margin-top: 0;
+    font-size: 22px;
+  }
+
+  &-subtitle {
+    max-width: 1040px;
+    margin: 0 0 $space * 2;
+    color: color(gray);
+    text-align: left;
+    // padding-left: 10px;
+    }
+
+  }
+
+  &-input {
+    // display: flex;
+    // flex-wrap: wrap;
+    // justify-content: center;
+    margin: $space 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    // width: 100%;
+    text-align: left;
+  }
+
+
+
+  &-qr {
+    max-width: 15rem;
+    margin: 1rem auto;
+    // padding-left: 20px;
+    // padding-right: 20px;
+    width: 100%;
+    text-align: center;
+  }
+}

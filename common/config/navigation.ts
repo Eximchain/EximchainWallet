@@ -25,6 +25,10 @@ export const navigationLinks: NavigationLink[] = [
     name: 'NAV_CONTRACTS',
     to: '/contracts'
   },
+  {
+    name: 'NAV_GOVERNANCE',
+    to: '/governance'
+  },
   // {
   //   name: 'NAV_ENS',
   //   to: '/ens'

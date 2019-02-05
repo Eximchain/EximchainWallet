@@ -17,6 +17,7 @@ import SignAndVerifyMessage from 'containers/Tabs/SignAndVerifyMessage';
 import BroadcastTx from 'containers/Tabs/BroadcastTx';
 import CheckTransaction from 'containers/Tabs/CheckTransaction';
 import SupportPage from 'containers/Tabs/SupportPage';
+import Governance from 'containers/Tabs/Governance';
 import ErrorScreen from 'components/ErrorScreen';
 import PageNotFound from 'components/PageNotFound';
 import LogOutPrompt from 'components/LogOutPrompt';
@@ -90,6 +91,7 @@ class RootClass extends Component<Props, State> {
           <Route path="/tx-status" component={CheckTransaction} exact={true} />
           <Route path="/pushTx" component={BroadcastTx} />
           <Route path="/support-us" component={SupportPage} exact={true} />
+          <Route path="/governance" component={Governance} />
           {process.env.NODE_ENV !== 'production' && (
             <Route path="/dev/palette" component={PalettePage} exact={true} />
           )}
@@ -169,6 +171,9 @@ const LegacyRoutes = withRouter(props => {
         break;
       case '#contracts':
         history.push('/contracts');
+        break;
+      case '#governance':
+        history.push('/governance');
         break;
       case '#ens':
         history.push('/ens');

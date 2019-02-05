@@ -84,7 +84,6 @@ export function translateRaw(key: string, variables?: { [name: string]: string }
 
     return str;
   }
-
   return translatedString;
 }
 

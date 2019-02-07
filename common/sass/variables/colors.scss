@@ -84,7 +84,9 @@ $theme-light: (
 
   control-bg: #fff,
   default-button-bg: #F0F2F4,
-  control-color: #0F2952,
+  default-button-bg-hover: #E7E9EC,
+  default-button-bg-active: #D8DBE0,
+  control-color: #1F2F47,
   control-border: #E0E3E8,
   control-disabled-bg: $gray-lightest,
   control-disabled-color: $gray-dark,

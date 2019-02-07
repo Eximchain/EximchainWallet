@@ -83,7 +83,7 @@
     &:focus,
     &.focus {
       // @include tab-focus;
-      box-shadow: 0 2px 13px rgba(0,0,0,0.13), 0 3px 9px rgba(0,0,0,0.13);
+      // box-shadow: 0 2px 13px rgba(0,0,0,0.13), 0 3px 9px rgba(0,0,0,0.13);
 
     }
   }
@@ -95,7 +95,7 @@
     text-decoration: none;
     // box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
     // box-shadow: 1px 3px 8px rgba(0, 0, 0, .12);
-    box-shadow: 0 1px 10px rgba(0,0,0,0.07), 0 2px 5px rgba(0,0,0,0.07);
+    // box-shadow: 0 1px 10px rgba(0,0,0,0.07), 0 2px 5px rgba(0,0,0,0.07);
     opacity: 1;
 
   }
@@ -186,12 +186,12 @@
 .btn-default {
   @include button-variant(
     color(control-color),
-    color(control-bg),
-    color(control-border),
-    color(control-bg),
-    color(control-border),
-    color(control-bg),
-    color(control-border),
+    color(default-button-bg),
+    color(default-button-bg),
+    color(default-button-bg-hover),
+    color(default-button-bg-hover),
+    color(default-button-bg-active),
+    color(default-button-bg-active),
   );
 }
 // $color, $background, $border, $background-hover, $border-hover, $background-active, $border-active

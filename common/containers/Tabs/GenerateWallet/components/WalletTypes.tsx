@@ -142,7 +142,7 @@ const WalletSuggestions: React.SFC<WalletSuggestionsProps> = ({ showGenerate }) 
       ],
       links: [
         {
-          text: translate('Generate a Wallet'),
+          text: translate('Generate a wallet'),
           onClick: showGenerate
         }
       ]

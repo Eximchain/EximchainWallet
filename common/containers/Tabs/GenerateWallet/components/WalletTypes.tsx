@@ -135,8 +135,8 @@ const WalletSuggestions: React.SFC<WalletSuggestionsProps> = ({ showGenerate }) 
         translate('WALLET_SUGGESTION_GENERATE_2'),
         // translate('WALLET_SUGGESTION_GENERATE_3'),
         // translate('WALLET_SUGGESTION_GENERATE_4'),
-        <span key="warning" className="is-danger">
-          <i className="fa fa-exclamation-triangle" />
+        <span key="warning" className="is-warning">
+          <i className="fa fa-exclamation-circle" />
           {translate('WALLET_SUGGESTION_GENERATE_5')}
         </span>
       ],

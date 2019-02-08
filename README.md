@@ -1,6 +1,6 @@
 # Eximchain Wallet Web & Desktop Apps
 
-* **Just looking to download?** Grab our [latest release](https://github.com/Eximchain/EximchainWallet).
+* **Just looking to download?** Grab our [latest release](https://github.com/Eximchain/EximchainWallet/releases).
 
 ## Requirements
 

@@ -1,48 +1,33 @@
 @font-face {
-  font-family: 'Inter UI';
-  src: url('../assets/fonts/Inter-UI-Regular.woff2') format('woff2'),
-    url('../assets/fonts/Inter-UI-Regular.woff') format('woff');
+  font-family: 'Inter';
+  src: url('../assets/fonts/Inter-Regular.woff2') format('woff2'),
+    url('../assets/fonts/Inter-Regular.woff') format('woff');
   font-style: normal;
   font-weight: 300;
 }
 
 @font-face {
-  font-family: 'Inter UI';
-  src: url('../assets/fonts/Inter-UI-Medium.woff2') format('woff2'),
-    url('../assets/fonts/Inter-UI-Medium.woff') format('woff');
+  font-family: 'Inter';
+  src: url('../assets/fonts/Inter-Medium.woff2') format('woff2'),
+    url('../assets/fonts/Inter-Medium.woff') format('woff');
   font-style: normal;
   font-weight: 400;
 }
 
 @font-face {
-  font-family: 'Inter UI';
-  src: url('../assets/fonts/Inter-UI-SemiBold.woff2') format('woff2'),
-    url('../assets/fonts/Inter-UI-SemiBold.woff') format('woff');
+  font-family: 'Inter';
+  src: url('../assets/fonts/Inter-SemiBold.woff2') format('woff2'),
+    url('../assets/fonts/Inter-SemiBold.woff') format('woff');
   font-style: normal;
   font-weight: 600;
 }
 
 @font-face {
-  font-family: 'Inter UI';
-  src: url('../assets/fonts/Inter-UI-Bold.woff2') format('woff2'),
-    url('../assets/fonts/Inter-UI-Bold.woff') format('woff');
+  font-family: 'Inter';
+  src: url('../assets/fonts/Inter-Bold.woff2') format('woff2'),
+    url('../assets/fonts/Inter-Bold.woff') format('woff');
   font-style: normal;
   font-weight: 700;
-}
-
-@font-face {
-  font-family: 'Roboto Mono';
-  font-style: normal;
-  font-weight: 300;
-  src: url('../assets/fonts/Roboto-Mono-Light.woff2') format('woff2'),
-    url('../assets/fonts/Roboto-Mono-Light.woff') format('woff');
-}
-@font-face {
-  font-family: 'Roboto Mono';
-  font-style: normal;
-  font-weight: 400;
-  src: url('../assets/fonts/Roboto-Mono-Regular.woff2') format('woff2'),
-    url('../assets/fonts/Roboto-Mono-Regular.woff') format('woff');
 }
 
 @font-face {

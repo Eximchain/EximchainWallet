@@ -232,7 +232,7 @@ const GenerateOptions: React.SFC<{}> = () => {
         translate('GENERATE_WALLET_KEYSTORE_1'),
         translate('GENERATE_WALLET_KEYSTORE_2'),
         translate('GENERATE_WALLET_KEYSTORE_3'),
-        translate('GENERATE_WALLET_KEYSTORE_4'),
+        // translate('GENERATE_WALLET_KEYSTORE_4'),
         translate('GENERATE_WALLET_KEYSTORE_5')
       ]
     },
@@ -243,7 +243,7 @@ const GenerateOptions: React.SFC<{}> = () => {
         translate('GENERATE_WALLET_MNEMONIC_1'),
         translate('GENERATE_WALLET_MNEMONIC_2'),
         translate('GENERATE_WALLET_MNEMONIC_3'),
-        translate('GENERATE_WALLET_MNEMONIC_4'),
+        // translate('GENERATE_WALLET_MNEMONIC_4'),
         translate('GENERATE_WALLET_MNEMONIC_5')
       ]
     }

@@ -3,6 +3,13 @@
 .RecentTxs {
   position: relative;
 
+  .well {
+    box-shadow: none;
+    border-radius: 4px;
+    background-color: #F8F9FA;
+
+  }
+
   &-txs {
     width: 100%;
 
@@ -52,6 +59,7 @@
     &-text {
       margin: 0;
       line-height: 1.4;
+      color: #6E7C90;
     }
   }
 
@@ -60,6 +68,6 @@
     margin: $space * 2 auto 0;
     font-size: $font-size-small;
     text-align: center;
-    color: shade-dark(0.5);
+    color: #5D6977;
   }
 }

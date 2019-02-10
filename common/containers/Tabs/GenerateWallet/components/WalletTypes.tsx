@@ -135,14 +135,14 @@ const WalletSuggestions: React.SFC<WalletSuggestionsProps> = ({ showGenerate }) 
         translate('WALLET_SUGGESTION_GENERATE_2'),
         // translate('WALLET_SUGGESTION_GENERATE_3'),
         // translate('WALLET_SUGGESTION_GENERATE_4'),
-        <span key="warning" className="is-danger">
-          <i className="fa fa-exclamation-triangle" />
+        <span key="warning" className="is-warning">
+          <i className="fa fa-exclamation-circle" />
           {translate('WALLET_SUGGESTION_GENERATE_5')}
         </span>
       ],
       links: [
         {
-          text: translate('Generate a Wallet'),
+          text: translate('Generate a wallet'),
           onClick: showGenerate
         }
       ]
@@ -208,7 +208,7 @@ const WalletSuggestions: React.SFC<WalletSuggestionsProps> = ({ showGenerate }) 
 
           <div className="WalletTypes-download">
             <NewTabLink
-              href="https://download.mycrypto.com"
+              href="https://github.com/Eximchain/EximchainWallet"
               className="WalletTypes-download-button btn btn-primary btn-lg"
             >
               {translate('WALLET_SUGGESTION_DESKTOP_APP')}
@@ -232,7 +232,7 @@ const GenerateOptions: React.SFC<{}> = () => {
         translate('GENERATE_WALLET_KEYSTORE_1'),
         translate('GENERATE_WALLET_KEYSTORE_2'),
         translate('GENERATE_WALLET_KEYSTORE_3'),
-        translate('GENERATE_WALLET_KEYSTORE_4'),
+        // translate('GENERATE_WALLET_KEYSTORE_4'),
         translate('GENERATE_WALLET_KEYSTORE_5')
       ]
     },
@@ -243,7 +243,7 @@ const GenerateOptions: React.SFC<{}> = () => {
         translate('GENERATE_WALLET_MNEMONIC_1'),
         translate('GENERATE_WALLET_MNEMONIC_2'),
         translate('GENERATE_WALLET_MNEMONIC_3'),
-        translate('GENERATE_WALLET_MNEMONIC_4'),
+        // translate('GENERATE_WALLET_MNEMONIC_4'),
         translate('GENERATE_WALLET_MNEMONIC_5')
       ]
     }

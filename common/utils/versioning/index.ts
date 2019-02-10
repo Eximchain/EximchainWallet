@@ -10,7 +10,7 @@ export function validPlatform(str: string): str is Platforms {
 }
 
 export function validName(str: string): str is Name {
-  const name: Name = 'MyCrypto';
+  const name: Name = 'EximchainWallet';
   return str.startsWith(name);
 }
 

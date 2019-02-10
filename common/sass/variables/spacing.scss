@@ -1,7 +1,9 @@
 $space-xs: 0.25rem;
 $space-sm: 0.5rem;
 $space-md: 0.75rem;
+$space-md-hover: calc($space-md - .25px);
 $space: 1rem;
+$space-hover: calc($space - .25px);
 $space-lg: 1.5rem;
 $space-xl: 2rem;
 

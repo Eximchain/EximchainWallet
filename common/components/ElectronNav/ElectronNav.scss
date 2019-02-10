@@ -201,9 +201,12 @@ $back-spacing: 20px;
     }
 
     &-icon {
-      font-size: 12px;
-      margin-left: 3px;
+      font-size: 18px;
+      margin-left: 0px;
       opacity: 0.8;
+    }
+    &:focus {
+      color: #617085;
     }
   }
 }

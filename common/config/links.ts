@@ -14,7 +14,7 @@ interface Link {
   text: string;
 }
 
-export const DOWNLOAD_MYCRYPTO_LINK = 'https://wallet.eximchain.com/download';
+export const DOWNLOAD_MYCRYPTO_LINK = 'https://github.com/Eximchain/EximchainWallet';
 
 export const socialMediaLinks: Link[] = [
   {

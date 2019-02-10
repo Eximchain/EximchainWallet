@@ -183,7 +183,7 @@ $divider-size: 60px;
     color: #617085;
     font-size: $font-size-small;
     font-weight: 300;
-    padding-bottom: 2rem;
+    padding-bottom: 1rem;
   }
 
   &-features {
@@ -198,6 +198,9 @@ $divider-size: 60px;
 
     .is-danger {
       color: color(brand-danger);
+    }
+    .is-warning {
+      color: color(brand-warning);
     }
   }
 

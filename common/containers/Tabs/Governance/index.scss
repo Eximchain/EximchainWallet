@@ -1,6 +1,6 @@
 @import "common/sass/variables";
 
-.ContractSection {
+.GovernanceSection {
   // max-width: 520px;
   // margin: 0 auto;
   position: relative;
@@ -57,5 +57,20 @@
     // padding-right: 20px;
     width: 100%;
     text-align: center;
+  }
+  &-row {
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+    margin: 0;
+    // margin-bottom: 10px;
+
+    @media screen and (max-width: $screen-xs) {
+      margin: 0;
+    }
+
+    &:last-child {
+      margin: 0;
+    }
   }
 }

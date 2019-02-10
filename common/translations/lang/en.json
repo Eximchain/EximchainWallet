@@ -600,6 +600,8 @@
     "GENERATE_CONTRACT_DESC": "Interact with or deploy a smart contract.",
     "GENERATE_SIGNANDVERIFY_TITLE": "Sign & Verify Message",
     "GENERATE_SIGNANDVERIFY_DESC": "Sign and verify a message from an address.",
+    "GENERATE_GOVERNANCE_TITLE": "Governance",
+    "GENERATE_GOVERNANCE_DESC":"Vote, collect tokens, check records, and more",
     "CONTRACTS_INTERACT": "Interact",
     "CONTRACTS_DEPLOY": "Deploy",
     "SELECT_A_THING": "Select a $thing",

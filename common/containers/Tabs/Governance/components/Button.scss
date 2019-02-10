@@ -1,0 +1,263 @@
+@import 'common/sass/variables';
+@import 'common/sass/mixins';
+
+// @keyframes button-enter {
+//   0% {
+//     opacity: 0;
+//     transform: translateY(6px);
+//   }
+//   100% {
+//     opacity: 1;
+//     transform: translateY(0px);
+//   }
+// }
+
+.Button {
+  position: relative;
+  flex: 1;
+  height: auto;
+  // max-width: 400px;
+  min-width: 300px;
+  padding: 15px 15px;
+  margin: 0 $space-md $space;
+  margin-bottom: 20px;
+
+  background: color(control-bg);
+  border-style: solid;
+  border-width: 1px;
+  border-color: color(gray-lighter);
+  border-radius: 6px;
+  text-align: left;
+  cursor: pointer;
+  // box-shadow: 0 1px 4px rgba(#000, 0.2);
+  // transition: transform 150ms ease, box-shadow 150ms ease;
+  // animation: button-enter 400ms ease 1;
+  // animation-fill-mode: backwards;
+
+  @for $i from 0 to 6 {
+    &:nth-child(#{$i}) {
+      // animation-delay: 100ms + ($i * 60ms);
+    }
+  }
+
+  &:not(.is-disabled) {
+    &:hover,
+    &:focus {
+      z-index: 2;
+      border-color: color(brand-primary-light);
+      // box-shadow: 0 1px 4px rgba(#000, 0.06), 0 2px 6px rgba(#000, 0.06);
+      // transform: translateY(-2px);
+
+
+      .Button-title {
+        // color: shade-dark(.8);
+
+        &-icon {
+          // opacity: .8;
+        }
+      }
+    }
+
+    &:active {
+      // background-color: #F0F6FD;
+      // transform: translateY(-1px);
+      // box-shadow: 0 1px 2px rgba(#000, 0.2), 0 3px 4px rgba(#000, 0.2);
+    }
+  }
+
+  &.is-disabled {
+    cursor: not-allowed;
+    @include show-tooltip-on-hover;
+
+    .Button-inner {
+      opacity: 0.3;
+    }
+  }
+
+  &-inner {
+    transition: opacity 200ms ease;
+  }
+
+  &-title {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    font-size: $font-size-medium;
+    margin-bottom: 3px;
+    transition: color 150ms ease;
+
+    &-icon {
+      margin-right: 8px;
+      max-height: 20px;
+      opacity: 0.8;
+
+      @include theme(dark) {
+        opacity: 1;
+        filter: invert(1);
+
+        // Kind of hacky, but we don't want to invert metamask
+        &[src*="metamask"] {
+          filter: none;
+        }
+      }
+    }
+  }
+
+  &-description {
+    color: #617085;
+    font-size: $font-size-small;
+    font-weight: 300;
+  }
+
+  &-example {
+    font-size: $font-size-small;
+    font-weight: 300;
+    color: #617085;
+  }
+
+  &-icons {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+
+    &-icon {
+      position: relative;
+      margin-left: 8px;
+      // @include show-tooltip-on-hover;
+
+      .fa {
+        position: relative;
+        opacity: 0.6;
+        font-size: $font-size-medium;
+
+        &:hover {
+          opacity: 0.9;
+        }
+
+        &-shield {
+          color: color(brand-primary);
+          display: none;
+        }
+
+        &-exclamation-triangle {
+          color: color(brand-warning);
+          display: none;
+        }
+
+        &-question-circle,
+        &-eye {
+          color: shade-dark(0.5);
+          display: none;
+        }
+
+        &-question-circle:hover {
+          // color: color(brand-primary);
+        }
+      }
+    }
+  }
+
+  &--small {
+    // height: 105px;
+    // max-width: 180px;
+    // min-width: 160px;
+    // margin: 0 $space-sm $space-md;
+    // padding: 20px 15px;
+
+    .Button {
+      &-title {
+        // font-size: $font-size-bump;
+        // margin-bottom: $space-sm;
+      }
+
+      &-icons {
+        &-icon {
+          // margin-left: 6px;
+
+          .fa {
+            // font-size: $font-size-bump;
+          }
+        }
+      }
+    }
+  }
+
+  // Mobile handling
+  @media screen and (max-width: $screen-md) {
+    min-width: 220px;
+  }
+  @media screen and (max-width: $screen-sm) {
+    min-width: 200px;
+  }
+  @media screen and (max-width: $screen-xs) {
+    padding: 14px;
+    margin-bottom: 10px;
+    min-width: 200px;
+
+
+    &,
+    &--small {
+      height: auto;
+      width: 100%;
+      min-width: 100%;
+      max-width: none;
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    &-title {
+      justify-content: flex-start;
+      margin: 0;
+    }
+
+    &-description,
+    &-example {
+      display: none;
+    }
+
+    &-icons {
+      top: 0;
+      right: 0;
+      bottom: 0;
+
+      &-icon {
+        float: left;
+        display: block;
+        height: 100%;
+        margin: 0;
+        width: 48px;
+        text-align: center;
+        // border-left: 1px solid rgba(0, 0, 0, 0.1);
+
+        a {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+        }
+
+        .fa {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
+    }
+
+    &--small {
+      padding: 12px;
+
+      .Button-title {
+        margin: 0;
+      }
+
+      .Button-icons {
+        &-icon {
+          margin: 0;
+        }
+      }
+    }
+  }
+}

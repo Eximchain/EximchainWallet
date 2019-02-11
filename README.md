@@ -1,6 +1,6 @@
 # Eximchain Wallet
 
-Eximchain wallet is a desktop wallet client that connects to the Eximchain network. We are currently still in beta, so if you see any issues please report them to [support@eximchain.com](mailto:support@eximchain.com)
+Eximchain wallet is a desktop wallet client that connects to the Eximchain network. We are currently still in beta, so if you see any issues, please report them to [support@eximchain.com](mailto:support@eximchain.com)
 
 ### [**⬇︎ Download the latest release**](https://github.com/Eximchain/EximchainWallet/releases)
 

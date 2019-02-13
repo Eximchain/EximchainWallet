@@ -81,7 +81,7 @@ class TrezorDecryptClass extends PureComponent<Props, State> {
         </div>
 
         <div className="TrezorDecrypt-help">
-          <NewTabLink href="https://support.mycrypto.com/accessing-your-wallet/how-to-use-your-trezor-with-mycrypto.html">
+          <NewTabLink href="https://eximchain.zendesk.com/hc/en-us/articles/360015663354-Connect-Trezor-Hardware-Wallet">
             {translate('HOWTO_TREZOR')}
           </NewTabLink>
         </div>

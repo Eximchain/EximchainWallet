@@ -12,6 +12,7 @@ import { configSelectors } from 'features/config';
 import { setCurrentTo, TSetCurrentTo } from 'features/transaction/actions';
 import { Input, TextArea, CodeBlock, Dropdown } from 'components/ui';
 import { AddressFieldFactory } from 'components/AddressFieldFactory';
+import './index.scss';
 
 interface ContractOption {
   name: string;
@@ -154,14 +155,13 @@ class InteractForm extends Component<Props, State> {
               <CodeBlock className="wrap">{abiJson}</CodeBlock>
             )
           ) : (
-            <TextArea
+            <CodeBlock className="wrap abiJsonPlaceholder">
               placeholder={this.abiJsonPlaceholder}
               isValid={!!validAbiJson}
-              className="InteractForm-interface-field-input"
-              onChange={this.handleInput('abiJson')}
+              className="InteractForm-interface-field-input" onChange={this.handleInput('abiJson')}
               value={abiJson}
               rows={6}
-            />
+            </CodeBlock>
           )}
         </label>
 

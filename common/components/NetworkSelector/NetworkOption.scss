@@ -23,6 +23,7 @@ $left-border-size: 2px;
     padding-top: 0.7rem;
     font-size: 14px;
     padding-right: 20px;
+    font-weight: 600;
 
 
 
@@ -47,8 +48,8 @@ $left-border-size: 2px;
         border-radius: 100%;
         height: $radio-size;
         width: $radio-size;
-        margin-right: $space-xs;
-        box-shadow: 0 0 0 1px color(control-bg) inset;
+        margin-right: $space-sm;
+        box-shadow: 0 0 0 1.5px color(control-bg) inset;
       }
 
       &:hover {

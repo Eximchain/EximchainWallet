@@ -148,7 +148,7 @@ class CustomNodeModal extends React.Component<Props, State> {
               <Input
                 isValid={!(this.state.name && invalids.name)}
                 type="text"
-                placeholder="My Node"
+                placeholder="My node"
                 value={this.state.name}
                 onChange={e => this.setState({ name: e.currentTarget.value })}
               />

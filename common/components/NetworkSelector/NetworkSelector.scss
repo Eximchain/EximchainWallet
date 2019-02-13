@@ -17,15 +17,22 @@ $button-font-size: $font-size-small;
   background: #F8F9FA;
   font-size: $font-size-base;
 
+
+
   &-add,
   &-alts {
     @include reset-button;
     display: block;
     width: 100%;
     padding: $button-padding;
+    margin-top: 10px;
+
+
     text-align: center;
     color: color(text-color);
     font-size: $button-font-size;
+    border-bottom: 1px solid shade-dark(0.08);
+    border-top: 1px solid shade-dark(0.08);
 
     &:hover {
       color: color(link-hover-color);

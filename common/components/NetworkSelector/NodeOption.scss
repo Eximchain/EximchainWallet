@@ -22,9 +22,9 @@ $radio-size: 10px;
       border-radius: 100%;
       height: $radio-size;
       width: $radio-size;
-      margin-right: $space-xs;
+      margin-right: $space-sm;
       background: color(control-bg);
-      box-shadow: 0 0 0 1px color(control-bg) inset;
+      box-shadow: 0 0 0 1.5px color(control-bg) inset;
     }
 
     &:hover {

@@ -155,7 +155,7 @@ const WalletDecrypt = withRouter<Props>(
       },
       [InsecureWalletName.MNEMONIC_PHRASE]: {
         lid: 'X_MNEMONIC',
-        example: 'A list of words that stores the information needed to unlock a wallet.',
+        example: 'A list of words that stores the info needed to unlock a wallet.',
         component: MnemonicDecrypt,
         initialParams: {},
         unlock: this.props.unlockMnemonic,

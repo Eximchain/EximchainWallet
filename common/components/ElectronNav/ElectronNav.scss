@@ -131,21 +131,16 @@ $back-spacing: 20px;
       display: flex;
       align-items: center;
       width: 100%;
-      border-bottom: 1px solid color(gray-lighter);
+      // border-bottom: 1px solid color(gray-lighter);
       font-size: 14px;
-      // max-width: 190px;
       text-align: left;
       margin-left: 20px;
-      // margin-top: 20px;
-      // margin-right: 28px;
-      padding: 8px 0px;
+      padding: 12px 0px;
       color: color(gray);
-      // border-bottom: 1px solid shade-dark(0.05);
       background: #F8F9FA;
 
       .is-osx & {
-        padding-top:
-        $electron-osx-control-spacing;
+        padding-top: $electron-osx-control-spacing + 10px;
       }
 
       &-icon {

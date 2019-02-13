@@ -84,13 +84,13 @@
     display: flex;
     justify-content: left;
     align-items: center;
-    font-size: $font-size-bump;
+    // font-size: $font-size-bump;
     margin-bottom: 3px;
     transition: color 150ms ease;
 
     &-icon {
       margin-right: 8px;
-      max-height: 20px;
+      max-height: 18px;
       opacity: 0.8;
 
       @include theme(dark) {

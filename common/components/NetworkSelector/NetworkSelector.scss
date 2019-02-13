@@ -41,12 +41,12 @@ $button-font-size: $font-size-small;
   }
 
   &-alts {
-    border-bottom: 1px solid shade-dark(0.08);
+    // border-bottom: 1px solid shade-dark(0.08);
   }
 
   @if ($is-electron) {
     &-add {
-      border-bottom: 1px solid shade-dark(0.08);
+      // border-bottom: 1px solid shade-dark(0.08);
     }
   }
 }

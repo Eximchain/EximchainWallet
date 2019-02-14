@@ -6,7 +6,7 @@ import TabSection from 'containers/TabSection';
 import { Button } from './Button';
 
 interface Props {
-  contractFxnName: ContractFuncNames;
+  contractFxnName: ContractFuncNames | null;
   goBack: () => void;
 }
 

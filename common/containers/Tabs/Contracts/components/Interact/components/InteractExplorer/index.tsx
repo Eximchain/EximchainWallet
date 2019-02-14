@@ -86,6 +86,7 @@ class InteractExplorerClass extends Component<Props, State> {
     const contractFunctionsOptions = this.contractOptions();
 
     const { to } = this.props;
+    console.log('asdfsdfasd', to);
 
     const generateOrWriteButton = this.props.dataExists ? (
       <GenerateTransaction />

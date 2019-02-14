@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect, RouteComponentProps } from 'react-router';
+import * as selectors from 'features/selectors';
+import { setCurrentTo, TSetCurrentTo } from 'features/transaction/actions';
+
+import { AppState } from 'features/reducers';
+import { notificationsActions } from 'features/notifications';
+import { InteractExplorer } from './components/InteractExplorer';
+
 import { connect } from 'react-redux';
+import Contract from 'libs/contracts';
 import translate, { translateRaw } from 'translations';
 import TabSection from 'containers/TabSection';
 import FreeContractCallScreen from './components/FreeContractCallScreen';
-import SubTabs from 'components/SubTabs';
-import { RouteNotFound } from 'components/RouteNotFound';
-import { Interact } from './components/Interact';
+import { configSelectors } from 'features/config';
 
 import './index.scss';
 import { Button } from './components/Button';
@@ -34,17 +40,19 @@ export enum FreeContractCallName {
   WITHDRAW_HISTORY = 'withdraw history'
 }
 
-export enum NoCallName {
-  NONE_DECLARED = 'no contract function call'
-}
-
-export type ContractFuncNames = CostlyContractCallName | FreeContractCallName | NoCallName;
+export type ContractFuncNames = CostlyContractCallName | FreeContractCallName;
 
 export interface ContractCallDesc {
   name: string;
   icon?: string;
   description: string;
   example?: string;
+}
+
+interface NetworkContract {
+  name: StaticNetworkIds;
+  address?: string;
+  abi: string;
 }
 
 const COSTLYFUNCTIONCALLS: ContractFuncNames[] = Object.values(CostlyContractCallName);
@@ -61,20 +69,62 @@ export enum GovernanceFlowStages {
 
 export interface State {
   stage: GovernanceFlowStages;
-  chosenCall: ContractFuncNames;
+  chosenCall: ContractFuncNames | null;
+  currentContract?: Contract;
 }
 
-class Governance extends Component<{}, State> {
-  constructor(props: {}) {
+interface ContractOption {
+  name: string;
+  value: string;
+}
+
+interface DispatchProps {
+  setCurrentTo: TSetCurrentTo;
+  showNotification: notificationsActions.TShowNotification;
+}
+interface StateProps {
+  currentTo: ReturnType<typeof selectors.getCurrentTo>;
+  contracts: NetworkContract[];
+  isValidAddress: ReturnType<typeof configSelectors.getIsValidAddressFn>;
+}
+
+type Props = DispatchProps & StateProps;
+
+const mapStateToProps = (state: AppState) => ({
+  contracts: configSelectors.getNetworkContracts(state) || [],
+  isValidAddress: configSelectors.getIsValidAddressFn(state),
+  currentTo: selectors.getCurrentTo(state)
+});
+
+class Governance extends Component<Props, State> {
+  constructor(props: Props) {
     super(props);
+    console.log(this.props.contracts);
+    const contractNumber = this.props.contracts.length;
+    var i = 0;
+    for (i; i < contractNumber; i++) {
+      var currentInstance = this.props.contracts[i];
+      if (currentInstance.name === 'Weyl Governance') {
+        if (currentInstance.address === '0x000000000000000000000000000000000000002a') {
+          console.log(currentInstance.address);
+          this.props.setCurrentTo(currentInstance.address || '');
+          break;
+        }
+      }
+    }
+
+    const x = this.accessContract(this.props.contracts[i].abi);
     this.state = {
       stage: GovernanceFlowStages.START_PAGE,
-      chosenCall: NoCallName.NONE_DECLARED
+      chosenCall: null,
+      // @ts-ignore
+      currentContract: x
     };
+
     this.goTo = this.goTo.bind(this);
     this.goBack = this.goBack.bind(this);
   }
-  goTo(stage: GovernanceFlowStages, declaredCall: ContractFuncNames) {
+  goTo(stage: GovernanceFlowStages, declaredCall: ContractFuncNames | null) {
     this.setState((state: State) => {
       let newState = Object.assign({}, state);
       newState.stage = stage;
@@ -82,6 +132,12 @@ class Governance extends Component<{}, State> {
       return newState;
     });
   }
+
+  public accessContract(contractAbi: string) {
+    const parsedAbi = JSON.parse(contractAbi);
+    return new Contract(parsedAbi);
+  }
+
   public CONTRACTCALLS: ContractCall = {
     [CostlyContractCallName.VOTE]: {
       name: 'VOTE',
@@ -145,7 +201,6 @@ class Governance extends Component<{}, State> {
       <div className="GovernanceSection-row">
         {contractCallMap.map((contractCall: ContractFuncNames) => {
           const call = this.CONTRACTCALLS[contractCall];
-          console.log(call, 'asdfasdf');
           return (
             <Button
               key={contractCall}
@@ -161,11 +216,14 @@ class Governance extends Component<{}, State> {
 
   public goBack() {
     // your transition
-    this.goTo(GovernanceFlowStages.START_PAGE, NoCallName.NONE_DECLARED);
+    this.goTo(GovernanceFlowStages.START_PAGE, null);
   }
 
   public render() {
+    console.log(this.state.currentContract);
     let stages = GovernanceFlowStages;
+    const currentContract = this.state.currentContract;
+    console.log(currentContract);
     switch (this.state.stage) {
       case GovernanceFlowStages.START_PAGE:
         return (
@@ -194,9 +252,13 @@ class Governance extends Component<{}, State> {
           <FreeContractCallScreen goBack={this.goBack} contractFxnName={this.state.chosenCall} />
         );
       case GovernanceFlowStages.COSTLY_CALL_PAGE:
-        return <TabSection>Hello, World</TabSection>;
+        return (
+          <TabSection>
+            <InteractExplorer contractFunctions={Contract.getFunctions(currentContract)} />
+          </TabSection>
+        );
     }
   }
 }
 
-export default connect(null, {})(Governance);
+export default connect(mapStateToProps, { setCurrentTo })(Governance);

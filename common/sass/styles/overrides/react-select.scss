@@ -55,8 +55,8 @@
     }
 
     &.is-focused {
-      background: color(brand-primary);
-      color: color(text-color-inverted);
+      background: color(gray-lighter);
+      // color: color(text-color-inverted);
     }
   }
   &-menu-outer {
@@ -81,7 +81,7 @@
   //   box-shadow: inset 0px 0px 0px 1px color(brand-danger);
   // }
   &.is-focused {
-    border-color: color(brand-primary);
+    border-color: color(gray-light);
     // border-bottom-left-radius: 0;
     // border-bottom-right-radius: 0;
     // box-shadow: inset 0px 0px 0px 1px color(brand-primary);

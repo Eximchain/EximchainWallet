@@ -585,7 +585,7 @@
     "LINK": "[$name]($link)",
     "RECENT_TX_NETWORK_EXPLORER": "an explorer for the $network_name network",
     "RECENT_TX_HELP": "Only recent transactions sent from this address via Eximchain Wallet on the $network network are listed here. If you don't see your transaction, you can view all of them on $explorer.",
-    "NO_RECENT_TX_FOUND": "No recent Eximchain Wallet transactions found.",
+    "NO_RECENT_TX_FOUND": "No recent transactions found.",
     "BACK_TO_RECENT_TXS": "Back to Recent Transactions",
     "WALLET_INFO_UTILITIES": "Utilities",
     "SIGN_MSG_SUCCESS": "Successfully signed message with address $address",

@@ -43,10 +43,10 @@
     &:hover,
     &:focus {
       z-index: 2;
-      border-color: color(brand-primary);
-      border-width: 1.5px;
+      border-color: color(gray-light);
+      border-width: 1px;
       transition: 60ms ease;
-      padding: 14.5px 14.5px;
+      padding: 15px 15px;
       // box-shadow: 0 1px 4px rgba(#000, 0.06), 0 2px 6px rgba(#000, 0.06);
       // transform: translateY(-2px);
 

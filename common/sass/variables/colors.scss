@@ -1,5 +1,5 @@
 $brand-primary: #267EDC;
-$brand-info: #1F4A8A;
+$brand-info: #A16DBA;
 $brand-success: #27A96B;
 $brand-warning: #E29B48;
 $brand-danger: #CC4149;
@@ -9,25 +9,39 @@ $blue-01: #F0F6FD;
 $dark-rgb: 0, 0, 0;
 $light-rgb: 255, 255, 255;
 
-$gray-base: #000;
-$gray-darker: #1c1c1c;
-$gray-dark: #2B333F;
-$gray: #626B76;
-$gray-light: #B4BAC4;
-$gray-lighter: #F0F2F4;
-$gray-lightest: #fafafa;
+// Neutrals
+
+$N900: #122138;
+$N800: #1F2F47;
+$N700: #2E3E58;
+$N600: #3C4A61;
+$N500: #4D576B;
+$N400: #5D6977;
+$N300: #617085;
+$N200: #6E7C90;
+$N100: #7A8797;
+$N90: #8F98A6;
+$N80: #9CA3AE;
+$N70: #A7AFBA;
+$N60: #B4BAC4;
+$N50: #C3C8CF;
+$N40: #D8DBE0;
+$N30: #E7E9EC;
+$N20: #F0F2F4;
+$N10: #F8F9FA;
+$N0: #fff;
 
 $theme-light: (
   dark-rgb: $dark-rgb,
   light-rgb: $light-rgb,
 
-  gray-base: $gray-base,
-  gray-darker: $gray-darker,
-  gray-dark: $gray-dark,
-  gray: $gray,
-  gray-light: $gray-light,
-  gray-lighter: $gray-lighter,
-  gray-lightest: $gray-lightest,
+  gray-base: $N900,
+  gray-darker: $N800,
+  gray-dark: $N700,
+  gray: $N400,
+  gray-light: $N60,
+  gray-lighter: $N20,
+  gray-lightest: $N10,
 
   brand-primary: $brand-primary,
   brand-primary-dark: darken($brand-primary, 6%),
@@ -61,50 +75,50 @@ $theme-light: (
   brand-danger-light: lighten($brand-danger, 6%),
   brand-danger-lighter: lighten($brand-danger, 12%),
 
-  white-clear: rgba(#fff, 0.8),
-  white-clearer: rgba(#fff, 0.7),
-  white-clearest: rgba(#fff, 0.6),
+  white-clear: rgba($N0, 0.8),
+  white-clearer: rgba($N0, 0.7),
+  white-clearest: rgba($N0, 0.6),
 
-  body-bg: #fff,
-  pane-bg: #fff,
+  body-bg: $N0,
+  pane-bg: $N0,
 
   footer-bg: $brand-info,
   footer-border: $brand-primary,
 
-  text-color: $gray-dark,
-  text-color-inverted: #fff,
+  text-color: $N800,
+  text-color-inverted: $N0,
 
   link-color: $brand-primary,
-  link-hover-color: #267EDC,
+  link-hover-color: $brand-primary,
 
   tab-color: $brand-info,
-  tab-border: #ececec,
+  tab-border: $N20,
   tab-active-color: $brand-primary,
   tab-active-border: $brand-primary,
 
-  control-bg: #fff,
-  default-button-bg: #F0F2F4,
-  default-button-bg-hover: #E7E9EC,
-  default-button-bg-active: #D8DBE0,
-  control-color: #1F2F47,
-  control-border: #E0E3E8,
-  control-disabled-bg: $gray-lightest,
-  control-disabled-color: $gray-dark,
-  control-disabled-border: #e6e6e6,
-  control-placeholder: #8F98A6,
-  control-inset-shadow: rgba($gray-base, 0.03),
-  control-addon-bg: $gray-lighter,
+  control-bg: $N0,
+  default-button-bg: $N20,
+  default-button-bg-hover: $N30,
+  default-button-bg-active: $N40,
+  control-color: $N800,
+  control-border: $N40,
+  control-disabled-bg: $N10,
+  control-disabled-color: $N800,
+  control-disabled-border: $N30,
+  control-placeholder: $N90,
+  control-inset-shadow: rgba($N900, 0.03),
+  control-addon-bg: $N20,
 
-  loader-light: #fff,
+  loader-light: $N0,
   loader-dark: $brand-info,
 
   code-bg: #eff5fe,
   code-border: #e5ecf3,
 
-  tooltip-bg: $gray-darker,
-  tooltip-color: #fff,
+  tooltip-bg: $N900,
+  tooltip-color: $N0,
 
-  component-active-color: #fff,
+  component-active-color: $N0,
   component-active-bg: $brand-primary,
 );
 

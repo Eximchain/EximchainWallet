@@ -31,9 +31,9 @@
 
     &-link {
       display: inline-block;
-      padding: 6px 14px;
+      padding: 6px 0;
+      margin-right: 28px;
       font-size: 12px;
-      min-width: 80px;
       text-align: center;
       font-weight: 400;
       color: #626B76;
@@ -50,6 +50,7 @@
         // border-top-left-radius: 4px;
         // border-bottom-left-radius: 4px;
         border-right: none;
+        padding-left: 0px;
 
 
         &.is-active {

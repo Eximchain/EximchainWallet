@@ -44,7 +44,7 @@ export class Button extends React.PureComponent<Props> {
       isDisabled,
       disableReason
     } = this.props;
-
+    console.log(icon, 'asdfasdfsad');
     const icons: Icon[] = [];
     if (helpLink) {
       icons.push({
@@ -67,22 +67,6 @@ export class Button extends React.PureComponent<Props> {
         aria-disabled={isDisabled}
       >
         <div className="Button-inner">
-          <div className="Button-title">
-            {icon && <img className="Button-title-icon" src={icon} alt={name + ' logo'} />}
-            <span>{name}</span>
-          </div>
-
-          {description && (
-            <div className="Button-description" aria-label="description">
-              {description}
-            </div>
-          )}
-          {example && (
-            <div className="Button-example" aria-label="example" aria-hidden={true}>
-              {example}
-            </div>
-          )}
-
           <div className="Button-icons">
             {icons.map(i => (
               <span className="Button-icons-icon" key={i.icon} onClick={this.stopPropogation}>
@@ -96,6 +80,21 @@ export class Button extends React.PureComponent<Props> {
                 {!isDisabled && <Tooltip size="sm">{i.tooltip}</Tooltip>}
               </span>
             ))}
+          </div>
+          {icon && <img className="Button-icon" src={icon} alt={name + ' logo'} />}
+
+          <div className="Button-title">
+            <span>{name}</span>
+            {description && (
+              <div className="Button-description" aria-label="description">
+                {description}
+              </div>
+            )}
+            {example && (
+              <div className="Button-example" aria-label="example" aria-hidden={true}>
+                {example}
+              </div>
+            )}
           </div>
         </div>
 

@@ -74,20 +74,16 @@
 
   &-inner {
     transition: opacity 200ms ease;
+    display: flex;
+    flex-direction: row;
+
   }
 
-  &-title {
-    display: flex;
-    justify-content: left;
-    align-items: center;
-    // font-size: $font-size-small;
-    // margin-bottom: 3px;
-    transition: color 150ms ease;
 
     &-icon {
       margin-right: 8px;
-      max-height: 20px;
-      opacity: 0.8;
+      max-height: 80px;
+      // opacity: 0.8;
 
       @include theme(dark) {
         opacity: 1;
@@ -99,9 +95,27 @@
         }
       }
     }
+
+  &-title {
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    flex-direction: column;
+
+    // font-size: $font-size-small;
+    // margin-bottom: 3px;
+    transition: color 150ms ease;
+
+    // span {
+    //   width: 100%;
+    // }
+
+
   }
 
   &-description {
+    display: flex;
+    // justify-content: left;
     color: color(n600);
     text-transform: uppercase;
     letter-spacing: 0.4px;

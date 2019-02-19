@@ -13,7 +13,9 @@ import translate, { translateRaw } from 'translations';
 import TabSection from 'containers/TabSection';
 import FreeContractCallScreen from './components/FreeContractCallScreen';
 import { configSelectors } from 'features/config';
-import TrezorIcon from 'assets/images/wallets/trezor.svg';
+import VoteOrNominateIcon from 'assets/images/vote-or-nominate.svg';
+import CollectTokensIcon from 'assets/images/collect-tokens.svg';
+import ClaimTokensIcon from 'assets/images/claim-tokens.svg';
 
 import './index.scss';
 import { Button } from './components/Button';
@@ -143,20 +145,21 @@ class Governance extends Component<Props, State> {
   public CONTRACTCALLS: ContractCall = {
     [CostlyContractCallName.VOTE]: {
       name: 'VOTE',
-      icon: TrezorIcon,
+      icon: VoteOrNominateIcon,
       description: 'Requires EXC'
     },
     [CostlyContractCallName.CLAIM]: {
       name: 'CLAIM',
+      icon: ClaimTokensIcon,
       description: 'Requires EXC'
     },
     [CostlyContractCallName.COLLECT]: {
       name: 'COLLECT',
+      icon: CollectTokensIcon,
       description: 'Requires EXC'
     },
     [FreeContractCallName.BALLOT_HISTORY]: {
-      name: 'BALLOT_HISTORY',
-      icon: TrezorIcon
+      name: 'BALLOT_HISTORY'
     },
     [FreeContractCallName.CURRENT_GOVERNANCE_CYCLE]: {
       name: 'CURRENT_GOVERNANCE_CYCLE'
@@ -199,6 +202,7 @@ class Governance extends Component<Props, State> {
             <Button
               key={contractCall}
               name={translateRaw(call.name)}
+              icon={call.icon}
               onClick={() => this.goTo(stateTransition, contractCall)}
               description={translateRaw(call.description)}
             />

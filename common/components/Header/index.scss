@@ -41,7 +41,7 @@ $small-size: 900px;
     font-weight: 300;
     color: #fff;
     transition: background-color 80ms ease;
-    background: color(gray-darker);
+    background: color(n800);
 
     @include theme(dark) {
       background: color(n20);
@@ -68,7 +68,7 @@ $small-size: 900px;
     }
 
     &.is-danger {
-      background: color(brand-danger);
+      background: color(r70);
     }
 
     &.is-success {

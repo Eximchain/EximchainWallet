@@ -201,10 +201,10 @@
     color(text-color-inverted),
     color(b60),
     color(b60),
-    color(b60-dark),
-    color(b60-dark),
-    color(b60-darker),
-    color(b60-darker),
+    color(b70),
+    color(b70),
+    color(b80),
+    color(b80),
 
   );
 }
@@ -248,12 +248,12 @@
 .btn-danger {
   @include button-variant(
     color(text-color-inverted),
-    color(brand-danger),
-    color(brand-danger),
-    color(brand-danger-dark),
-    color(brand-danger-dark),
-    color(brand-danger-darker),
-    color(brand-danger-darker),
+    color(r70),
+    color(r70),
+    color(r70-dark),
+    color(r70-dark),
+    color(r70-darker),
+    color(r70-darker),
   );
 }
 

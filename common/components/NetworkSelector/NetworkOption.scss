@@ -80,7 +80,7 @@ $left-border-size: 2px;
         }
 
         &:hover:before {
-          background: color(b60-lighter);
+          background: color(b40);
         }
       }
 
@@ -109,7 +109,7 @@ $left-border-size: 2px;
       }
 
       &.is-expanded {
-        // color: color(gray-dark);
+        // color: color(n700);
         transform: rotate(180deg);
       }
     }

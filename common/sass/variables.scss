@@ -48,7 +48,7 @@ $alert-warning-bg: color(brand-warning);
 $alert-warning-text: color(text-color-inverted);
 $alert-warning-border: $alert-warning-bg;
 
-$alert-danger-bg: color(brand-danger);
+$alert-danger-bg: color(r70);
 $alert-danger-text: color(text-color-inverted);
 $alert-danger-border: $alert-danger-bg;
 
@@ -58,7 +58,7 @@ $well-border: color(n20);
 $tab-box-shadow: 0 1px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.12);
 
 $pre-bg: color(n10);
-$pre-color: color(gray-dark);
+$pre-color: color(n700);
 $pre-border-color: color(n20);
 $pre-scrollable-max-height: 23rem;
 

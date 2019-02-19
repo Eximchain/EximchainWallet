@@ -1,6 +1,3 @@
-$brand-warning: #E29B48;
-$brand-danger: #CC4149;
-
 $dark-rgb: 0, 0, 0;
 $light-rgb: 255, 255, 255;
 
@@ -108,9 +105,9 @@ $theme-light: (
   dark-rgb: $dark-rgb,
   light-rgb: $light-rgb,
 
-  gray-base: $N900,
-  gray-darker: $N800,
-  gray-dark: $N700,
+  n900: $N900,
+  n800: $N800,
+  n700: $N700,
   n600: $N600,
   n500: $N500,
   gray: $N400,
@@ -127,11 +124,16 @@ $theme-light: (
   n20: $N20,
   n10: $N10,
 
+  b90: $B90,
+  b80: $B80,
+  b70: $B70,
   b60: $B60,
-  b60-dark: darken($B60, 6%),
-  b60-darker: darken($B60, 12%),
-  b60-light: #529BEA,
-  b60-lighter: #79B4F2,
+  b50: $B50,
+  b40: $B40,
+  b30: $B30,
+  b20: $B20,
+  b10: $B10,
+  b0: $B0,
 
   g70: $G70,
   g70-dark: darken($G70, 6%),
@@ -145,17 +147,17 @@ $theme-light: (
   p70-light: lighten($P70, 6%),
   p70-lighter: lighten($P70, 12%),
 
-  brand-warning: $brand-warning,
-  brand-warning-dark: darken($brand-warning, 6%),
-  brand-warning-darker: darken($brand-warning, 12%),
-  brand-warning-light: lighten($brand-warning, 6%),
-  brand-warning-lighter: lighten($brand-warning, 12%),
+  brand-warning: $Y70,
+  brand-warning-dark: darken($Y70, 6%),
+  brand-warning-darker: darken($Y70, 12%),
+  brand-warning-light: lighten($Y70, 6%),
+  brand-warning-lighter: lighten($Y70, 12%),
 
-  brand-danger: $brand-danger,
-  brand-danger-dark: darken($brand-danger, 6%),
-  brand-danger-darker: darken($brand-danger, 12%),
-  brand-danger-light: lighten($brand-danger, 6%),
-  brand-danger-lighter: lighten($brand-danger, 12%),
+  r70: $R70,
+  r70-dark: darken($R70, 6%),
+  r70-darker: darken($R70, 12%),
+  r70-light: lighten($R70, 6%),
+  r70-lighter: lighten($R70, 12%),
 
   white-clear: rgba($N0, 0.8),
   white-clearer: rgba($N0, 0.7),
@@ -204,9 +206,9 @@ $theme-light: (
   component-active-bg: $B60,
 );
 
-$gray-base: #b8bfd0;
-$gray-darker: #8e97a9;
-$gray-dark: #4d5463;
+$N900: #b8bfd0;
+$N800: #8e97a9;
+$N700: #4d5463;
 $gray: #393f4c;
 $gray-light: #333842;
 $N20: #282C34;
@@ -216,19 +218,19 @@ $theme-dark: (
   dark-rgb: $light-rgb,
   light-rgb: $dark-rgb,
 
-  gray-base: $gray-base,
-  gray-darker: $gray-darker,
-  gray-dark: $gray-dark,
+  n900: $N900,
+  n800: $N800,
+  n700: $N700,
   gray: $gray,
   gray-light: $gray-light,
   n20: $N20,
   n10: $N10,
 
   b60: lighten($B60, 6%),
-  b60-dark: $B60,
-  b60-darker: darken($B60, 6%),
-  b60-light: lighten($B60, 12%),
-  b60-lighter: lighten($B60, 16%),
+  b70: $B60,
+  b80: darken($B60, 6%),
+  b50: lighten($B60, 12%),
+  b40: lighten($B60, 16%),
 
   g70: lighten($G70, 6%),
   g70-dark: $G70,
@@ -242,17 +244,17 @@ $theme-dark: (
   p70-light: lighten($P70, 12%),
   p70-lighter: lighten($P70, 16%),
 
-  brand-warning: lighten($brand-warning, 6%),
-  brand-warning-dark: $brand-warning,
-  brand-warning-darker: darken($brand-warning, 6%),
-  brand-warning-light: lighten($brand-warning, 12%),
-  brand-warning-lighter: lighten($brand-warning, 16%),
+  brand-warning: lighten($Y70, 6%),
+  brand-warning-dark: $Y70,
+  brand-warning-darker: darken($Y70, 6%),
+  brand-warning-light: lighten($Y70, 12%),
+  brand-warning-lighter: lighten($Y70, 16%),
 
-  brand-danger: saturate(lighten($brand-danger, 6%), 7%),
-  brand-danger-dark: saturate($brand-danger, 7%),
-  brand-danger-darker: saturate(darken($brand-danger, 6%), 7%),
-  brand-danger-light: saturate(lighten($brand-danger, 12%), 7%),
-  brand-danger-lighter: saturate(lighten($brand-danger, 16%), 7%),
+  r70: saturate(lighten($R70, 6%), 7%),
+  r70-dark: saturate($R70, 7%),
+  r70-darker: saturate(darken($R70, 6%), 7%),
+  r70-light: saturate(lighten($R70, 12%), 7%),
+  r70-lighter: saturate(lighten($R70, 16%), 7%),
 
   white-clear: rgba($N10, 0.9),
   white-clearer: rgba($N10, 0.8),
@@ -264,32 +266,32 @@ $theme-dark: (
   footer-bg: $gray-light,
   footer-border: $gray-light,
 
-  text-color: $gray-dark,
+  text-color: $N700,
   text-color-inverted: #fff,
 
   link-color: $B60,
   link-hover-color: #267EDC,
 
-  tab-color: $gray-base,
-  tab-border: $gray-base,
+  tab-color: $N900,
+  tab-border: $N900,
   tab-active-color: #fff,
   tab-active-border: #fff,
 
   control-bg: $gray,
   control-color: #FFF,
-  control-border: $gray-dark,
+  control-border: $N700,
   control-disabled-bg: rgba($gray-light, 0.5),
   control-disabled-color: #aaa,
   control-disabled-border: rgba($gray-light, 0.5),
   control-placeholder: rgba(#FFF, 0.3),
   control-inset-shadow: rgba(#FFF, 0.03),
-  control-addon-bg: $gray-dark,
+  control-addon-bg: $N700,
 
   loader-light: #fff,
   loader-dark: #fff,
 
   code-bg: $gray,
-  code-border: $gray-dark,
+  code-border: $N700,
 
   tooltip-bg: #1c1c1c,
   tooltip-color: #FFF,

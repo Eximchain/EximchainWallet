@@ -152,7 +152,7 @@ $divider-size: 60px;
 
 
   &.is-generate {
-    // border-top-color: color(brand-danger);
+    // border-top-color: color(r70);
   }
 
   @media (max-width: $screen-sm) {
@@ -199,14 +199,14 @@ $divider-size: 60px;
     flex: 1;
     padding-left: 1.25rem;
     font-size: 15px;
-    color:color(gray-dark);
+    color:color(n700);
 
     .fa {
       margin-right: 4px;
     }
 
     .is-danger {
-      color: color(brand-danger);
+      color: color(r70);
     }
     .is-warning {
       color: color(brand-warning);

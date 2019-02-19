@@ -1,8 +1,6 @@
 @import "common/sass/variables";
 
 .BroadcastTx {
-  // max-width: 1040px;
-  // margin: 0 auto;
   position: relative;
   text-align: left;
   width: 100%;
@@ -18,35 +16,40 @@
   &-topsection {
     position: fixed;
     top: 0;
-    height: 100px;
-    padding-top: $electron-osx-control-spacing - 10px;
-    left: 220px;
+    height: auto;
+    width: 100%;
+    padding-top: 20px;
+    left: 200px;
     z-index: 1000;
     background-color: white;
-    margin: 0 20px 0 0;
-    // padding-left: 10px;
-    padding-right: 240px;
-    width: 100%;
-    max-width: 1040px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    padding-right: 10px;
+    margin-bottom: 18px;
+    border-bottom: solid .5px #F0F2F4;
 
   h2 {
     text-align: left;
     line-height: 1.4;
     margin-bottom: 3px;
     margin-top: 0;
-    // font-weight: normal;
-    font-size: 22px;
+    font-size: 18px;
+    padding-left: 20px;
   }
 
   &-help {
-    margin: 0 0 $space * 2;
+    margin: 0 0 1rem;
     color: color(gray);
     text-align: left;
+    font-size: 13px;
+    padding-left: 20px;
     }
   }
 
   &-input {
-    margin: $space $space 0 0;
+    padding-top: 50px;
+    // margin: $space $space 0 0;
     text-align: left;
     width: 100%;
     // max-width: 500px;

@@ -48,15 +48,16 @@ class BroadcastTx extends Component<Props> {
               exact={true}
               path={currentPath}
               render={() => (
-                <div className="BroadcastTx-topsection">
-                  <h2 className="BroadcastTx-topsection-title text-center">
-                    {translate('BROADCAST_TX_TITLE')}
-                  </h2>
+                <div>
+                  <div className="BroadcastTx-topsection">
+                    <h2 className="BroadcastTx-topsection-title text-center">
+                      {translate('BROADCAST_TX_TITLE')}
+                    </h2>
 
-                  <p className="BroadcastTx-topsection-help text-center">
-                    {translate('BROADCAST_TX_DESCRIPTION')}
-                  </p>
-
+                    <p className="BroadcastTx-topsection-help text-center">
+                      {translate('BROADCAST_TX_DESCRIPTION')}
+                    </p>
+                  </div>
                   <div className="BroadcastTx-input input-group-wrapper InteractForm-interface">
                     <label className="input-group">
                       <div className="input-group-header">{translate('SEND_SIGNED')}</div>

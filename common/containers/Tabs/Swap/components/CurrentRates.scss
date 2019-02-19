@@ -12,11 +12,11 @@
   &-panel {
     position: relative;
     margin: 0 auto 0;
-    background: linear-gradient(150deg, color(brand-primary), color(brand-info));
+    background: linear-gradient(150deg, color(b60), color(p70));
     @include mono;
 
     @include theme(dark) {
-      background: linear-gradient(150deg, color(gray), color(gray-light));
+      background: linear-gradient(150deg, color(gray), color(n60));
     }
 
     &-side {

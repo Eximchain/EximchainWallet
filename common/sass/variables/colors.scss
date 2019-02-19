@@ -1,10 +1,5 @@
-$brand-primary: #267EDC;
-$brand-info: #A16DBA;
-$brand-success: #27A96B;
 $brand-warning: #E29B48;
 $brand-danger: #CC4149;
-
-$blue-01: #F0F6FD;
 
 $dark-rgb: 0, 0, 0;
 $light-rgb: 255, 255, 255;
@@ -29,7 +24,85 @@ $N40: #D8DBE0;
 $N30: #E7E9EC;
 $N20: #F0F2F4;
 $N10: #F8F9FA;
-$N0: #fff;
+$N0: #FFFFFF;
+
+// Blues
+
+$B90: #1F4A8A;
+$B80: #2665B0;
+$B70: #256FC7;
+$B60: #267EDC;  // Primary Brand
+$B50: #529BEA;
+$B40: #79B4F2;
+$B30: #B1D4F8;
+$B20: #CFE6FF;
+$B10: #E8F2FE;
+$B0: #F0F6FD;
+
+// Greens
+
+$G90: #0B965C;
+$G80: #20A86F;
+$G70: #27A96B;  // Primary Success
+$G60: #48CC8D;
+$G50: #60E1A3;
+$G40: #96F3C6;
+$G30: #BBFCDC;
+$G20: #D2FDE8;
+$G10: #E7FFF3;
+$G0: #F2FFF9;
+
+// Reds
+
+$R90: #B00C15;
+$R80: #BD242D;
+$R70: #CC4149;  // Primary Danger
+$R60: #E2535D;
+$R50: #F37070;
+$R40: #FB8686;
+$R30: #FCB0B0;
+$R20: #FFD4D4;
+$R10: #FFE9E9;
+$R0: #FFF2F2;
+
+// Yellows
+
+$Y90: #E29B48;
+$Y80: #EEAB5C;
+$Y70: #F2B46C;  // Primary Caution
+$Y60: #F8C480;
+$Y50: #FFD196;
+$Y40: #FFDCAF;
+$Y30: #FFE7C8;
+$Y20: #FFEFDA;
+$Y10: #FFF5E8;
+$Y0: #FFFAF3;
+
+// Purples
+
+$P90: #7E429B;
+$P80: #8D50AA;
+$P70: #A16DBA;  // Primary Info & Help
+$P60: #AD7EC4;
+$P50: #BD90D2;
+$P40: #D3ADE5;
+$P30: #E1C5EE;
+$P20: #EFDBF8;
+$P10: #F3E9F8;
+$P0: #FBF4FE;
+
+// Teals
+
+$T90: #1F8FA0;
+$T80: #259FB2;
+$T70: #39AFC1;  // Primary Teal
+$T60: #43BCCD;
+$T50: #53CBDB;
+$T40: #7DDDEA;
+$T30: #AAE8EF;
+$T20: #C3F4FB;
+$T10: #DCFAFF;
+$T0: #F1FDFF;
 
 $theme-light: (
   dark-rgb: $dark-rgb,
@@ -38,32 +111,39 @@ $theme-light: (
   gray-base: $N900,
   gray-darker: $N800,
   gray-dark: $N700,
+  n600: $N600,
+  n500: $N500,
   gray: $N400,
-  gray-light: $N60,
+  n300: $N300,
+  n200: $N200,
+  n100: $N100,
+  n90: $N90,
+  n80: $N80,
+  n70: $N70,
+  n60: $N60,
+  n50: $N50,
   n40: $N40,
   n30: $N30,
-  gray-lighter: $N20,
-  gray-lightest: $N10,
+  n20: $N20,
+  n10: $N10,
 
-  brand-primary: $brand-primary,
-  brand-primary-dark: darken($brand-primary, 6%),
-  brand-primary-darker: darken($brand-primary, 12%),
-  brand-primary-light: #529BEA,
-  brand-primary-lighter: #79B4F2,
+  b60: $B60,
+  b60-dark: darken($B60, 6%),
+  b60-darker: darken($B60, 12%),
+  b60-light: #529BEA,
+  b60-lighter: #79B4F2,
 
-  blue-01: $blue-01,
+  g70: $G70,
+  g70-dark: darken($G70, 6%),
+  g70-darker: darken($G70, 12%),
+  g70-light: lighten($G70, 6%),
+  g70-lighter: lighten($G70, 12%),
 
-  brand-success: $brand-success,
-  brand-success-dark: darken($brand-success, 6%),
-  brand-success-darker: darken($brand-success, 12%),
-  brand-success-light: lighten($brand-success, 6%),
-  brand-success-lighter: lighten($brand-success, 12%),
-
-  brand-info: $brand-info,
-  brand-info-dark: darken($brand-info, 6%),
-  brand-info-darker: darken($brand-info, 12%),
-  brand-info-light: lighten($brand-info, 6%),
-  brand-info-lighter: lighten($brand-info, 12%),
+  p70: $P70,
+  p70-dark: darken($P70, 6%),
+  p70-darker: darken($P70, 12%),
+  p70-light: lighten($P70, 6%),
+  p70-lighter: lighten($P70, 12%),
 
   brand-warning: $brand-warning,
   brand-warning-dark: darken($brand-warning, 6%),
@@ -84,19 +164,19 @@ $theme-light: (
   body-bg: $N0,
   pane-bg: $N0,
 
-  footer-bg: $brand-info,
-  footer-border: $brand-primary,
+  footer-bg: $P70,
+  footer-border: $B60,
 
   text-color: $N800,
   text-color-inverted: $N0,
 
-  link-color: $brand-primary,
-  link-hover-color: $brand-primary,
+  link-color: $B60,
+  link-hover-color: $B60,
 
-  tab-color: $brand-info,
+  tab-color: $P70,
   tab-border: $N20,
-  tab-active-color: $brand-primary,
-  tab-active-border: $brand-primary,
+  tab-active-color: $B60,
+  tab-active-border: $B60,
 
   control-bg: $N0,
   default-button-bg: $N20,
@@ -112,7 +192,7 @@ $theme-light: (
   control-addon-bg: $N20,
 
   loader-light: $N0,
-  loader-dark: $brand-info,
+  loader-dark: $P70,
 
   code-bg: #eff5fe,
   code-border: #e5ecf3,
@@ -121,7 +201,7 @@ $theme-light: (
   tooltip-color: $N0,
 
   component-active-color: $N0,
-  component-active-bg: $brand-primary,
+  component-active-bg: $B60,
 );
 
 $gray-base: #b8bfd0;
@@ -129,8 +209,8 @@ $gray-darker: #8e97a9;
 $gray-dark: #4d5463;
 $gray: #393f4c;
 $gray-light: #333842;
-$gray-lighter: #282C34;
-$gray-lightest: #21252B;
+$N20: #282C34;
+$N10: #21252B;
 
 $theme-dark: (
   dark-rgb: $light-rgb,
@@ -141,26 +221,26 @@ $theme-dark: (
   gray-dark: $gray-dark,
   gray: $gray,
   gray-light: $gray-light,
-  gray-lighter: $gray-lighter,
-  gray-lightest: $gray-lightest,
+  n20: $N20,
+  n10: $N10,
 
-  brand-primary: lighten($brand-primary, 6%),
-  brand-primary-dark: $brand-primary,
-  brand-primary-darker: darken($brand-primary, 6%),
-  brand-primary-light: lighten($brand-primary, 12%),
-  brand-primary-lighter: lighten($brand-primary, 16%),
+  b60: lighten($B60, 6%),
+  b60-dark: $B60,
+  b60-darker: darken($B60, 6%),
+  b60-light: lighten($B60, 12%),
+  b60-lighter: lighten($B60, 16%),
 
-  brand-success: lighten($brand-success, 6%),
-  brand-success-dark: $brand-success,
-  brand-success-darker: darken($brand-success, 6%),
-  brand-success-light: lighten($brand-success, 12%),
-  brand-success-lighter: lighten($brand-success, 16%),
+  g70: lighten($G70, 6%),
+  g70-dark: $G70,
+  g70-darker: darken($G70, 6%),
+  g70-light: lighten($G70, 12%),
+  g70-lighter: lighten($G70, 16%),
 
-  brand-info: lighten($brand-info, 6%),
-  brand-info-dark: $brand-info,
-  brand-info-darker: darken($brand-info, 6%),
-  brand-info-light: lighten($brand-info, 12%),
-  brand-info-lighter: lighten($brand-info, 16%),
+  p70: lighten($P70, 6%),
+  p70-dark: $P70,
+  p70-darker: darken($P70, 6%),
+  p70-light: lighten($P70, 12%),
+  p70-lighter: lighten($P70, 16%),
 
   brand-warning: lighten($brand-warning, 6%),
   brand-warning-dark: $brand-warning,
@@ -174,12 +254,12 @@ $theme-dark: (
   brand-danger-light: saturate(lighten($brand-danger, 12%), 7%),
   brand-danger-lighter: saturate(lighten($brand-danger, 16%), 7%),
 
-  white-clear: rgba($gray-lightest, 0.9),
-  white-clearer: rgba($gray-lightest, 0.8),
-  white-clearest: rgba($gray-lightest, 0.7),
+  white-clear: rgba($N10, 0.9),
+  white-clearer: rgba($N10, 0.8),
+  white-clearest: rgba($N10, 0.7),
 
-  body-bg: $gray-lightest,
-  pane-bg: $gray-lighter,
+  body-bg: $N10,
+  pane-bg: $N20,
 
   footer-bg: $gray-light,
   footer-border: $gray-light,
@@ -187,7 +267,7 @@ $theme-dark: (
   text-color: $gray-dark,
   text-color-inverted: #fff,
 
-  link-color: $brand-primary,
+  link-color: $B60,
   link-hover-color: #267EDC,
 
   tab-color: $gray-base,
@@ -215,7 +295,7 @@ $theme-dark: (
   tooltip-color: #FFF,
 
   component-active-color: $gray-light,
-  component-active-bg: $brand-primary,
+  component-active-bg: $B60,
 );
 
 $themes: (

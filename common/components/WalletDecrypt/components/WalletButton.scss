@@ -41,7 +41,7 @@
     &:hover,
     &:focus {
       z-index: 2;
-      border-color: color(brand-primary-light);
+      border-color: color(b60-light);
       border-width: 1px;
       transition: 60ms ease;
       padding: 15px 15px;
@@ -135,7 +135,7 @@
         }
 
         &-shield {
-          color: color(brand-primary);
+          color: color(b60);
           display: none;
         }
 
@@ -151,7 +151,7 @@
         }
 
         &-question-circle:hover {
-          // color: color(brand-primary);
+          // color: color(b60);
         }
       }
     }

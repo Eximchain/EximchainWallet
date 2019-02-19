@@ -3,22 +3,10 @@ import TabSection from 'containers/TabSection/index';
 import './index.scss';
 
 const COLORS = [
-  ['gray-base', 'gray-darker', 'gray-dark', 'gray', 'gray-light', 'gray-lighter', 'gray-lightest'],
-  [
-    'brand-primary-darker',
-    'brand-primary-dark',
-    'brand-primary',
-    'brand-primary-light',
-    'brand-primary-lighter'
-  ],
-  ['brand-info-darker', 'brand-info-dark', 'brand-info', 'brand-info-light', 'brand-info-lighter'],
-  [
-    'brand-success-darker',
-    'brand-success-dark',
-    'brand-success',
-    'brand-success-light',
-    'brand-success-lighter'
-  ],
+  ['gray-base', 'gray-darker', 'gray-dark', 'gray', 'n60', 'n20', 'n10'],
+  ['b60-darker', 'b60-dark', 'b60', 'b60-light', 'b60-lighter'],
+  ['p70-darker', 'p70-dark', 'p70', 'p70-light', 'p70-lighter'],
+  ['g70-darker', 'g70-dark', 'g70', 'g70-light', 'g70-lighter'],
   [
     'brand-warning-darker',
     'brand-warning-dark',

@@ -19,14 +19,14 @@ $speed: 70ms;
   }
 
   &-track {
-    background: color(brand-primary);
+    background: color(b60);
   }
 
   &-handle {
     top: 50%;
     width: $handle-size;
     height: $handle-size;
-    background: color(brand-primary);
+    background: color(b60);
     margin: 0;
     border: none;
     transform: translate(-50%, -50%);

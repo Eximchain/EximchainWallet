@@ -58,11 +58,11 @@
 
 .alert,
 .alert-info {
-  @include alert-variant(color(brand-info));
+  @include alert-variant(color(p70));
 }
 
 .alert-success {
-  @include alert-variant(color(brand-success));
+  @include alert-variant(color(g70));
 }
 
 .alert-warning {

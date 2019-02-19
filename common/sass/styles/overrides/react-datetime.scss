@@ -9,13 +9,13 @@
   border-color: color(control-border);
 
   th, tfoot {
-    border-color: color(gray-lightest);
+    border-color: color(n10);
   }
 
   thead {
     tr:first-child {
       th:hover {
-        background: color(gray-lightest);
+        background: color(n10);
       }
     }
   }
@@ -23,31 +23,31 @@
   td {
     &.rdtActive,
     &.rdtActive:hover {
-      background-color: color(brand-primary);
+      background-color: color(b60);
     }
 
     &.rdtDay:hover {
-      background: color(gray-lightest);
+      background: color(n10);
     }
 
     &.rdtToday::before {
-      border-bottom: 7px solid color(brand-primary);
+      border-bottom: 7px solid color(b60);
     }
   }
 
   .rdtTimeToggle:hover {
-    background: color(gray-lightest);
+    background: color(n10);
   }
 }
 
 .rdtCounter .rdtBtn,
 .rdtNext,
 .rdtPrev {
-  color: color(brand-primary);
+  color: color(b60);
 }
 
 .rdtCounter {
   .rdtBtn:hover {
-    background: color(gray-lightest);
+    background: color(n10);
   }
 }

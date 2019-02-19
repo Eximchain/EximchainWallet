@@ -36,11 +36,11 @@ $alert-padding: 1rem;
 $alert-border-radius: $border-radius;
 $alert-link-font-weight: bold;
 
-$alert-success-bg: color(brand-success);
+$alert-success-bg: color(g70);
 $alert-success-text: color(text-color-inverted);
 $alert-success-border: $alert-success-bg;
 
-$alert-info-bg: color(brand-primary);
+$alert-info-bg: color(b60);
 $alert-info-text: color(text-color-inverted);
 $alert-info-border: $alert-info-bg;
 
@@ -52,27 +52,27 @@ $alert-danger-bg: color(brand-danger);
 $alert-danger-text: color(text-color-inverted);
 $alert-danger-border: $alert-danger-bg;
 
-$well-bg: color(gray-lightest);
-$well-border: color(gray-lighter);
+$well-bg: color(n10);
+$well-border: color(n20);
 
 $tab-box-shadow: 0 1px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.12);
 
-$pre-bg: color(gray-lightest);
+$pre-bg: color(n10);
 $pre-color: color(gray-dark);
-$pre-border-color: color(gray-lighter);
+$pre-border-color: color(n20);
 $pre-scrollable-max-height: 23rem;
 
 $component-offset-horizontal: 12rem;
-$text-muted: color(gray-light);
-$abbr-border-color: color(gray-light);
+$text-muted: color(n60);
+$abbr-border-color: color(n60);
 $headings-small-color: inherit;
-$blockquote-small-color: color(gray-light);
+$blockquote-small-color: color(n60);
 $blockquote-font-size: ($font-size-base * 1.25);
-$blockquote-border-color: color(gray-lighter);
-$page-header-border-color: color(gray-lighter);
+$blockquote-border-color: color(n20);
+$page-header-border-color: color(n20);
 $dl-horizontal-offset: $component-offset-horizontal;
 $dl-horizontal-breakpoint: $grid-float-breakpoint;
-$hr-border: color(gray-lighter);
+$hr-border: color(n20);
 $dropdown-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
 
 /* --- */

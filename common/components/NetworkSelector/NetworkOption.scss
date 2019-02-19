@@ -63,8 +63,8 @@ $left-border-size: 2px;
 
       &.is-selected {
         &:before {
-          background: color(brand-primary);
-          border-color: color(brand-primary);
+          background: color(b60);
+          border-color: color(b60);
         }
       }
 
@@ -74,13 +74,13 @@ $left-border-size: 2px;
             135deg,
             transparent,
             transparent 45%,
-            color(brand-primary) 45%,
-            color(brand-primary) 100%
+            color(b60) 45%,
+            color(b60) 100%
           );
         }
 
         &:hover:before {
-          background: color(brand-primary-lighter);
+          background: color(b60-lighter);
         }
       }
 
@@ -97,7 +97,7 @@ $left-border-size: 2px;
       width: 20px;
       height: 20px;
       font-size: 12px;
-      color: color(gray-light);
+      color: color(n60);
       border-radius: 100%;
       transition-property: color, background-color, transform;
       transition-duration: 75ms;

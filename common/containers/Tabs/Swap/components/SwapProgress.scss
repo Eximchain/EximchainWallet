@@ -41,13 +41,13 @@ $track-color: shade-dark(0.2);
       border-color: $track-color;
 
       .is-active & {
-        border-color: color(brand-primary);
-        color: color(brand-primary);
+        border-color: color(b60);
+        color: color(b60);
       }
 
       .is-complete & {
-        border-color: color(brand-success);
-        background: color(brand-success);
+        border-color: color(g70);
+        background: color(g70);
         box-shadow: inset 0px 0px 0px $space-xs color(control-bg);
         color: color(text-color-inverted);
 
@@ -92,7 +92,7 @@ $track-color: shade-dark(0.2);
       }
 
       .is-complete & {
-        color: color(brand-success);
+        color: color(g70);
       }
     }
   }

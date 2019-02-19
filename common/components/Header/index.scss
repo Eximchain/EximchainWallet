@@ -44,7 +44,7 @@ $small-size: 900px;
     background: color(gray-darker);
 
     @include theme(dark) {
-      background: color(gray-lighter);
+      background: color(n20);
     }
 
     a {
@@ -60,7 +60,7 @@ $small-size: 900px;
 
     // Colors
     &.is-primary {
-      background: color(brand-primary);
+      background: color(b60);
     }
 
     &.is-warning {
@@ -72,11 +72,11 @@ $small-size: 900px;
     }
 
     &.is-success {
-      background: color(brand-success);
+      background: color(g70);
     }
 
     &.is-info {
-      background: color(brand-info);
+      background: color(p70);
       border-bottom: 1px solid rgba(#fff, 0.4);
     }
   }

@@ -35,14 +35,14 @@ $radio-size: 10px;
 
     &.is-selected {
       &:before {
-        border-color: color(brand-primary);
-        background: color(brand-primary);
+        border-color: color(b60);
+        background: color(b60);
       }
     }
 
     &.is-auto-selected {
       &:before {
-        background: color(brand-primary);
+        background: color(b60);
         opacity: 0.3;
 
         &:hover {

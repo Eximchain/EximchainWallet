@@ -53,7 +53,7 @@ $back-spacing: 20px;
       height: 20px;
       line-height: 20px;
       color: color(text-color-inverted);
-      background: color(brand-info);
+      background: color(p70);
       text-transform: uppercase;
       font-size: 8px;
       opacity: 0.8;
@@ -96,7 +96,7 @@ $back-spacing: 20px;
         padding-right: 5px;
         color: #B4BAC4;
         &.is-online {
-          color: color(brand-success);
+          color: color(g70);
           margin-left: 0px;
         }
 
@@ -131,7 +131,6 @@ $back-spacing: 20px;
       display: flex;
       align-items: center;
       width: 100%;
-      // border-bottom: 1px solid color(gray-lighter);
       font-size: 14px;
       text-align: left;
       margin-left: 20px;
@@ -149,7 +148,7 @@ $back-spacing: 20px;
       }
 
       &:hover {
-        color: color(brand-primary);
+        color: color(b60);
       }
     }
   }

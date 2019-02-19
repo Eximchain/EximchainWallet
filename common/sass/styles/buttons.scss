@@ -199,12 +199,12 @@
 .btn-primary {
   @include button-variant(
     color(text-color-inverted),
-    color(brand-primary),
-    color(brand-primary),
-    color(brand-primary-dark),
-    color(brand-primary-dark),
-    color(brand-primary-darker),
-    color(brand-primary-darker),
+    color(b60),
+    color(b60),
+    color(b60-dark),
+    color(b60-dark),
+    color(b60-darker),
+    color(b60-darker),
 
   );
 }
@@ -212,24 +212,24 @@
 .btn-success {
   @include button-variant(
     color(text-color-inverted),
-    color(brand-success),
-    color(brand-success),
-    color(brand-success-dark),
-    color(brand-success-dark),
-    color(brand-success-darker),
-    color(brand-success-darker),
+    color(g70),
+    color(g70),
+    color(g70-dark),
+    color(g70-dark),
+    color(g70-darker),
+    color(g70-darker),
   );
 }
 
 .btn-info {
   @include button-variant(
     color(text-color-inverted),
-    color(brand-info),
-    color(brand-info),
-    color(brand-info-dark),
-    color(brand-info-dark),
-    color(brand-info-darker),
-    color(brand-info-darker),
+    color(p70),
+    color(p70),
+    color(p70-dark),
+    color(p70-dark),
+    color(p70-darker),
+    color(p70-darker),
   );
 }
 

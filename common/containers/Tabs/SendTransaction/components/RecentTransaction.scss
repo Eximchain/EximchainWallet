@@ -12,7 +12,7 @@ $identicon-size-mobile: 24px;
   box-shadow: 0 1px shade-dark(0.1),
               1px 0 shade-dark(0.1),
               -1px 0 shade-dark(0.1),
-              0 0 color(brand-primary) inset;
+              0 0 color(b60) inset;
 
   &-to {
     width: 100%;
@@ -45,11 +45,11 @@ $identicon-size-mobile: 24px;
     box-shadow: 0 1px shade-dark(0.1),
                 1px 0 shade-dark(0.1),
                 -1px 0 shade-dark(0.1),
-                3px 0 color(brand-primary) inset;
+                3px 0 color(b60) inset;
 
     .RecentTx-arrow {
       opacity: 1;
-      color: color(brand-primary);
+      color: color(b60);
       transform: translateX(3px);
     }
   }

@@ -55,8 +55,7 @@
     }
 
     &.is-focused {
-      background: color(gray-lighter);
-      // color: color(text-color-inverted);
+      background: color(n20);
     }
   }
   &-menu-outer {
@@ -65,7 +64,7 @@
     left: -1px;
     top: calc(3rem - 3px);
     background-color: color(control-bg);
-    border: 1px solid color(brand-primary);
+    border: 1px solid color(b60);
     border-top: none;
     border-radius: $input-border-radius;
     border-top-left-radius: 0;
@@ -81,13 +80,13 @@
   //   box-shadow: inset 0px 0px 0px 1px color(brand-danger);
   // }
   &.is-focused {
-    border-color: color(gray-light);
+    border-color: color(n60);
     // border-bottom-left-radius: 0;
     // border-bottom-right-radius: 0;
-    // box-shadow: inset 0px 0px 0px 1px color(brand-primary);
+    // box-shadow: inset 0px 0px 0px 1px color(b60);
     &.valid {
-      border-color: color(brand-success);
-      // box-shadow: inset 0px 0px 0px 1px color(brand-success);
+      border-color: color(g70);
+      // box-shadow: inset 0px 0px 0px 1px color(g70);
     }
   }
   &-value {

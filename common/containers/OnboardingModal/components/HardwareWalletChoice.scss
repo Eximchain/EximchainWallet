@@ -9,7 +9,7 @@
   width: 100%;
   margin: 1rem 0;
   padding: 1rem;
-  border: 1px solid color(gray-lighter);
+  border: 1px solid color(n20);
   border-radius: 4px;
 
   &:not(.is-disabled) {
@@ -37,7 +37,7 @@
   &:first-of-type {
     @media (min-width: 500px) {
       border-bottom: none;
-      border-bottom: 1px solid color(gray-lighter);
+      border-bottom: 1px solid color(n20);
     }
   }
   &-image {

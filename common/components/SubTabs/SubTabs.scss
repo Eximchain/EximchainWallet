@@ -4,7 +4,7 @@
   margin-top: $space-xs;
   // padding-bottom: 3px;
   margin-bottom: 18px;
-  border-bottom: 1px solid color(gray-lighter);
+  border-bottom: 1px solid color(n20);
 
 
 
@@ -95,7 +95,7 @@
       }
 
       &.is-disabled {
-        color: color(gray-light);
+        color: color(n60);
         pointer-events: none;
         text-decoration: line-through;
       }

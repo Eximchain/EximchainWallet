@@ -105,12 +105,12 @@
         // box-shadow: inset 0px 0px 0px 1px color(brand-danger);
       }
       &.valid {
-        border-color: color(brand-success);
-        // box-shadow: inset 0px 0px 0px 1px color(brand-success);
+        border-color: color(g70);
+        // box-shadow: inset 0px 0px 0px 1px color(g70);
       }
       &:focus {
-        border-color: color(gray-light);
-        // box-shadow: inset 0px 0px 0px 1px color(brand-primary);
+        border-color: color(n60);
+        // box-shadow: inset 0px 0px 0px 1px color(b60);
       }
     }
   }

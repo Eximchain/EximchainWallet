@@ -87,9 +87,9 @@
     transition: color 150ms ease;
 
     &-icon {
-      margin-right: 8px;
-      max-height: 18px;
-      opacity: 0.8;
+      margin-right: 5px;
+      max-height: 22px;
+      opacity: 1;
 
       @include theme(dark) {
         opacity: 1;

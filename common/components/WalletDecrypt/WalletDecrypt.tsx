@@ -22,6 +22,11 @@ import { transactionFieldsActions } from 'features/transaction';
 import { notificationsActions } from 'features/notifications';
 // import LedgerIcon from 'assets/images/wallets/ledger.svg';
 import TrezorIcon from 'assets/images/wallets/trezor.svg';
+import SeedPhraseIcon from 'assets/images/wallets/seed-phrase.svg';
+import Web3Icon from 'assets/images/wallets/web3.svg';
+import PrivateKeyIcon from 'assets/images/wallets/private-key.svg';
+import KeystoreIcon from 'assets/images/wallets/keystore.svg';
+import AddressIcon from 'assets/images/wallets/address.svg';
 import { Errorable } from 'components';
 import { DisabledWallets } from './disables';
 import { getWeb3ProviderInfo } from 'utils/web3';
@@ -87,6 +92,7 @@ export interface SecureWalletInfo extends BaseWalletInfo {
 }
 
 export interface InsecureWalletInfo extends BaseWalletInfo {
+  icon?: string;
   example: string;
 }
 
@@ -116,7 +122,7 @@ const WalletDecrypt = withRouter<Props>(
     public WALLETS: Wallets = {
       [SecureWalletName.WEB3]: {
         lid: web3info.lid,
-        icon: web3info.icon,
+        icon: Web3Icon,
         description: 'ADD_WEB3DESC',
         component: Web3Decrypt,
         initialParams: {},
@@ -144,6 +150,7 @@ const WalletDecrypt = withRouter<Props>(
       },
       [InsecureWalletName.KEYSTORE_FILE]: {
         lid: 'X_KEYSTORE2',
+        icon: KeystoreIcon,
         example: 'An encrypted version of your private key.',
         component: KeystoreDecrypt,
         initialParams: {
@@ -155,6 +162,7 @@ const WalletDecrypt = withRouter<Props>(
       },
       [InsecureWalletName.MNEMONIC_PHRASE]: {
         lid: 'X_MNEMONIC',
+        icon: SeedPhraseIcon,
         example: 'A list of words that stores the info needed to unlock a wallet.',
         component: MnemonicDecrypt,
         initialParams: {},
@@ -163,6 +171,7 @@ const WalletDecrypt = withRouter<Props>(
       },
       [InsecureWalletName.PRIVATE_KEY]: {
         lid: 'X_PRIVKEY2',
+        icon: PrivateKeyIcon,
         example: 'This key allows you to use the tokens on your wallet.',
         component: PrivateKeyDecrypt,
         initialParams: {
@@ -174,6 +183,7 @@ const WalletDecrypt = withRouter<Props>(
       },
       [MiscWalletName.VIEW_ONLY]: {
         lid: 'VIEW_ADDR',
+        icon: AddressIcon,
         example: "View an address' balance, QR code, and recent transactions.",
         component: ViewOnlyDecrypt,
         initialParams: {},
@@ -343,6 +353,7 @@ const WalletDecrypt = withRouter<Props>(
                   key={walletType}
                   name={translateRaw(wallet.lid)}
                   example={wallet.example}
+                  icon={wallet.icon}
                   helpLink={wallet.helpLink}
                   walletType={walletType}
                   isReadOnly={true}
@@ -363,6 +374,7 @@ const WalletDecrypt = withRouter<Props>(
                   key={walletType}
                   name={translateRaw(wallet.lid)}
                   example={wallet.example}
+                  icon={wallet.icon}
                   helpLink={wallet.helpLink}
                   walletType={walletType}
                   isSecure={false}

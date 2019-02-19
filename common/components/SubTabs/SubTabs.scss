@@ -3,8 +3,8 @@
 .SubTabs {
   margin-top: $space-xs;
   // padding-bottom: 3px;
-  margin-bottom: 18px;
-  border-bottom: 1px solid color(n20);
+  // margin-bottom: 18px;
+  // border-bottom: 1px solid color(n20);
 
 
 
@@ -12,7 +12,8 @@
     margin-top: 0;
   }
   &-contracts {
-    padding-top: 50px;
+    padding-top: 10px;
+    padding-left: 20px;
 
   }
   &-sidebar {

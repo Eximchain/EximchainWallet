@@ -33,13 +33,12 @@ class Contracts extends Component<RouteComponentProps<{}>> {
           <h2 className="ContractSection-topsection-title">
             {translate('GENERATE_CONTRACT_TITLE')}
           </h2>
-          <p className="ContractSection-topsection-subtitle">
-            {translate('GENERATE_CONTRACT_DESC')}
-          </p>
+
+          <section className="SubTabs-contracts">
+            <SubTabs tabs={tabs} match={match} location={location} history={history} />
+          </section>
         </div>
-        <section className="SubTabs-contracts">
-          <SubTabs tabs={tabs} match={match} location={location} history={history} />
-        </section>
+
         <section className="Tab-content Contracts">
           <div className="Contracts-content">
             <Switch>

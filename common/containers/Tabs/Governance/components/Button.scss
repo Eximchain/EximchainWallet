@@ -19,9 +19,8 @@
   // max-width: 400px;
   min-width: 300px;
   padding: 15px 15px;
-  margin: 0 $space-md $space;
-  margin-bottom: 20px;
-
+  margin: 0 $space-sm $space;
+  // margin-bottom: 20px;
   background: color(control-bg);
   border-style: solid;
   border-width: 1px;
@@ -82,7 +81,7 @@
     display: flex;
     justify-content: left;
     align-items: center;
-    font-size: $font-size-medium;
+    // font-size: $font-size-small;
     margin-bottom: 3px;
     transition: color 150ms ease;
 
@@ -104,9 +103,16 @@
   }
 
   &-description {
-    color: #617085;
-    font-size: $font-size-small;
-    font-weight: 300;
+    color: color(n600);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    font-size: 10px;
+    font-weight: 400;
+    background-color: color(n20);
+    border-radius: 4px;
+    max-width: 90px;
+    text-align: center;
+    padding: 3px 6px;
   }
 
   &-example {

@@ -13,6 +13,7 @@ import translate, { translateRaw } from 'translations';
 import TabSection from 'containers/TabSection';
 import FreeContractCallScreen from './components/FreeContractCallScreen';
 import { configSelectors } from 'features/config';
+import TrezorIcon from 'assets/images/wallets/trezor.svg';
 
 import './index.scss';
 import { Button } from './components/Button';
@@ -75,6 +76,7 @@ export interface State {
 
 interface ContractOption {
   name: string;
+  icon?: string;
   value: string;
 }
 
@@ -141,55 +143,47 @@ class Governance extends Component<Props, State> {
   public CONTRACTCALLS: ContractCall = {
     [CostlyContractCallName.VOTE]: {
       name: 'VOTE',
-      description: 'Vote or nominate an address'
+      icon: TrezorIcon,
+      description: 'Requires EXC'
     },
     [CostlyContractCallName.CLAIM]: {
       name: 'CLAIM',
-      description: 'Claim your tokens'
+      description: 'Requires EXC'
     },
     [CostlyContractCallName.COLLECT]: {
       name: 'COLLECT',
-      description: 'Collect your tokens'
+      description: 'Requires EXC'
     },
     [FreeContractCallName.BALLOT_HISTORY]: {
       name: 'BALLOT_HISTORY',
-      description: 'Ballot history'
+      icon: TrezorIcon
     },
     [FreeContractCallName.CURRENT_GOVERNANCE_CYCLE]: {
-      name: 'CURRENT_GOVERNANCE_CYCLE',
-      description: 'Ballot history'
+      name: 'CURRENT_GOVERNANCE_CYCLE'
     },
     [FreeContractCallName.WITHDRAW_RECORDS]: {
-      name: 'WITHDRAW_RECORDS',
-      description: 'Ballot history'
+      name: 'WITHDRAW_RECORDS'
     },
     [FreeContractCallName.BALLOT_RECORDS]: {
-      name: 'BALLOT_RECORDS',
-      description: 'Ballot history'
+      name: 'BALLOT_RECORDS'
     },
     [FreeContractCallName.GOVERNANCE_CYCLE_RECORDS]: {
-      name: 'GOVERNANCE_CYCLE_RECORDS',
-      description: 'Ballot history'
+      name: 'GOVERNANCE_CYCLE_RECORDS'
     },
     [FreeContractCallName.NOMINEE_BALLOTS]: {
-      name: 'NOMINEE_BALLOTS',
-      description: 'Ballot history'
+      name: 'NOMINEE_BALLOTS'
     },
     [FreeContractCallName.CAN_GOVERN]: {
-      name: 'CAN_GOVERN',
-      description: 'Ballot history'
+      name: 'CAN_GOVERN'
     },
     [FreeContractCallName.IS_KYC_APPROVED]: {
-      name: 'IS_KYC_APPROVED',
-      description: 'Ballot history'
+      name: 'IS_KYC_APPROVED'
     },
     [FreeContractCallName.IS_KYC_DENIED]: {
-      name: 'IS_KYC_DENIED',
-      description: 'Ballot history'
+      name: 'IS_KYC_DENIED'
     },
     [FreeContractCallName.WITHDRAW_HISTORY]: {
-      name: 'WITHDRAW_HISTORY',
-      description: 'Ballot history'
+      name: 'WITHDRAW_HISTORY'
     }
   };
 
@@ -237,11 +231,7 @@ class Governance extends Component<Props, State> {
               </p>
             </div>
             <section className="Tab-content GovernanceSection-content">
-              <p className="GovernanceSection-subtitle">
-                {translate('COSTLY_GOVERNANCE_CALL_DESC')}
-              </p>
               {this.buildFunctionOptions(COSTLYFUNCTIONCALLS, stages.COSTLY_CALL_PAGE)}
-              <p className="GovernanceSection-subtitle">{translate('FREE_GOVERNANCE_CALL_DESC')}</p>
               {this.buildFunctionOptions(FREEFUNCTIONCALLS, stages.FREE_CALL_PAGE)}
             </section>
           </TabSection>

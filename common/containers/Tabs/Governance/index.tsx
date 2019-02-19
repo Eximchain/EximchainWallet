@@ -236,8 +236,7 @@ class Governance extends Component<Props, State> {
                 {translate('GENERATE_GOVERNANCE_DESC')}
               </p>
             </div>
-            <section className="SubTabs-contracts" />
-            <section className="Tab-content">
+            <section className="Tab-content GovernanceSection-content">
               <p className="GovernanceSection-subtitle">
                 {translate('COSTLY_GOVERNANCE_CALL_DESC')}
               </p>

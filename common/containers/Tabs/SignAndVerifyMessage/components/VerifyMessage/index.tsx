@@ -53,7 +53,7 @@ export class VerifyMessage extends Component<Props, State> {
           </div>
 
           <button
-            className="VerifyMessage-sign btn btn-primary btn-lg"
+            className="VerifyMessage-sign btn btn-primary "
             onClick={this.handleVerifySignedMessage}
             disabled={false}
           >

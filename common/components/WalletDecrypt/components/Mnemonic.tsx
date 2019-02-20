@@ -78,7 +78,7 @@ class MnemonicDecryptClass extends PureComponent<Props, State> {
             <button
               style={{ width: '100%' }}
               onClick={this.onDWModalOpen}
-              className="btn btn-primary btn-lg"
+              className="btn btn-primary "
               disabled={!isValidMnemonic}
             >
               {translate('MNEMONIC_CHOOSE_ADDR')}

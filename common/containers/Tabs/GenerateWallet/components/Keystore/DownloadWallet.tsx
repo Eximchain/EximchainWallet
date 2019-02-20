@@ -32,7 +32,7 @@ export default class DownloadWallet extends Component<Props, State> {
 
           <a
             role="button"
-            className="DlWallet-download btn btn-primary btn-lg"
+            className="DlWallet-download btn btn-primary "
             aria-label="Download Keystore File (UTC / JSON · Recommended · Encrypted)"
             aria-describedby={translateRaw('X_KEYSTOREDESC')}
             download={filename}

@@ -68,9 +68,9 @@ const WalletSuggestions: React.SFC<WalletSuggestionsProps> = ({ showGenerate }) 
       // icon: HardwareWalletIcon,
       bullets: [
         // translate('WALLET_SUGGESTION_HARDWARE_1'),
-        translate('WALLET_SUGGESTION_HARDWARE_2'),
+        // translate('WALLET_SUGGESTION_HARDWARE_2'),
         // translate('WALLET_SUGGESTION_HARDWARE_3'),
-        translate('WALLET_SUGGESTION_HARDWARE_4')
+        // translate('WALLET_SUGGESTION_HARDWARE_4')
       ],
       links: [
         {
@@ -132,13 +132,13 @@ const WalletSuggestions: React.SFC<WalletSuggestionsProps> = ({ showGenerate }) 
       // icon: FileIcon,
       bullets: [
         // translate('WALLET_SUGGESTION_GENERATE_1'),
-        translate('WALLET_SUGGESTION_GENERATE_2'),
+        // translate('WALLET_SUGGESTION_GENERATE_2'),
         // translate('WALLET_SUGGESTION_GENERATE_3'),
         // translate('WALLET_SUGGESTION_GENERATE_4'),
-        <span key="warning">
-          <i className="fa fa-exclamation-circle is-warning" />
-          {translate('WALLET_SUGGESTION_GENERATE_5')}
-        </span>
+        // <span key="warning">
+        //   <i className="fa fa-exclamation-circle is-warning" />
+        //   {translate('WALLET_SUGGESTION_GENERATE_5')}
+        // </span>
       ],
       links: [
         {
@@ -209,7 +209,7 @@ const WalletSuggestions: React.SFC<WalletSuggestionsProps> = ({ showGenerate }) 
           <div className="WalletTypes-download">
             <NewTabLink
               href="https://github.com/Eximchain/EximchainWallet"
-              className="WalletTypes-download-button btn btn-primary btn-lg"
+              className="WalletTypes-download-button btn btn-primary "
             >
               {translate('WALLET_SUGGESTION_DESKTOP_APP')}
             </NewTabLink>

@@ -58,7 +58,7 @@ class TrezorDecryptClass extends PureComponent<Props, State> {
     return (
       <div className="TrezorDecrypt">
         <button
-          className="TrezorDecrypt-decrypt btn btn-primary btn-lg"
+          className="TrezorDecrypt-decrypt btn btn-primary"
           onClick={this.handleNullConnect}
           disabled={isLoading}
         >

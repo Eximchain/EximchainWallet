@@ -6,7 +6,7 @@
   margin: 0 -$space-md 0 0;
 
   &-content {
-    padding-top: 63px;
+    padding-top: $electron-osx-control-spacing;
   }
   &-topsection {
     position: fixed;
@@ -21,8 +21,9 @@
     margin-right: 0;
     margin-top: 0;
     padding-right: 10px;
+    padding-bottom: 14px;
     margin-bottom: 18px;
-    border-bottom: solid .5px #F0F2F4;
+    border-bottom: solid .5px color(n20);
 
   h2 {
     text-align: left;
@@ -35,10 +36,12 @@
 
   &-subtitle {
     margin: 0 0 1rem;
-    color: color(gray);
+    color: color(n800);
     text-align: left;
-    font-size: 13px;
-    padding-left: 20px;
+    font-size: 16px;
+    // padding-left: 20px;
+    padding-bottom: 10px;
+
     }
 
   }
@@ -54,29 +57,25 @@
     text-align: left;
   }
 
-
-
   &-qr {
     max-width: 15rem;
     margin: 1rem auto;
-    // padding-left: 20px;
-    // padding-right: 20px;
     width: 100%;
     text-align: center;
   }
+
   &-row {
     display: flex;
     justify-content: left;
     flex-wrap: wrap;
-    margin: 0;
-    // margin-bottom: 10px;
+    margin: 0 -0.5rem;
 
     @media screen and (max-width: $screen-xs) {
       margin: 0;
     }
 
     &:last-child {
-      margin: 0;
+      // margin: 0;
     }
   }
 }

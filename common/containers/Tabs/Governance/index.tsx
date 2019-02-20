@@ -230,11 +230,11 @@ class Governance extends Component<Props, State> {
               <h2 className="ContractSection-topsection-title">
                 {translate('GENERATE_GOVERNANCE_TITLE')}
               </h2>
-              <p className="GovernanceSection-topsection-subtitle">
-                {translate('GENERATE_GOVERNANCE_DESC')}
-              </p>
             </div>
             <section className="Tab-content GovernanceSection-content">
+              <h2 className="GovernanceSection-topsection-subtitle">
+                {translate('GENERATE_GOVERNANCE_DESC')}
+              </h2>
               {this.buildFunctionOptions(COSTLYFUNCTIONCALLS, stages.COSTLY_CALL_PAGE)}
               {this.buildFunctionOptions(FREEFUNCTIONCALLS, stages.FREE_CALL_PAGE)}
             </section>

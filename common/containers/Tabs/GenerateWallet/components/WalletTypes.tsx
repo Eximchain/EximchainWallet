@@ -62,7 +62,7 @@ interface WalletSuggestion {
 const WalletSuggestions: React.SFC<WalletSuggestionsProps> = ({ showGenerate }) => {
   const suggestions: WalletSuggestion[] = [
     {
-      name: translate('X_HARDWARE_WALLET'),
+      name: translate('TREZOR_REFERAL'),
       description: translate('ADD_HARDWAREDESC'),
       type: 'hardware',
       // icon: HardwareWalletIcon,
@@ -153,11 +153,11 @@ const WalletSuggestions: React.SFC<WalletSuggestionsProps> = ({ showGenerate }) 
     <React.Fragment>
       <div className="WalletTypes-topsection">
         <h2 className="WalletTypes-topsection-title">{translate('GENERATE_WALLET_TITLE')}</h2>
-        <p className="WalletTypes-topsection-subtitle">
-          {translate('GENERATE_WALLET_SUGGESTIONS')}
-        </p>
       </div>
       <div className="WalletTypes-suggestions">
+        <h2 className="WalletTypes-topsection-subtitle">
+          {translate('GENERATE_WALLET_SUGGESTIONS')}
+        </h2>
         {suggestions.map(sug => (
           <div className={`WalletSuggestion is-${sug.type}`}>
             <h3 className="WalletSuggestion-name">

@@ -42,7 +42,7 @@
     "NAV_ENS": "ENS",
     "NAV_VIEW": "View & Send",
     "NAV_GENERATEWALLET": "Generate a Wallet",
-    "NAV_GENERATEWALLETDESC": "Generate your own private key for free. Choose between a keystore file and seed phrase. This method is less secure and commonly a target for phishing and hacking.",
+    "NAV_GENERATEWALLETDESC": "Generate a free keystore file or seed phrase. These are less secure than hardware wallets and are commonly a target for phishing and hacking.",
     "NAV_GOVERNANCE": "Governance",
     "NAV_GOVERNANCEDESC": "Participate in governance",
     "NAV_HELP": "Help ",

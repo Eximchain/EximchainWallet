@@ -100,7 +100,7 @@ class DeterministicWalletsModalClass extends React.PureComponent<Props, State> {
       },
       {
         text: translate('ACTION_2'),
-        type: 'default',
+        type: 'quiet-neutral',
         onClick: onCancel
       }
     ];
@@ -117,7 +117,6 @@ class DeterministicWalletsModalClass extends React.PureComponent<Props, State> {
             className="DWModal-path form-group-sm flex-wrapper"
             onSubmit={this.handleSubmitCustomPath}
           >
-            <span className="DWModal-path-label" />
             <div className="DWModal-path-select">
               <Select
                 name="fieldDPath"

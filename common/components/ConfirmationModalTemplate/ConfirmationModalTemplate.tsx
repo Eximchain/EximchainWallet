@@ -89,7 +89,7 @@ class ConfirmationModalTemplateClass extends React.Component<Props, State> {
       confirmButton,
       {
         text: translate('ACTION_2'),
-        type: 'default',
+        type: 'quiet-neutral',
         onClick: onClose
       }
     ];

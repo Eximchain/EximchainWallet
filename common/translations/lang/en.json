@@ -27,7 +27,7 @@
     "NEW_ADDRESS": "New address",
     "NEW_LABEL": "New label",
     "X_TXHASH": "TX Hash",
-    "X_PASSWORDDESC": "This password * encrypts * your private key. This does not act as a seed to generate your keys. **You will need this password + your keystore file to unlock your wallet.**",
+    "X_PASSWORDDESC": "This password encrypts your private key. This does not act as a seed phrase to generate your keys. **You will need this password + your keystore file to unlock your wallet.**",
     "NAV_CHECKTXSTATUS": "Check transaction status",
     "NAV_TXSTATUS": "Tx Status",
     "TX_NOTFOUND": "Transaction Not Found",

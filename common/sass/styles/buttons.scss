@@ -183,6 +183,8 @@
 /* Button Colors */
 /*****************/
 
+// $color, $background, $border, $background-hover, $border-hover, $background-active, $border-active
+
 .btn-default {
   @include button-variant(
     color(control-color),
@@ -194,7 +196,18 @@
     color(default-button-bg-active),
   );
 }
-// $color, $background, $border, $background-hover, $border-hover, $background-active, $border-active
+
+.btn-quiet-neutral {
+  @include button-variant(
+    color(control-color),
+    color(control-bg),
+    none,
+    color(n20),
+    none,
+    color(n30),
+    none,
+  );
+}
 
 .btn-primary {
   @include button-variant(

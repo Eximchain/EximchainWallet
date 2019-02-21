@@ -62,7 +62,7 @@ export class AddCustomTokenForm extends React.PureComponent<Props, State> {
         </HelpLink>
         <div className="AddCustom-buttons">
           <button
-            className="AddCustom-buttons-btn btn btn-sm btn-default"
+            className="AddCustom-buttons-btn btn btn-sm btn-quiet-neutral"
             onClick={this.props.toggleForm}
           >
             {translate('ACTION_2')}

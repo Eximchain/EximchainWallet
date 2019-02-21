@@ -123,6 +123,8 @@ $theme-light: (
   n30: $N30,
   n20: $N20,
   n10: $N10,
+  n0: $N0,
+
 
   b90: $B90,
   b80: $B80,
@@ -192,6 +194,7 @@ $theme-light: (
   control-placeholder: $N90,
   control-inset-shadow: rgba($N900, 0.03),
   control-addon-bg: $N20,
+  control-addon-border: $N40,
 
   loader-light: $N0,
   loader-dark: $P70,
@@ -286,6 +289,7 @@ $theme-dark: (
   control-placeholder: rgba(#FFF, 0.3),
   control-inset-shadow: rgba(#FFF, 0.03),
   control-addon-bg: $N700,
+  control-addon-border: $N700,
 
   loader-light: #fff,
   loader-dark: #fff,

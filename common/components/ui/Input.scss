@@ -50,11 +50,13 @@
 
   &-header {
     display: flex;
-    font-size: 1rem;
+    font-size: $font-size-xs-bump;
     margin-bottom: 8px;
     font-weight: 400;
     align-items: center;
     flex-wrap: wrap;
+    color: color(gray);
+    text-transform: capitalize;
 
     > *:first-child {
       margin-right: 8px;

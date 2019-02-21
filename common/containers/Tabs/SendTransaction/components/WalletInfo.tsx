@@ -106,11 +106,11 @@ class WalletInfo extends React.PureComponent<Props, State> {
                 <div className="col-xs-6">
                   <label>{translate('WALLET_INFO_UTILITIES')}</label>
 
-                  <button className="btn btn-info btn-block" onClick={this.openPaperWalletModal}>
+                  <button className="btn btn-primary btn-block" onClick={this.openPaperWalletModal}>
                     {translate('X_SAVE_PAPER')}
                   </button>
 
-                  <button className="btn btn-info btn-block" onClick={this.openKeystoreModal}>
+                  <button className="btn btn-primary btn-block" onClick={this.openKeystoreModal}>
                     {translate('GENERATE_KEYSTORE_TITLE')}
                   </button>
                 </div>

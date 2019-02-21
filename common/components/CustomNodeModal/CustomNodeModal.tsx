@@ -101,7 +101,7 @@ class CustomNodeModal extends React.Component<Props, State> {
         disabled: !!Object.keys(invalids).length
       },
       {
-        type: 'default',
+        type: 'quiet-neutral',
         text: translate('ACTION_2'),
         onClick: handleClose
       }

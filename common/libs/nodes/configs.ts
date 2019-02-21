@@ -17,19 +17,19 @@ export const NODE_CONFIGS: { [key in StaticNetworkIds]: RawNodeConfig[] } = {
       name: makeNodeName('ETH', 'transactionexc1'),
       type: 'rpc',
       service: 'Europe',
-      url: 'http://ec2-3-80-165-200.compute-1.amazonaws.com:8080'
+      url: 'https://tx-executor-us-east.eximchain.com '
     },
     {
       name: makeNodeName('ETH', 'transactionexc2'),
       type: 'rpc',
       service: 'Korea',
-      url: 'http://ec2-34-219-140-122.us-west-2.compute.amazonaws.com:8080'
+      url: 'https://tx-executor-us-west.eximchain.com'
     },
     {
       name: makeNodeName('ETH', 'transactionexc3'),
       type: 'rpc',
       service: 'Singapore',
-      url: 'http://ec2-54-255-248-144.ap-southeast-1.compute.amazonaws.com:8080'
+      url: 'https://tx-executor-singapore.eximchain.com'
     }
   ]
 };

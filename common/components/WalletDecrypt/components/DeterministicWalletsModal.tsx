@@ -117,7 +117,7 @@ class DeterministicWalletsModalClass extends React.PureComponent<Props, State> {
             className="DWModal-path form-group-sm flex-wrapper"
             onSubmit={this.handleSubmitCustomPath}
           >
-            <span className="DWModal-path-label">{translate('DECRYPT_DROPDOWN_LABEL')} </span>
+            <span className="DWModal-path-label" />
             <div className="DWModal-path-select">
               <Select
                 name="fieldDPath"
@@ -151,15 +151,15 @@ class DeterministicWalletsModalClass extends React.PureComponent<Props, State> {
           </form>
 
           <div className="DWModal-addresses">
-            <table className="DWModal-addresses-table table table-striped table-hover">
+            <table className="DWModal-addresses-table table table-lines table-hover">
               <thead>
                 <tr>
-                  <td>#</td>
-                  <td>Address</td>
-                  <td>{network.unit}</td>
+                  <td className="table-heading">#</td>
+                  <td className="table-heading">Address</td>
+                  <td className="table-heading">{network.unit}</td>
                   <td>
                     <select
-                      className="DWModal-addresses-table-token"
+                      className="DWModal-addresses-table-token table-heading"
                       value={desiredToken}
                       onChange={this.handleChangeToken}
                     >

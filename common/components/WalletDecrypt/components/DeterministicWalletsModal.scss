@@ -2,6 +2,12 @@
 @import 'common/sass/mixins';
 
 .DWModal {
+  //
+  // .table-lines > tbody > tr:nth-of-type(odd) {
+  //   border-bottom: solid .5px color(n40);
+  //   border-top: solid .5px color(n40);
+  // }
+
   &-path {
     margin-bottom: 20px;
 
@@ -43,22 +49,36 @@
     overflow-y: auto;
     &-table {
       width: 732px;
-      text-align: center;
+      text-align: left;
       margin: auto;
       margin-bottom: 10px;
+      font-feature-settings: 'tnum' 1;
+
+
+      .table-heading {
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+        font-size: $font-size-small;
+        color: color(gray);
+      }
+
 
       &-token {
         width: 82px;
         background: color(control-bg);
         color: control(control-color);
+        border-color: color(n40);
       }
 
       &-address {
-        font-size: 13px;
+        font-size: $font-size-base;
         text-align: left;
         font-family: $font-family-monospace;
         display: flex;
         align-items: center;
+        font-feature-settings: 'ss02' 1;
+
+
 
         &-label {
           font-weight: bold;
@@ -81,8 +101,8 @@
       }
 
       &-na {
-        font-size: $font-size-xs;
-        opacity: 0.3;
+        font-size: $font-size-base;
+        opacity: 0.2;
       }
 
       // Specific selectors to override bootstrap

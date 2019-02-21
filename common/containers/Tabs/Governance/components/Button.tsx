@@ -44,7 +44,7 @@ export class Button extends React.PureComponent<Props> {
       isDisabled,
       disableReason
     } = this.props;
-    console.log(icon, 'asdfasdfsad');
+
     const icons: Icon[] = [];
     if (helpLink) {
       icons.push({

@@ -87,10 +87,7 @@ class InteractExplorerClass extends Component<Props, State> {
   public render() {
     const { inputs, outputs, selectedFunction } = this.state;
     const contractFunctionsOptions = this.contractOptions();
-    console.log(contractFunctionsOptions);
-    console.log(selectedFunction);
     const { to } = this.props;
-    console.log(this.props.currentCall);
     const generateOrWriteButton = this.props.dataExists ? (
       <GenerateTransaction />
     ) : (

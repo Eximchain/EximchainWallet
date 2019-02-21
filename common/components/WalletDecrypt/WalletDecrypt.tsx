@@ -300,15 +300,6 @@ const WalletDecrypt = withRouter<Props>(
 
       return (
         <div className="WalletDecrypt-wallets">
-          <div className="WalletDecrypt-wallets-topsection">
-            <h2 className="WalletDecrypt-wallets-topsection-title">
-              {translate('DECRYPT_ACCESS')}
-            </h2>
-            <p className="WalletDecrypt-wallets-topsection-description">
-              {translate('WALLETDECRYPT_DESCRIPTION')}
-            </p>
-          </div>
-
           <div className="WalletDecrypt-wallets-row">
             {HARDWARE_WALLETS.map((walletType: SecureWalletName) => {
               const wallet = this.WALLETS[walletType];

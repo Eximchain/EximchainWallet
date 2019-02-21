@@ -20,7 +20,6 @@ const FinalSteps: React.SFC<Props> = ({ walletType }) => {
   //   image: process.env.BUILD_ELECTRON ? TabAppImage : TabWebImage
   // }
   // ];
-  console.log(walletType);
   // if (walletType === WalletType.Keystore) {
   //   steps.push({
   //     name: translate('CREATE_FINAL_STEP_3'),

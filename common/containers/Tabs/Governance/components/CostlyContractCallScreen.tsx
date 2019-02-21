@@ -87,7 +87,6 @@ export class ContractCallClass extends Component<Props> {
   render() {
     const { inputs, outputs } = this.state;
     const selectedFunction = this.props.selectedFunction;
-    console.log(selectedFunction, 'asdfsasdfasdfas');
     const generateOrWriteButton = this.props.dataExists ? (
       <GenerateTransaction />
     ) : (
@@ -107,32 +106,37 @@ export class ContractCallClass extends Component<Props> {
             const parsedName = name === '' ? index : name;
             const inputState = this.state.inputs[parsedName];
             return (
-              <div key={parsedName}>
-                {type === 'bool' ? (
-                  <Dropdown
-                    options={[{ value: false, label: 'false' }, { value: true, label: 'true' }]}
-                    value={
-                      inputState
-                        ? {
-                            label: inputState.rawData,
-                            value: inputState.parsedData as any
-                          }
-                        : undefined
-                    }
-                    clearable={false}
-                    onChange={({ value }: { value: boolean }) => {
-                      this.handleBooleanDropdownChange({ value, name: parsedName });
-                    }}
-                  />
-                ) : (
-                  <Input
-                    className="InteractExplorer-func-in-input"
-                    isValid={!!(inputs[parsedName] && inputs[parsedName].rawData)}
-                    name={parsedName}
-                    value={(inputs[parsedName] && inputs[parsedName].rawData) || ''}
-                    onChange={this.handleInputChange}
-                  />
-                )}
+              <div key={parsedName} className="input-group-wrapper">
+                <label className="input-group">
+                  <div className="input-group-header">
+                    {(parsedName === index ? `Input#${parsedName}` : parsedName) + ' ' + type}
+                  </div>
+                  {type === 'bool' ? (
+                    <Dropdown
+                      options={[{ value: false, label: 'false' }, { value: true, label: 'true' }]}
+                      value={
+                        inputState
+                          ? {
+                              label: inputState.rawData,
+                              value: inputState.parsedData as any
+                            }
+                          : undefined
+                      }
+                      clearable={false}
+                      onChange={({ value }: { value: boolean }) => {
+                        this.handleBooleanDropdownChange({ value, name: parsedName });
+                      }}
+                    />
+                  ) : (
+                    <Input
+                      className="InteractExplorer-func-in-input"
+                      isValid={!!(inputs[parsedName] && inputs[parsedName].rawData)}
+                      name={parsedName}
+                      value={(inputs[parsedName] && inputs[parsedName].rawData) || ''}
+                      onChange={this.handleInputChange}
+                    />
+                  )}
+                </label>
               </div>
             );
           })}
@@ -145,13 +149,16 @@ export class ContractCallClass extends Component<Props> {
               ? bufferToHex(rawFieldValue)
               : rawFieldValue;
             return (
-              <div key={parsedName}>
-                <Input
-                  className="InteractExplorer-func-out-input"
-                  isValid={!!decodedFieldValue}
-                  value={decodedFieldValue}
-                  disabled={true}
-                />
+              <div key={parsedName} className="input-group-wrapper InteractExplorer-func-out">
+                <label className="input-group">
+                  <div className="input-group-header"> ↳ {name + ' ' + type}</div>
+                  <Input
+                    className="InteractExplorer-func-out-input"
+                    isValid={!!decodedFieldValue}
+                    value={decodedFieldValue}
+                    disabled={true}
+                  />
+                </label>
               </div>
             );
           })}
@@ -182,7 +189,6 @@ export class ContractCallClass extends Component<Props> {
       }
       const callData = { to: to.raw, data };
       const results = await nodeLib.sendCallRequest(callData);
-      console.log(callData);
       const parsedResult = selectedFunction!.contract.decodeOutput(results);
       this.setState({ outputs: parsedResult });
     } catch (e) {

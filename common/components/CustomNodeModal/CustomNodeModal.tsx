@@ -112,7 +112,6 @@ class CustomNodeModal extends React.Component<Props, State> {
       network === CUSTOM.value && this.getChainIdCollisionNetwork(customNetworkChainId);
 
     const staticNetwrks = Object.keys(staticNetworks).map(net => {
-      console.log(net);
       let labelnet;
       if (net === 'ETH') {
         labelnet = 'EXC';

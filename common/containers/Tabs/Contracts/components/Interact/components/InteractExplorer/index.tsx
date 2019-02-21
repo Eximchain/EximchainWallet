@@ -84,7 +84,6 @@ class InteractExplorerClass extends Component<Props, State> {
   public render() {
     const { inputs, outputs, selectedFunction } = this.state;
     const contractFunctionsOptions = this.contractOptions();
-    console.log(selectedFunction);
     const { to } = this.props;
 
     const generateOrWriteButton = this.props.dataExists ? (
@@ -235,7 +234,6 @@ class InteractExplorerClass extends Component<Props, State> {
 
       const callData = { to: to.raw, data };
       const results = await nodeLib.sendCallRequest(callData);
-      console.log(callData);
 
       const parsedResult = selectedFunction!.contract.decodeOutput(results);
 

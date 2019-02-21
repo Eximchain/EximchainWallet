@@ -106,14 +106,13 @@ const mapStateToProps = (state: AppState) => ({
 class Governance extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
-    console.log(this.props.contracts);
+
     const contractNumber = this.props.contracts.length;
     var i = 0;
     for (i; i < contractNumber; i++) {
       var currentInstance = this.props.contracts[i];
       if (currentInstance.name === 'Weyl Governance') {
         if (currentInstance.address === '0x000000000000000000000000000000000000002a') {
-          console.log(currentInstance.address);
           this.props.setCurrentTo(currentInstance.address || '');
           break;
         }
@@ -128,16 +127,12 @@ class Governance extends Component<Props, State> {
       currentCall: null,
       currentContract: x
     };
-    console.log(this.state.currentContract);
 
     const currentContract = this.state.currentContract;
-    console.log(currentContract);
     const contractFunctions = Contract.getFunctions(currentContract);
     const contractOptions = this.contractOptions(contractFunctions);
 
     const formattedContract = this.formatOptions(contractOptions);
-    console.log(contractOptions, 'contractOptions');
-    console.log(formattedContract, 'formattedContract');
 
     this.goTo = this.goTo.bind(this);
     this.goBack = this.goBack.bind(this);
@@ -167,7 +162,6 @@ class Governance extends Component<Props, State> {
 
   private contractOptionsMap() {
     const currentContract = this.state.currentContract;
-    console.log(currentContract);
     const contractFunctions = Contract.getFunctions(currentContract);
     const contractOptions = this.contractOptions(contractFunctions);
     var contractOptionsMap: { [name: string]: any } = {};
@@ -275,6 +269,11 @@ class Governance extends Component<Props, State> {
       return newState;
     });
   }
+  public componentDidUpdate(prevProps, prevStates) {
+    if (prevStates.stage !== GovernanceFlowStages.START_PAGE) {
+      this.goBack();
+    }
+  }
 
   private contractOptions = (contractFunctions: any) => {
     const transformedContractFunction: ContractOption[] = Object.keys(contractFunctions).map(
@@ -293,40 +292,46 @@ class Governance extends Component<Props, State> {
     const currentContract = this.state.currentContract;
     const contractFunctions = Contract.getFunctions(currentContract);
     let stages = GovernanceFlowStages;
-    console.log(this.state.currentCall);
+    var body;
     switch (this.state.stage) {
       case GovernanceFlowStages.START_PAGE:
-        return (
-          <TabSection isUnavailableOffline={true}>
-            <div className="GovernanceSection-topsection">
-              <h2 className="ContractSection-topsection-title">
-                {translate('GENERATE_GOVERNANCE_TITLE')}
-              </h2>
-            </div>
-            <section className="Tab-content GovernanceSection-content">
-              <h2 className="GovernanceSection-topsection-subtitle">
-                {translate('GENERATE_GOVERNANCE_DESC')}
-              </h2>
-              {this.buildFunctionOptions(COSTLYFUNCTIONCALLS, stages.COSTLY_CALL_PAGE)}
-              {this.buildFunctionOptions(FREEFUNCTIONCALLS, stages.FREE_CALL_PAGE)}
-            </section>
-          </TabSection>
+        body = (
+          <section className="Tab-content GovernanceSection-content">
+            <h2 className="GovernanceSection-topsection-subtitle">
+              {translate('GENERATE_GOVERNANCE_DESC')}
+            </h2>
+            {this.buildFunctionOptions(COSTLYFUNCTIONCALLS, stages.COSTLY_CALL_PAGE)}
+            {this.buildFunctionOptions(FREEFUNCTIONCALLS, stages.FREE_CALL_PAGE)}
+          </section>
         );
+        break;
       case GovernanceFlowStages.FREE_CALL_PAGE:
-        return (
+        body = (
           <FreeContractCallScreen goBack={this.goBack} contractFxnName={this.state.chosenCall} />
         );
+        break;
       case GovernanceFlowStages.COSTLY_CALL_PAGE:
-        return (
-          <TabSection isUnavailableOffline={true}>
+        body = (
+          <section className="Tab-content GovernanceSection-content">
             <CostlyContractCallScreen
               selectedFunction={this.state.currentCall}
               goBack={this.goBack}
               contractFxnName={this.state.chosenCall}
             />
-          </TabSection>
+          </section>
         );
+        break;
     }
+    return (
+      <TabSection isUnavailableOffline={true}>
+        <div className="GovernanceSection-topsection">
+          <h2 className="ContractSection-topsection-title">
+            {translate('GENERATE_GOVERNANCE_TITLE')}
+          </h2>
+        </div>
+        {body}
+      </TabSection>
+    );
   }
 }
 

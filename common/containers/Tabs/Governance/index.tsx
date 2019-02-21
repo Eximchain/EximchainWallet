@@ -185,19 +185,19 @@ class Governance extends Component<Props, State> {
   public CONTRACTCALLS: ContractCall = {
     [CostlyContractCallName.VOTE]: {
       name: 'VOTE',
-      description: 'Vote or nominate an address',
+      description: 'Requires EXC',
       icon: VoteOrNominateIcon,
       contractcall: 'vote'
     },
     [CostlyContractCallName.CLAIM]: {
       name: 'CLAIM',
-      description: 'Claim your tokens',
+      description: 'Requires EXC',
       icon: ClaimTokensIcon,
       contractcall: 'startWithdraw'
     },
     [CostlyContractCallName.COLLECT]: {
       name: 'COLLECT',
-      description: 'Collect your tokens',
+      description: 'Requires EXC',
       icon: CollectTokensIcon,
       contractcall: 'finalizeWithdraw'
     },

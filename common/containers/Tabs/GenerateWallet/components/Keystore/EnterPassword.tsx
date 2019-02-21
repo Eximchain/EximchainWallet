@@ -75,7 +75,7 @@ export default class EnterPassword extends Component<Props, State> {
             </label>
           </div>
 
-          <button disabled={!canSubmit} className="EnterPw-submit btn btn-primary btn-lg btn-block">
+          <button disabled={!canSubmit} className="EnterPw-submit btn btn-primary  btn-block">
             {isGenerating ? <Spinner light={true} /> : translate('NAV_GENERATEWALLET')}
           </button>
 

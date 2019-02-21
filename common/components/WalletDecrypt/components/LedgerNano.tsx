@@ -79,7 +79,7 @@ class LedgerNanoSDecryptClass extends PureComponent<Props, State> {
         </div>
 
         <button
-          className="LedgerDecrypt-decrypt btn btn-primary btn-lg"
+          className="LedgerDecrypt-decrypt btn btn-primary "
           onClick={this.handleNullConnect}
           disabled={isLoading}
         >

@@ -12,6 +12,9 @@ import translate, { translateRaw } from 'translations';
 import TabSection from 'containers/TabSection';
 import FreeContractCallScreen from './components/FreeContractCallScreen';
 import { configSelectors } from 'features/config';
+import VoteOrNominateIcon from 'assets/images/vote-or-nominate.svg';
+import CollectTokensIcon from 'assets/images/collect-tokens.svg';
+import ClaimTokensIcon from 'assets/images/claim-tokens.svg';
 
 import './index.scss';
 import { Button } from './components/Button';
@@ -78,6 +81,7 @@ export interface State {
 
 interface ContractOption {
   name: string;
+  icon?: string;
   value: string;
 }
 
@@ -182,66 +186,59 @@ class Governance extends Component<Props, State> {
     [CostlyContractCallName.VOTE]: {
       name: 'VOTE',
       description: 'Vote or nominate an address',
+      icon: VoteOrNominateIcon,
       contractcall: 'vote'
     },
     [CostlyContractCallName.CLAIM]: {
       name: 'CLAIM',
       description: 'Claim your tokens',
+      icon: ClaimTokensIcon,
       contractcall: 'startWithdraw'
     },
     [CostlyContractCallName.COLLECT]: {
       name: 'COLLECT',
       description: 'Collect your tokens',
+      icon: CollectTokensIcon,
       contractcall: 'finalizeWithdraw'
     },
     [FreeContractCallName.BALLOT_HISTORY]: {
       name: 'BALLOT_HISTORY',
-      description: 'Ballot history',
       contractcall: 'ballotHistory'
     },
     [FreeContractCallName.CURRENT_GOVERNANCE_CYCLE]: {
       name: 'CURRENT_GOVERNANCE_CYCLE',
-      description: 'Ballot history',
       contractcall: 'currentGovernanceCycle'
     },
     [FreeContractCallName.WITHDRAW_RECORDS]: {
       name: 'WITHDRAW_RECORDS',
-      description: 'Ballot history',
       contractcall: 'withdrawRecords'
     },
     [FreeContractCallName.BALLOT_RECORDS]: {
       name: 'BALLOT_RECORDS',
-      description: 'Ballot history',
       contractcall: 'ballotHistory'
     },
     [FreeContractCallName.GOVERNANCE_CYCLE_RECORDS]: {
       name: 'GOVERNANCE_CYCLE_RECORDS',
-      description: 'Ballot history',
       contractcall: 'governanceCycleRecords'
     },
     [FreeContractCallName.NOMINEE_BALLOTS]: {
       name: 'NOMINEE_BALLOTS',
-      description: 'Ballot history',
       contractcall: 'nomineeBallots'
     },
     [FreeContractCallName.CAN_GOVERN]: {
       name: 'CAN_GOVERN',
-      description: 'Ballot history',
       contractcall: 'canGovern'
     },
     [FreeContractCallName.IS_KYC_APPROVED]: {
       name: 'IS_KYC_APPROVED',
-      description: 'Ballot history',
       contractcall: 'isKYCApproved'
     },
     [FreeContractCallName.IS_KYC_DENIED]: {
       name: 'IS_KYC_DENIED',
-      description: 'Ballot history',
       contractcall: 'isKYCDenied'
     },
     [FreeContractCallName.WITHDRAW_HISTORY]: {
       name: 'WITHDRAW_HISTORY',
-      description: 'Ballot history',
       contractcall: 'withdraw_history'
     }
   };
@@ -258,6 +255,7 @@ class Governance extends Component<Props, State> {
             <Button
               key={contractCall}
               name={translateRaw(call.name)}
+              icon={call.icon}
               onClick={() => this.goTo(stateTransition, contractCall)}
               description={translateRaw(call.description)}
             />
@@ -304,16 +302,12 @@ class Governance extends Component<Props, State> {
               <h2 className="ContractSection-topsection-title">
                 {translate('GENERATE_GOVERNANCE_TITLE')}
               </h2>
-              <p className="GovernanceSection-topsection-subtitle">
-                {translate('GENERATE_GOVERNANCE_DESC')}
-              </p>
             </div>
             <section className="Tab-content GovernanceSection-content">
-              <p className="GovernanceSection-subtitle">
-                {translate('COSTLY_GOVERNANCE_CALL_DESC')}
-              </p>
+              <h2 className="GovernanceSection-topsection-subtitle">
+                {translate('GENERATE_GOVERNANCE_DESC')}
+              </h2>
               {this.buildFunctionOptions(COSTLYFUNCTIONCALLS, stages.COSTLY_CALL_PAGE)}
-              <p className="GovernanceSection-subtitle">{translate('FREE_GOVERNANCE_CALL_DESC')}</p>
               {this.buildFunctionOptions(FREEFUNCTIONCALLS, stages.FREE_CALL_PAGE)}
             </section>
           </TabSection>

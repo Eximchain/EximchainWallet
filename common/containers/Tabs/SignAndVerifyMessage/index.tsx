@@ -53,7 +53,9 @@ export default class SignAndVerifyMessage extends Component<RouteComponentProps<
               render={() => <Redirect from={`${currentPath}`} to={`${currentPath}/sign`} />}
             />
             <Route exact={true} path={`${currentPath}/sign`} component={SignMessage} />
-            <Route exact={true} path={`${currentPath}/verify`} component={VerifyMessage} />
+            <div className="InteractForm">
+              <Route exact={true} path={`${currentPath}/verify`} component={VerifyMessage} />
+            </div>
             <RouteNotFound />
           </Switch>
         </section>

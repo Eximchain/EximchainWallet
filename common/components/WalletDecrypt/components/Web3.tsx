@@ -11,7 +11,7 @@ interface Props {
 export const Web3Decrypt: React.SFC<Props> = ({ onUnlock }) => (
   <div className="Web3Decrypt">
     <div>
-      <button className="Web3Decrypt-decrypt btn btn-primary btn-lg btn-block" onClick={onUnlock}>
+      <button className="Web3Decrypt-decrypt btn btn-primary  btn-block" onClick={onUnlock}>
         {translate('ADD_METAMASK')}
       </button>
     </div>

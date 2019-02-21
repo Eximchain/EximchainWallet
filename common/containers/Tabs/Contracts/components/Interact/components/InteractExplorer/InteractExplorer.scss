@@ -1,6 +1,7 @@
 @import 'common/sass/variables';
 
 .InteractExplorer {
+  padding-top: 20px;
   &-title {
     &-address {
       margin-left: 6px;
@@ -22,7 +23,7 @@
     }
 
     &-in {
-      margin-right: 2rem;
+      margin-right: 0;
     }
 
     &-out {

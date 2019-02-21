@@ -42,7 +42,7 @@ export default class PrintableWallet extends React.Component<Props, State> {
         <a
           role="button"
           href={paperWalletImage}
-          className={`btn btn-lg btn-primary btn-block ${disabled}`}
+          className={`btn  btn-primary btn-block ${disabled}`}
           style={{ margin: '10px auto 0', maxWidth: '260px' }}
           download={`paper-wallet-0x${address.substr(0, 6)}`}
         >

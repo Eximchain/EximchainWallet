@@ -57,7 +57,7 @@ const FinalSteps: React.SFC<Props> = ({ walletType }) => {
         ))} */}
       </div>
       <div className="FinalSteps-buttons">
-        <Link to="/account" className="FinalSteps-buttons-btn btn btn-primary btn-lg">
+        <Link to="/account" className="FinalSteps-buttons-btn btn btn-primary ">
           {translate('GO_TO_ACCOUNT')}
         </Link>
       </div>

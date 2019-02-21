@@ -62,15 +62,15 @@ interface WalletSuggestion {
 const WalletSuggestions: React.SFC<WalletSuggestionsProps> = ({ showGenerate }) => {
   const suggestions: WalletSuggestion[] = [
     {
-      name: translate('X_HARDWARE_WALLET'),
+      name: translate('TREZOR_REFERAL'),
       description: translate('ADD_HARDWAREDESC'),
       type: 'hardware',
       // icon: HardwareWalletIcon,
       bullets: [
         // translate('WALLET_SUGGESTION_HARDWARE_1'),
-        translate('WALLET_SUGGESTION_HARDWARE_2'),
+        // translate('WALLET_SUGGESTION_HARDWARE_2'),
         // translate('WALLET_SUGGESTION_HARDWARE_3'),
-        translate('WALLET_SUGGESTION_HARDWARE_4')
+        // translate('WALLET_SUGGESTION_HARDWARE_4')
       ],
       links: [
         {
@@ -132,13 +132,13 @@ const WalletSuggestions: React.SFC<WalletSuggestionsProps> = ({ showGenerate }) 
       // icon: FileIcon,
       bullets: [
         // translate('WALLET_SUGGESTION_GENERATE_1'),
-        translate('WALLET_SUGGESTION_GENERATE_2'),
+        // translate('WALLET_SUGGESTION_GENERATE_2'),
         // translate('WALLET_SUGGESTION_GENERATE_3'),
         // translate('WALLET_SUGGESTION_GENERATE_4'),
-        <span key="warning">
-          <i className="fa fa-exclamation-circle is-warning" />
-          {translate('WALLET_SUGGESTION_GENERATE_5')}
-        </span>
+        // <span key="warning">
+        //   <i className="fa fa-exclamation-circle is-warning" />
+        //   {translate('WALLET_SUGGESTION_GENERATE_5')}
+        // </span>
       ],
       links: [
         {
@@ -153,11 +153,11 @@ const WalletSuggestions: React.SFC<WalletSuggestionsProps> = ({ showGenerate }) 
     <React.Fragment>
       <div className="WalletTypes-topsection">
         <h2 className="WalletTypes-topsection-title">{translate('GENERATE_WALLET_TITLE')}</h2>
-        <p className="WalletTypes-topsection-subtitle">
-          {translate('GENERATE_WALLET_SUGGESTIONS')}
-        </p>
       </div>
       <div className="WalletTypes-suggestions">
+        <h2 className="WalletTypes-topsection-subtitle">
+          {translate('GENERATE_WALLET_SUGGESTIONS')}
+        </h2>
         {suggestions.map(sug => (
           <div className={`WalletSuggestion is-${sug.type}`}>
             <h3 className="WalletSuggestion-name">
@@ -209,7 +209,7 @@ const WalletSuggestions: React.SFC<WalletSuggestionsProps> = ({ showGenerate }) 
           <div className="WalletTypes-download">
             <NewTabLink
               href="https://github.com/Eximchain/EximchainWallet"
-              className="WalletTypes-download-button btn btn-primary btn-lg"
+              className="WalletTypes-download-button btn btn-primary "
             >
               {translate('WALLET_SUGGESTION_DESKTOP_APP')}
             </NewTabLink>

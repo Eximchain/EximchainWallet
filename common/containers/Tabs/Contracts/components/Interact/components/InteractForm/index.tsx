@@ -164,7 +164,6 @@ class InteractForm extends Component<Props, State> {
             </CodeBlock>
           )}
         </label>
-
         <button
           className="InteractForm-submit btn btn-primary"
           disabled={!showContractAccessButton}

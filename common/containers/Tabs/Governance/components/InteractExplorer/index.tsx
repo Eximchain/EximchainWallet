@@ -18,6 +18,7 @@ import { GenerateTransaction } from 'components/GenerateTransaction';
 import { Input, Dropdown } from 'components/ui';
 import { Fields } from './components';
 import './InteractExplorer.scss';
+import { ContractFuncNames } from '../../';
 
 interface StateProps {
   nodeLib: INode;
@@ -35,6 +36,8 @@ interface DispatchProps {
 
 interface OwnProps {
   contractFunctions: any;
+  currentCall: ContractFuncNames;
+  selectedCall: ContractOption;
 }
 
 type Props = StateProps & DispatchProps & OwnProps;
@@ -84,9 +87,10 @@ class InteractExplorerClass extends Component<Props, State> {
   public render() {
     const { inputs, outputs, selectedFunction } = this.state;
     const contractFunctionsOptions = this.contractOptions();
-
+    console.log(contractFunctionsOptions);
+    console.log(selectedFunction);
     const { to } = this.props;
-    console.log('asdfasdfas', to);
+    console.log(this.props.currentCall);
     const generateOrWriteButton = this.props.dataExists ? (
       <GenerateTransaction />
     ) : (
@@ -227,7 +231,7 @@ class InteractExplorerClass extends Component<Props, State> {
     try {
       const data = this.encodeData();
       const { nodeLib, to } = this.props;
-      const { selectedFunction } = this.state;
+      const { selectedFunction } = this.props.selectedFunction;
 
       if (!to.value) {
         throw Error();
@@ -270,7 +274,8 @@ class InteractExplorerClass extends Component<Props, State> {
   };
 
   private encodeData(): string {
-    const { selectedFunction, inputs } = this.state;
+    const { inputs } = this.state;
+    const selectedFunction = this.props.selectedFunction;
     const parsedInputs = Object.keys(inputs).reduce(
       (accu, key) => ({ ...accu, [key]: inputs[key].parsedData }),
       {}

@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import { Switch, Route, Redirect, RouteComponentProps } from 'react-router';
 import * as selectors from 'features/selectors';
 import { setCurrentTo, TSetCurrentTo } from 'features/transaction/actions';
-
+import { Option } from 'react-select';
 import { AppState } from 'features/reducers';
 import { notificationsActions } from 'features/notifications';
 import { InteractExplorer } from './components/InteractExplorer';
-
 import { connect } from 'react-redux';
 import Contract from 'libs/contracts';
 import translate, { translateRaw } from 'translations';
@@ -16,6 +15,8 @@ import { configSelectors } from 'features/config';
 
 import './index.scss';
 import { Button } from './components/Button';
+import { select } from 'redux-saga/effects';
+import { CostlyContractCallScreen } from './components/CostlyContractCallScreen';
 //TODO: move these functioncall stuff into a separate component
 
 //add all functioncall names here.
@@ -46,6 +47,7 @@ export interface ContractCallDesc {
   name: string;
   icon?: string;
   description: string;
+  contractcall: string;
   example?: string;
 }
 
@@ -70,7 +72,8 @@ export enum GovernanceFlowStages {
 export interface State {
   stage: GovernanceFlowStages;
   chosenCall: ContractFuncNames | null;
-  currentContract?: Contract;
+  currentContract: Contract;
+  currentCall: null | ContractOption;
 }
 
 interface ContractOption {
@@ -118,19 +121,56 @@ class Governance extends Component<Props, State> {
       stage: GovernanceFlowStages.START_PAGE,
       chosenCall: null,
       // @ts-ignore
+      currentCall: null,
       currentContract: x
     };
+    console.log(this.state.currentContract);
+
+    const currentContract = this.state.currentContract;
+    console.log(currentContract);
+    const contractFunctions = Contract.getFunctions(currentContract);
+    const contractOptions = this.contractOptions(contractFunctions);
+
+    const formattedContract = this.formatOptions(contractOptions);
+    console.log(contractOptions, 'contractOptions');
+    console.log(formattedContract, 'formattedContract');
 
     this.goTo = this.goTo.bind(this);
     this.goBack = this.goBack.bind(this);
   }
-  goTo(stage: GovernanceFlowStages, declaredCall: ContractFuncNames | null) {
+
+  public formatOptions = (options: Option[]) => {
+    if (typeof options[0] === 'object') {
+      return options;
+    }
+    const formatted = options.map(opt => {
+      return { value: opt, label: opt };
+    });
+    return formatted;
+  };
+
+  goTo(stage: GovernanceFlowStages, declaredCall: ContractFuncNames) {
     this.setState((state: State) => {
       let newState = Object.assign({}, state);
       newState.stage = stage;
       newState.chosenCall = declaredCall;
+      newState.currentCall = this.contractOptionsMap()[
+        this.CONTRACTCALLS[declaredCall].contractcall
+      ];
       return newState;
     });
+  }
+
+  private contractOptionsMap() {
+    const currentContract = this.state.currentContract;
+    console.log(currentContract);
+    const contractFunctions = Contract.getFunctions(currentContract);
+    const contractOptions = this.contractOptions(contractFunctions);
+    var contractOptionsMap: { [name: string]: any } = {};
+    contractOptions.map(value => {
+      contractOptionsMap[value.name] = value;
+    });
+    return contractOptionsMap as any;
   }
 
   public accessContract(contractAbi: string) {
@@ -141,55 +181,68 @@ class Governance extends Component<Props, State> {
   public CONTRACTCALLS: ContractCall = {
     [CostlyContractCallName.VOTE]: {
       name: 'VOTE',
-      description: 'Vote or nominate an address'
+      description: 'Vote or nominate an address',
+      contractcall: 'vote'
     },
     [CostlyContractCallName.CLAIM]: {
       name: 'CLAIM',
-      description: 'Claim your tokens'
+      description: 'Claim your tokens',
+      contractcall: 'startWithdraw'
     },
     [CostlyContractCallName.COLLECT]: {
       name: 'COLLECT',
-      description: 'Collect your tokens'
+      description: 'Collect your tokens',
+      contractcall: 'finalizeWithdraw'
     },
     [FreeContractCallName.BALLOT_HISTORY]: {
       name: 'BALLOT_HISTORY',
-      description: 'Ballot history'
+      description: 'Ballot history',
+      contractcall: 'ballotHistory'
     },
     [FreeContractCallName.CURRENT_GOVERNANCE_CYCLE]: {
       name: 'CURRENT_GOVERNANCE_CYCLE',
-      description: 'Ballot history'
+      description: 'Ballot history',
+      contractcall: 'currentGovernanceCycle'
     },
     [FreeContractCallName.WITHDRAW_RECORDS]: {
       name: 'WITHDRAW_RECORDS',
-      description: 'Ballot history'
+      description: 'Ballot history',
+      contractcall: 'withdrawRecords'
     },
     [FreeContractCallName.BALLOT_RECORDS]: {
       name: 'BALLOT_RECORDS',
-      description: 'Ballot history'
+      description: 'Ballot history',
+      contractcall: 'ballotHistory'
     },
     [FreeContractCallName.GOVERNANCE_CYCLE_RECORDS]: {
       name: 'GOVERNANCE_CYCLE_RECORDS',
-      description: 'Ballot history'
+      description: 'Ballot history',
+      contractcall: 'governanceCycleRecords'
     },
     [FreeContractCallName.NOMINEE_BALLOTS]: {
       name: 'NOMINEE_BALLOTS',
-      description: 'Ballot history'
+      description: 'Ballot history',
+      contractcall: 'nomineeBallots'
     },
     [FreeContractCallName.CAN_GOVERN]: {
       name: 'CAN_GOVERN',
-      description: 'Ballot history'
+      description: 'Ballot history',
+      contractcall: 'canGovern'
     },
     [FreeContractCallName.IS_KYC_APPROVED]: {
       name: 'IS_KYC_APPROVED',
-      description: 'Ballot history'
+      description: 'Ballot history',
+      contractcall: 'isKYCApproved'
     },
     [FreeContractCallName.IS_KYC_DENIED]: {
       name: 'IS_KYC_DENIED',
-      description: 'Ballot history'
+      description: 'Ballot history',
+      contractcall: 'isKYCDenied'
     },
     [FreeContractCallName.WITHDRAW_HISTORY]: {
       name: 'WITHDRAW_HISTORY',
-      description: 'Ballot history'
+      description: 'Ballot history',
+      contractcall: 'withdraw_history'
     }
   };
 
@@ -216,14 +269,33 @@ class Governance extends Component<Props, State> {
 
   public goBack() {
     // your transition
-    this.goTo(GovernanceFlowStages.START_PAGE, null);
+    const stage = GovernanceFlowStages.START_PAGE;
+    this.setState((state: State) => {
+      let newState = Object.assign({}, state);
+      newState.stage = stage;
+      newState.chosenCall = null;
+      return newState;
+    });
   }
 
+  private contractOptions = (contractFunctions: any) => {
+    const transformedContractFunction: ContractOption[] = Object.keys(contractFunctions).map(
+      contractFunction => {
+        const contract = contractFunctions[contractFunction];
+        return {
+          name: contractFunction,
+          contract
+        };
+      }
+    );
+    return transformedContractFunction;
+  };
+
   public render() {
-    console.log(this.state.currentContract);
-    let stages = GovernanceFlowStages;
     const currentContract = this.state.currentContract;
-    console.log(currentContract);
+    const contractFunctions = Contract.getFunctions(currentContract);
+    let stages = GovernanceFlowStages;
+    console.log(this.state.currentCall);
     switch (this.state.stage) {
       case GovernanceFlowStages.START_PAGE:
         return (
@@ -252,8 +324,12 @@ class Governance extends Component<Props, State> {
         );
       case GovernanceFlowStages.COSTLY_CALL_PAGE:
         return (
-          <TabSection>
-            <InteractExplorer contractFunctions={Contract.getFunctions(currentContract)} />
+          <TabSection isUnavailableOffline={true}>
+            <CostlyContractCallScreen
+              selectedFunction={this.state.currentCall}
+              goBack={this.goBack}
+              contractFxnName={this.state.chosenCall}
+            />
           </TabSection>
         );
     }

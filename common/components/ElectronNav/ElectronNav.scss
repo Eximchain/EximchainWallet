@@ -169,29 +169,27 @@ $back-spacing: 20px;
     line-height: 20px;
     padding: 0 0 0 24px;
     font-weight: 400;
-    color: #617085;
+    color: color(n300);
     font-size: 13px;
     // border-bottom: 1px solid shade-dark(0.08);
     // font-weight: 300;
     // margin-right: 12px;
 
     &.is-active {
-      color: #1F2F47;
+      color: color(n800);
       font-weight: 600;
-      border-left: solid #1F2F47 5px;
+      border-left: solid color(n800) 5px;
       padding: 0 0 0 19px;
-      // background: #E7E9EC;
 
       &:hover {
-        color: #1F2F47;
+        color: color(n800);
         background: none;
       }
     }
 
     &:hover {
-      color: #1F2F47;
+      color: color(n800);
       opacity: 1;
-      // background: #F0F2F4;
     }
 
     &-icon {
@@ -200,7 +198,7 @@ $back-spacing: 20px;
       opacity: 0.8;
     }
     &:focus {
-      color: #617085;
+      color: color(n800);
     }
   }
 }

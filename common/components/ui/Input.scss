@@ -55,7 +55,7 @@
     font-weight: 400;
     align-items: center;
     flex-wrap: wrap;
-    color: color(gray);
+    color: color(gray) !important;
     text-transform: capitalize;
 
     > *:first-child {

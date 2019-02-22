@@ -1,7 +1,7 @@
 @import 'common/sass/variables';
 
-$rail-height: 4px;
-$handle-size: 22px;
+$rail-height: 10px;
+$handle-size: 18px;
 $speed: 70ms;
 
 @keyframes slider-loading {
@@ -15,21 +15,36 @@ $speed: 70ms;
 
 .rc-slider {
   &-rail {
-    background: shade-dark(0.12);
+    background: color(n30);
+    border-radius: 0;
   }
 
   &-track {
+    // height: 18px !important;
     background: color(b60);
+    border: solid 2px color(b60);
+    visibility: visible !important;
   }
 
   &-handle {
     top: 50%;
     width: $handle-size;
     height: $handle-size;
-    background: color(b60);
+    // background: color(b60);
     margin: 0;
     border: none;
     transform: translate(-50%, -50%);
+    background: color(b60);
+    border: solid 2px color(b60);
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: color(b90);
+      border: none;
+      box-shadow: none;
+    }
+
   }
 
   &-tooltip {

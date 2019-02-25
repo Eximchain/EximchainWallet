@@ -66,6 +66,12 @@ class SendTransaction extends React.Component<Props> {
 
     return (
       <TabSection>
+        <div className="WalletDecrypt-wallets-topsection">
+          <h2 className="WalletDecrypt-wallets-topsection-title">{translate('DECRYPT_ACCESS')}</h2>
+          <p className="WalletDecrypt-wallets-topsection-description">
+            {translate('WALLETDECRYPT_DESCRIPTION')}
+          </p>
+        </div>
         <section className="Tab-content">
           <UnlockHeader showGenerateLink={true} />
           {wallet && (

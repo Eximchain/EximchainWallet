@@ -32,7 +32,7 @@ class SendEverythingClass extends Component<Props> {
             onClick={this.onSendEverything}
             aria-label={translateRaw('SEND_TRANSFERTOTAL')}
           >
-            <i className="SendEverything-icon fa fa-angle-double-up" />
+            <i className="SendEverything-icon fa fa-balance-scale" />
             <Tooltip>{translate('SEND_TRANSFERTOTAL')}</Tooltip>
           </button>
         )}

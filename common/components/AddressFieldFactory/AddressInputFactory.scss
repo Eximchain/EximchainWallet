@@ -10,6 +10,7 @@
   &-input {
     position: relative;
     flex-grow: 1;
+    font-feature-settings: 'ss02' 1;
 
     &-with-label {
       margin-bottom: $space-lg;
@@ -26,7 +27,7 @@
   }
 
   &-identicon {
-    padding-top: 1.8rem;
+    padding-top: 1.5rem;
     padding-right: 1.5rem;
     transform: translateX(20%);
 

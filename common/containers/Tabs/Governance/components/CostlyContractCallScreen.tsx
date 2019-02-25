@@ -168,7 +168,7 @@ export class ContractCallClass extends Component<Props> {
                 className="InteractExplorer-func-submit btn btn-primary"
                 onClick={this.handleStageChange}
               >
-                {translate('SUBMIT')}
+                {translate('Submit')}
               </button>
             )}
           </div>

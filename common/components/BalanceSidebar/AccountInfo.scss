@@ -13,6 +13,7 @@
     font-size: $font-size-xs;
     opacity: 0.5;
     transition: $transition;
+    margin-right: $space-sm;
 
     &:hover {
       opacity: 1;
@@ -25,6 +26,7 @@
 
     .fa {
       margin-right: $space-xs;
+      margin-left: 0.1rem;
     }
   }
 
@@ -50,6 +52,15 @@
     &-header {
       margin-top: 0;
       display: inline-block;
+      // display: flex;
+      font-size: $font-size-xs-bump;
+      // margin-bottom: 8px;
+      font-weight: 400;
+      // align-items: center;
+      // flex-wrap: wrap;
+      color: color(gray) !important;
+      text-transform: capitalize;
+      letter-spacing: 0;
     }
 
     &-refresh {
@@ -89,6 +100,7 @@
       flex-direction: row;
       flex-wrap: nowrap;
       align-items: center;
+      margin-top: 8px;
     }
 
     &-wrapper {
@@ -109,6 +121,7 @@
     &-addr {
       margin-top: -$space-xs;
       word-wrap: break-word;
+      font-feature-settings: 'ss02' 1;
       @include mono;
 
       &--small {
@@ -125,11 +138,16 @@
     }
 
     &-label {
-      font-weight: bolder;
-      font-size: 1.3rem;
+      // font-weight: bolder;
+      font-size: $font-size-small;
       overflow: hidden;
       text-overflow: ellipsis;
       word-wrap: break-word;
+      text-transform: uppercase;
+      margin-bottom: 0;
+      letter-spacing: .7px;
+      color: color(gray);
+
     }
   }
 
@@ -151,7 +169,7 @@
 
       &-clickable:hover {
         cursor: pointer;
-        text-decoration: underline;
+        text-decoration: none;
       }
     }
   }

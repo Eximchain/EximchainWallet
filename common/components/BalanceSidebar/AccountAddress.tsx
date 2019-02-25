@@ -85,7 +85,7 @@ class AccountAddress extends React.Component<Props, State> {
                 className={`AccountInfo-copy ${copied ? 'is-copied' : ''}`}
                 title={translateRaw('COPY_TO_CLIPBOARD')}
               >
-                <i className="fa fa-copy" />
+                <i className="fa fa-clone" />
                 <span>{translateRaw(copied ? 'COPIED' : 'COPY_ADDRESS')}</span>
               </div>
             </CopyToClipboard>
@@ -160,7 +160,7 @@ class AccountAddress extends React.Component<Props, State> {
       </React.Fragment>
     ) : (
       <React.Fragment>
-        <i className="fa fa-pencil" />
+        <i className="fa fa-tag" />
         <span
           role="button"
           title={addressLabel ? translateRaw('EDIT_LABEL') : translateRaw('ADD_LABEL_9')}

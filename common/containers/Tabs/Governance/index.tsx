@@ -64,7 +64,7 @@ const COSTLYFUNCTIONCALLS: ContractFuncNames[] = Object.values(CostlyContractCal
 const FREEFUNCTIONCALLS: ContractFuncNames[] = Object.values(FreeContractCallName);
 type CostlyContractCall = { [key in CostlyContractCallName]: ContractCallDesc };
 type FreeContractCall = { [key in FreeContractCallName]: ContractCallDesc };
-type ContractCall = CostlyContractCall | FreeContractCall;
+export type GovernanceCall = CostlyContractCall | FreeContractCall;
 
 export enum GovernanceFlowStages {
   START_PAGE = 'start page',
@@ -74,7 +74,7 @@ export enum GovernanceFlowStages {
 
 export interface State {
   stage: GovernanceFlowStages;
-  chosenCall: ContractFuncNames | null;
+  chosenCall: GovernanceCall | null;
   currentContract: Contract;
   currentCall: null | ContractOption;
 }
@@ -152,9 +152,9 @@ class Governance extends Component<Props, State> {
     this.setState((state: State) => {
       let newState = Object.assign({}, state);
       newState.stage = stage;
-      newState.chosenCall = declaredCall;
+      newState.chosenCall = this.GOVERNANCECALLS[declaredCall];
       newState.currentCall = this.contractOptionsMap()[
-        this.CONTRACTCALLS[declaredCall].contractcall
+        this.GOVERNANCECALLS[declaredCall].contractcall
       ];
       return newState;
     });
@@ -176,7 +176,7 @@ class Governance extends Component<Props, State> {
     return new Contract(parsedAbi);
   }
 
-  public CONTRACTCALLS: ContractCall = {
+  public GOVERNANCECALLS: GovernanceCall = {
     [CostlyContractCallName.VOTE]: {
       name: 'VOTE',
       description: 'Requires EXC',
@@ -244,7 +244,7 @@ class Governance extends Component<Props, State> {
     return (
       <div className="GovernanceSection-row">
         {contractCallMap.map((contractCall: ContractFuncNames) => {
-          const call = this.CONTRACTCALLS[contractCall];
+          const call = this.GOVERNANCECALLS[contractCall];
           return (
             <Button
               key={contractCall}
@@ -296,29 +296,25 @@ class Governance extends Component<Props, State> {
     switch (this.state.stage) {
       case GovernanceFlowStages.START_PAGE:
         body = (
-          <section className="Tab-content GovernanceSection-content">
+          <div>
             <h2 className="GovernanceSection-topsection-subtitle">
               {translate('GENERATE_GOVERNANCE_DESC')}
             </h2>
             {this.buildFunctionOptions(COSTLYFUNCTIONCALLS, stages.COSTLY_CALL_PAGE)}
             {this.buildFunctionOptions(FREEFUNCTIONCALLS, stages.FREE_CALL_PAGE)}
-          </section>
+          </div>
         );
         break;
       case GovernanceFlowStages.FREE_CALL_PAGE:
-        body = (
-          <FreeContractCallScreen goBack={this.goBack} contractFxnName={this.state.chosenCall} />
-        );
+        body = <FreeContractCallScreen goBack={this.goBack} contractCall={this.state.chosenCall} />;
         break;
       case GovernanceFlowStages.COSTLY_CALL_PAGE:
         body = (
-          <section className="Tab-content GovernanceSection-content">
-            <CostlyContractCallScreen
-              selectedFunction={this.state.currentCall}
-              goBack={this.goBack}
-              contractFxnName={this.state.chosenCall}
-            />
-          </section>
+          <CostlyContractCallScreen
+            selectedFunction={this.state.currentCall}
+            goBack={this.goBack}
+            contractCall={this.state.chosenCall}
+          />
         );
         break;
     }
@@ -329,7 +325,7 @@ class Governance extends Component<Props, State> {
             {translate('GENERATE_GOVERNANCE_TITLE')}
           </h2>
         </div>
-        {body}
+        <section className="Tab-content GovernanceSection-content">{body}</section>
       </TabSection>
     );
   }

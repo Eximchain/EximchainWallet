@@ -4,6 +4,7 @@ import { AppState } from 'features/reducers';
 import { notificationsActions } from 'features/notifications';
 import { connect } from 'react-redux';
 import translate, { translateRaw } from 'translations';
+import { AmountField } from './InteractExplorer/components/AmountField';
 
 import { bufferToHex } from 'ethereumjs-util';
 
@@ -21,7 +22,7 @@ import { Input, Dropdown } from 'components/ui';
 import { Fields } from './InteractExplorer/components';
 import './InteractExplorer/InteractExplorer.scss';
 
-import { ContractFuncNames } from '..';
+import { GovernanceCall } from '..';
 
 import '../index.scss';
 import { Button } from './Button';
@@ -42,8 +43,14 @@ interface DispatchProps {
 
 interface OwnProps {
   selectedFunction: ContractOption;
-  contractFxnName: ContractFuncNames | null;
+  contractCall: GovernanceCall;
   goBack: () => void;
+}
+
+enum ContractFlowStages {
+  CONSTRUCT_TRANSACTION_SCREEN = 'construct transaction screen',
+  SUBMIT_TRANSACTION_SCREEN = 'submit transaction screen',
+  RESULT_SCREEN = 'result screen'
 }
 
 interface State {
@@ -51,6 +58,7 @@ interface State {
     [key: string]: { rawData: string; parsedData: string[] | string };
   };
   outputs: any;
+  stage: ContractFlowStages;
 }
 
 interface ContractFunction {
@@ -73,6 +81,7 @@ export class ContractCallClass extends Component<Props> {
   public static defaultProps: Partial<Props> = {};
 
   public state: State = {
+    stage: ContractFlowStages.CONSTRUCT_TRANSACTION_SCREEN,
     inputs: {},
     outputs: {}
   };
@@ -82,10 +91,15 @@ export class ContractCallClass extends Component<Props> {
   }
 
   public componentWillUnmount() {
+    console.log('here');
     this.props.setAsViewAndSend();
+  }
+  goTo(newStage: ContractFlowStages) {
+    this.setState({ stage: newStage });
   }
   render() {
     const { inputs, outputs } = this.state;
+    console.log(this.state.stage);
     const selectedFunction = this.props.selectedFunction;
     const generateOrWriteButton = this.props.dataExists ? (
       <GenerateTransaction />
@@ -97,89 +111,129 @@ export class ContractCallClass extends Component<Props> {
         {translate('CONTRACT_WRITE')}
       </button>
     );
+    var body;
+    switch (this.state.stage) {
+      case ContractFlowStages.CONSTRUCT_TRANSACTION_SCREEN:
+        body = (
+          <div key={selectedFunction.name}>
+            {selectedFunction.contract.inputs.map((input, index) => {
+              const { type, name } = input;
+              const parsedName = name === '' ? index : name;
+              const inputState = this.state.inputs[parsedName];
+              console.log(name);
+              return (
+                <div key={parsedName} className="input-group-wrapper">
+                  <label className="input-group">
+                    <div className="input-group-header">
+                      {(parsedName === index ? `Input#${parsedName}` : parsedName) + ' ' + type}
+                    </div>
+                    {type === 'bool' ? (
+                      <Dropdown
+                        options={[{ value: false, label: 'false' }, { value: true, label: 'true' }]}
+                        value={
+                          inputState
+                            ? {
+                                label: inputState.rawData,
+                                value: inputState.parsedData as any
+                              }
+                            : undefined
+                        }
+                        clearable={false}
+                        onChange={({ value }: { value: boolean }) => {
+                          this.handleBooleanDropdownChange({ value, name: parsedName });
+                        }}
+                      />
+                    ) : (
+                      <Input
+                        className="InteractExplorer-func-in-input"
+                        isValid={!!(inputs[parsedName] && inputs[parsedName].rawData)}
+                        name={parsedName}
+                        value={(inputs[parsedName] && inputs[parsedName].rawData) || ''}
+                        onChange={this.handleInputChange}
+                      />
+                    )}
+                  </label>
+                </div>
+              );
+            })}
+            {selectedFunction.contract.constant ? (
+              <button
+                className="InteractExplorer-func-submit btn btn-primary"
+                onClick={this.handleFunctionCall}
+              >
+                {translate('CONTRACT_READ')}
+              </button>
+            ) : (
+              <button
+                className="InteractExplorer-func-submit btn btn-primary"
+                onClick={this.handleStageChange}
+              >
+                {translate('SUBMIT')}
+              </button>
+            )}
+          </div>
+        );
+        break;
+      case ContractFlowStages.SUBMIT_TRANSACTION_SCREEN:
+        body = (
+          <React.Fragment>
+            <Fields button={generateOrWriteButton} />
+          </React.Fragment>
+        );
+        break;
+      case ContractFlowStages.RESULT_SCREEN:
+        body = (
+          <div>
+            {selectedFunction.contract.outputs.map((output: any, index: number) => {
+              const { type, name } = output;
+              const parsedName = name === '' ? index : name;
+              const o = outputs[parsedName];
+              const rawFieldValue = o === null || o === undefined ? '' : o;
+              const decodedFieldValue = Buffer.isBuffer(rawFieldValue)
+                ? bufferToHex(rawFieldValue)
+                : rawFieldValue;
+              return (
+                <div key={parsedName} className="input-group-wrapper InteractExplorer-func-out">
+                  <label className="input-group">
+                    <div className="input-group-header"> ↳ {name + ' ' + type}</div>
+                    <Input
+                      className="InteractExplorer-func-out-input"
+                      isValid={!!decodedFieldValue}
+                      value={decodedFieldValue}
+                      disabled={true}
+                    />
+                  </label>
+                </div>
+              );
+            })}
+          </div>
+        );
+        break;
+    }
     return (
       <div>
-        {this.props.contractFxnName}
-        <div key={selectedFunction.name}>
-          {selectedFunction.contract.inputs.map((input, index) => {
-            const { type, name } = input;
-            const parsedName = name === '' ? index : name;
-            const inputState = this.state.inputs[parsedName];
-            return (
-              <div key={parsedName} className="input-group-wrapper">
-                <label className="input-group">
-                  <div className="input-group-header">
-                    {(parsedName === index ? `Input#${parsedName}` : parsedName) + ' ' + type}
-                  </div>
-                  {type === 'bool' ? (
-                    <Dropdown
-                      options={[{ value: false, label: 'false' }, { value: true, label: 'true' }]}
-                      value={
-                        inputState
-                          ? {
-                              label: inputState.rawData,
-                              value: inputState.parsedData as any
-                            }
-                          : undefined
-                      }
-                      clearable={false}
-                      onChange={({ value }: { value: boolean }) => {
-                        this.handleBooleanDropdownChange({ value, name: parsedName });
-                      }}
-                    />
-                  ) : (
-                    <Input
-                      className="InteractExplorer-func-in-input"
-                      isValid={!!(inputs[parsedName] && inputs[parsedName].rawData)}
-                      name={parsedName}
-                      value={(inputs[parsedName] && inputs[parsedName].rawData) || ''}
-                      onChange={this.handleInputChange}
-                    />
-                  )}
-                </label>
-              </div>
-            );
-          })}
-          {selectedFunction.contract.outputs.map((output: any, index: number) => {
-            const { type, name } = output;
-            const parsedName = name === '' ? index : name;
-            const o = outputs[parsedName];
-            const rawFieldValue = o === null || o === undefined ? '' : o;
-            const decodedFieldValue = Buffer.isBuffer(rawFieldValue)
-              ? bufferToHex(rawFieldValue)
-              : rawFieldValue;
-            return (
-              <div key={parsedName} className="input-group-wrapper InteractExplorer-func-out">
-                <label className="input-group">
-                  <div className="input-group-header"> ↳ {name + ' ' + type}</div>
-                  <Input
-                    className="InteractExplorer-func-out-input"
-                    isValid={!!decodedFieldValue}
-                    value={decodedFieldValue}
-                    disabled={true}
-                  />
-                </label>
-              </div>
-            );
-          })}
-          {selectedFunction.contract.constant ? (
-            <button
-              className="InteractExplorer-func-submit btn btn-primary"
-              onClick={this.handleFunctionCall}
-            >
-              {translate('CONTRACT_READ')}
-            </button>
-          ) : (
-            <React.Fragment>
-              <Fields button={generateOrWriteButton} />
-            </React.Fragment>
-          )}
-        </div>
+        {translate(this.props.contractCall.name)}
         <Button key="Back" name="Back Button" onClick={this.props.goBack} description="go back" />
+        {body}
       </div>
     );
   }
-
+  private handleStageChange = () => {
+    try {
+      console.log(this.props);
+      const data = this.encodeData();
+      const { nodeLib, to, selectedFunction } = this.props;
+      const callData = { to: to.raw, data };
+      console.log(data, to);
+      this.goTo(ContractFlowStages.SUBMIT_TRANSACTION_SCREEN);
+    } catch (e) {
+      this.props.showNotification(
+        'warning',
+        `Invalid input parameters: ${(e as Error).message}`,
+        5000
+      );
+    }
+  };
   private handleFunctionCall = async (_: React.FormEvent<HTMLButtonElement>) => {
     try {
       const data = this.encodeData();

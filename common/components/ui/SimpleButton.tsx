@@ -6,7 +6,14 @@ import './SimpleButton.scss';
 const DEFAULT_BUTTON_TYPE = 'primary';
 const DEFAULT_BUTTON_SIZE = 'lg';
 
-type ButtonType = 'default' | 'primary' | 'success' | 'info' | 'warning' | 'danger';
+type ButtonType =
+  | 'default'
+  | 'primary'
+  | 'success'
+  | 'info'
+  | 'warning'
+  | 'danger'
+  | 'quiet-neutral';
 type ButtonSize = 'lg' | 'sm' | 'xs';
 
 interface Props {

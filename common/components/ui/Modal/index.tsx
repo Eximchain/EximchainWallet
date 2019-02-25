@@ -7,7 +7,15 @@ import './index.scss';
 
 export interface IButton {
   text: string | React.ReactElement<string>;
-  type?: 'default' | 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'link';
+  type?:
+    | 'default'
+    | 'primary'
+    | 'success'
+    | 'info'
+    | 'warning'
+    | 'danger'
+    | 'link'
+    | 'quiet-neutral';
   disabled?: boolean;
   onClick?(): void;
 }

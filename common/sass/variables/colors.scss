@@ -123,6 +123,8 @@ $theme-light: (
   n30: $N30,
   n20: $N20,
   n10: $N10,
+  n0: $N0,
+
 
   b90: $B90,
   b80: $B80,
@@ -135,24 +137,32 @@ $theme-light: (
   b10: $B10,
   b0: $B0,
 
+  g90: $G90,
+  g80: $G80,
   g70: $G70,
   g70-dark: darken($G70, 6%),
   g70-darker: darken($G70, 12%),
   g70-light: lighten($G70, 6%),
   g70-lighter: lighten($G70, 12%),
 
+  p90: $P90,
+  p80: $P80,
   p70: $P70,
   p70-dark: darken($P70, 6%),
   p70-darker: darken($P70, 12%),
   p70-light: lighten($P70, 6%),
   p70-lighter: lighten($P70, 12%),
 
+  y90: $Y90,
+  y80: $Y80,
   brand-warning: $Y70,
   brand-warning-dark: darken($Y70, 6%),
   brand-warning-darker: darken($Y70, 12%),
   brand-warning-light: lighten($Y70, 6%),
   brand-warning-lighter: lighten($Y70, 12%),
 
+  r90: $R90,
+  r80: $R80,
   r70: $R70,
   r70-dark: darken($R70, 6%),
   r70-darker: darken($R70, 12%),
@@ -192,6 +202,7 @@ $theme-light: (
   control-placeholder: $N90,
   control-inset-shadow: rgba($N900, 0.03),
   control-addon-bg: $N20,
+  control-addon-border: $N40,
 
   loader-light: $N0,
   loader-dark: $P70,
@@ -286,6 +297,7 @@ $theme-dark: (
   control-placeholder: rgba(#FFF, 0.3),
   control-inset-shadow: rgba(#FFF, 0.03),
   control-addon-bg: $N700,
+  control-addon-border: $N700,
 
   loader-light: #fff,
   loader-dark: #fff,

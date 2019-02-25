@@ -93,7 +93,7 @@ interface OfflineProps {
 class OfflineDisplay extends React.Component<OfflineProps> {
   public render() {
     if (this.props.offline) {
-      return <span>Balance isn't available offline</span>;
+      return <span className="balance-offline">Unavailable offline</span>;
     } else {
       return this.props.children;
     }

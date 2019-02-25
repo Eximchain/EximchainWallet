@@ -11,11 +11,27 @@
       margin-right: $space;
 
       > .rc-slider > .rc-slider-step > .rc-slider-dot {
-        height: 20px;
-        width: 12px;
-        bottom: -7px
+        height: 16px;
+        width: 1px;
+        bottom: -6px;
+        border-radius: 6px;
+        margin-left: 0;
+      }
+      .rc-slider-dot {
+        border-color: color(n100);
+        border-width: 1px;
+      }
+
+      .rc-slider-track {
+        // bottom: -2px;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        border-top-left-radius: 16px;
+        border-bottom-left-radius: 16px;
+
       }
     }
+
 
     > .FeeSummary {
       margin-left: $space;
@@ -40,16 +56,20 @@
   &-slider {
     padding-top: 8px;
     margin-bottom: $space-xs;
+    padding-left: 22px;
+    padding-right: 22px;
 
     &-labels {
       margin-top: 4px;
       display: flex;
+      margin-left: -22px;
+      margin-right: -22px;
 
       > span {
         flex: 1;
-        padding: 0 $space-xs;
+        padding: 0;
         text-align: center;
-        color: shade-dark(0.4);
+        color: color(gray);
         font-size: $font-size-xs;
 
         &:first-child {

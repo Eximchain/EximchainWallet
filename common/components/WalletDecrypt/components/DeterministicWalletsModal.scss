@@ -54,6 +54,13 @@
       margin-bottom: 10px;
       font-feature-settings: 'tnum' 1;
 
+      .balance-offline {
+        font-size: $font-size-xs;
+        line-height: 1;
+        color: color(n90);
+      }
+
+
 
       .table-heading {
         text-transform: uppercase;
@@ -102,7 +109,7 @@
 
       &-na {
         font-size: $font-size-base;
-        opacity: 0.2;
+        color: color(n70);
       }
 
       // Specific selectors to override bootstrap

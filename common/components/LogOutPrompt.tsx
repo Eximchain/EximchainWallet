@@ -50,7 +50,7 @@ class LogOutPromptClass extends React.Component<Props, State> {
   public render() {
     const buttons: IButton[] = [
       { text: translate('ACTION_7'), type: 'primary', onClick: this.onConfirm },
-      { text: translate('ACTION_2'), type: 'default', onClick: this.onCancel }
+      { text: translate('ACTION_2'), type: 'quiet-neutral', onClick: this.onCancel }
     ];
     return (
       <Modal

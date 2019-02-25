@@ -12,7 +12,7 @@ export const GenerateTransaction: React.SFC<{}> = () => (
         <React.Fragment>
           <button
             disabled={disabled}
-            className="btn btn-info btn-block GenerateTransaction"
+            className="btn btn-primary btn-block GenerateTransaction"
             onClick={onClick}
           >
             {isWeb3Wallet ? translate('SEND_GENERATE') : translate('DEP_SIGNTX')}

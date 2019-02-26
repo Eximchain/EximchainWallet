@@ -6,13 +6,16 @@
   // height:100%;
 
   &-open {
-    position: absolute;
-    top: 0;
+    position: fixed;
+    top: 25px;
     right: 0;
     padding-right: none;
+    // margin-top: -25px;
+    z-index: 1000;
+    margin-right: 25px;
 
     &-text {
-      padding-right: 8px;
+      padding-right: 0;
       padding-left: 8px;
 
     }

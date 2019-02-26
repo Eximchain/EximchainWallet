@@ -3,8 +3,11 @@
 .WalletInfo {
   &-qr {
     position: relative;
-    background: #FFF;
+    background: color(n0);
     cursor: pointer;
+    box-shadow: none;
+    border-radius: 6px;
+    border-color: color(n40);
 
     &-cover {
       position: absolute;
@@ -12,7 +15,9 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: color(n60);
+      background: color(n40);
+      border-radius: 5px;
+
 
       &, &-icon {
         transition: 100ms ease;
@@ -23,15 +28,15 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        color: #FFF;
-        text-shadow: 1px 1px 5px #000;
+        color: color(n600);
+        // text-shadow: 1px 1px 5px #000;
         font-size: 48px;
-        opacity: 0.9;
+        // opacity: 0.9;
       }
 
       &:hover {
         .WalletInfo-qr-cover-icon {
-          opacity: 1;
+          color: color(n800);
         }
       }
     }

@@ -2,7 +2,7 @@
 @import 'common/sass/mixins';
 
 $width: 40px;
-$default-opacity: 0.4;
+$default-opacity: 1;
 
 @keyframes send-everything-enter {
   0% {
@@ -21,7 +21,8 @@ $default-opacity: 0.4;
   width: $width;
   margin-left: -$width;
   font-size: 1.4rem;
-  border-left: 1px solid #e5ecf3;
+  color: color(gray);
+  border-left: 1px solid inherit;
   opacity: $default-opacity;
   transition: $transition;
   animation: send-everything-enter 200ms ease 1;
@@ -29,6 +30,10 @@ $default-opacity: 0.4;
 
   &-icon {
     transition: transform 150ms ease;
+    font-size: 18px;
+    margin-bottom: 4px;
+    transform: translateY(-2px);
+
   }
 
   &:disabled {
@@ -36,11 +41,14 @@ $default-opacity: 0.4;
   }
 
   &:hover {
-    color: color(b60);
-    opacity: 1;
+
 
     .SendEverything-icon {
-      transform: translateY(-2px);
+      // transform: translateY(-4px);
+      opacity: 1;
+      color: color(b60);
+
+
     }
   }
 }

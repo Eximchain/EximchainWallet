@@ -70,6 +70,8 @@ class AccountAddress extends React.Component<Props, State> {
 
     return (
       <div className="AccountInfo">
+        <h2 className="AccountInfo-section-top-header">{translate('SIDEBAR_ACCOUNTHEADER')}</h2>
+        <br />
         <h5 className="AccountInfo-section-header">{translate('SIDEBAR_ACCOUNTADDR')}</h5>
         <div className="AccountInfo-section AccountInfo-address-section">
           <div className="AccountInfo-address-icon">
@@ -85,7 +87,7 @@ class AccountAddress extends React.Component<Props, State> {
                 className={`AccountInfo-copy ${copied ? 'is-copied' : ''}`}
                 title={translateRaw('COPY_TO_CLIPBOARD')}
               >
-                <i className="fa fa-copy" />
+                <i className="fa fa-clone" />
                 <span>{translateRaw(copied ? 'COPIED' : 'COPY_ADDRESS')}</span>
               </div>
             </CopyToClipboard>
@@ -160,7 +162,7 @@ class AccountAddress extends React.Component<Props, State> {
       </React.Fragment>
     ) : (
       <React.Fragment>
-        <i className="fa fa-pencil" />
+        <i className="fa fa-tag" />
         <span
           role="button"
           title={addressLabel ? translateRaw('EDIT_LABEL') : translateRaw('ADD_LABEL_9')}

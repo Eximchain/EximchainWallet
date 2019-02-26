@@ -70,6 +70,8 @@ class AccountAddress extends React.Component<Props, State> {
 
     return (
       <div className="AccountInfo">
+        <h2 className="AccountInfo-section-top-header">{translate('SIDEBAR_ACCOUNTHEADER')}</h2>
+        <br />
         <h5 className="AccountInfo-section-header">{translate('SIDEBAR_ACCOUNTADDR')}</h5>
         <div className="AccountInfo-section AccountInfo-address-section">
           <div className="AccountInfo-address-icon">

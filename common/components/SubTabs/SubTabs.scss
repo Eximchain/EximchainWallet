@@ -2,11 +2,6 @@
 
 .SubTabs {
   margin-top: $space-xs;
-  // padding-bottom: 3px;
-  // margin-bottom: 18px;
-  // border-bottom: 1px solid color(n20);
-
-
 
   .is-electron & {
     margin-top: 0;
@@ -17,18 +12,27 @@
 
   }
   &-sidebar {
-    // position: fixed;
-    // top: auto;
-    // right: 0;
-    padding-left: 30px;
-    // background-color: #F8F9FA;
+    position: fixed;
+    top: auto;
+    right: 0;
+    padding-left: 0;
+    padding-right: 0;
+    border-left: solid 1px color(n20);
+    max-width: 270px;
+    height: 100%;
+    margin-top: -8px;
+
+    .Identicon {
+      height: 30px !important;
+      width: 30px !important;
+      margin-right: 0 !important;
+
+    }
 
   }
   &-tabs {
     display: inline-block;
     white-space: nowrap;
-    // border-radius: 4px;
-
 
     &-link {
       display: inline-block;
@@ -38,18 +42,12 @@
       text-align: center;
       font-weight: 400;
       color: color(gray);
-      // background-color: white;
       text-transform: uppercase;
       letter-spacing: .7px;
-
-      // border: 1px solid #E0E3E8;
       transition-duration: 80ms;
-      // opacity: 1;
 
 
       &:first-child {
-        // border-top-left-radius: 4px;
-        // border-bottom-left-radius: 4px;
         border-right: none;
         padding-left: 0px;
 
@@ -85,13 +83,11 @@
       &:hover {
         opacity: 1;
         color: color(control-color);
-        // background-color: #F7F8F9;
       }
 
       &.is-active {
         color: color(control-color);
         border-bottom: 3px solid color(control-color);
-        // border-color: color(tab-active-border);
         opacity: 1;
       }
 

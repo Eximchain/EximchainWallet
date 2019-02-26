@@ -5,7 +5,7 @@ import { notificationsActions } from 'features/notifications';
 import { connect } from 'react-redux';
 import translate, { translateRaw } from 'translations';
 import { AmountField } from './InteractExplorer/components/AmountField';
-
+import { ResultScreen } from './ResultScreen';
 import { bufferToHex } from 'ethereumjs-util';
 
 import { Data } from 'libs/units';
@@ -36,7 +36,6 @@ interface StateProps {
 interface DispatchProps {
   showNotification: notificationsActions.TShowNotification;
   setDataField: transactionFieldsActions.TSetDataField;
-  resetTransactionRequested: transactionFieldsActions.TResetTransactionRequested;
   setAsContractInteraction: transactionMetaActions.TSetAsContractInteraction;
   setAsViewAndSend: transactionMetaActions.TSetAsViewAndSend;
 }
@@ -87,11 +86,10 @@ export class ContractCallClass extends Component<Props> {
   };
   public componentDidMount() {
     this.props.setAsContractInteraction();
-    this.props.resetTransactionRequested();
+    //
   }
 
   public componentWillUnmount() {
-    console.log('here');
     this.props.setAsViewAndSend();
   }
   goTo(newStage: ContractFlowStages) {
@@ -99,7 +97,6 @@ export class ContractCallClass extends Component<Props> {
   }
   render() {
     const { inputs, outputs } = this.state;
-    console.log(this.state.stage);
     const selectedFunction = this.props.selectedFunction;
     const generateOrWriteButton = this.props.dataExists ? (
       <GenerateTransaction />
@@ -120,7 +117,6 @@ export class ContractCallClass extends Component<Props> {
               const { type, name } = input;
               const parsedName = name === '' ? index : name;
               const inputState = this.state.inputs[parsedName];
-              console.log(name);
               return (
                 <div key={parsedName} className="input-group-wrapper">
                   <label className="input-group">
@@ -177,37 +173,12 @@ export class ContractCallClass extends Component<Props> {
       case ContractFlowStages.SUBMIT_TRANSACTION_SCREEN:
         body = (
           <React.Fragment>
-            <Fields button={generateOrWriteButton} />
+            <Fields button={generateOrWriteButton} onClick={this.handleSuccessScreen} />
           </React.Fragment>
         );
         break;
       case ContractFlowStages.RESULT_SCREEN:
-        body = (
-          <div>
-            {selectedFunction.contract.outputs.map((output: any, index: number) => {
-              const { type, name } = output;
-              const parsedName = name === '' ? index : name;
-              const o = outputs[parsedName];
-              const rawFieldValue = o === null || o === undefined ? '' : o;
-              const decodedFieldValue = Buffer.isBuffer(rawFieldValue)
-                ? bufferToHex(rawFieldValue)
-                : rawFieldValue;
-              return (
-                <div key={parsedName} className="input-group-wrapper InteractExplorer-func-out">
-                  <label className="input-group">
-                    <div className="input-group-header"> ↳ {name + ' ' + type}</div>
-                    <Input
-                      className="InteractExplorer-func-out-input"
-                      isValid={!!decodedFieldValue}
-                      value={decodedFieldValue}
-                      disabled={true}
-                    />
-                  </label>
-                </div>
-              );
-            })}
-          </div>
-        );
+        body = <ResultScreen promoDemoBool={true} />;
         break;
     }
     return (
@@ -220,11 +191,9 @@ export class ContractCallClass extends Component<Props> {
   }
   private handleStageChange = () => {
     try {
-      console.log(this.props);
       const data = this.encodeData();
       const { nodeLib, to, selectedFunction } = this.props;
       const callData = { to: to.raw, data };
-      console.log(data, to);
       this.goTo(ContractFlowStages.SUBMIT_TRANSACTION_SCREEN);
     } catch (e) {
       this.props.showNotification(
@@ -298,6 +267,14 @@ export class ContractCallClass extends Component<Props> {
     } catch {
       return input;
     }
+  }
+  public handleSuccessScreen(promoDemoBool: boolean) {
+    if (promoDemoBool) {
+      //Handle boolean change here
+    } else {
+      //Handle boolean change here
+    }
+    this.goTo(ContractFlowStages.RESULT_SCREEN);
   }
   private encodeData(): string {
     const { inputs } = this.state;

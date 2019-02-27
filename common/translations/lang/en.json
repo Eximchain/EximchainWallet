@@ -1,7 +1,13 @@
 {
   "code": "en",
   "data": {
-    "_voted_for":"asdfasdfa",
+    "_governanceCycleId":"Governance Cycle Number",
+    "_ballotId":"Ballot Record Confirmation Number",
+    "_withdrawIndex":"Withdraw Record Confirmation Number",
+    "_votes":"Number of Points",
+    "_inSupport":"Preference",
+    "_election":"Ballot Type",
+    "_voted_for":"Member Address",
     "COLLECT": "Collect tokens",
     "VOTE": "Vote or nominate",
     "CLAIM": "Claim tokens",

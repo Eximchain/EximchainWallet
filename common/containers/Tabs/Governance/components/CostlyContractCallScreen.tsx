@@ -121,7 +121,9 @@ export class ContractCallClass extends Component<Props> {
                 <div key={parsedName} className="input-group-wrapper">
                   <label className="input-group">
                     <div className="input-group-header">
-                      {(parsedName === index ? `Input#${parsedName}` : parsedName) + ' ' + type}
+                      {
+                        // (parsedName === index ? `Input#${parsedName}` : parsedName) + ' ' + type
+                      }
                       {translate(parsedName)}
                     </div>
                     {type === 'bool' ? (

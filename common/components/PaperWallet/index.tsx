@@ -21,35 +21,18 @@ export default class PaperWallet extends React.Component<Props, {}> {
 
     return (
       <div className="PaperWallet" ref={el => (this.container = el)}>
-        <img src={sidebarImg} className="PaperWallet-sidebar" alt="MyCrypto Logo" />
-
-        <div className="PaperWallet-block">
-          <div className="PaperWallet-block-box">
-            <QRCode data={address} />
-          </div>
-          <p className="PaperWallet-block-text">YOUR ADDRESS</p>
-        </div>
-
-        <div className="PaperWallet-block">
-          <img src={notesBg} className="PaperWallet-block-box is-shaded" aria-hidden={true} />
-          <p className="PaperWallet-block-text">AMOUNT / NOTES</p>
-        </div>
-
-        <div className="PaperWallet-block">
-          <div className="PaperWallet-block-box">
-            <QRCode data={privateKey} />
-          </div>
-          <p className="PaperWallet-block-text">YOUR PRIVATE KEY</p>
+        <div className="PaperWallet-row">
+          <img src={sidebarImg} className="PaperWallet-sidebar" alt="MyCrypto Logo" />
         </div>
 
         <div className="PaperWallet-info">
           <p className="PaperWallet-info-text">
-            <strong className="PaperWallet-info-text-label">Your Address:</strong>
+            <strong className="PaperWallet-info-text-label">Public Address</strong>
             <br />
             {address}
           </p>
           <p className="PaperWallet-info-text">
-            <strong className="PaperWallet-info-text-label">Your Private Key:</strong>
+            <strong className="PaperWallet-info-text-label">Private Key</strong>
             <br />
             {privateKey}
           </p>
@@ -57,11 +40,34 @@ export default class PaperWallet extends React.Component<Props, {}> {
 
         <div className="PaperWallet-identicon">
           <div className="PaperWallet-identicon-left">
-            <Identicon address={address} size={'42px'} />
+            <Identicon address={address} size={'32px'} />
           </div>
           <p className="PaperWallet-identicon-text">
             Always look for this icon when sending to this wallet
           </p>
+        </div>
+        <div className="PaperWallet-blockrow">
+          <div className="PaperWallet-block">
+            <p className="PaperWallet-block-text">PUBLIC ADDRESS</p>
+
+            <div className="PaperWallet-block-box">
+              <QRCode data={address} />
+            </div>
+          </div>
+
+          <div className="PaperWallet-block">
+            <p className="PaperWallet-block-text">PRIVATE KEY</p>
+
+            <div className="PaperWallet-block-box">
+              <QRCode data={privateKey} />
+            </div>
+          </div>
+
+          <div className="PaperWallet-block">
+            <p className="PaperWallet-block-text">AMOUNT / NOTES</p>
+
+            <img src={notesBg} className="PaperWallet-block-box is-shaded" aria-hidden={true} />
+          </div>
         </div>
       </div>
     );

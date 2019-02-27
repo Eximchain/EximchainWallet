@@ -6,11 +6,14 @@
   .is-electron & {
     margin-top: 0;
   }
-  &-contracts {
-    padding-top: 10px;
-    padding-left: 20px;
 
+  &-content {
+    padding-top: 20px;
   }
+
+  &-contracts {
+  }
+
   &-sidebar {
     position: fixed;
     top: auto;
@@ -20,7 +23,7 @@
     border-left: solid 1px color(n20);
     max-width: 270px;
     height: 100%;
-    margin-top: -8px;
+    margin-top: -28px;
 
     .Identicon {
       height: 30px !important;
@@ -33,6 +36,10 @@
   &-tabs {
     display: inline-block;
     white-space: nowrap;
+    padding-left: 20px;
+    padding-top: 6px;
+
+
 
     &-link {
       display: inline-block;

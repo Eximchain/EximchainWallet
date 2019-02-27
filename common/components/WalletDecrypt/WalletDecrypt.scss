@@ -42,20 +42,22 @@ $speed: 1ms;
 
   &-wallets {
     margin: 0 - $space-md;
-    padding-top: $electron-osx-control-spacing + 23px;
+    padding-top: $electron-osx-control-spacing + 30px;
+
 
     &-topsection {
       position: fixed;
       top: 0;
       height: auto;
       width: 100%;
-      padding-top: $electron-osx-control-spacing - 20px;
+      padding-top: 20px;
       left: 200px;
-      z-index: 900;
-      background-color: white;
+      z-index: 1000;
+      background-color: color(n0);
       margin-left: 0;
       margin-right: 0;
       margin-top: 0;
+      padding-right: 10px;
       margin-bottom: 18px;
       border-bottom: solid .5px color(n20);
 
@@ -64,22 +66,21 @@ $speed: 1ms;
       padding-left: 20px;
     }
 
-    &-description {
-      margin: 0 0 $space;
-      color: color(gray);
-      text-align: left;
-      font-size: 13px;
-      padding-left: 20px;
-      }
+
 
     }
-
+    &-description {
+      margin: 0 0 1rem;
+      color: color(n800);
+      text-align: left;
+      font-size: 16px;
+      padding-bottom: 10px;
+      }
     &-row {
       display: flex;
       justify-content: left;
       flex-wrap: wrap;
       margin: 0;
-      // margin-bottom: 10px;
 
       @media screen and (max-width: $screen-xs) {
         margin: 0;

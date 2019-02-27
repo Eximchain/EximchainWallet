@@ -6,15 +6,20 @@ $wallet-height: 280px;
 
 .PaperWallet {
   position: relative;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
+
   width: $wallet-width;
   height: $wallet-height;
-  border: 1px solid #E0E3E8;
-  // border-radius: 8px;
+  border: 1px solid #1F2F47;
+  border-radius: 6px;
+  margin-top: 30px;
+  margin-bottom: 24px;
+
   user-select: none;
   cursor: default;
-  background: #FFF;
-  color: #333;
+  background-color: #FFF;
+  color: #1F2F47;
 
   &-sidebar {
     float: left;
@@ -46,7 +51,7 @@ $wallet-height: 280px;
       transform: translate(-50%, -50%) rotate(-90deg);
       font-size: 13px;
       font-weight: 600;
-      color: #267EDC;
+      color: #1F2F47;
       text-align: center;
       text-transform: uppercase;
       letter-spacing: 1px;

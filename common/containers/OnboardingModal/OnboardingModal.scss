@@ -47,41 +47,41 @@
   &-side {
     display: none;
 
-    @media (min-width: 500px) {
-      @include baby-blue;
-
-      flex: 2;
-      display: flex;
-      flex-direction: column;
-      border-radius: 6px 0 0 6px;
-
-      &-top {
-        @include perfectly-centered;
-
-        flex: 1;
-
-        img {
-          // transform: scale(1);
-          min-width: 175px;
-          padding: 0 15px;
-
-        }
-      }
-      &-middle {
-        @include perfectly-centered;
-
-        flex: 3;
-
-        img {
-          transform: scale(0.9);
-        }
-      }
-      &-bottom {
-        @include perfectly-centered;
-
-        flex: 1;
-      }
-    }
+    // @media (min-width: 500px) {
+    //   @include baby-blue;
+    //
+    //   flex: 2;
+    //   display: flex;
+    //   flex-direction: column;
+    //   border-radius: 6px 0 0 6px;
+    //
+    //   &-top {
+    //     @include perfectly-centered;
+    //
+    //     flex: 1;
+    //
+    //     img {
+    //       // transform: scale(1);
+    //       min-width: 175px;
+    //       padding: 0 15px;
+    //
+    //     }
+    //   }
+    //   &-middle {
+    //     @include perfectly-centered;
+    //
+    //     flex: 3;
+    //
+    //     img {
+    //       transform: scale(0.9);
+    //     }
+    //   }
+    //   &-bottom {
+    //     @include perfectly-centered;
+    //
+    //     flex: 1;
+    //   }
+    // }
   }
   &-middle {
     flex: 4;

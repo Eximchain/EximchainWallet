@@ -55,7 +55,7 @@ export class SignMessage extends Component<Props, State> {
               {translate('CHANGE_WALLET')}
             </button>
 
-            <div className="input-group-wrapper Deploy-field">
+            <div className="input-group-wrapper Deploy-field SignMessage-content">
               <label className="input-group">
                 <div className="input-group-header">{translate('MSG_MESSAGE')}</div>
                 <TextArea

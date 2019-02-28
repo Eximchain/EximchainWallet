@@ -3,7 +3,12 @@ import React from 'react';
 import { Input } from 'components/ui';
 import { AmountFieldFactory } from 'components/AmountFieldFactory';
 
-export const AmountField: React.SFC = () => (
+interface Props {
+  readOnly: boolean;
+  setValue?: any;
+}
+
+export const AmountField: React.SFC<Props> = props => (
   <div className="input-group-wrapper InteractExplorer-field">
     <label className="input-group">
       <div className="input-group-header">Value</div>
@@ -11,10 +16,10 @@ export const AmountField: React.SFC = () => (
         withProps={({ currentValue: { raw }, isValid, onChange, readOnly }) => (
           <Input
             name="value"
-            value={raw}
+            value={props.setValue ? props.setValue : raw}
             isValid={isValid || raw === ''}
             onChange={onChange}
-            readOnly={readOnly}
+            readOnly={props.readOnly}
             className="InteractExplorer-field-input"
           />
         )}

@@ -1,5 +1,6 @@
 @import 'common/sass/variables.scss';
 
+
 .ProgressDots {
   display: flex;
   align-items: center;
@@ -8,8 +9,8 @@
     width: 22px;
     height: 7px;
     margin: 0 0.4rem;
-    border-radius: 2.5px;
-    background: #fff;
+    border-radius: 3px;
+    background: color(n0);
     opacity: 0.4;
     cursor: pointer;
 

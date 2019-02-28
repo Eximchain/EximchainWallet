@@ -1,6 +1,7 @@
 {
   "code": "en",
   "data": {
+    "GO_BACK":"Back",
     "_governanceCycleId":"Governance Cycle Number",
     "_ballotId":"Ballot Record Confirmation Number",
     "_withdrawIndex":"Withdraw Record Confirmation Number",

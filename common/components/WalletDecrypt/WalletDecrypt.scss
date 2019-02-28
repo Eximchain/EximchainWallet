@@ -158,6 +158,17 @@ $speed: 1ms;
       max-width: 600px;
       width: 70%;
       margin: 0 auto;
+
+      .TogglablePassword {
+        .input-group-input {
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+          border-right: 0;
+          resize: none;
+
+
+        }
+      }
     }
     .btn-primary {
       // float: right !important;

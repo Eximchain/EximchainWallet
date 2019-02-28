@@ -23,8 +23,10 @@ $radio-size: 10px;
       height: $radio-size;
       width: $radio-size;
       margin-right: $space-sm;
-      background: color(control-bg);
-      box-shadow: 0 0 0 1.5px color(control-bg) inset;
+      // background: color(control-bg);
+      box-shadow: 0 0 0 1.5px color(n10) inset;
+      // box-shadow: 0 0 0 1.5px color(control-bg) outset;
+
     }
 
     &:hover {

@@ -9,6 +9,8 @@
   margin: auto;
   display: flex;
   flex-direction: column;
+  // align-items: flex-start;
+
 
   > .TogglablePassword {
     width: 100%;
@@ -25,9 +27,11 @@
     flex-direction: row;
     font-size: 1rem;
     flex-wrap: wrap;
+    align-items: flex-start;
+
 
     > .input-group-header {
-      width: 100%;
+      // width: 100%;
     }
 
     > .input-group-input {
@@ -48,15 +52,26 @@
     }
   }
 
+
   &-header {
-    display: flex;
+    display: inline-block;
     font-size: $font-size-xs-bump;
-    margin-bottom: 8px;
+    z-index: 2;
+    width: max-content;
+    margin-left: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    flex-grow: 0;
+    margin-bottom: -8px;
+    // overflow: hidden;
     font-weight: 400;
-    align-items: center;
-    flex-wrap: wrap;
-    color: color(gray) !important;
+    border-radius: 4px;
+    // align-items: center;
+    // flex-wrap: wrap;
+    color: color(gray);
     text-transform: capitalize;
+    background: color(n0);
+
 
     > *:first-child {
       margin-right: 8px;
@@ -83,6 +98,7 @@
     transition: border-color 120ms;
     margin-bottom: 1rem;
 
+
     &[placeholder] {
       text-overflow: ellipsis;
     }
@@ -90,6 +106,10 @@
     &.border-rad-right-0 {
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
+    }
+    &.border-right-0 {
+      border-right: 0;
+      // border-bottom-right-radius: 0;
     }
     &.border-rad-left-0 {
       border-top-left-radius: 0;
@@ -104,15 +124,18 @@
     &:not([disabled]):not([readonly]) {
       &.invalid {
         border-color: color(r70);
-        // box-shadow: inset 0px 0px 0px 1px color(r70);
       }
       &.valid {
         border-color: color(g70);
-        // box-shadow: inset 0px 0px 0px 1px color(g70);
+      }
+      &:hover {
+        border-color: color(n60);
       }
       &:focus {
-        border-color: color(n60);
-        // box-shadow: inset 0px 0px 0px 1px color(b60);
+        border-color: color(b50);
+      }
+      &:active {
+        border-color: color(b50);
       }
     }
   }
@@ -125,5 +148,5 @@
 }
 
 textarea.input-group-input {
-  height: initial;
+  // height: initial;
 }

@@ -12,8 +12,13 @@
 
   &-arrow {
     border-color: color(gray) transparent transparent;
+
   }
-  // width: 100%;
+
+  &-arrow-zone:hover > .Select-arrow {
+    border-top-color: color(n800) !important;
+  }
+
   &:hover {
     border-color: color(n60);
   }

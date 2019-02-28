@@ -91,7 +91,7 @@ export default class TogglablePassword extends React.PureComponent<Props, State>
             name={name}
             disabled={disabled}
             type={isVisible ? 'text' : 'password'}
-            className={`${className} border-rad-right-0`}
+            className={`${className} border-rad-right-0 border-right-0`}
             placeholder={placeholder}
             onChange={onChange}
             onFocus={onFocus}

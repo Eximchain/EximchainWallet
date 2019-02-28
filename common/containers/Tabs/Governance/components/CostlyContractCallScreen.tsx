@@ -217,10 +217,7 @@ export class ContractCallClass extends Component<Props> {
         break;
       case ContractFlowStages.RESULT_SCREEN:
         body = (
-          <div>
-            {this.state.broadcastHash}
-            {this.state.promoDemoBool}
-          </div>
+          <ResultScreen txHash={this.state.broadcastHash} isPromotion={this.state.promoDemoBool} />
         );
         break;
     }

@@ -205,7 +205,7 @@ class CustomNodeModal extends React.Component<Props, State> {
             </div>
           )}
 
-          <label className="input-group input-group-inline">
+          <label className="input-group input-group flex-group-1">
             <div className="input-group-header">{translate('CUSTOM_NETWORK_URL')}</div>
             <Input
               isValid={!(this.state.url && invalids.url)}

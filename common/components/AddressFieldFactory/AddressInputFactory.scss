@@ -27,8 +27,9 @@
   }
 
   &-identicon {
-    padding-top: 1.5rem;
-    padding-right: 1.5rem;
+    padding-top: .55rem;
+    padding-right: .9rem;
+    padding-left: .5rem;
     transform: translateX(20%);
 
     @media (max-width: $screen-sm) {

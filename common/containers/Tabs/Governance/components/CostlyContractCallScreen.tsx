@@ -116,6 +116,7 @@ export class ContractCallClass extends Component<Props> {
       case ContractFlowStages.CONSTRUCT_TRANSACTION_SCREEN:
         body = (
           <div className="GovernanceSection-form">
+            <h2 className="FormInputTitle">{translate(this.props.contractCall.name)}</h2>
             <div key={selectedFunction.name}>
               {selectedFunction.contract.inputs.map((input, index) => {
                 const { type, name } = input;
@@ -200,14 +201,7 @@ export class ContractCallClass extends Component<Props> {
         body = <ResultScreen promoDemoBool={true} />;
         break;
     }
-    return (
-      <div>
-        <h2 className="GovernanceSection-topsection-subtitle">
-          {translate(this.props.contractCall.name)}
-        </h2>
-        {body}
-      </div>
-    );
+    return <div>{body}</div>;
   }
   private handleStageChange = () => {
     try {

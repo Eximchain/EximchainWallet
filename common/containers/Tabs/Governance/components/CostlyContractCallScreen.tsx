@@ -26,6 +26,7 @@ import { GovernanceCall } from '..';
 
 import '../index.scss';
 import { Button } from './Button';
+import { select } from 'redux-saga/effects';
 
 interface StateProps {
   nodeLib: INode;
@@ -58,6 +59,7 @@ interface State {
   };
   outputs: any;
   stage: ContractFlowStages;
+  setValue?: any;
 }
 
 interface ContractFunction {
@@ -95,6 +97,7 @@ export class ContractCallClass extends Component<Props> {
   goTo(newStage: ContractFlowStages) {
     this.setState({ stage: newStage });
   }
+
   render() {
     const { inputs, outputs } = this.state;
     const selectedFunction = this.props.selectedFunction;
@@ -155,6 +158,11 @@ export class ContractCallClass extends Component<Props> {
                 </div>
               );
             })}
+            {selectedFunction.name === 'vote' ? (
+              <AmountField setValue={this.state.setValue} readOnly={true} />
+            ) : (
+              <AmountField readOnly={false} />
+            )}
             {selectedFunction.contract.constant ? (
               <button
                 className="InteractExplorer-func-submit btn btn-primary"
@@ -206,6 +214,12 @@ export class ContractCallClass extends Component<Props> {
       );
     }
   };
+
+  private autoSetAmountValue(rawValue: any) {
+    const value = rawValue * rawValue;
+    console.log(value);
+    this.setState({ setValue: value });
+  }
   private handleFunctionCall = async (_: React.FormEvent<HTMLButtonElement>) => {
     try {
       const data = this.encodeData();
@@ -252,6 +266,11 @@ export class ContractCallClass extends Component<Props> {
   };
   private handleInputChange = (ev: React.FormEvent<HTMLInputElement>) => {
     const rawValue: string = ev.currentTarget.value;
+    console.log(rawValue);
+    console.log(ev.currentTarget.name);
+    if (ev.currentTarget.name === '_votes') {
+      this.autoSetAmountValue(rawValue);
+    }
     const isArr = rawValue.startsWith('[') && rawValue.endsWith(']');
     const value = {
       rawData: rawValue,

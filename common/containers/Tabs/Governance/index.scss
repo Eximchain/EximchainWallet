@@ -15,8 +15,11 @@
     margin: 0 auto;
     padding-bottom: $electron-osx-control-spacing;
 
-    button {
+    .NextButton {
       float: right;
+      margin-top: 6px;
+      min-width: 314px;
+
     }
   }
 

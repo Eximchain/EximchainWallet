@@ -1,16 +1,12 @@
 @import 'common/sass/variables';
 @import 'common/sass/mixins';
 
-// @keyframes button-enter {
-//   0% {
-//     opacity: 0;
-//     transform: translateY(6px);
-//   }
-//   100% {
-//     opacity: 1;
-//     transform: translateY(0px);
-//   }
-// }
+.FormBackButton {
+  margin-right: 8px;
+  float: left;
+  margin-top: 6px;
+
+}
 
 .Button {
   position: relative;

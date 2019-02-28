@@ -176,12 +176,15 @@ export class ContractCallClass extends Component<Props> {
                 </button>
               ) : (
                 <button
-                  className="InteractExplorer-func-submit btn btn-primary"
+                  className="InteractExplorer-func-submit NextButton btn btn-primary"
                   onClick={this.handleStageChange}
                 >
                   {translate('Submit')}
                 </button>
               )}
+              <button className="FormBackButton btn btn-default" onClick={this.props.goBack}>
+                <span>{translate('GO_BACK')}</span>
+              </button>
             </div>
           </div>
         );
@@ -199,8 +202,9 @@ export class ContractCallClass extends Component<Props> {
     }
     return (
       <div>
-        {translate(this.props.contractCall.name)}
-        <Button key="Back" name="Back Button" onClick={this.props.goBack} description="go back" />
+        <h2 className="GovernanceSection-topsection-subtitle">
+          {translate(this.props.contractCall.name)}
+        </h2>
         {body}
       </div>
     );

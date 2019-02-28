@@ -18,7 +18,7 @@ export class Fields extends Component<OwnProps> {
           className="form-group"
           initialState="advanced"
           disableToggle={true}
-          advancedGasOptions={{ dataField: false }}
+          advancedGasOptions={{ dataField: true }}
         />
         {this.props.button}
         <SendButton />

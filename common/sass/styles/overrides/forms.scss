@@ -20,7 +20,7 @@ input[type='checkbox'] {
 
 input[readonly] {
   background-color: color(control-disabled-bg);
-  cursor: text !important;
+  cursor: default !important;
 }
 
 .form-group {

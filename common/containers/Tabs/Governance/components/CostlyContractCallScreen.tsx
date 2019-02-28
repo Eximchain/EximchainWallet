@@ -115,69 +115,74 @@ export class ContractCallClass extends Component<Props> {
     switch (this.state.stage) {
       case ContractFlowStages.CONSTRUCT_TRANSACTION_SCREEN:
         body = (
-          <div key={selectedFunction.name}>
-            {selectedFunction.contract.inputs.map((input, index) => {
-              const { type, name } = input;
-              const parsedName = name === '' ? index : name;
-              const inputState = this.state.inputs[parsedName];
-              return (
-                <div key={parsedName} className="input-group-wrapper">
-                  <label className="input-group">
-                    <div className="input-group-header">
-                      {
-                        // (parsedName === index ? `Input#${parsedName}` : parsedName) + ' ' + type
-                      }
-                      {translate(parsedName)}
-                    </div>
-                    {type === 'bool' ? (
-                      <Dropdown
-                        options={[{ value: false, label: 'false' }, { value: true, label: 'true' }]}
-                        value={
-                          inputState
-                            ? {
-                                label: inputState.rawData,
-                                value: inputState.parsedData as any
-                              }
-                            : undefined
+          <div className="GovernanceSection-form">
+            <div key={selectedFunction.name}>
+              {selectedFunction.contract.inputs.map((input, index) => {
+                const { type, name } = input;
+                const parsedName = name === '' ? index : name;
+                const inputState = this.state.inputs[parsedName];
+                return (
+                  <div key={parsedName} className="input-group-wrapper">
+                    <label className="input-group">
+                      <div className="input-group-header">
+                        {
+                          // (parsedName === index ? `Input#${parsedName}` : parsedName) + ' ' + type
                         }
-                        clearable={false}
-                        onChange={({ value }: { value: boolean }) => {
-                          this.handleBooleanDropdownChange({ value, name: parsedName });
-                        }}
-                      />
-                    ) : (
-                      <Input
-                        className="InteractExplorer-func-in-input"
-                        isValid={!!(inputs[parsedName] && inputs[parsedName].rawData)}
-                        name={parsedName}
-                        value={(inputs[parsedName] && inputs[parsedName].rawData) || ''}
-                        onChange={this.handleInputChange}
-                      />
-                    )}
-                  </label>
-                </div>
-              );
-            })}
-            {selectedFunction.name === 'vote' ? (
-              <AmountField setValue={this.state.setValue} readOnly={true} />
-            ) : (
-              <AmountField readOnly={false} />
-            )}
-            {selectedFunction.contract.constant ? (
-              <button
-                className="InteractExplorer-func-submit btn btn-primary"
-                onClick={this.handleFunctionCall}
-              >
-                {translate('CONTRACT_READ')}
-              </button>
-            ) : (
-              <button
-                className="InteractExplorer-func-submit btn btn-primary"
-                onClick={this.handleStageChange}
-              >
-                {translate('Submit')}
-              </button>
-            )}
+                        {translate(parsedName)}
+                      </div>
+                      {type === 'bool' ? (
+                        <Dropdown
+                          options={[
+                            { value: false, label: 'false' },
+                            { value: true, label: 'true' }
+                          ]}
+                          value={
+                            inputState
+                              ? {
+                                  label: inputState.rawData,
+                                  value: inputState.parsedData as any
+                                }
+                              : undefined
+                          }
+                          clearable={false}
+                          onChange={({ value }: { value: boolean }) => {
+                            this.handleBooleanDropdownChange({ value, name: parsedName });
+                          }}
+                        />
+                      ) : (
+                        <Input
+                          className="InteractExplorer-func-in-input"
+                          isValid={!!(inputs[parsedName] && inputs[parsedName].rawData)}
+                          name={parsedName}
+                          value={(inputs[parsedName] && inputs[parsedName].rawData) || ''}
+                          onChange={this.handleInputChange}
+                        />
+                      )}
+                    </label>
+                  </div>
+                );
+              })}
+              {selectedFunction.name === 'vote' ? (
+                <AmountField setValue={this.state.setValue} readOnly={true} />
+              ) : (
+                <AmountField readOnly={false} />
+              )}
+              {selectedFunction.contract.constant ? (
+                <button
+                  className="InteractExplorer-func-submit btn btn-primary"
+                  onClick={this.handleFunctionCall}
+                >
+                  {translate('CONTRACT_READ')}
+                </button>
+              ) : (
+                <button
+                  className="InteractExplorer-func-submit btn btn-primary"
+                  onClick={this.handleStageChange}
+                >
+                  {translate('Submit')}
+                </button>
+              )}
+            </div>
           </div>
         );
         break;

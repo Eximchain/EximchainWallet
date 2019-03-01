@@ -1,0 +1,53 @@
+@import 'common/sass/variables';
+@import 'common/sass/mixins';
+
+
+.ReadFunctionContent {
+  min-height: 360px;
+
+  &-header {
+    margin-top: 0;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: .7px;
+    font-weight: 400;
+    font-size: 14px;
+  }
+}
+
+.Input-box {
+  position: relative;
+  padding: 1rem;
+  border: solid 1px color(n40);
+  border-radius: 6px;
+  width: 50%;
+  margin-right: 10px;
+
+  .FormBackButton {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+  }
+
+  .InteractExplorer-func-submit {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+  }
+
+}
+
+.Output-box {
+  margin-left: 10px;
+  padding: 1rem;
+  width: 50%;
+  border: solid 1px color(n40);
+  border-radius: 6px;
+  background: color(n10);
+
+  .input-group-input {
+    border: none;
+    background: none;
+  }
+
+}

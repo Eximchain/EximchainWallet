@@ -136,7 +136,7 @@ export class ContractCallClass extends Component<Props> {
     switch (this.state.stage) {
       case ContractFlowStages.CONSTRUCT_TRANSACTION_SCREEN:
         body = (
-          <div className="GovernanceSection-form">
+          <div className="GovernanceSection-form-write">
             <h2 className="FormInput-title">{translate(this.props.contractCall)}</h2>
             <p className="FormInput-subtitle">{translate(this.props.contractCall)}</p>
 

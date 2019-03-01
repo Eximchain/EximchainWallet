@@ -41,14 +41,20 @@
 
   &-form {
     // padding-top: $electron-osx-control-spacing;
-    max-width: 434px;
     margin: 0 auto;
     padding-bottom: $electron-osx-control-spacing;
 
-    .NextButton {
-      float: right;
-      margin-top: 6px;
-      min-width: 350px;
+
+
+
+    &-write {
+      max-width: 434px;
+      margin: auto;
+      .NextButton {
+        float: right;
+        margin-top: 6px;
+        min-width: 350px;
+      }
     }
   }
 

@@ -16,6 +16,7 @@ import VoteOrNominateIcon from 'assets/images/vote-or-nominate.svg';
 import CollectTokensIcon from 'assets/images/collect-tokens.svg';
 import ClaimTokensIcon from 'assets/images/claim-tokens.svg';
 
+import { transactionFieldsActions } from 'features/transaction';
 import './index.scss';
 import { Button } from './components/Button';
 import { select } from 'redux-saga/effects';
@@ -88,6 +89,7 @@ interface ContractOption {
 interface DispatchProps {
   setCurrentTo: TSetCurrentTo;
   showNotification: notificationsActions.TShowNotification;
+  resetTransactionRequested: transactionFieldsActions.TResetTransactionRequested;
 }
 interface StateProps {
   currentTo: ReturnType<typeof selectors.getCurrentTo>;
@@ -113,7 +115,7 @@ class Governance extends Component<Props, State> {
       var currentInstance = this.props.contracts[i];
       if (currentInstance.name === 'Weyl Governance') {
         if (currentInstance.address === '0x000000000000000000000000000000000000002a') {
-          this.props.setCurrentTo(currentInstance.address || '');
+          // this.props.setCurrentTo(currentInstance.address);
           break;
         }
       }
@@ -147,6 +149,22 @@ class Governance extends Component<Props, State> {
     });
     return formatted;
   };
+
+  componentDidMount() {
+    this.props.resetTransactionRequested();
+    const contractNumber = this.props.contracts.length;
+    var i = 0;
+    console.log('componentdidmount');
+    for (i; i < contractNumber; i++) {
+      var currentInstance = this.props.contracts[i];
+      if (currentInstance.name === 'Weyl Governance') {
+        if (currentInstance.address === '0x000000000000000000000000000000000000002a') {
+          this.props.setCurrentTo(currentInstance.address);
+          break;
+        }
+      }
+    }
+  }
 
   goTo(stage: GovernanceFlowStages, declaredCall: ContractFuncNames) {
     this.setState((state: State) => {
@@ -331,4 +349,7 @@ class Governance extends Component<Props, State> {
   }
 }
 
-export default connect(mapStateToProps, { setCurrentTo })(Governance);
+export default connect(mapStateToProps, {
+  setCurrentTo,
+  resetTransactionRequested: transactionFieldsActions.resetTransactionRequested
+})(Governance);

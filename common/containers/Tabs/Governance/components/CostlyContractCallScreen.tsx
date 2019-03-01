@@ -17,6 +17,8 @@ import {
   transactionMetaActions,
   transactionSelectors
 } from 'features/transaction';
+import { transactionBroadcastSelectors } from 'features/transaction/broadcast';
+import { transactionSignSelectors } from 'features/transaction/sign';
 import { GenerateTransaction } from 'components/GenerateTransaction';
 import { Input, Dropdown } from 'components/ui';
 import { Fields } from './InteractExplorer/components';
@@ -32,6 +34,9 @@ interface StateProps {
   nodeLib: INode;
   to: AppState['transaction']['fields']['to'];
   dataExists: boolean;
+  txBroadcasted: boolean;
+  currentTransactionIndex: any;
+  broadcastState: any;
 }
 
 interface DispatchProps {
@@ -60,6 +65,8 @@ interface State {
   outputs: any;
   stage: ContractFlowStages;
   setValue?: any;
+  broadcastHash?: any;
+  promoDemoBool?: any;
 }
 
 interface ContractFunction {
@@ -94,6 +101,17 @@ export class ContractCallClass extends Component<Props> {
   public componentWillUnmount() {
     this.props.setAsViewAndSend();
   }
+
+  public componentDidUpdate(prevProps: Props) {
+    if (prevProps.txBroadcasted == false && this.props.txBroadcasted) {
+      const broadcastedHash = this.props.broadcastState[
+        this.props.currentTransactionIndex.indexingHash
+      ].broadcastedHash;
+      this.setState({ broadcastHash: broadcastedHash });
+      this.goTo(ContractFlowStages.RESULT_SCREEN);
+    }
+  }
+
   goTo(newStage: ContractFlowStages) {
     this.setState({ stage: newStage });
   }
@@ -200,7 +218,9 @@ export class ContractCallClass extends Component<Props> {
         );
         break;
       case ContractFlowStages.RESULT_SCREEN:
-        body = <ResultScreen promoDemoBool={true} />;
+        body = (
+          <ResultScreen txHash={this.state.broadcastHash} isPromotion={this.state.promoDemoBool} />
+        );
         break;
     }
     return <div>{body}</div>;
@@ -313,6 +333,11 @@ export class ContractCallClass extends Component<Props> {
     return selectedFunction!.contract.encodeInput(parsedInputs);
   }
   private handleBooleanDropdownChange = ({ value, name }: { value: boolean; name: string }) => {
+    if (name === '_election') {
+      this.setState({
+        promoDemoBool: value.toString()
+      });
+    }
     this.setState({
       inputs: {
         ...this.state.inputs,
@@ -329,7 +354,10 @@ export const CostlyContractCallScreen = connect(
   (state: AppState) => ({
     nodeLib: configNodesSelectors.getNodeLib(state),
     to: transactionFieldsSelectors.getTo(state),
-    dataExists: transactionSelectors.getDataExists(state)
+    dataExists: transactionSelectors.getDataExists(state),
+    txBroadcasted: transactionSelectors.currentTransactionBroadcasted(state),
+    currentTransactionIndex: transactionSignSelectors.getSignState(state),
+    broadcastState: transactionBroadcastSelectors.getBroadcastState(state)
   }),
   {
     showNotification: notificationsActions.showNotification,

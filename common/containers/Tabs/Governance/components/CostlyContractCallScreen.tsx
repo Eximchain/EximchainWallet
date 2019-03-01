@@ -188,7 +188,7 @@ export class ContractCallClass extends Component<Props> {
               })}
               {selectedFunction.name === 'vote' ? (
                 <label className="input-group">
-                  <div className="input-group-header">Value</div>
+                  <div className="input-group-header">EXC Amount</div>
                   <Input
                     className="InteractExplorer-func-in-input"
                     name={'Value'}

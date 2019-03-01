@@ -21,7 +21,6 @@ export class Fields extends Component<OwnProps> {
             disableToggle={true}
             advancedGasOptions={{ dataField: false }}
           />
-
           {this.props.button}
         </div>
         <SendButton />

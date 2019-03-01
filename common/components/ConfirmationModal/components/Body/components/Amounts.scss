@@ -8,7 +8,7 @@
   &-send,
   &-fee,
   &-total {
-    font-size: 1.15rem;
+    font-size: 1rem;
     @media screen and (max-width: 525px) {
       font-size: 1rem;
     }
@@ -16,7 +16,7 @@
     > td {
       padding: 0.5rem 0;
       text-align: right;
-      color: shade-dark(0.5);
+      color: color(text-color);
 
       &:not(:first-child) {
         padding-left: 0.5rem;
@@ -24,14 +24,16 @@
 
       &:first-child {
         text-align: left;
-        color: color(text-color);
+        color: color(gray);
       }
 
       &:last-child {
-        font-size: 85%;
+        // font-size: 85%;
       }
     }
   }
+
+
 
   &-fee {
     > td {
@@ -40,13 +42,17 @@
   }
 
   &-total {
-    background-image: linear-gradient(to right, color(control-border) 33%, transparent 0%);
+    background-image: linear-gradient(to right, color(control-border) 100%, transparent 0%);
     background-position: top;
     background-size: 5px 1px;
     background-repeat: repeat-x;
     > td {
       padding-top: 1rem;
       padding-bottom: 1.5rem;
+      &:last-child {
+        font-weight: 700;
+      }
     }
+
   }
 }

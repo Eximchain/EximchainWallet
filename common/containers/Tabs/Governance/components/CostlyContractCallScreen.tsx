@@ -136,7 +136,9 @@ export class ContractCallClass extends Component<Props> {
       case ContractFlowStages.CONSTRUCT_TRANSACTION_SCREEN:
         body = (
           <div className="GovernanceSection-form">
-            <h2 className="FormInputTitle">{translate(this.props.contractCall.name)}</h2>
+            <h2 className="FormInput-title">{translate(this.props.contractCall.name)}</h2>
+            <p className="FormInput-subtitle">{translate(this.props.contractCall.name)}</p>
+
             <div key={selectedFunction.name}>
               {selectedFunction.contract.inputs.map((input, index) => {
                 const { type, name } = input;

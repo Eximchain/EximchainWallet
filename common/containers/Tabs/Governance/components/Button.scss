@@ -8,10 +8,17 @@
 
 }
 
-.FormInputTitle {
-  font-size: 20px;
-  padding-bottom: 28px;
-  text-transform: capitalize;
+.FormInput {
+    &-title {
+      font-size: 20px;
+      padding-bottom: 6px;
+      text-transform: capitalize;
+    }
+    &-subtitle {
+      font-size: 14px;
+      padding-bottom: 28px;
+      color: color(gray);
+    }
 }
 
 .Button {

@@ -21,8 +21,8 @@ export class Fields extends Component<OwnProps> {
             advancedGasOptions={{ dataField: true }}
             shouldTransactionReset={false}
           />
+          {this.props.button}
         </div>
-        {this.props.button}
         <SendButton />
       </React.Fragment>
     );

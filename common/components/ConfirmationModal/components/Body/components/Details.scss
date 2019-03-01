@@ -2,21 +2,28 @@
 
 .tx-modal-details {
   margin-top: 1rem;
+
   &-network-info {
     text-align: center;
     font-weight: 400;
     color: shade-dark(0.5);
   }
+
   &-button {
     display: block;
-    margin: auto;
-    padding: 8px 32px;
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    color: color(b60);
     border: none;
+    padding: 0;
     border-radius: 2px;
     transition: background-color 300ms;
     background-color: transparent;
+
     &:hover {
-      background-color: shade-dark(0.06);
+      color: color(b80);
     }
+
   }
 }

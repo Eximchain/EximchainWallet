@@ -54,7 +54,7 @@
 
 .btn {
   display: inline-block;
-  border-radius: 6px;
+  border-radius: 6px !important;
   margin-bottom: 0;
   font-weight: normal;
   text-align: center;
@@ -199,6 +199,7 @@
 }
 
 .btn-quiet-neutral {
+  min-width: 0 !important;
   @include button-variant(
     color(control-color),
     color(control-bg),

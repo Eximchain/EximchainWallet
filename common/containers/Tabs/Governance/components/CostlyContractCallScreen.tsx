@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import TabSection from 'containers/TabSection';
 import { AppState } from 'features/reducers';
 import { notificationsActions } from 'features/notifications';
 import { connect } from 'react-redux';
 import translate, { translateRaw } from 'translations';
 import { AmountField } from './InteractExplorer/components/AmountField';
 import ResultScreen from './ResultScreen';
-import { bufferToHex } from 'ethereumjs-util';
 
 import { Data } from 'libs/units';
 import { INode } from 'libs/nodes';
@@ -25,12 +23,9 @@ import { Input, Dropdown } from 'components/ui';
 import { Fields } from './InteractExplorer/components';
 import './InteractExplorer/InteractExplorer.scss';
 
-import { GovernanceCall, ContractFuncNames } from '..';
+import { ContractFuncNames } from '..';
 
 import '../index.scss';
-import { Button } from './Button';
-import { select } from 'redux-saga/effects';
-import { bytesToHuman } from 'utils/formatters';
 
 interface StateProps {
   nodeLib: INode;
@@ -142,8 +137,8 @@ export class ContractCallClass extends Component<Props> {
       case ContractFlowStages.CONSTRUCT_TRANSACTION_SCREEN:
         body = (
           <div className="GovernanceSection-form">
-            <h2 className="FormInput-title">{translate(this.props.contractCall.name)}</h2>
-            <p className="FormInput-subtitle">{translate(this.props.contractCall.name)}</p>
+            <h2 className="FormInput-title">{translate(this.props.contractCall)}</h2>
+            <p className="FormInput-subtitle">{translate(this.props.contractCall)}</p>
 
             <div key={selectedFunction.name}>
               {selectedFunction.contract.inputs.map((input, index) => {
@@ -337,14 +332,7 @@ export class ContractCallClass extends Component<Props> {
       return input;
     }
   }
-  public handleSuccessScreen(promoDemoBool: boolean) {
-    if (promoDemoBool) {
-      //Handle boolean change here
-    } else {
-      //Handle boolean change here
-    }
-    this.goTo(ContractFlowStages.RESULT_SCREEN);
-  }
+
   private encodeData(): string {
     const { inputs } = this.state;
     const selectedFunction = this.props.selectedFunction;

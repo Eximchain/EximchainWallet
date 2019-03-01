@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import Contract from 'libs/contracts';
 import translate, { translateRaw } from 'translations';
 import TabSection from 'containers/TabSection';
-import FreeContractCallScreen from './components/FreeContractCallScreen';
+import { FreeContractCallScreen } from './components/FreeContractCallScreen';
 import { configSelectors } from 'features/config';
 import VoteOrNominateIcon from 'assets/images/vote-or-nominate.svg';
 import CollectTokensIcon from 'assets/images/collect-tokens.svg';
@@ -149,9 +149,7 @@ class Governance extends Component<Props, State> {
     });
     return formatted;
   };
-
-  componentDidMount() {
-    this.props.resetTransactionRequested();
+  private setContract() {
     const contractNumber = this.props.contracts.length;
     var i = 0;
     console.log('componentdidmount');
@@ -164,6 +162,10 @@ class Governance extends Component<Props, State> {
         }
       }
     }
+  }
+  componentDidMount() {
+    this.props.resetTransactionRequested();
+    this.setContract();
   }
 
   goTo(stage: GovernanceFlowStages, declaredCall: ContractFuncNames) {
@@ -251,7 +253,7 @@ class Governance extends Component<Props, State> {
     },
     [FreeContractCallName.WITHDRAW_HISTORY]: {
       name: FreeContractCallName.WITHDRAW_HISTORY,
-      contractcall: 'withdraw_history'
+      contractcall: 'withdrawHistory'
     }
   };
 
@@ -281,7 +283,7 @@ class Governance extends Component<Props, State> {
     // your transition
     const stage = GovernanceFlowStages.START_PAGE;
     this.props.resetTransactionRequested();
-
+    this.setContract();
     this.setState((state: State) => {
       let newState = Object.assign({}, state);
       newState.stage = stage;
@@ -326,7 +328,13 @@ class Governance extends Component<Props, State> {
         );
         break;
       case GovernanceFlowStages.FREE_CALL_PAGE:
-        body = <FreeContractCallScreen goBack={this.goBack} contractCall={this.state.chosenCall} />;
+        body = (
+          <FreeContractCallScreen
+            selectedFunction={this.state.currentCall}
+            goBack={this.goBack}
+            contractCall={this.state.chosenCall}
+          />
+        );
         break;
       case GovernanceFlowStages.COSTLY_CALL_PAGE:
         body = (

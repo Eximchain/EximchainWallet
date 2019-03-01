@@ -133,6 +133,7 @@ class AdvancedGas extends React.Component<Props, State> {
 
     return (
       <div className="AdvancedGas-fee-summary">
+        <p className="AdvancedGas-transaction-header"> Transaction Fee </p>
         <FeeSummary
           gasPrice={gasPrice}
           scheduleGasPrice={scheduleGasPrice}
@@ -151,11 +152,7 @@ class AdvancedGas extends React.Component<Props, State> {
   }
 
   private getStandardFeeFormula({ gasPriceWei, gasLimit, fee }: RenderData) {
-    return (
-      <span>
-        {gasPriceWei} * {gasLimit} = {fee}
-      </span>
-    );
+    return <span>{fee}</span>;
   }
 
   private getScheduleFeeFormula({ gasPriceWei, scheduleGasLimit, fee }: RenderData) {

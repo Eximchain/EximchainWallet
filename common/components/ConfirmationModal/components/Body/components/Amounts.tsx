@@ -30,7 +30,6 @@ class AmountsClass extends Component<StateProps> {
       total,
       network
     } = this.props;
-    const showConversion = valueUSD && totalUSD && feeUSD;
 
     return (
       <table className="tx-modal-amount">
@@ -45,17 +44,6 @@ class AmountsClass extends Component<StateProps> {
                 symbol={unit}
               />
             </td>
-            {showConversion && (
-              <td>
-                $<UnitDisplay
-                  value={valueUSD}
-                  unit="ether"
-                  displayShortBalance={2}
-                  displayTrailingZeroes={true}
-                  checkOffline={true}
-                />
-              </td>
-            )}
           </tr>
           <tr className="tx-modal-amount-fee">
             <td>{translate('CONFIRM_TX_FEE')}</td>
@@ -67,17 +55,6 @@ class AmountsClass extends Component<StateProps> {
                 symbol={network.unit}
               />
             </td>
-            {showConversion && (
-              <td>
-                $<UnitDisplay
-                  value={feeUSD}
-                  unit="ether"
-                  displayShortBalance={2}
-                  displayTrailingZeroes={true}
-                  checkOffline={true}
-                />
-              </td>
-            )}
           </tr>
           {!isToken && (
             <tr className="tx-modal-amount-total">
@@ -90,17 +67,6 @@ class AmountsClass extends Component<StateProps> {
                   symbol={network.unit}
                 />
               </td>
-              {showConversion && (
-                <td>
-                  $<UnitDisplay
-                    value={totalUSD}
-                    unit="ether"
-                    displayShortBalance={2}
-                    displayTrailingZeroes={true}
-                    checkOffline={true}
-                  />
-                </td>
-              )}
             </tr>
           )}
         </tbody>

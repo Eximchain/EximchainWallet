@@ -14,13 +14,16 @@ export class Fields extends Component<OwnProps> {
     const makeContent = () => (
       <React.Fragment>
         <AmountField />
-        <TXMetaDataPanel
-          className="form-group"
-          initialState="advanced"
-          disableToggle={true}
-          advancedGasOptions={{ dataField: false }}
-        />
-        {this.props.button}
+        <div className="GovernanceSection-transaction-screen">
+          <TXMetaDataPanel
+            className="form-group"
+            initialState="advanced"
+            disableToggle={true}
+            advancedGasOptions={{ dataField: false }}
+          />
+
+          {this.props.button}
+        </div>
         <SendButton />
       </React.Fragment>
     );

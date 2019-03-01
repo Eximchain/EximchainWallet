@@ -4,8 +4,8 @@ import { Input } from 'components/ui';
 import { AmountFieldFactory } from 'components/AmountFieldFactory';
 
 interface Props {
-  readOnly: boolean;
-  setValue?: any;
+  readOnly?: boolean;
+  value?: any;
 }
 
 export const AmountField: React.SFC<Props> = props => (
@@ -13,16 +13,22 @@ export const AmountField: React.SFC<Props> = props => (
     <label className="input-group">
       <div className="input-group-header">Value</div>
       <AmountFieldFactory
-        withProps={({ currentValue: { raw }, isValid, onChange, readOnly }) => (
-          <Input
-            name="value"
-            value={props.setValue ? props.setValue : raw}
-            isValid={isValid || raw === ''}
-            onChange={onChange}
-            readOnly={props.readOnly}
-            className="InteractExplorer-field-input"
-          />
-        )}
+        withProps={({ currentValue: { raw }, isValid, onChange, readOnly }) => {
+          const instrumentedOnChange = (ev: React.FormEvent<HTMLInputElement>) => {
+            console.log('Hit the onChange handler, here is the event: ', ev);
+            onChange(ev);
+          };
+          return (
+            <Input
+              name="value"
+              value={props.value ? props.value : raw}
+              isValid={isValid || raw === ''}
+              onChange={instrumentedOnChange}
+              readOnly={readOnly}
+              className="InteractExplorer-field-input"
+            />
+          );
+        }}
       />
     </label>
   </div>

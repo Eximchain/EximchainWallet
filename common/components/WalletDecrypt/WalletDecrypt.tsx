@@ -48,6 +48,7 @@ interface OwnProps {
   hidden?: boolean;
   disabledWallets?: DisabledWallets;
   showGenerateLink?: boolean;
+  shouldTransactionReset?: boolean;
 }
 
 interface DispatchProps {
@@ -198,6 +199,9 @@ const WalletDecrypt = withRouter<Props>(
       selectedWalletKey: null,
       isInsecureOverridden: false,
       value: null
+    };
+    static defaultProps = {
+      shouldTransactionReset: true
     };
 
     public UNSAFE_componentWillReceiveProps(nextProps: Props) {
@@ -461,7 +465,9 @@ const WalletDecrypt = withRouter<Props>(
       // the payload to contain the unlocked wallet info.
       const unlockValue = value && !isEmpty(value) ? value : payload;
       this.WALLETS[selectedWalletKey].unlock(unlockValue);
-      this.props.resetTransactionRequested();
+      if (this.props.shouldTransactionReset) {
+        this.props.resetTransactionRequested();
+      }
     };
 
     private isWalletDisabled = (walletKey: WalletName) => {

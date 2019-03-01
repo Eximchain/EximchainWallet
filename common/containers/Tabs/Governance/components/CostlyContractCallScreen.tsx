@@ -5,13 +5,14 @@ import { notificationsActions } from 'features/notifications';
 import { connect } from 'react-redux';
 import translate, { translateRaw } from 'translations';
 import { AmountField } from './InteractExplorer/components/AmountField';
-import { ResultScreen } from './ResultScreen';
+import ResultScreen from './ResultScreen';
 import { bufferToHex } from 'ethereumjs-util';
 
 import { Data } from 'libs/units';
 import { INode } from 'libs/nodes';
 import { configNodesSelectors } from 'features/config';
 import {
+  transactionActions,
   transactionFieldsActions,
   transactionFieldsSelectors,
   transactionMetaActions,
@@ -24,17 +25,19 @@ import { Input, Dropdown } from 'components/ui';
 import { Fields } from './InteractExplorer/components';
 import './InteractExplorer/InteractExplorer.scss';
 
-import { GovernanceCall } from '..';
+import { GovernanceCall, ContractFuncNames } from '..';
 
 import '../index.scss';
 import { Button } from './Button';
 import { select } from 'redux-saga/effects';
+import { bytesToHuman } from 'utils/formatters';
 
 interface StateProps {
   nodeLib: INode;
   to: AppState['transaction']['fields']['to'];
   dataExists: boolean;
   txBroadcasted: boolean;
+  currentTransactionFailed: boolean;
   currentTransactionIndex: any;
   broadcastState: any;
 }
@@ -44,11 +47,12 @@ interface DispatchProps {
   setDataField: transactionFieldsActions.TSetDataField;
   setAsContractInteraction: transactionMetaActions.TSetAsContractInteraction;
   setAsViewAndSend: transactionMetaActions.TSetAsViewAndSend;
+  setCurrentValue: transactionActions.TSetCurrentValue;
 }
 
 interface OwnProps {
   selectedFunction: ContractOption;
-  contractCall: GovernanceCall;
+  contractCall: ContractFuncNames;
   goBack: () => void;
 }
 
@@ -103,7 +107,11 @@ export class ContractCallClass extends Component<Props> {
   }
 
   public componentDidUpdate(prevProps: Props) {
-    if (prevProps.txBroadcasted == false && this.props.txBroadcasted) {
+    if (
+      prevProps.txBroadcasted == false &&
+      this.props.txBroadcasted &&
+      !this.props.currentTransactionFailed
+    ) {
       const broadcastedHash = this.props.broadcastState[
         this.props.currentTransactionIndex.indexingHash
       ].broadcastedHash;
@@ -182,7 +190,15 @@ export class ContractCallClass extends Component<Props> {
                 );
               })}
               {selectedFunction.name === 'vote' ? (
-                <AmountField setValue={this.state.setValue} readOnly={true} />
+                <label className="input-group">
+                  <div className="input-group-header">Value</div>
+                  <Input
+                    className="InteractExplorer-func-in-input"
+                    name={'Value'}
+                    value={this.state.setValue}
+                    readOnly={true}
+                  />
+                </label>
               ) : (
                 <AmountField readOnly={false} />
               )}
@@ -211,13 +227,17 @@ export class ContractCallClass extends Component<Props> {
       case ContractFlowStages.SUBMIT_TRANSACTION_SCREEN:
         body = (
           <React.Fragment>
-            <Fields button={generateOrWriteButton} onClick={this.handleSuccessScreen} />
+            <Fields button={generateOrWriteButton} />
           </React.Fragment>
         );
         break;
       case ContractFlowStages.RESULT_SCREEN:
         body = (
-          <ResultScreen txHash={this.state.broadcastHash} isPromotion={this.state.promoDemoBool} />
+          <ResultScreen
+            txHash={this.state.broadcastHash}
+            isPromotion={this.state.promoDemoBool}
+            governanceCallName={this.props.contractCall}
+          />
         );
         break;
     }
@@ -293,6 +313,8 @@ export class ContractCallClass extends Component<Props> {
     console.log(ev.currentTarget.name);
     if (ev.currentTarget.name === '_votes') {
       this.autoSetAmountValue(rawValue);
+      const value = parseInt(rawValue) ** parseInt(rawValue);
+      this.props.setCurrentValue(value.toString());
     }
     const isArr = rawValue.startsWith('[') && rawValue.endsWith(']');
     const value = {
@@ -354,6 +376,7 @@ export const CostlyContractCallScreen = connect(
     to: transactionFieldsSelectors.getTo(state),
     dataExists: transactionSelectors.getDataExists(state),
     txBroadcasted: transactionSelectors.currentTransactionBroadcasted(state),
+    currentTransactionFailed: transactionSelectors.currentTransactionFailed(state),
     currentTransactionIndex: transactionSignSelectors.getSignState(state),
     broadcastState: transactionBroadcastSelectors.getBroadcastState(state)
   }),
@@ -362,6 +385,7 @@ export const CostlyContractCallScreen = connect(
     setDataField: transactionFieldsActions.setDataField,
     resetTransactionRequested: transactionFieldsActions.resetTransactionRequested,
     setAsContractInteraction: transactionMetaActions.setAsContractInteraction,
-    setAsViewAndSend: transactionMetaActions.setAsViewAndSend
+    setAsViewAndSend: transactionMetaActions.setAsViewAndSend,
+    setCurrentValue: transactionActions.setCurrentValue
   }
 )(ContractCallClass);

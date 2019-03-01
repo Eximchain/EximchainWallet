@@ -130,6 +130,8 @@ export class ContractCallClass extends Component<Props> {
       </button>
     );
     var body;
+    const dummyHash = '0x397ed6e91ab1a5f3274256aa514495d712f06db38de036ca24c5e5e5f999868d';
+    return <ResultScreen txHash={dummyHash} isPromotion={true} />;
     switch (this.state.stage) {
       case ContractFlowStages.CONSTRUCT_TRANSACTION_SCREEN:
         body = (

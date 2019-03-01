@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { translateRaw } from 'translations';
+import illustration from 'assets/images/vote-or-nominate.svg';
 
 interface Props {
   isPromotion: boolean;
@@ -14,6 +15,7 @@ export class ResultScreen extends React.Component<Props, State> {
     return (
       <div>
         <h1>Hello, World</h1>
+        <img src={illustration} />
         <ul>
           <li>My name is ResultScreen and you're looking at a result</li>
           <li>Was this a promotion? : {this.props.isPromotion}</li>

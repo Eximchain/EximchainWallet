@@ -16,6 +16,7 @@ interface OwnProps {
   isDisabled?: boolean;
   disableReason?: string;
   onClick: Function;
+  className: string;
 }
 
 interface StateProps {
@@ -41,6 +42,7 @@ export class Button extends React.PureComponent<Props> {
       helpLink,
       isSecure,
       isReadOnly,
+      className,
       isDisabled,
       disableReason
     } = this.props;
@@ -54,14 +56,15 @@ export class Button extends React.PureComponent<Props> {
         arialabel: 'More info'
       });
     }
-
+    let classNameObj: any = {
+      Button: true,
+      'Button--small': !isSecure,
+      'is-disabled': isDisabled
+    };
+    if (className) classNameObj[className] = true;
     return (
       <div
-        className={classnames({
-          Button: true,
-          'Button--small': !isSecure,
-          'is-disabled': isDisabled
-        })}
+        className={classnames(classNameObj)}
         onClick={this.handleClick}
         tabIndex={isDisabled ? -1 : 0}
         aria-disabled={isDisabled}

@@ -86,6 +86,10 @@ interface ContractOption {
 type Props = StateProps & DispatchProps & OwnProps;
 
 export class ContractCallClass extends Component<Props> {
+  constructor(props: Props) {
+    super(props);
+    this.goTo = this.goTo.bind(this);
+  }
   public static defaultProps: Partial<Props> = {};
 
   public state: State = {
@@ -130,8 +134,6 @@ export class ContractCallClass extends Component<Props> {
       </button>
     );
     var body;
-    const dummyHash = '0x397ed6e91ab1a5f3274256aa514495d712f06db38de036ca24c5e5e5f999868d';
-    return <ResultScreen txHash={dummyHash} isPromotion={true} />;
     switch (this.state.stage) {
       case ContractFlowStages.CONSTRUCT_TRANSACTION_SCREEN:
         body = (
@@ -221,11 +223,15 @@ export class ContractCallClass extends Component<Props> {
         break;
       case ContractFlowStages.RESULT_SCREEN:
         body = (
-          <ResultScreen txHash={this.state.broadcastHash} isPromotion={this.state.promoDemoBool} />
+          <ResultScreen
+            txHash={this.state.broadcastHash}
+            backToGovernance={this.props.goBack}
+            isPromotion={this.state.promoDemoBool}
+          />
         );
         break;
     }
-    return <div>{body}</div>;
+    return body;
   }
   private handleStageChange = () => {
     try {

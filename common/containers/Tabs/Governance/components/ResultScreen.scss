@@ -1,0 +1,115 @@
+@import 'common/sass/variables';
+@import 'common/sass/mixins';
+
+.mainResultScreenFlexContainer {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    justify-self: center;
+    justify-content: center;
+}
+
+.resultScreenSpacer {
+    display: flex;
+    flex: 1;
+}
+
+.mainResultScreenBody {
+    flex-direction: column;
+    justify-self: center;
+    flex-flow: column;
+    justify-content: center;
+}
+
+.resultBackBtn {
+    // margin-left: 0;
+    // margin-right: 0;
+    
+    text-align: center;
+}
+
+.resultBackBtn > .Button-inner > .Button-title > span {
+    text-align: center;
+}
+
+.resultFlexRow{
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    -webkit-flex-direction: row;
+}
+
+.resultContentCol{
+    display: flex;
+    padding : 2em;
+    flex: 3 1 75%;
+    flex-direction: column;
+    -webkit-flex-direction: column;
+}
+
+.resultImgCol{
+    display: flex;
+    flex: 1 1 25%;
+    justify-content: center;
+    flex-direction: column;
+    -webkit-flex-direction: column;
+    z-index: 10;
+}
+
+.btnRow{
+    padding-left: 0;
+    padding-right: 0;
+}
+
+a.resultScreenBtnLink{
+    position: relative;
+    flex: 1;
+    height: auto;
+    min-width: 300px;
+    padding: 12px 12px;
+    margin: 0 $space-sm $space;
+    // margin-bottom: 20px;
+    color: #1E2F47;
+    background: color(control-bg);
+    border-style: solid;
+    border-width: 1px;
+    border-color: color(n40);
+    border-radius: 6px;
+    text-align: center;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+      z-index: 2;
+      border-color: color(b50);
+      // box-shadow: 0 1px 4px rgba(#000, 0.06), 0 2px 6px rgba(#000, 0.06);
+      // transform: translateY(-2px);
+
+
+      .Button-title {
+        // color: shade-dark(.8);
+
+        &-icon {
+          // opacity: .8;
+        }
+      }
+    }
+
+    &:first-child {
+        margin-left: 0;
+    }
+
+    &:last-child {
+        margin-right: 0;
+    }
+    
+    &-back {
+        background-color: #267EDC;
+        color: white;
+    }
+
+    &-main {
+        background-color: #F0F2F4;
+        color: #1F2F47;
+    }
+}

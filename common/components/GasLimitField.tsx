@@ -25,10 +25,6 @@ export const GasLimitField: React.SFC<Props> = ({
           <div className="input-group-header">
             {customLabel ? customLabel : translate('TRANS_GAS')}
             <div className="flex-spacer" />
-            <InlineSpinner
-              active={!hideGasCalculationSpinner && gasEstimationPending}
-              text="Calculating"
-            />
           </div>
           <Input
             isValid={gasLimitValidator(raw)}

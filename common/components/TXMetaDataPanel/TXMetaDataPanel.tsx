@@ -36,6 +36,7 @@ interface DispatchProps {
 // Set default props for props that can't be truthy or falsy
 interface DefaultProps {
   initialState: SliderStates;
+  shouldTransactionReset: boolean;
 }
 
 interface OwnProps {
@@ -44,6 +45,7 @@ interface OwnProps {
   advancedGasOptions?: AdvancedOptions;
   className?: string;
   scheduling?: boolean;
+  shouldTransactionReset?: boolean;
 }
 
 type Props = DispatchProps & OwnProps & StateProps;
@@ -55,7 +57,8 @@ interface State {
 
 class TXMetaDataPanel extends React.Component<Props, State> {
   public static defaultProps: DefaultProps = {
-    initialState: 'simple'
+    initialState: 'simple',
+    shouldTransactionReset: true
   };
 
   public state: State = {
@@ -65,7 +68,9 @@ class TXMetaDataPanel extends React.Component<Props, State> {
 
   public componentWillMount() {
     if (!this.props.offline) {
-      this.props.resetTransactionRequested();
+      if (this.props.shouldTransactionReset) {
+        this.props.resetTransactionRequested();
+      }
     }
   }
 

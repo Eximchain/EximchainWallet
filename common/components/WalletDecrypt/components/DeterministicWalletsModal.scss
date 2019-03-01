@@ -136,16 +136,16 @@
     &-nav {
       &-btn {
         display: inline-block;
-        margin: 0;
+        // margin: 0;
         width: 49.9%;
         width: calc(50% - 5px);
-        margin: 0 5px;
+        margin: 0 4px;
 
         &:first-child {
-          margin-left: 0;
+          margin-right: 0;
         }
         &:last-child {
-          margin-right: 0;
+          margin-left: 0;
         }
       }
     }

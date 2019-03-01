@@ -8,7 +8,7 @@ $m-window-padding-w-mobile: 10px;
 $m-window-padding-h-mobile: 10px;
 $m-header-height: 62px;
 $m-header-padding: 2rem 2rem 2rem 2rem;
-$m-content-padding: 0 2rem 1.5rem 2rem;
+$m-content-padding: 0 2rem 0.5rem 2rem;
 $m-footer-padding: 0.5rem 2rem 1rem 2rem;
 $m-close-size: 26px;
 $m-anim-speed: 400ms;
@@ -126,7 +126,7 @@ $m-anim-speed: 400ms;
   // Mobile styles
   @media (max-width: $screen-sm) {
     // top: $m-window-padding-h-mobile;
-    width: calc(100% - #{$m-window-padding-w-mobile}) !important;
+    width: auto !important;
     max-width: calc(100% - #{$m-window-padding-w-mobile * 2});
     max-height: calc(100% - #{$m-window-padding-h-mobile * 2});
   }

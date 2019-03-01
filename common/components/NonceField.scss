@@ -15,18 +15,19 @@
 
   &-refresh {
     @include reset-button;
-    opacity: 0.3;
+    opacity: 1;
+    color: color(n100);
     transition: opacity 300ms;
 
     > img {
       height: 1.4rem;
     }
     &:hover {
-      opacity: 0.54;
+      color: color(n600);
     }
     &:active {
       transition: opacity 120ms;
-      opacity: 1;
+      color: color(n800);
     }
   }
 

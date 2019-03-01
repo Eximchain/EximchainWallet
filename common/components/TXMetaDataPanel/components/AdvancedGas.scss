@@ -1,8 +1,33 @@
 @import 'common/sass/variables';
 
+.Modal-header-close {
+  display: none;
+}
+.Modal-header-title {
+  font-size: 16px;
+}
+
+.FeeSummary {
+  border: 0;
+  font-size: 20px;
+  margin: 0px 0 20px 0;
+}
+
+.Modal {
+  .Identicon-shadow {
+    box-shadow: none;
+  }
+}
 .AdvancedGas {
   margin-top: 0;
   margin-bottom: 0;
+
+  &-transaction-header {
+    color: color(gray);
+    text-align: center;
+    margin-bottom: 0;
+    margin-top: 20px;
+  }
 
   &-calculate-limit {
     font-size: $font-size-small;

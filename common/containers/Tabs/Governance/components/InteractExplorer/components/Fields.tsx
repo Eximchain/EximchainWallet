@@ -13,22 +13,23 @@ export class Fields extends Component<OwnProps> {
   public render() {
     const makeContent = () => (
       <React.Fragment>
-        <AmountField />
         <div className="GovernanceSection-transaction-screen">
           <TXMetaDataPanel
             className="form-group"
             initialState="advanced"
             disableToggle={true}
-            advancedGasOptions={{ dataField: false }}
+            advancedGasOptions={{ dataField: true }}
+            shouldTransactionReset={false}
           />
-
           {this.props.button}
         </div>
         <SendButton />
       </React.Fragment>
     );
 
-    const makeDecrypt = () => <WalletDecrypt disabledWallets={DISABLE_WALLETS.READ_ONLY} />;
+    const makeDecrypt = () => (
+      <WalletDecrypt disabledWallets={DISABLE_WALLETS.READ_ONLY} shouldTransactionReset={false} />
+    );
 
     return <FullWalletOnly withFullWallet={makeContent} withoutFullWallet={makeDecrypt} />;
   }

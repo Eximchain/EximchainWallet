@@ -502,7 +502,7 @@
     "WALLET_LOGOUT_MODAL_TITLE": "You are about to log out",
     "WALLET_LOGOUT_MODAL_DESC": "Leaving this page will log you out. Are you sure you want to continue?",
     "CONFIRM_TX_MODAL_TITLE": "Confirm Transaction",
-    "CONFIRM_TX_SENDING": "You'll Send",
+    "CONFIRM_TX_SENDING": "EXC Amount",
     "CONFIRM_TX_FEE": "Transaction Fee",
     "CONFIRM_TX_TOTAL": "Total",
     "CONFIRM_TX_FROM": "From",

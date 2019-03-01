@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
-import TabSection from 'containers/TabSection';
 import { AppState } from 'features/reducers';
 import { notificationsActions } from 'features/notifications';
 import { connect } from 'react-redux';
 import translate, { translateRaw } from 'translations';
 import { AmountField } from './InteractExplorer/components/AmountField';
-import { ResultScreen } from './ResultScreen';
-import { bufferToHex } from 'ethereumjs-util';
+import ResultScreen from './ResultScreen';
 
 import { Data } from 'libs/units';
 import { INode } from 'libs/nodes';
 import { configNodesSelectors } from 'features/config';
 import {
+  transactionActions,
   transactionFieldsActions,
   transactionFieldsSelectors,
   transactionMetaActions,
@@ -24,17 +23,16 @@ import { Input, Dropdown } from 'components/ui';
 import { Fields } from './InteractExplorer/components';
 import './InteractExplorer/InteractExplorer.scss';
 
-import { GovernanceCall } from '..';
+import { ContractFuncNames } from '..';
 
 import '../index.scss';
-import { Button } from './Button';
-import { select } from 'redux-saga/effects';
 
 interface StateProps {
   nodeLib: INode;
   to: AppState['transaction']['fields']['to'];
   dataExists: boolean;
   txBroadcasted: boolean;
+  currentTransactionFailed: boolean;
   currentTransactionIndex: any;
   broadcastState: any;
 }
@@ -44,11 +42,12 @@ interface DispatchProps {
   setDataField: transactionFieldsActions.TSetDataField;
   setAsContractInteraction: transactionMetaActions.TSetAsContractInteraction;
   setAsViewAndSend: transactionMetaActions.TSetAsViewAndSend;
+  setCurrentValue: transactionActions.TSetCurrentValue;
 }
 
 interface OwnProps {
   selectedFunction: ContractOption;
-  contractCall: GovernanceCall;
+  contractCall: ContractFuncNames;
   goBack: () => void;
 }
 
@@ -107,7 +106,11 @@ export class ContractCallClass extends Component<Props> {
   }
 
   public componentDidUpdate(prevProps: Props) {
-    if (prevProps.txBroadcasted == false && this.props.txBroadcasted) {
+    if (
+      prevProps.txBroadcasted == false &&
+      this.props.txBroadcasted &&
+      !this.props.currentTransactionFailed
+    ) {
       const broadcastedHash = this.props.broadcastState[
         this.props.currentTransactionIndex.indexingHash
       ].broadcastedHash;
@@ -137,9 +140,9 @@ export class ContractCallClass extends Component<Props> {
     switch (this.state.stage) {
       case ContractFlowStages.CONSTRUCT_TRANSACTION_SCREEN:
         body = (
-          <div className="GovernanceSection-form">
-            <h2 className="FormInput-title">{translate(this.props.contractCall.name)}</h2>
-            <p className="FormInput-subtitle">{translate(this.props.contractCall.name)}</p>
+          <div className="GovernanceSection-form-write">
+            <h2 className="FormInput-title">{translate(this.props.contractCall)}</h2>
+            <p className="FormInput-subtitle">{translate(this.props.contractCall)}</p>
 
             <div key={selectedFunction.name}>
               {selectedFunction.contract.inputs.map((input, index) => {
@@ -188,7 +191,15 @@ export class ContractCallClass extends Component<Props> {
                 );
               })}
               {selectedFunction.name === 'vote' ? (
-                <AmountField setValue={this.state.setValue} readOnly={true} />
+                <label className="input-group">
+                  <div className="input-group-header">EXC Amount</div>
+                  <Input
+                    className="InteractExplorer-func-in-input"
+                    name={'Value'}
+                    value={this.state.setValue}
+                    readOnly={true}
+                  />
+                </label>
               ) : (
                 <AmountField readOnly={false} />
               )}
@@ -217,7 +228,7 @@ export class ContractCallClass extends Component<Props> {
       case ContractFlowStages.SUBMIT_TRANSACTION_SCREEN:
         body = (
           <React.Fragment>
-            <Fields button={generateOrWriteButton} onClick={this.handleSuccessScreen} />
+            <Fields button={generateOrWriteButton} />
           </React.Fragment>
         );
         break;
@@ -227,6 +238,7 @@ export class ContractCallClass extends Component<Props> {
             txHash={this.state.broadcastHash}
             backToGovernance={this.props.goBack}
             isPromotion={this.state.promoDemoBool}
+            governanceCallName={this.props.contractCall}
           />
         );
         break;
@@ -303,6 +315,8 @@ export class ContractCallClass extends Component<Props> {
     console.log(ev.currentTarget.name);
     if (ev.currentTarget.name === '_votes') {
       this.autoSetAmountValue(rawValue);
+      const value = parseInt(rawValue) ** parseInt(rawValue);
+      this.props.setCurrentValue(value.toString());
     }
     const isArr = rawValue.startsWith('[') && rawValue.endsWith(']');
     const value = {
@@ -323,14 +337,7 @@ export class ContractCallClass extends Component<Props> {
       return input;
     }
   }
-  public handleSuccessScreen(promoDemoBool: boolean) {
-    if (promoDemoBool) {
-      //Handle boolean change here
-    } else {
-      //Handle boolean change here
-    }
-    this.goTo(ContractFlowStages.RESULT_SCREEN);
-  }
+
   private encodeData(): string {
     const { inputs } = this.state;
     const selectedFunction = this.props.selectedFunction;
@@ -364,6 +371,7 @@ export const CostlyContractCallScreen = connect(
     to: transactionFieldsSelectors.getTo(state),
     dataExists: transactionSelectors.getDataExists(state),
     txBroadcasted: transactionSelectors.currentTransactionBroadcasted(state),
+    currentTransactionFailed: transactionSelectors.currentTransactionFailed(state),
     currentTransactionIndex: transactionSignSelectors.getSignState(state),
     broadcastState: transactionBroadcastSelectors.getBroadcastState(state)
   }),
@@ -372,6 +380,7 @@ export const CostlyContractCallScreen = connect(
     setDataField: transactionFieldsActions.setDataField,
     resetTransactionRequested: transactionFieldsActions.resetTransactionRequested,
     setAsContractInteraction: transactionMetaActions.setAsContractInteraction,
-    setAsViewAndSend: transactionMetaActions.setAsViewAndSend
+    setAsViewAndSend: transactionMetaActions.setAsViewAndSend,
+    setCurrentValue: transactionActions.setCurrentValue
   }
 )(ContractCallClass);

@@ -1,4 +1,5 @@
 import React from 'react';
+import { ContractFuncNames } from '..';
 import { translateRaw } from 'translations';
 import './ResultScreen.scss';
 import { Button } from './Button';
@@ -8,11 +9,12 @@ interface Props {
   isPromotion: boolean;
   txHash: string;
   backToGovernance: () => void;
+  governanceCallName: ContractFuncNames;
 }
 
 interface State {}
 
-export class ResultScreen extends React.Component<Props, State> {
+class ResultScreen extends React.Component<Props, State> {
   render() {
     const { isPromotion, txHash } = this.props;
     return (
@@ -70,3 +72,5 @@ export class ResultScreen extends React.Component<Props, State> {
     );
   }
 }
+
+export default ResultScreen;

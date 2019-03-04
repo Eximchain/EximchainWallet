@@ -55,20 +55,18 @@ class AdvancedGas extends React.Component<Props, State> {
       ...this.props.options
     }
   };
-
+  componentWillMount() {
+    this.props.toggleAutoGasLimit();
+  }
   public render() {
     const { autoGasLimitEnabled, gasPrice, scheduling, validGasPrice } = this.props;
     const { gasPriceField, gasLimitField, nonceField, dataField } = this.state.options;
-
+    console.log(autoGasLimitEnabled);
     return (
       <div className="AdvancedGas row form-group">
         <div className="AdvancedGas-calculate-limit">
           <label className="checkbox">
-            <input
-              type="checkbox"
-              defaultChecked={autoGasLimitEnabled}
-              onChange={this.handleToggleAutoGasLimit}
-            />
+            <input type="checkbox" onChange={this.handleToggleAutoGasLimit} />
             <span>{translate('TRANS_AUTO_GAS_TOGGLE')}</span>
           </label>
         </div>

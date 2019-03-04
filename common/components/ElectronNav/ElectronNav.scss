@@ -86,13 +86,14 @@ $back-spacing: 20px;
       width: 100%;
       color: color(gray);
       font-size: 12px;
-      padding: 0 0 20px 6px;
+      padding: 0 0 18px 6px;
       padding-left: 23px;
       font-weight: 300;
 
       &-icon {
-        font-size: 18px;
-        margin-left: 4px;
+        font-size: 16px;
+        margin-left: 6px;
+        margin-top: -1px;
         padding-right: 5px;
         color: #B4BAC4;
         &.is-online {
@@ -192,13 +193,37 @@ $back-spacing: 20px;
       opacity: 1;
     }
 
-    &-icon {
-      font-size: 18px;
-      margin-left: 0px;
-      opacity: 0.8;
+    &-overlay {
+      // background-color: color(n800);
+      height: 34px;
+      width: 34px;
+      position: fixed;
+      left: 17px;
+      bottom: 18px;
+      border-radius: 100%;
+      transition: .3s;
+
+
+      &:hover {
+        background-color: color(n30);
+
+
+      }
     }
+
+    &-icon {
+      font-size: 23px;
+      margin-left: 0px;
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+
+    }
+
+
     &:focus {
       color: color(n800);
     }
+
   }
 }

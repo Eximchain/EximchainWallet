@@ -108,8 +108,11 @@ class NetworkSelector extends React.Component<Props> {
       <div className="NetworkSelector">
         {options.core}
         {isShowingAltNetworks && options.alt}
-        <button className="NetworkSelector-add" onClick={this.props.openCustomNodeModal}>
-          <i className="fa fa-plus" />
+        <button
+          className="NetworkSelector-add btn btn-primary"
+          onClick={this.props.openCustomNodeModal}
+        >
+          <i className="fa fa-plus-circle" />
           {translate('NODE_ADD')}
         </button>
       </div>

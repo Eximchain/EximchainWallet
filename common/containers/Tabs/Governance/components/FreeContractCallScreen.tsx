@@ -4,6 +4,7 @@ import { notificationsActions } from 'features/notifications';
 import { connect } from 'react-redux';
 import translate, { translateRaw } from 'translations';
 import { bufferToHex } from 'ethereumjs-util';
+import arrow from 'assets/images/output-arrow.svg';
 
 import { INode } from 'libs/nodes';
 import { configNodesSelectors } from 'features/config';
@@ -157,11 +158,15 @@ export class FreeContractCallClass extends Component<Props, State> {
                     <span>{translate('GO_BACK')}</span>
                   </button>
                   <button
-                    className="InteractExplorer-func-submit btn btn-primary"
+                    className="InteractExplorer-func-submit btn btn-primary FormReadButton"
                     onClick={this.handleFunctionCall}
                   >
                     {translate('CONTRACT_READ')}
                   </button>
+                </div>
+
+                <div className="ReadFunctionContent-arrow">
+                  <img src={arrow} alt="arrow" />
                 </div>
                 {
                   // These are the outputs
@@ -179,11 +184,8 @@ export class FreeContractCallClass extends Component<Props, State> {
                       : rawFieldValue;
 
                     return (
-                      <div
-                        key={parsedName}
-                        className="input-group-wrapper InteractExplorer-func-out"
-                      >
-                        <label className="input-group">
+                      <div key={parsedName} className="flex-wrapper InteractExplorer-func-out">
+                        <label className="output-group">
                           <div className="input-group-header">{name + ' ' + type}</div>
                           <Input
                             className="InteractExplorer-func-out-input"

@@ -43,7 +43,6 @@ class ElectronNav extends React.Component<Props, State> {
         })}
       >
         <div className="ElectronNav-branding" />
-
         <button
           className="ElectronNav-status ElectronNav-controls-btn"
           onClick={this.openNodeSelect}

@@ -1,7 +1,7 @@
 @import 'common/sass/variables';
 @import 'common/sass/mixins';
 
-$radio-size: 10px;
+$radio-size: 12px;
 
 .NodeOption {
   display: flex;
@@ -18,54 +18,58 @@ $radio-size: 10px;
     &:before {
       content: '';
       display: inline-block;
-      border: 1px solid shade-dark(0.15);
+      // border: 1px solid color(n80);
       border-radius: 100%;
       height: $radio-size;
       width: $radio-size;
       margin-right: $space-sm;
-      // background: color(control-bg);
-      box-shadow: 0 0 0 1.5px color(n10) inset;
+      background: color(n40);
       // box-shadow: 0 0 0 1.5px color(control-bg) outset;
 
     }
 
     &:hover {
       &:before {
-        border-color: shade-dark(0.3);
+        // box-shadow: 0 0 0 2.5px color(n10) inset;
+        // border: 2px solid color(b60);
+
+        // border-color: color(b60);
+        background: color(b30);
       }
     }
 
     &.is-selected {
       &:before {
-        border-color: color(b60);
+        border: none;
         background: color(b60);
+        // box-shadow: 0 0 0 4px color(b60) inset;
+
       }
     }
 
     &.is-auto-selected {
       &:before {
-        background: color(b60);
-        opacity: 0.3;
+        background: color(b30);
 
         &:hover {
-          opacity: 0.8;
+          background: color(b50);
         }
       }
 
       &:hover:before {
-        opacity: 0.8;
+        background: color(b50);
       }
     }
   }
 
   &-remove {
     @include reset-button;
-    opacity: 0.25;
+    color: color(n60);
     font-size: 14px;
 
     &:hover {
       color: color(r70);
-      opacity: 0.8;
+      opacity: 1;
     }
   }
 }

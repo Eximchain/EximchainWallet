@@ -40,7 +40,7 @@ class NodeOption extends React.PureComponent<Props> {
         </div>
         {node.isCustom && (
           <button className="NodeOption-remove" onClick={this.handleRemove}>
-            <i className="fa fa-times-circle" />
+            <i className="fa fa-minus-circle" />
           </button>
         )}
       </div>

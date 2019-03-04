@@ -3,6 +3,7 @@
 
 .mainResultScreenFlexContainer {
     display: flex;
+    flex:auto;
     align-items: center;
     justify-items: center;
     justify-self: center;
@@ -40,6 +41,7 @@
 }
 
 .resultContentCol{
+    max-width: 100%;
     display: flex;
     padding : 2em;
     flex: 3 1 75%;
@@ -49,6 +51,7 @@
 
 .resultImgCol{
     display: flex;
+    max-width: 100%;
     flex: 1 1 25%;
     justify-content: center;
     flex-direction: column;

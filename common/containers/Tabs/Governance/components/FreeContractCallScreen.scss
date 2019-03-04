@@ -1,6 +1,10 @@
 @import 'common/sass/variables';
 @import 'common/sass/mixins';
 
+.output-group {
+  width: 100%;
+  // background: red;
+}
 
 .ReadFunctionContent {
   min-height: 360px;
@@ -12,6 +16,10 @@
     letter-spacing: .7px;
     font-weight: 400;
     font-size: 14px;
+  }
+
+  &-arrow {
+    margin: auto;
   }
 }
 
@@ -48,25 +56,30 @@
   background: color(n10);
 
   .input-group-header {
-    padding-left: 0;
-    margin-left: 0;
+    padding: 0.75rem .5rem 0 0;
     background: none;
-    font-size: 16px;
+    margin-left: 0;
+    width: max-content;
+    float: left;
+    font-size: 14px;
     vertical-align: center;
-
+    text-align: left;
   }
 
-  .input-group{
+  .input-group {
     flex-direction: row;
-
   }
 
   .input-group-input {
     border: none;
     background: none;
-    padding-left: 0;
+    padding: 0.75rem 0 0 .5rem;
     text-align: right;
-    width: 70%;
+    height: auto;
+    margin-bottom: 0;
+    width: max-content;
+    font-size: 14px;
+
     float: right;
   }
 

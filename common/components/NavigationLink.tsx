@@ -47,7 +47,7 @@ class NavigationLinkClass extends React.PureComponent<Props, {}> {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <i className={`${className}-link-icon fa fa-question-circle-o`} />
+          <i className={`${className}-link-icon fa fa-question-circle`} />
         </a>
       ) : (
         <Link className={linkClasses} to={(link as any).to} aria-label={linkLabel}>

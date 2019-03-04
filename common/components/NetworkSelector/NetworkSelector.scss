@@ -14,25 +14,34 @@ $button-font-size: $font-size-small;
   width: 100%;
   text-align: left;
   color: color(text-color);
-  background: #F8F9FA;
   font-size: $font-size-base;
 
+  &-add {
+   background-color: color(b60) !important;
+   color: color(n0);
+   // margin: 0 20px 0 20px !important;
+   margin-left: 20px !important;
+   margin-right: 20px !important;
+   width: 80%;
 
+   justify-content: center;
 
-  &-add,
+   .fa {
+     font-size: 12px;
+     width: 11px;
+     text-align: center;
+     // opacity: 0.8;
+     margin-right: $space-xs;
+   }
+
+  }
+
   &-alts {
-    @include reset-button;
-    display: block;
-    width: 100%;
-    padding: $button-padding;
-    margin-top: 10px;
-
-
-    text-align: center;
-    color: color(text-color);
-    font-size: $button-font-size;
     border-bottom: 1px solid shade-dark(0.08);
     border-top: 1px solid shade-dark(0.08);
+    color: color(text-color);
+    width: 100%;
+
 
     &:hover {
       color: color(link-hover-color);
@@ -45,6 +54,17 @@ $button-font-size: $font-size-small;
       opacity: 0.8;
       margin-right: $space-xs;
     }
+
+  }
+
+  &-add,
+  &-alts {
+    @include reset-button;
+    display: block;
+    padding: $button-padding;
+    margin-top: 20px;
+    text-align: center;
+    font-size: $button-font-size;
   }
 
   &-alts {

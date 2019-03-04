@@ -86,13 +86,14 @@ $back-spacing: 20px;
       width: 100%;
       color: color(gray);
       font-size: 12px;
-      padding: 0 0 20px 6px;
+      padding: 0 0 18px 6px;
       padding-left: 23px;
       font-weight: 300;
 
       &-icon {
-        font-size: 18px;
-        margin-left: 4px;
+        font-size: 16px;
+        margin-left: 6px;
+        margin-top: -1px;
         padding-right: 5px;
         color: #B4BAC4;
         &.is-online {
@@ -193,9 +194,11 @@ $back-spacing: 20px;
     }
 
     &-icon {
-      font-size: 18px;
+      font-size: 22px;
       margin-left: 0px;
-      opacity: 0.8;
+      position: absolute;
+      bottom: 24px;
+      left: 24px;
     }
     &:focus {
       color: color(n800);

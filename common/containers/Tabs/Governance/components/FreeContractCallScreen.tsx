@@ -69,7 +69,7 @@ interface ContractOption {
 
 type Props = StateProps & DispatchProps & OwnProps;
 
-export class FreeContractCallClass extends Component<Props> {
+export class FreeContractCallClass extends Component<Props, State> {
   public static defaultProps: Partial<Props> = {};
 
   public state: State = {
@@ -255,11 +255,6 @@ export class FreeContractCallClass extends Component<Props> {
     return selectedFunction!.contract.encodeInput(parsedInputs);
   }
   private handleBooleanDropdownChange = ({ value, name }: { value: boolean; name: string }) => {
-    if (name === '_election') {
-      this.setState({
-        promoDemoBool: value.toString()
-      });
-    }
     this.setState({
       inputs: {
         ...this.state.inputs,

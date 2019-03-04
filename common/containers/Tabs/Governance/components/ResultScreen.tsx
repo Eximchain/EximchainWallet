@@ -24,7 +24,10 @@ class ResultScreen extends React.Component<Props, State> {
           <div className="mainResultScreenBody">
             <div className="resultFlexRow">
               <div className="resultImgCol">
-                <img src={illustration} style={{ minWidth: '256px' }} />
+                <img
+                  src={illustration}
+                  style={{ flexBasis: '256px', minWidth: '128px', maxWidth: '256px' }}
+                />
               </div>
               <div className="resultContentCol">
                 <h2>{isPromotion ? 'Promotion' : 'Demotion'} Ballot Entry Cast</h2>

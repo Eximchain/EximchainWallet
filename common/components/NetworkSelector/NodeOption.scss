@@ -49,18 +49,15 @@ $radio-size: 12px;
 
     &.is-auto-selected {
       &:before {
-        background: color(n10);
-        opacity: 0.3;
-        box-shadow: 0 0 0 4px color(b60) inset;
-
+        background: color(b30);
 
         &:hover {
-          opacity: 0.8;
+          background: color(b50);
         }
       }
 
       &:hover:before {
-        opacity: 0.8;
+        background: color(b50);
       }
     }
   }

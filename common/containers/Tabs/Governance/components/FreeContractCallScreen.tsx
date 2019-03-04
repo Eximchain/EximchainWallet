@@ -157,7 +157,7 @@ export class FreeContractCallClass extends Component<Props> {
                     <span>{translate('GO_BACK')}</span>
                   </button>
                   <button
-                    className="InteractExplorer-func-submit btn btn-primary"
+                    className="InteractExplorer-func-submit btn btn-primary FormReadButton"
                     onClick={this.handleFunctionCall}
                   >
                     {translate('CONTRACT_READ')}
@@ -181,7 +181,7 @@ export class FreeContractCallClass extends Component<Props> {
                     return (
                       <div
                         key={parsedName}
-                        className="input-group-wrapper InteractExplorer-func-out"
+                        className="input-group-wrapperInteractExplorer-func-out"
                       >
                         <label className="input-group">
                           <div className="input-group-header">{name + ' ' + type}</div>

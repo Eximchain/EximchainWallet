@@ -16,7 +16,7 @@ export const NODE_CONFIGS: { [key in StaticNetworkIds]: RawNodeConfig[] } = {
     {
       name: makeNodeName('ETH', 'localhost'),
       type: 'rpc',
-      service: 'Localhost',
+      service: 'Local',
       url: 'http://localhost:22000'
     },
     {

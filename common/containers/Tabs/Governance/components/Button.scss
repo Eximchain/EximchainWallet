@@ -1,17 +1,31 @@
 @import 'common/sass/variables';
 @import 'common/sass/mixins';
 
-.FormBackButton {
-  margin-right: 8px;
-  float: left;
-  margin-top: 6px;
+.FormReadButton {
+  margin-left: 4px;
 
+  @media screen and (max-width: $screen-lg) {
+    min-width: 73%;
+  }
+  @media screen and (max-width: $screen-md) {
+    min-width: 70%;
+  }
+  @media screen and (max-width: $screen-sm) {
+    min-width: 68%;
+  }
+}
+
+.FormBackButton {
+  margin-right: 4px;
+  float: left;
+  min-width: 17%;
+  margin-top: 6px;
 }
 
 .FormInput {
     &-title {
       font-size: 20px;
-      padding-bottom: 6px;
+      padding-bottom: 0px;
       text-transform: capitalize;
     }
     &-subtitle {
@@ -40,6 +54,11 @@
   // transition: transform 150ms ease, box-shadow 150ms ease;
   // animation: button-enter 400ms ease 1;
   // animation-fill-mode: backwards;
+
+  &-title {
+    text-transform: capitalize;
+
+  }
 
   @for $i from 0 to 6 {
     &:nth-child(#{$i}) {

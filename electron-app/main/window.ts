@@ -17,11 +17,11 @@ export default function getWindow() {
 
   window = new BrowserWindow({
     title: APP_TITLE,
-    backgroundColor: '#fbfbfb',
+    backgroundColor: '#fff',
     width: 1070,
     height: process.platform === 'darwin' ? 650 : 690,
     minWidth: 1020,
-    minHeight: 600,
+    minHeight: 630,
     titleBarStyle: 'hiddenInset',
     webPreferences: {
       devTools: true,

@@ -1,22 +1,38 @@
 import React from 'react';
-import { ContractFuncNames } from '..';
+import { CostlyContractCallName } from '..';
 import { translateRaw } from 'translations';
 import './ResultScreen.scss';
 import { Button } from './Button';
-import illustration from 'assets/images/vote-or-nominate.svg';
+import voteIllustration from 'assets/images/vote-or-nominate.svg';
+import claimIllustration from 'assets/images/claim-tokens.svg';
+import collectIllustration from 'assets/images/collect-tokens.svg';
 
 interface Props {
   isPromotion: boolean;
   txHash: string;
   backToGovernance: () => void;
-  governanceCallName: ContractFuncNames;
+  governanceCallName: CostlyContractCallName;
 }
 
 interface State {}
 
 class ResultScreen extends React.Component<Props, State> {
   render() {
-    const { isPromotion, txHash } = this.props;
+    const { isPromotion, txHash, governanceCallName } = this.props;
+    let illustration, heading;
+    switch (governanceCallName) {
+      case CostlyContractCallName.VOTE:
+        heading = `${isPromotion ? 'Promotion' : 'Demotion'} Ballot Entry Cast`;
+        illustration = voteIllustration;
+        break;
+      case CostlyContractCallName.CLAIM:
+        heading = 'Tokens Claimed';
+        illustration = claimIllustration;
+        break;
+      case CostlyContractCallName.COLLECT:
+        heading = 'Tokens Collected';
+        illustration = collectIllustration;
+    }
     return (
       <div className="mainResultScreenFlexContainer">
         <div style={{ flex: 1 }} />
@@ -30,7 +46,7 @@ class ResultScreen extends React.Component<Props, State> {
                 />
               </div>
               <div className="resultContentCol">
-                <h2>{isPromotion ? 'Promotion' : 'Demotion'} Ballot Entry Cast</h2>
+                <h2>{heading}</h2>
                 <p>
                   Your transaction has been sent and may take 3+ hours to confirm. You can use the
                   Verify and Check buttons below to check up on it.

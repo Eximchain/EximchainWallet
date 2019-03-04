@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, withRouter, RouteComponentProps } from 'react-router-dom';
 import classnames from 'classnames';
+import help from 'assets/images/icon-help-3.svg';
 
 import { NavigationLink } from 'config';
 import translate, { translateRaw } from 'translations';
@@ -47,7 +48,9 @@ class NavigationLinkClass extends React.PureComponent<Props, {}> {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <i className={`${className}-link-icon fa fa-question-circle`} />
+          <div className={`${className}-link-overlay`}>
+            <i className={`${className}-link-icon fa fa-question-circle`} />
+          </div>
         </a>
       ) : (
         <Link className={linkClasses} to={(link as any).to} aria-label={linkLabel}>

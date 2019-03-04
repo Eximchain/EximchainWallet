@@ -69,7 +69,7 @@ interface ContractOption {
 
 type Props = StateProps & DispatchProps & OwnProps;
 
-export class FreeContractCallClass extends Component<Props> {
+export class FreeContractCallClass extends Component<Props, State> {
   public static defaultProps: Partial<Props> = {};
 
   public state: State = {

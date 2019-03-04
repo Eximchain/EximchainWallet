@@ -84,7 +84,7 @@ interface ContractOption {
 
 type Props = StateProps & DispatchProps & OwnProps;
 
-export class ContractCallClass extends Component<Props> {
+export class ContractCallClass extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.goTo = this.goTo.bind(this);

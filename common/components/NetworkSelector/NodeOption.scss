@@ -9,11 +9,15 @@ $radio-size: 13px;
   justify-content: space-between;
   font-size: $font-size-xs-bump;
 
+
   &-name {
     flex: 1;
-    padding: 0.2rem 0;
+    padding: 0 0 0.4rem 0;
     cursor: pointer;
     @include ellipsis;
+    &:first {
+      padding: 0;
+    }
 
     &:before {
       content: '';
@@ -23,33 +27,24 @@ $radio-size: 13px;
       width: $radio-size;
       margin-right: $space-sm;
       background: color(n40);
-      // box-shadow: 0 0 0 1.5px color(control-bg) outset;
-      // border: 1px solid color(n80);
     }
 
     &:hover {
       &:before {
-        // box-shadow: 0 0 0 2.5px color(n10) inset;
-        // border: 2px solid color(b60);
-
-        // border-color: color(b60);
-        background: color(b30);
+        background: color(b40);
       }
     }
 
     &.is-selected {
-      font-weight: 600;
       &:before {
         border: none;
         background: color(b60);
-        // box-shadow: 0 0 0 4px color(b60) inset;
-
       }
     }
 
     &.is-auto-selected {
       &:before {
-        background: color(b30);
+        background: color(b40);
 
         &:hover {
           background: color(b50);

@@ -2,7 +2,7 @@
   "code": "en",
   "data": {
     "EXIMCHAIN_TITLE": "Eximchain",
-    "NETWORK_AUTO":"Auto-connect",
+    "NETWORK_AUTO":"Auto",
     "GO_BACK":"Back",
     "_governanceCycleId":"Governance Cycle Number",
     "_ballotId":"Ballot Record Confirmation Number",

@@ -43,12 +43,9 @@ class ElectronNav extends React.Component<Props, State> {
         })}
       >
         <div className="ElectronNav-branding" />
-        <button
-          className="ElectronNav-status ElectronNav-controls-btn"
-          onClick={this.openNodeSelect}
-        >
+        <button className="ElectronNav-status ElectronNav-controls-btn" onClick={this.toggleSelect}>
           <NetworkStatus />
-          <i className="ElectronNav-controls-btn-icon fa fa-caret-right" />
+          <i className="ElectronNav-controls-btn-icon fa fa-caret-down" />
         </button>
 
         <ul className="ElectronNav-links">
@@ -70,12 +67,6 @@ class ElectronNav extends React.Component<Props, State> {
         </div> */}
 
         <div className="ElectronNav-panel">
-          <div className="flex-wrapper ElectronNav-panel-header">
-            <button className="ElectronNav-panel-back" onClick={this.closePanel}>
-              <i className="ElectronNav-panel-back-icon fa fa-caret-left" />
-              {translate('EXIMCHAIN_TITLE')}
-            </button>
-          </div>
           <div className="ElectronNav-panel-content">{panelContent}</div>
         </div>
       </div>
@@ -89,6 +80,23 @@ class ElectronNav extends React.Component<Props, State> {
   //     isPanelOpen: true
   //   });
   // };
+  private toggleSelect = () => {
+    const { panelContent } = this.state;
+    if (this.state.isPanelOpen) {
+      console.log('asdfsasdfsf');
+      this.setState({ isPanelOpen: false });
+
+      if (this.state.panelContent === panelContent) {
+        this.setState({ panelContent: null });
+      }
+    } else {
+      const panelContent = <NetworkSelect closePanel={this.closePanel} />;
+      this.setState({
+        panelContent,
+        isPanelOpen: true
+      });
+    }
+  };
 
   private openNodeSelect = () => {
     const panelContent = <NetworkSelect closePanel={this.closePanel} />;

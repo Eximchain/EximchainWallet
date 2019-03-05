@@ -1,7 +1,7 @@
 @import 'common/sass/variables';
 @import 'common/sass/mixins';
 
-$radio-size: 12px;
+$radio-size: 13px;
 
 .NodeOption {
   display: flex;
@@ -18,14 +18,13 @@ $radio-size: 12px;
     &:before {
       content: '';
       display: inline-block;
-      // border: 1px solid color(n80);
-      border-radius: 100%;
-      height: $radio-size;
+      border-radius: 3px;
+      height: 8px;
       width: $radio-size;
       margin-right: $space-sm;
       background: color(n40);
       // box-shadow: 0 0 0 1.5px color(control-bg) outset;
-
+      // border: 1px solid color(n80);
     }
 
     &:hover {
@@ -39,6 +38,7 @@ $radio-size: 12px;
     }
 
     &.is-selected {
+      font-weight: 600;
       &:before {
         border: none;
         background: color(b60);

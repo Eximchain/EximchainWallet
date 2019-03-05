@@ -21,7 +21,7 @@ $left-border-size: 2px;
     padding-left: 20px;
     padding-bottom: 0.2rem;
     padding-top: 0.7rem;
-    font-size: 14px;
+    font-size: 12px;
     padding-right: 20px;
     font-weight: 600;
 
@@ -44,8 +44,8 @@ $left-border-size: 2px;
         position: relative;
         top: 1px;
         display: inline-block;
-        border-radius: 100%;
-        height: $radio-size;
+        border-radius: 3px;
+        height: 8px;
         width: $radio-size;
         margin-right: $space-sm;
         box-shadow: 0 0 0 2.5px color(n10) inset;
@@ -54,7 +54,7 @@ $left-border-size: 2px;
       &:hover {
 
         &:before {
-          background-color: color(n10) !important;
+          // background-color: color(n10) !important;
 
           border-color: shade-dark(0.3);
         }
@@ -81,8 +81,17 @@ $left-border-size: 2px;
         }
 
         &:hover:before {
-          background: color(b40);
+          background: linear-gradient(
+            135deg,
+            transparent,
+            transparent 45%,
+            color(b80) 45%,
+            color(b80) 100%
+          );
+          box-shadow: 0 0 0 2px color(b80) inset;
+
         }
+
       }
 
       &-badge {
@@ -117,7 +126,7 @@ $left-border-size: 2px;
   }
 
   &-nodes {
-    padding: 0.2rem 1.6rem;
+    padding: 0.2rem 20px;
     // padding-left: .2rem;
     // background: shade-dark(0.02);
     // border-top: 1px solid shade-dark(0.08);

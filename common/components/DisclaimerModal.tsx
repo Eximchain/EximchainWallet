@@ -50,7 +50,7 @@ const DisclaimerModal: React.SFC<Props> = ({ isOpen, handleClose }) => {
         <br />
         {/* Copyright (c) 2015-2017 MyEtherWallet LLC */}
         <br />
-        Copyright (c) 2018 EXIMCHAIN
+        Copyright (c) 2019 EXIMCHAIN
       </p>
       <p>
         Permission is hereby granted, free of charge, to any person obtaining a copy of this

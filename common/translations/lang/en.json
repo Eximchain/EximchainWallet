@@ -1,6 +1,7 @@
 {
   "code": "en",
   "data": {
+    "NETWORK_AUTO":"Auto-connect",
     "GO_BACK":"Back",
     "_governanceCycleId":"Governance Cycle Number",
     "_ballotId":"Ballot Record Confirmation Number",
@@ -222,7 +223,7 @@
     "NODE_WARNING": "Your node must be HTTPS in order to connect to it via wallet.eximchain.com. You can [download the Eximchain Wallet repo & run it locally](https://wallet.eximchain.com/download) to connect to any node.",
     "NODE_NAME": "Node name",
     "NODE_PORT": "Node Port",
-    "NODE_CTA": "Save & use custom node",
+    "NODE_CTA": "Save & connect",
     "NODE_ADD": "Custom node",
     "SWAP_RATES": "Current Rates ",
     "SWAP_INIT_CTA": "Let's do this! ",

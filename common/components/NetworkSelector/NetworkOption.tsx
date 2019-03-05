@@ -39,7 +39,7 @@ export default class NetworkOption extends React.PureComponent<Props> {
             title={translateRaw('NETWORKS_SWITCH', { $network: network.name })}
             onClick={this.handleSelect}
           >
-            {network.name}
+            {translateRaw('NETWORK_AUTO')}
             {network.isTestnet && (
               <small className="NetworkOption-label-name-badge">({translate('TESTNET')})</small>
             )}

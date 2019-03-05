@@ -23,7 +23,7 @@ export const STATIC_NETWORKS_INITIAL_STATE: types.ConfigStaticNetworksState = {
     unit: 'EXC',
     chainId: 1,
     isCustom: false,
-    color: '#007896',
+    color: '#267EDC',
     blockExplorer: makeExplorer({
       name: 'blk.io',
       origin: 'https://eximchain.explorer.epirus.blk.io'

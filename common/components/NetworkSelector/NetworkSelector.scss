@@ -20,7 +20,7 @@ $button-font-size: $font-size-small;
    background-color: color(b60) !important;
    color: color(n0);
    margin: 20px !important;
-   width: 80%;
+   width: 78%;
 
 
    &:hover {
@@ -36,7 +36,7 @@ $button-font-size: $font-size-small;
      width: 11px;
      text-align: center;
      // opacity: 0.8;
-     margin-right: $space-md;
+     margin-right: $space-sm;
    }
 
   }

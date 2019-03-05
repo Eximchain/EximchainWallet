@@ -117,25 +117,10 @@ $back-spacing: 20px;
   box-shadow: 0 1px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.12);
   position: absolute;
   top: 0;
-  left: 10%;
+  left: 20px;
   width: 80%;
   margin-top: 80px;
   border-radius: 8px;
-  // padding-bottom: 20px;
-
-
-
-}
-  &-content {
-
-
-    // background: color(n0);
-    // visibility: hidden;
-    // border: .5px solid color(n20);
-    z-index: $zindex-navbar - 1;
-
-
-
 
     &-header {
       @include reset-button;
@@ -143,14 +128,12 @@ $back-spacing: 20px;
       top: 0;
       display: flex;
       align-items: center;
-      // width: 100%;
       font-size: 14px;
       text-align: left;
       margin-left: 20px;
       padding: 12px 0px;
       color: color(n800);
       font-weight: 600;
-      // background: color(n10);
 
       &:hover {
         color: color(b60);
@@ -159,7 +142,6 @@ $back-spacing: 20px;
       .is-osx & {
         padding-top: $electron-osx-control-spacing + 10px;
       }
-
     }
 
     &-back {

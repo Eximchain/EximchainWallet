@@ -70,10 +70,12 @@ class ElectronNav extends React.Component<Props, State> {
         </div> */}
 
         <div className="ElectronNav-panel">
-          <button className="ElectronNav-panel-back" onClick={this.closePanel}>
-            <i className="ElectronNav-panel-back-icon fa fa-chevron-left" />
-            {translate('MODAL_BACK')}
-          </button>
+          <div className="flex-wrapper ElectronNav-panel-header">
+            <button className="ElectronNav-panel-back" onClick={this.closePanel}>
+              <i className="ElectronNav-panel-back-icon fa fa-caret-left" />
+              {translate('EXIMCHAIN_TITLE')}
+            </button>
+          </div>
           <div className="ElectronNav-panel-content">{panelContent}</div>
         </div>
       </div>

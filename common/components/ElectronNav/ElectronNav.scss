@@ -125,7 +125,7 @@ $back-spacing: 20px;
     width: 100%;
     z-index: $zindex-navbar - 1;
 
-    &-back {
+    &-header {
       @include reset-button;
       position: sticky;
       top: 0;
@@ -136,21 +136,36 @@ $back-spacing: 20px;
       text-align: left;
       margin-left: 20px;
       padding: 12px 0px;
-      color: color(gray);
-      background: #F8F9FA;
+      color: color(n800);
+      font-weight: 600;
+      background: color(n10);
+
+      &:hover {
+        color: color(b60);
+      }
 
       .is-osx & {
         padding-top: $electron-osx-control-spacing + 10px;
       }
 
+    }
+
+    &-back {
+      @include reset-button;
+      display: flex;
+      align-items: center;
+      width: max-content;
+      font-size: 14px;
+      text-align: left;
+
       &-icon {
-        font-size: 12px;
-        margin-right: 4px;
+        font-size: 16px;
+        margin-right: 8px;
+        margin-top: -1px;
+        color: color(n60);
       }
 
-      &:hover {
-        color: color(b60);
-      }
+
     }
   }
 }

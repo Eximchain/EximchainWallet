@@ -1,6 +1,7 @@
 {
   "code": "en",
   "data": {
+    "EXIMCHAIN_TITLE": "Eximchain",
     "NETWORK_AUTO":"Auto-connect",
     "GO_BACK":"Back",
     "_governanceCycleId":"Governance Cycle Number",

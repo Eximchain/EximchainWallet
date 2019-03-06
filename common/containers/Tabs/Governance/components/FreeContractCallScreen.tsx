@@ -118,7 +118,7 @@ export class FreeContractCallClass extends Component<Props, State> {
                         className="input-group-wrapper InteractExplorer-func-in"
                       >
                         <label className="input-group">
-                          <div className="input-group-header">{newName}</div>
+                          <div className="input-group-header">{translate(newName)}</div>
                           {type === 'bool' ? (
                             <Dropdown
                               options={[
@@ -183,7 +183,7 @@ export class FreeContractCallClass extends Component<Props, State> {
                     return (
                       <div key={parsedName} className="flex-wrapper InteractExplorer-func-out">
                         <label className="output-group">
-                          <div className="input-group-header">{newName}</div>
+                          <div className="input-group-header">{translate(newName)}</div>
                           <Input
                             className="InteractExplorer-func-out-input"
                             isValid={!!decodedFieldValue}

@@ -175,9 +175,9 @@ box-shadow: 0 4px 8px 0 rgba(0,0,0,0.12), 0 2px 4px 0 rgba(0,0,0,0.08);
 
   &-link {
     display: block;
-    height: 20px;
-    line-height: 20px;
-    padding: 0 0 0 24px;
+    height: 18px;
+    line-height: 18px;
+    padding: 0 0 0 22px;
     font-weight: 400;
     color: color(n300);
     font-size: 13px;
@@ -185,8 +185,8 @@ box-shadow: 0 4px 8px 0 rgba(0,0,0,0.12), 0 2px 4px 0 rgba(0,0,0,0.08);
     &.is-active {
       color: color(n800);
       font-weight: 600;
-      border-left: solid color(n800) 5px;
-      padding: 0 0 0 19px;
+      border-left: solid color(n800) 4px;
+      padding: 0 0 0 18px;
 
       &:hover {
         color: color(n800);

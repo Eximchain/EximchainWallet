@@ -12,13 +12,11 @@ $left-border-size: 2px;
 }
 
 .NetworkOption {
-  // border-left: $left-border-size solid;
-  // border-bottom: 1px solid shade-dark(0.08);
+
   &-title {
     display: flex;
     align-items: center;
     padding-left: 16px;
-    // padding-bottom: 0.2rem;
     padding-top: 0.8rem;
     font-size: $font-size-xs-bump;
     padding-right: 16px;
@@ -28,7 +26,7 @@ $left-border-size: 2px;
     display: flex;
     align-items: center;
     padding-left: 16px;
-    // padding-bottom: 0.2rem;
+    padding-bottom: 0.4rem;
     padding-top: 0.7rem;
     font-size: $font-size-xs-bump;
     padding-right: 16px;
@@ -137,7 +135,7 @@ $left-border-size: 2px;
   }
 
   &-nodes {
-    padding: 0.4rem 16px;
+    padding: 0 16px 0.4rem 16px;
     // padding-left: .2rem;
     // background: shade-dark(0.02);
     // border-top: 1px solid shade-dark(0.08);

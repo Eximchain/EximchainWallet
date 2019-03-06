@@ -55,8 +55,10 @@ class AdvancedGas extends React.Component<Props, State> {
       ...this.props.options
     }
   };
-  componentWillMount() {
-    this.props.toggleAutoGasLimit();
+  componentDidMount() {
+    if (this.props.autoGasLimitEnabled) {
+      this.props.toggleAutoGasLimit();
+    }
   }
   public render() {
     const { autoGasLimitEnabled, gasPrice, scheduling, validGasPrice } = this.props;

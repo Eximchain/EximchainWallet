@@ -5,8 +5,8 @@ $button-padding: $space-xs $space-md;
 $button-font-size: $font-size-small;
 
 @if ($is-electron) {
-  $button-padding: 12px 0px;
-  $button-font-size: 13px;
+  $button-padding: 8px 0px;
+  $button-font-size: 12px;
 }
 
 
@@ -17,26 +17,41 @@ $button-font-size: $font-size-small;
   font-size: $font-size-base;
 
   &-add {
-   background-color: color(b60) !important;
-   color: color(n0);
-   margin: 20px 20px 0 20px !important;
-   width: 80%;
+  text-align: left;
+   background-color: color(n0) !important;
+   color: color(gray);
+   border-top: 1px solid color(n40) !important;
+   margin: 0 !important;
+   border-top-right-radius: 0 !important;
+   border-top-left-radius: 0 !important;
+   width: 100%;
 
 
    &:hover {
-     background-color: color(b70) !important;
+     background-color: color(n10) !important;
+     // border-top: 1px solid color(b70) !important;
+     color: color(n800) !important;
+
+
    }
 
    &:active {
-     background-color: color(b80) !important;
+     background-color: color(n20) !important;
+     color: color(n800) !important;
    }
 
+   &:focus {
+     background-color: color(n0) !important;
+     color: color(n800) !important;
+   }
+
+
    .fa {
-     font-size: 16px;
+     font-size: 14px;
      width: 11px;
      text-align: center;
      // opacity: 0.8;
-     margin-right: $space-md;
+     margin-right: $space-sm;
    }
 
   }

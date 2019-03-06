@@ -1,40 +1,42 @@
 @import 'common/sass/variables';
 @import 'common/sass/mixins';
 
-$radio-size: 12px;
+$radio-size: 13px;
 
 .NodeOption {
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-size: $font-size-xs-bump;
+  padding: 0 0 0.4rem 0;
+
+  &:last-child {
+    padding: 0;
+  }
 
   &-name {
     flex: 1;
-    padding: 0.2rem 0;
+
     cursor: pointer;
     @include ellipsis;
+    &:first {
+      padding: 0;
+    }
+
 
     &:before {
       content: '';
       display: inline-block;
-      // border: 1px solid color(n80);
-      border-radius: 100%;
-      height: $radio-size;
+      border-radius: 3px;
+      height: 8px;
       width: $radio-size;
       margin-right: $space-sm;
       background: color(n40);
-      // box-shadow: 0 0 0 1.5px color(control-bg) outset;
-
     }
 
     &:hover {
       &:before {
-        // box-shadow: 0 0 0 2.5px color(n10) inset;
-        // border: 2px solid color(b60);
-
-        // border-color: color(b60);
-        background: color(b30);
+        background: color(b40);
       }
     }
 
@@ -42,14 +44,12 @@ $radio-size: 12px;
       &:before {
         border: none;
         background: color(b60);
-        // box-shadow: 0 0 0 4px color(b60) inset;
-
       }
     }
 
     &.is-auto-selected {
       &:before {
-        background: color(b30);
+        background: color(n40);
 
         &:hover {
           background: color(b50);
@@ -65,7 +65,7 @@ $radio-size: 12px;
   &-remove {
     @include reset-button;
     color: color(n60);
-    font-size: 14px;
+    font-size: 12px;
 
     &:hover {
       color: color(r70);

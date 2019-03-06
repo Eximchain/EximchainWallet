@@ -7,10 +7,11 @@ $branding-spacing-top: 12px;
 $back-spacing: 20px;
 
 .ElectronNav {
-  transition: transform 300ms ease;
+  // transition: transform 300ms ease;
+
 
   &.is-panel-open {
-    transform: translateX(-100%);
+    // transform: translateX(-100%);
   }
 
   &-branding {
@@ -31,20 +32,14 @@ $back-spacing: 20px;
       margin-right: 0px;
       height: 60px;
       max-width: 110px;
-      // margin-bottom: 20px;
       background-image: url('~assets/images/logo-eximchain-wallet-blue.svg');
       background-position: center;
       background-repeat: no-repeat;
       background-size: 100%;
-      // cursor: pointer;
 
       @include theme(dark) {
         background-image: url('~assets/images/logo-eximchain-wallet-white.svg');
       }
-      //
-      // &:hover {
-      //   opacity: 0.8;
-      // }
     }
 
     &-beta {
@@ -95,7 +90,7 @@ $back-spacing: 20px;
         margin-left: 6px;
         margin-top: -1px;
         padding-right: 5px;
-        color: #B4BAC4;
+        color: color(n60);
         &.is-online {
           color: color(g70);
           margin-left: 0px;
@@ -117,40 +112,54 @@ $back-spacing: 20px;
       }
     }
   }
+&-panel {
+  background: color(n0);
+box-shadow: 0 4px 8px 0 rgba(0,0,0,0.12), 0 2px 4px 0 rgba(0,0,0,0.08);
+  position: absolute;
+  top: 0;
+  left: 20px;
+  width: 80%;
+  margin-top: 80px;
+  border-radius: 8px;
 
-  &-panel {
-    position: absolute;
-    top: 0;
-    left: 100%;
-    width: 100%;
-    z-index: $zindex-navbar - 1;
-
-    &-back {
+    &-header {
       @include reset-button;
       position: sticky;
       top: 0;
       display: flex;
       align-items: center;
-      width: 100%;
       font-size: 14px;
       text-align: left;
       margin-left: 20px;
       padding: 12px 0px;
-      color: color(gray);
-      background: #F8F9FA;
-
-      .is-osx & {
-        padding-top: $electron-osx-control-spacing + 10px;
-      }
-
-      &-icon {
-        font-size: 12px;
-        margin-right: 4px;
-      }
+      color: color(n800);
+      font-weight: 600;
 
       &:hover {
         color: color(b60);
       }
+
+      .is-osx & {
+        padding-top: $electron-osx-control-spacing + 10px;
+      }
+    }
+
+    &-back {
+      @include reset-button;
+      display: flex;
+      align-items: center;
+      width: max-content;
+      font-size: 14px;
+      text-align: left;
+
+      &-icon {
+        font-size: 16px;
+        margin-right: 8px;
+        margin-top: -1px;
+        color: color(n60);
+      }
+
+
     }
   }
 }

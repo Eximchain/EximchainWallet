@@ -38,6 +38,7 @@ class NodeOption extends React.PureComponent<Props> {
         >
           {node.isCustom ? node.name : node.service}
         </div>
+
         {node.isCustom && (
           <button className="NodeOption-remove" onClick={this.handleRemove}>
             <i className="fa fa-minus-circle" />

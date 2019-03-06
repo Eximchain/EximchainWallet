@@ -215,7 +215,7 @@ export class ContractCallClass extends Component<Props, State> {
                   className="InteractExplorer-func-submit NextButton btn btn-primary"
                   onClick={this.handleStageChange}
                 >
-                  {translate('Submit')}
+                  {translate('Next')}
                 </button>
               )}
               <button className="FormBackButton btn btn-default" onClick={this.props.goBack}>

@@ -76,7 +76,7 @@ class TXMetaDataPanel extends React.Component<Props, State> {
 
   public componentDidMount() {
     if (!this.props.offline) {
-      this.props.fetchCCRates([this.props.network.unit]);
+      // this.props.fetchCCRates([this.props.network.unit]);
       this.props.getNonceRequested();
     }
   }
@@ -86,7 +86,7 @@ class TXMetaDataPanel extends React.Component<Props, State> {
       (this.props.offline && !nextProps.offline) ||
       this.props.network.unit !== nextProps.network.unit
     ) {
-      this.props.fetchCCRates([this.props.network.unit]);
+      // this.props.fetchCCRates([this.props.network.unit]);
     }
     if (this.props.gasPrice !== nextProps.gasPrice) {
       this.setState({ gasPrice: nextProps.gasPrice });

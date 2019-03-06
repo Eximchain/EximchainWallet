@@ -8,7 +8,7 @@ import { scheduleSelectors } from 'features/schedule';
 import { GasQuery } from 'components/renderCbs';
 import { GasLimitInput } from './GasLimitInputFactory';
 
-const defaultGasLimit = '21000';
+const defaultGasLimit = '200000';
 
 export interface CallBackProps {
   readOnly: boolean;

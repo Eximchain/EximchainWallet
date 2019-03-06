@@ -17,30 +17,36 @@ interface StateProps {
 }
 
 function OnboardingModal({ currentSlide }: StateProps) {
-  const images = [bankVsMyCrypto, vault, chest];
-  const logoImage = <img src={logo} alt="Eximchain Wallet logo white" />;
-  const slideImage = <img src={images[currentSlide - 1]} alt="Slide art" />;
-  const slides = [<FirstSlide key={1} />, <SecondSlide key={2} />, <ThirdSlide key={3} />];
+  {
+    // const images = [bankVsMyCrypto, vault, chest];
+    // const logoImage = <img src={logo} alt="Eximchain Wallet logo white" />;
+    // const slideImage = <img src={images[currentSlide - 1]} alt="Slide art" />;
+  }
+  const slides = [<FirstSlide key={1} />];
   const slide = slides[currentSlide - 1];
 
   return (
     <Modal>
       <section className="OnboardingModal">
-        <section className="OnboardingModal-top">{logoImage}</section>
-        <section className="OnboardingModal-side">
-          <section className="OnboardingModal-side-top">{logoImage}</section>
-          <section className="OnboardingModal-side-middle">{slideImage}</section>
-          <section className="OnboardingModal-side-bottom">
-            <ProgressDots />
-          </section>
-        </section>
+        {
+          // <section className="OnboardingModal-top">{logoImage}</section>
+          // <section className="OnboardingModal-side">
+          //   <section className="OnboardingModal-side-top">{logoImage}</section>
+          //   <section className="OnboardingModal-side-middle">{slideImage}</section>
+          //   <section className="OnboardingModal-side-bottom">
+          //     <ProgressDots />
+          //   </section>
+          // </section>
+        }
         <section className="OnboardingModal-middle">
           <div className="OnboardingModal-middle-topsection">{slide}</div>
         </section>
-        <section className="OnboardingModal-bottom">
-          {slideImage}
-          <ProgressDots />
-        </section>
+        {
+          // <section className="OnboardingModal-bottom">
+          //   {slideImage}
+          //   <ProgressDots />
+          // </section>
+        }
       </section>
     </Modal>
   );

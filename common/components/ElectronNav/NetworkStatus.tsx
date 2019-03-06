@@ -43,7 +43,9 @@ const NetworkStatus: React.SFC<StateProps> = ({ isOffline, isChangingNode, netwo
     <div className="NetworkStatus">
       {/* <div className={`NetworkStatus-icon ${statusClass}`} /> */}
       <i className={`ElectronNav-controls-btn-icon fa fa-feed ${statusClass}`} />
-      <div className="NetworkStatus-text">{translate(statusText, { $network })}</div>
+      <div className={`NetworkStatus-text ${statusClass}`}>
+        {translate(statusText, { $network })}
+      </div>
     </div>
   );
 };

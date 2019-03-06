@@ -85,12 +85,19 @@ $back-spacing: 20px;
       padding-left: 22px;
       font-weight: 300;
 
+      .fa-caret-down {
+        position: absolute !important;
+        right: 22px;
+      }
+
       &-icon {
         font-size: 16px;
         margin-left: 6px;
         margin-top: -1px;
         padding-right: 5px;
         color: color(n60);
+
+
         &.is-online {
           color: color(g70);
           margin-left: 0px;
@@ -117,8 +124,8 @@ $back-spacing: 20px;
 box-shadow: 0 4px 8px 0 rgba(0,0,0,0.12), 0 2px 4px 0 rgba(0,0,0,0.08);
   position: absolute;
   top: 0;
-  left: 20px;
-  width: 80%;
+  left: 16px;
+  width: 81%;
   margin-top: 80px;
   border-radius: 8px;
 

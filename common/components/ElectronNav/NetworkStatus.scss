@@ -24,11 +24,19 @@
   }
 
   &-text {
-    color: #1F2F47;
+    color: color(n800);
     font-size: 14px;
     font-weight: 600;
     padding-right: 4px;
     padding-left: 2px;
+
+    &.is-offline {
+      max-width: 130px;
+      text-align: left;
+      font-size: 13px;
+
+
+    }
 
   }
 }

@@ -82,7 +82,7 @@ $back-spacing: 20px;
       color: color(gray);
       font-size: 12px;
       padding: 0 0 18px 6px;
-      padding-left: 23px;
+      padding-left: 22px;
       font-weight: 300;
 
       &-icon {
@@ -175,21 +175,18 @@ box-shadow: 0 4px 8px 0 rgba(0,0,0,0.12), 0 2px 4px 0 rgba(0,0,0,0.08);
 
   &-link {
     display: block;
-    height: 20px;
-    line-height: 20px;
-    padding: 0 0 0 24px;
+    height: 18px;
+    line-height: 18px;
+    padding: 0 0 0 22px;
     font-weight: 400;
     color: color(n300);
     font-size: 13px;
-    // border-bottom: 1px solid shade-dark(0.08);
-    // font-weight: 300;
-    // margin-right: 12px;
 
     &.is-active {
       color: color(n800);
       font-weight: 600;
-      border-left: solid color(n800) 5px;
-      padding: 0 0 0 19px;
+      border-left: solid color(n800) 4px;
+      padding: 0 0 0 18px;
 
       &:hover {
         color: color(n800);
@@ -207,8 +204,8 @@ box-shadow: 0 4px 8px 0 rgba(0,0,0,0.12), 0 2px 4px 0 rgba(0,0,0,0.08);
       height: 34px;
       width: 34px;
       position: fixed;
-      left: 17px;
-      bottom: 18px;
+      left: 15px;
+      bottom: 16px;
       border-radius: 100%;
       transition: .3s;
 
@@ -224,8 +221,8 @@ box-shadow: 0 4px 8px 0 rgba(0,0,0,0.12), 0 2px 4px 0 rgba(0,0,0,0.08);
       font-size: 23px;
       margin-left: 0px;
       position: fixed;
-      bottom: 24px;
-      left: 24px;
+      bottom: 22px;
+      left: 22px;
 
     }
 

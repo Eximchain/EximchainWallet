@@ -22,7 +22,7 @@ class ResultScreen extends React.Component<Props, State> {
     let illustration, heading;
     switch (governanceCallName) {
       case CostlyContractCallName.VOTE:
-        heading = `${isPromotion ? 'Promotion' : 'Demotion'} Ballot Entry Cast`;
+        heading = `${isPromotion ? 'Promotion' : 'Demotion'} Ballot Entry Cast!`;
         illustration = voteIllustration;
         break;
       case CostlyContractCallName.CLAIM:
@@ -42,11 +42,11 @@ class ResultScreen extends React.Component<Props, State> {
               <div className="resultImgCol">
                 <img
                   src={illustration}
-                  style={{ flexBasis: '256px', minWidth: '128px', maxWidth: '256px' }}
+                  style={{ flexBasis: '256px', minWidth: '160px', maxWidth: '256px' }}
                 />
               </div>
               <div className="resultContentCol">
-                <h2>{heading}</h2>
+                <h2 className="resultContent-header">{heading}</h2>
                 <p>
                   Your transaction has been sent and may take 3+ hours to confirm. You can use the
                   Verify and Check buttons below to check up on it.
@@ -58,7 +58,7 @@ class ResultScreen extends React.Component<Props, State> {
                 </dl>
                 <div className="resultFlexRow btnRow">
                   <a
-                    className="resultScreenBtnLink resultScreenBtnLink-main"
+                    className="resultScreenBtnLink btn btn-default resultScreenBtnLink-main"
                     target={'_blank'}
                     href={`https://eximchain.explorer.epirus.blk.io/transaction/${
                       this.props.txHash
@@ -67,7 +67,7 @@ class ResultScreen extends React.Component<Props, State> {
                     Verify on blk.io
                   </a>
                   <a
-                    className="resultScreenBtnLink resultScreenBtnLink-main"
+                    className="resultScreenBtnLink btn btn-default resultScreenBtnLink-main"
                     href={`tx-status?txHash=${this.props.txHash}`}
                   >
                     Check transaction status
@@ -78,7 +78,7 @@ class ResultScreen extends React.Component<Props, State> {
             <br />
             <div className="resultFlexRow">
               <a
-                className="resultScreenBtnLink resultScreenBtnLink-back"
+                className="resultScreenBtnLink btn btn-primary resultScreenBtnLink-back"
                 onClick={this.props.backToGovernance}
               >
                 Back to Governance

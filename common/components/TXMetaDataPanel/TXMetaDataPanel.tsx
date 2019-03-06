@@ -46,6 +46,7 @@ interface OwnProps {
   className?: string;
   scheduling?: boolean;
   shouldTransactionReset?: boolean;
+  autoGenGasLimit?: boolean;
 }
 
 type Props = DispatchProps & OwnProps & StateProps;
@@ -94,20 +95,43 @@ class TXMetaDataPanel extends React.Component<Props, State> {
   }
 
   public render() {
-    const { offline, disableToggle, advancedGasOptions, className = '', scheduling } = this.props;
+    const {
+      offline,
+      disableToggle,
+      advancedGasOptions,
+      className = '',
+      scheduling,
+      autoGenGasLimit
+    } = this.props;
     const { gasPrice } = this.state;
     const showAdvanced = this.state.sliderState === 'advanced' || offline;
-
+    var advancedGasComponent;
+    if (autoGenGasLimit === false) {
+      advancedGasComponent = (
+        <AdvancedGas
+          gasPrice={gasPrice}
+          inputGasPrice={this.props.inputGasPrice}
+          options={advancedGasOptions}
+          scheduling={scheduling}
+          autoGenGasLimit={false}
+        />
+      );
+    } else {
+      advancedGasComponent = (
+        <AdvancedGas
+          gasPrice={gasPrice}
+          inputGasPrice={this.props.inputGasPrice}
+          options={advancedGasOptions}
+          scheduling={scheduling}
+          autoGenGasLimit={true}
+        />
+      );
+    }
     return (
       <div className={`Gas col-md-12 ${className}`}>
         <br />
         {showAdvanced ? (
-          <AdvancedGas
-            gasPrice={gasPrice}
-            inputGasPrice={this.props.inputGasPrice}
-            options={advancedGasOptions}
-            scheduling={scheduling}
-          />
+          advancedGasComponent
         ) : (
           <SimpleGas
             gasPrice={gasPrice}

@@ -115,9 +115,9 @@ $left-border-size: 2px;
 
     &-expand {
       @include reset-button;
-      width: 20px;
-      height: 20px;
-      font-size: 12px;
+      // width: 18px;
+      // height: 20px;
+      font-size: $font-size-xs-bump;
       color: color(n60);
       border-radius: 100%;
       transition-property: color, background-color, transform;

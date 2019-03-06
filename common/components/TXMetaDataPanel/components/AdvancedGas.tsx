@@ -27,6 +27,7 @@ interface OwnProps {
   scheduling?: boolean;
   scheduleGasPrice: AppState['schedule']['scheduleGasPrice'];
   timeBounty: AppState['schedule']['timeBounty'];
+  autoGenGasLimit: boolean;
 }
 
 interface StateProps {
@@ -55,20 +56,23 @@ class AdvancedGas extends React.Component<Props, State> {
       ...this.props.options
     }
   };
-  componentDidMount() {
-    if (this.props.autoGasLimitEnabled) {
+  componentWillMount() {
+    if (this.props.autoGasLimitEnabled && !this.props.autoGenGasLimit) {
       this.props.toggleAutoGasLimit();
     }
   }
   public render() {
     const { autoGasLimitEnabled, gasPrice, scheduling, validGasPrice } = this.props;
     const { gasPriceField, gasLimitField, nonceField, dataField } = this.state.options;
-    console.log(autoGasLimitEnabled);
     return (
       <div className="AdvancedGas row form-group">
         <div className="AdvancedGas-calculate-limit">
           <label className="checkbox">
-            <input type="checkbox" onChange={this.handleToggleAutoGasLimit} />
+            <input
+              type="checkbox"
+              onChange={this.handleToggleAutoGasLimit}
+              defaultChecked={this.props.autoGenGasLimit}
+            />
             <span>{translate('TRANS_AUTO_GAS_TOGGLE')}</span>
           </label>
         </div>

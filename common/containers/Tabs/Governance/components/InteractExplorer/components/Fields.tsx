@@ -20,6 +20,7 @@ export class Fields extends Component<OwnProps> {
             disableToggle={true}
             advancedGasOptions={{ dataField: true }}
             shouldTransactionReset={false}
+            autoGenGasLimit={false}
           />
           {this.props.button}
         </div>

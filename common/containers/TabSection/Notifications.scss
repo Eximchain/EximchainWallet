@@ -42,6 +42,13 @@
   &-message {
     position: relative;
     padding: 0 10rem 0 5rem;
+    // margin-bottom: 20px;
+
+    .btn {
+      display: inline-block;
+      float: left;
+      margin-bottom: -4px;
+    }
 
     @media screen and (max-width: $screen-xs) {
       padding: 3rem 1rem 0 4rem;
@@ -49,11 +56,11 @@
 
     // Message contents
     a {
-      color: #fff;
+      color: color(n0);
       text-decoration: underline;
 
       &:hover {
-        opacity: 0.8;
+        color: color(n30);
       }
 
       &:active,

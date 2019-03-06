@@ -109,6 +109,7 @@ export class FreeContractCallClass extends Component<Props, State> {
                     // since that's what the contract ABI function factory subsitutes for the name
                     // if it is undefined
                     const parsedName = name === '' ? index : name;
+                    const newName = selectedFunction.name + 'Input' + parsedName;
 
                     const inputState = this.state.inputs[parsedName];
                     return (
@@ -117,11 +118,7 @@ export class FreeContractCallClass extends Component<Props, State> {
                         className="input-group-wrapper InteractExplorer-func-in"
                       >
                         <label className="input-group">
-                          <div className="input-group-header">
-                            {(parsedName === index ? `Input#${parsedName}` : parsedName) +
-                              ' ' +
-                              type}
-                          </div>
+                          <div className="input-group-header">{newName}</div>
                           {type === 'bool' ? (
                             <Dropdown
                               options={[
@@ -182,11 +179,11 @@ export class FreeContractCallClass extends Component<Props, State> {
                     const decodedFieldValue = Buffer.isBuffer(rawFieldValue)
                       ? bufferToHex(rawFieldValue)
                       : rawFieldValue;
-
+                    const newName = selectedFunction.name + 'Output' + parsedName;
                     return (
                       <div key={parsedName} className="flex-wrapper InteractExplorer-func-out">
                         <label className="output-group">
-                          <div className="input-group-header">{name + ' ' + type}</div>
+                          <div className="input-group-header">{newName}</div>
                           <Input
                             className="InteractExplorer-func-out-input"
                             isValid={!!decodedFieldValue}

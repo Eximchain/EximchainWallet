@@ -24,13 +24,15 @@ $number-margin: 6px;
 
   & .input-group-addon {
     margin-bottom: $space-md;
+    color: color(gray);
+    font-weight: 300;
   }
 
   &-word {
     width: $width - $number-width - $number-margin;
 
     &-input {
-      animation: word-fade 400ms ease 1;
+      // animation: word-fade 400ms ease 1;
       animation-fill-mode: both;
       transition: border 0.2s ease-in;
       margin-bottom: 0;
@@ -44,18 +46,14 @@ $number-margin: 6px;
 
     &-index {
       position: absolute;
-      top: -4px;
-      left: -7px;
+      padding-top: 1px;
       z-index: 1;
       color: color(text-color-inverted);
       width: 26px;
       height: 26px;
-      border-radius: 100%;
-      background: linear-gradient(
-        to top,
-        color(g70),
-        color(g70-light)
-      );
+      border-top-left-radius: 6px;
+      border-bottom-right-radius: 6px;
+      background: color(n800);
       line-height: 24px;
     }
   }
@@ -65,6 +63,8 @@ $number-margin: 6px;
     &:nth-child(#{$i}) {
       .MnemonicWord-word-input {
         animation-delay: $i * 50ms;
+        // border: none;
+        // background: color(n20);
       }
     }
   }

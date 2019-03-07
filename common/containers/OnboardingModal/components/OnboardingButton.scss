@@ -1,10 +1,20 @@
 @import 'common/sass/variables.scss';
 
 .OnboardingButton {
-  width: 120px;
+  // width: 160px;
+  display: block;
+  position: absolute;
+  bottom: 2rem;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  // margin-bottom: 2rem;
+  width: 160px;
+
   height: 50px;
   border: none;
   border-radius: 6px;
-  background: $button-primary;
-  color: #fff;
+  background: color(b60);
+  color: color(n0);
 }

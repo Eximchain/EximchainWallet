@@ -1,6 +1,55 @@
 {
   "code": "en",
   "data": {
+
+
+    "ballotHistoryInput0": "Public EXC Address",
+    "ballotHistoryInput1": "Number of times this address has voted",
+
+    "ballotHistoryOutput0": "Ballot Record ID",
+
+    "currentGovernanceCycleOutput0": "Current Governance Cycle",
+
+    "withdrawRecordsInput0": "Withdraw Record ID",
+    "withdrawRecordsOutputamount": "EXC Amount",
+    "withdrawRecordsOutputstatus": "Withrawal Status",
+    "withdrawRecordsOutputgovernanceCycleId": "Governance Cycle Number",
+    "withdrawRecordsOutputbeneficiary": "Withdrawn to",
+    "withdrawRecordsOutputballotId": "Ballot Record ID",
+    "withdrawRecordsOutputtimestamp": "Last changed at",
+
+    "governanceCycleRecordsInput0": "Governance Cycle Number",
+    "governanceCycleRecordsOutputtotalPayments": "Token pool amount",
+    "governanceCycleRecordsOutputstatus": "Governance Cycle Status",
+    "governanceCycleRecordsOutputelectionVotesElected": "Net votes for Promotion ballot winner",
+    "governanceCycleRecordsOutputevictionVotesEvicted": "Net votes for Demotion ballot winner",
+    "governanceCycleRecordsOutputtotalVoters": "Total Number of Voters",
+    "governanceCycleRecordsOutputelected": "Promotion ballot winner address",
+    "governanceCycleRecordsOutputevicted": "Demotion ballot winner address",
+    "governanceCycleRecordsOutputstart": "Time Cycle was opened",
+
+    "nomineeBallotsInput0": "Public EXC Address of Nominee",
+    "nomineeBallotsOutputgovernanceCycleId": "Governance Cycle Number",
+    "nomineeBallotsOutputelection": "Ballot Type",
+    "nomineeBallotsOutputvotes": "Net Votes",
+    "nomineeBallotsOutputpositiveVotes": "Total Positive Votes",
+    "nomineeBallotsOutputnegativeVotes": "Total Negative Votes",
+    "nomineeBallotsOutputtotalVoters": "Total Participants",
+
+    "canGovernInputregistrant": "Public EXC Address",
+    "canGovernOutput0": "Eligible to participate in governance",
+
+    "isKYCApprovedInputregistrant": "Public EXC Address",
+    "isKYCApprovedOutput0": "Is KYC Approved?",
+
+    "isKYCDeniedInputregistrant": "Public EXC Address",
+    "isKYCDeniedOutput0": "Is KYC Denied?",
+
+    "withdrawHistoryInput0": "Public EXC Address",
+    "withdrawHistoryInput1": "Number of times this address has claimed tokens",
+    "withdrawHistoryOutput0": "Withdraw Record ID",
+
+
     "EXIMCHAIN_TITLE": "Eximchain",
     "NETWORK_AUTO":"Auto",
     "GO_BACK":"Back",
@@ -679,7 +728,7 @@
     "SELECT_FROM_ADDRESS_BOOK": "Select from your address book",
     "RECENT_ADDRESS_NUMBER": "Recent Address #$number",
     "ONBOARDING_TEXT_1": "Welcome to Eximchain Wallet",
-    "ONBOARDING_TEXT_2": "You control your account, you own your info, and no additional fees are added.",
+    "ONBOARDING_TEXT_2": "View and send transactions, generate wallets, participate in governance, and more.",
     "ONBOARDING_TEXT_3": "With Banks:",
     "ONBOARDING_TEXT_4": "They control your account",
     "ONBOARDING_TEXT_5": "They own your info",
@@ -696,7 +745,7 @@
     "ONBOARDING_TEXT_16": "Reverse, cancel, or refund transactions",
     "ONBOARDING_TEXT_17": "Freeze accounts",
     "ONBOARDING_TEXT_18": "You're responsible for:",
-    "ONBOARDING_TEXT_19": "Keeping your information safe. This includes:",
+    "ONBOARDING_TEXT_19": "Note: We cannot access your funds for you, or recover your sensitive information. You are responsible for keeping your information safe, including private keys, seed phrases, JSON files, hardware wallet PINs, and any other sensitive information.",
     "ONBOARDING_TEXT_20": "Private Keys/Seed Phrases",
     "ONBOARDING_TEXT_21": "JSON files",
     "ONBOARDING_TEXT_22": "Hardware wallet PINs",

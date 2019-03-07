@@ -10,6 +10,8 @@
 
   &-help {
     margin-bottom: $space * 2;
+    margin-top: $space * 2;
+
   }
 
   &-words {
@@ -29,6 +31,7 @@
       margin: 0 5px;
       width: 100%;
       max-width: 260px;
+      float: none;
     }
   }
 

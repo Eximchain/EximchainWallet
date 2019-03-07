@@ -6,6 +6,8 @@ $step-number-size: 42px;
 .FinalSteps {
   &-help {
     margin-bottom: $space;
+    margin-top: $space;
+
   }
 
   &-steps {
@@ -16,6 +18,7 @@ $step-number-size: 42px;
     &-btn {
       width: 100%;
       max-width: 320px;
+      float: none;
     }
   }
 }

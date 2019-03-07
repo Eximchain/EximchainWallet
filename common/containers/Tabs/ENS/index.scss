@@ -10,7 +10,7 @@
     width: 100%;
     padding-top: $electron-osx-control-spacing + 2px;
     padding-left: 10px;
-    left: 220px;
+    left: $electron-sidebar-width + 20px;
     z-index: 1000;
     background-color: white;
     margin: 0;

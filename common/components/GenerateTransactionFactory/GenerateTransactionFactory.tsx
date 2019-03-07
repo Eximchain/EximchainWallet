@@ -60,7 +60,6 @@ export class GenerateTransactionFactoryClass extends Component<Props> {
 
     const isButtonDisabled =
       !isFullTransaction || networkRequestPending || !validGasPrice || !validGasLimit;
-
     return (
       <React.Fragment>
         <WithSigner

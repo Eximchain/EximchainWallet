@@ -127,6 +127,7 @@ class TXMetaDataPanel extends React.Component<Props, State> {
         />
       );
     }
+
     return (
       <div className={`Gas col-md-12 ${className}`}>
         <br />

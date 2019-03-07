@@ -6,7 +6,11 @@ import translate, { translateRaw } from 'translations';
 import { AppState } from 'features/reducers';
 import { configMetaActions, configMetaSelectors } from 'features/config';
 import { scheduleSelectors } from 'features/schedule';
-import { transactionFieldsActions, transactionSelectors } from 'features/transaction';
+import {
+  transactionFieldsActions,
+  transactionSelectors,
+  transactionFieldsSelectors
+} from 'features/transaction';
 import { NonceField, GasLimitField, DataField } from 'components';
 import { Input } from 'components/ui';
 import FeeSummary, { RenderData } from './FeeSummary';
@@ -28,6 +32,7 @@ interface OwnProps {
   scheduleGasPrice: AppState['schedule']['scheduleGasPrice'];
   timeBounty: AppState['schedule']['timeBounty'];
   autoGenGasLimit: boolean;
+  to: AppState['transaction']['fields']['to'];
 }
 
 interface StateProps {
@@ -57,26 +62,34 @@ class AdvancedGas extends React.Component<Props, State> {
     }
   };
   componentWillMount() {
-    if (this.props.autoGasLimitEnabled && !this.props.autoGenGasLimit) {
+    if (this.props.autoGasLimitEnabled !== this.props.autoGenGasLimit) {
       this.props.toggleAutoGasLimit();
     }
   }
   public render() {
     const { autoGasLimitEnabled, gasPrice, scheduling, validGasPrice } = this.props;
     const { gasPriceField, gasLimitField, nonceField, dataField } = this.state.options;
+    const to = this.props.to.raw;
+    var checkbox;
+    if (!(to === '0x000000000000000000000000000000000000002a')) {
+      checkbox = (
+        <React.Fragment>
+          <div className="AdvancedGas-calculate-limit">
+            <label className="checkbox">
+              <input
+                type="checkbox"
+                onChange={this.handleToggleAutoGasLimit}
+                defaultChecked={this.props.autoGenGasLimit}
+              />
+              <span>{translate('TRANS_AUTO_GAS_TOGGLE')}</span>
+            </label>
+          </div>
+        </React.Fragment>
+      );
+    }
     return (
       <div className="AdvancedGas row form-group">
-        <div className="AdvancedGas-calculate-limit">
-          <label className="checkbox">
-            <input
-              type="checkbox"
-              onChange={this.handleToggleAutoGasLimit}
-              defaultChecked={this.props.autoGenGasLimit}
-            />
-            <span>{translate('TRANS_AUTO_GAS_TOGGLE')}</span>
-          </label>
-        </div>
-
+        {checkbox}
         <div className="AdvancedGas-flex-wrapper flex-wrapper">
           {gasPriceField && (
             <div className="AdvancedGas-gas-price">
@@ -187,7 +200,8 @@ export default connect(
     autoGasLimitEnabled: configMetaSelectors.getAutoGasLimitEnabled(state),
     scheduleGasPrice: scheduleSelectors.getScheduleGasPrice(state),
     timeBounty: scheduleSelectors.getTimeBounty(state),
-    validGasPrice: transactionSelectors.isValidGasPrice(state)
+    validGasPrice: transactionSelectors.isValidGasPrice(state),
+    to: transactionFieldsSelectors.getTo(state)
   }),
   { toggleAutoGasLimit: configMetaActions.toggleAutoGasLimit }
 )(AdvancedGas);

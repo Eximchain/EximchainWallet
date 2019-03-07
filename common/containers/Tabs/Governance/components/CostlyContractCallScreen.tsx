@@ -262,7 +262,6 @@ export class ContractCallClass extends Component<Props, State> {
 
   private autoSetAmountValue(rawValue: any) {
     const value = rawValue * rawValue;
-    console.log(value);
     this.setState({ setValue: value });
   }
   private handleFunctionCall = async (_: React.FormEvent<HTMLButtonElement>) => {
@@ -311,11 +310,9 @@ export class ContractCallClass extends Component<Props, State> {
   };
   private handleInputChange = (ev: React.FormEvent<HTMLInputElement>) => {
     const rawValue: string = ev.currentTarget.value;
-    console.log(rawValue);
-    console.log(ev.currentTarget.name);
     if (ev.currentTarget.name === '_votes') {
       this.autoSetAmountValue(rawValue);
-      const value = parseInt(rawValue) ** parseInt(rawValue);
+      const value = parseInt(rawValue) * parseInt(rawValue);
       this.props.setCurrentValue(value.toString());
     }
     const isArr = rawValue.startsWith('[') && rawValue.endsWith(']');

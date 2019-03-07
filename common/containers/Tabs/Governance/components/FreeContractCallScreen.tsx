@@ -236,7 +236,6 @@ export class FreeContractCallClass extends Component<Props, State> {
       const parsedResult = selectedFunction!.contract.decodeOutput(results);
       this.setState({ outputs: parsedResult });
     } catch (e) {
-      console.log(e);
       this.props.showNotification(
         'warning',
         `Function call error: ${(e as Error).message}` || 'Invalid input parameters',

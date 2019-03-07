@@ -15,7 +15,6 @@ export const AmountField: React.SFC<Props> = props => (
       <AmountFieldFactory
         withProps={({ currentValue: { raw }, isValid, onChange, readOnly }) => {
           const instrumentedOnChange = (ev: React.FormEvent<HTMLInputElement>) => {
-            console.log('Hit the onChange handler, here is the event: ', ev);
             onChange(ev);
           };
           return (

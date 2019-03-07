@@ -148,7 +148,6 @@ class Governance extends Component<Props, State> {
   private setContract() {
     const contractNumber = this.props.contracts.length;
     var i = 0;
-    console.log('componentdidmount');
     for (i; i < contractNumber; i++) {
       var currentInstance = this.props.contracts[i];
       if (currentInstance.name === 'Weyl Governance') {
@@ -159,8 +158,10 @@ class Governance extends Component<Props, State> {
       }
     }
   }
-  componentDidMount() {
+  componentWillMount() {
     this.props.resetTransactionRequested();
+  }
+  componentDidMount() {
     this.setContract();
   }
 

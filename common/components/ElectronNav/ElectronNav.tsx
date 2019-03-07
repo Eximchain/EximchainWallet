@@ -83,7 +83,6 @@ class ElectronNav extends React.Component<Props, State> {
   private toggleSelect = () => {
     const { panelContent } = this.state;
     if (this.state.isPanelOpen) {
-      console.log('asdfsasdfsf');
       this.setState({ isPanelOpen: false });
 
       if (this.state.panelContent === panelContent) {

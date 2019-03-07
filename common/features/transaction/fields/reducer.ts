@@ -10,7 +10,7 @@ export const FIELDS_INITIAL_STATE: types.TransactionFieldsState = {
   data: { raw: '', value: null },
   nonce: { raw: '', value: null },
   value: { raw: '', value: null },
-  gasLimit: { raw: '200000', value: new BN(200000) },
+  gasLimit: { raw: '21000', value: new BN(21000) },
   gasPrice: { raw: '20', value: gasPriceToBase(20) }
 };
 

@@ -63,6 +63,7 @@ interface State {
   };
   outputs: any;
   stage: ContractFlowStages;
+  stageHistory: ContractFlowStages[];
   setValue?: any;
   broadcastHash?: any;
   promoDemoBool?: any;
@@ -88,11 +89,13 @@ export class ContractCallClass extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.goTo = this.goTo.bind(this);
+    this.back = this.back.bind(this);
   }
   public static defaultProps: Partial<Props> = {};
 
   public state: State = {
     stage: ContractFlowStages.CONSTRUCT_TRANSACTION_SCREEN,
+    stageHistory: [],
     inputs: {},
     outputs: {}
   };
@@ -119,11 +122,34 @@ export class ContractCallClass extends Component<Props, State> {
     }
   }
 
-  goTo(newStage: ContractFlowStages) {
-    this.setState({ stage: newStage });
+  private goTo(stage: ContractFlowStages) {
+    this.setState((state: State) => {
+      let newState = Object.assign({}, state);
+      newState.stageHistory.push(this.state.stage);
+      newState.stage = stage;
+      return newState;
+    });
+  }
+
+  private back() {
+    if (this.state.stage === ContractFlowStages.CONSTRUCT_TRANSACTION_SCREEN) {
+      this.props.goBack();
+    }
+    this.setState((state: State) => {
+      // tslint:disable-next-line:prefer-const
+      let newState = Object.assign({}, state);
+      const prevStage =
+        newState.stageHistory.length > 0
+          ? newState.stageHistory.pop()
+          : ContractFlowStages.CONSTRUCT_TRANSACTION_SCREEN;
+      newState.stage = prevStage;
+      return newState;
+    });
   }
 
   render() {
+    console.log(this.state.stageHistory);
+    console.log(this.state.stage);
     const { inputs, outputs } = this.state;
     const selectedFunction = this.props.selectedFunction;
     const generateOrWriteButton = this.props.dataExists ? (
@@ -149,6 +175,8 @@ export class ContractCallClass extends Component<Props, State> {
                 const { type, name } = input;
                 const parsedName = name === '' ? index : name;
                 const inputState = this.state.inputs[parsedName];
+                console.log(inputState, 'asdf');
+
                 return (
                   <div key={parsedName} className="input-group-wrapper">
                     <label className="input-group">
@@ -218,7 +246,7 @@ export class ContractCallClass extends Component<Props, State> {
                   {translate('Next')}
                 </button>
               )}
-              <button className="FormBackButton btn btn-default" onClick={this.props.goBack}>
+              <button className="FormBackButton btn btn-default" onClick={this.back}>
                 <span>{translate('GO_BACK')}</span>
               </button>
             </div>
@@ -229,6 +257,9 @@ export class ContractCallClass extends Component<Props, State> {
         body = (
           <React.Fragment>
             <Fields button={generateOrWriteButton} />
+            <button className="FormBackButton btn btn-default" onClick={this.back}>
+              <span>{translate('GO_BACK')}</span>
+            </button>
           </React.Fragment>
         );
         break;
@@ -252,6 +283,7 @@ export class ContractCallClass extends Component<Props, State> {
       </React.Fragment>
     );
   }
+
   private handleStageChange = () => {
     try {
       const data = this.encodeData();

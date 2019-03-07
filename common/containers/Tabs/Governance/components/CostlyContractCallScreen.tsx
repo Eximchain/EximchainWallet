@@ -161,8 +161,8 @@ export class ContractCallClass extends Component<Props, State> {
                       {type === 'bool' ? (
                         <Dropdown
                           options={[
-                            { value: false, label: 'false' },
-                            { value: true, label: 'true' }
+                            { value: false, label: translate(parsedName + 'false') },
+                            { value: true, label: translate(parsedName + 'true') }
                           ]}
                           value={
                             inputState

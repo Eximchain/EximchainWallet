@@ -1,6 +1,55 @@
 {
   "code": "en",
   "data": {
+
+
+    "ballotHistoryInput0": "Public EXC Address",
+    "ballotHistoryInput1": "Number of times this address has voted",
+
+    "ballotHistoryOutput0": "Ballot Record ID",
+
+    "currentGovernanceCycleOutput0": "Current Governance Cycle",
+
+    "withdrawRecordsInput0": "Withdraw Record ID",
+    "withdrawRecordsOutputamount": "EXC Amount",
+    "withdrawRecordsOutputstatus": "Withrawal Status",
+    "withdrawRecordsOutputgovernanceCycleId": "Governance Cycle Number",
+    "withdrawRecordsOutputbeneficiary": "Withdrawn to",
+    "withdrawRecordsOutputballotId": "Ballot Record ID",
+    "withdrawRecordsOutputtimestamp": "Last changed at",
+
+    "governanceCycleRecordsInput0": "Governance Cycle Number",
+    "governanceCycleRecordsOutputtotalPayments": "Token pool amount",
+    "governanceCycleRecordsOutputstatus": "Governance Cycle Status",
+    "governanceCycleRecordsOutputelectionVotesElected": "Net votes for Promotion ballot winner",
+    "governanceCycleRecordsOutputevictionVotesEvicted": "Net votes for Demotion ballot winner",
+    "governanceCycleRecordsOutputtotalVoters": "Total Number of Voters",
+    "governanceCycleRecordsOutputelected": "Promotion ballot winner address",
+    "governanceCycleRecordsOutputevicted": "Demotion ballot winner address",
+    "governanceCycleRecordsOutputstart": "Time Cycle was opened",
+
+    "nomineeBallotsInput0": "Public EXC Address of Nominee",
+    "nomineeBallotsOutputgovernanceCycleId": "Governance Cycle Number",
+    "nomineeBallotsOutputelection": "Ballot Type",
+    "nomineeBallotsOutputvotes": "Net Votes",
+    "nomineeBallotsOutputpositiveVotes": "Total Positive Votes",
+    "nomineeBallotsOutputnegativeVotes": "Total Negative Votes",
+    "nomineeBallotsOutputtotalVoters": "Total Participants",
+
+    "canGovernInputregistrant": "Public EXC Address",
+    "canGovernOutput0": "Eligible to participate in governance",
+
+    "isKYCApprovedInputregistrant": "Public EXC Address",
+    "isKYCApprovedOutput0": "Is KYC Approved?",
+
+    "isKYCDeniedInputregistrant": "Public EXC Address",
+    "isKYCDeniedOutput0": "Is KYC Denied?",
+
+    "withdrawHistoryInput0": "Public EXC Address",
+    "withdrawHistoryInput1": "Number of times this address has claimed tokens",
+    "withdrawHistoryOutput0": "Withdraw Record ID",
+
+
     "EXIMCHAIN_TITLE": "Eximchain",
     "NETWORK_AUTO":"Auto",
     "GO_BACK":"Back",

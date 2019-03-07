@@ -110,7 +110,6 @@ export class FreeContractCallClass extends Component<Props, State> {
                     // if it is undefined
                     const parsedName = name === '' ? index : name;
                     const newName = selectedFunction.name + 'Input' + parsedName;
-
                     const inputState = this.state.inputs[parsedName];
                     return (
                       <div
@@ -118,7 +117,7 @@ export class FreeContractCallClass extends Component<Props, State> {
                         className="input-group-wrapper InteractExplorer-func-in"
                       >
                         <label className="input-group">
-                          <div className="input-group-header">{translate(newName)}</div>
+                          <div className="input-group-header">{translateRaw(newName)}</div>
                           {type === 'bool' ? (
                             <Dropdown
                               options={[

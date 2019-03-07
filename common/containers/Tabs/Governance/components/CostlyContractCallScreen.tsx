@@ -243,7 +243,14 @@ export class ContractCallClass extends Component<Props, State> {
         );
         break;
     }
-    return body;
+    return (
+      <React.Fragment>
+        <div className="GovernanceSection-topsection">
+          <h2 className="ContractSection-topsection-title">{translate(this.props.contractCall)}</h2>
+        </div>
+        <section className="Tab-content GovernanceSection-content">{body}</section>
+      </React.Fragment>
+    );
   }
   private handleStageChange = () => {
     try {

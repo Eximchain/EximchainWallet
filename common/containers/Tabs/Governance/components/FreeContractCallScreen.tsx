@@ -90,115 +90,125 @@ export class FreeContractCallClass extends Component<Props, State> {
     const { inputs, outputs } = this.state;
     const selectedFunction = this.props.selectedFunction;
     return (
-      <div className="GovernanceSection-form">
-        <h2 className="FormInput-title">{translate(this.props.contractCall)}</h2>
-        <p className="FormInput-subtitle">{translate(this.props.contractCall)}</p>
-
-        <div key={selectedFunction.name}>
-          {selectedFunction && (
-            <div key={selectedFunction.name}>
-              {
-                // These are the inputs
-              }
-              <div className="ReadFunctionContent flex-wrapper">
-                <div className="Input-box">
-                  <h4 className="ReadFunctionContent-header"> Inputs </h4>
-                  {selectedFunction.contract.inputs.map((input, index) => {
-                    const { type, name } = input;
-                    // if name is not supplied to arg, use the index instead
-                    // since that's what the contract ABI function factory subsitutes for the name
-                    // if it is undefined
-                    const parsedName = name === '' ? index : name;
-                    const newName = selectedFunction.name + 'Input' + parsedName;
-                    const inputState = this.state.inputs[parsedName];
-                    return (
-                      <div
-                        key={parsedName}
-                        className="input-group-wrapper InteractExplorer-func-in"
-                      >
-                        <label className="input-group">
-                          <div className="input-group-header">{translateRaw(newName)}</div>
-                          {type === 'bool' ? (
-                            <Dropdown
-                              options={[
-                                { value: false, label: 'false' },
-                                { value: true, label: 'true' }
-                              ]}
-                              value={
-                                inputState
-                                  ? {
-                                      label: inputState.rawData,
-                                      value: inputState.parsedData as any
-                                    }
-                                  : undefined
-                              }
-                              clearable={false}
-                              onChange={({ value }: { value: boolean }) => {
-                                this.handleBooleanDropdownChange({ value, name: parsedName });
-                              }}
-                            />
-                          ) : (
-                            <Input
-                              className="InteractExplorer-func-in-input"
-                              isValid={!!(inputs[parsedName] && inputs[parsedName].rawData)}
-                              name={parsedName}
-                              value={(inputs[parsedName] && inputs[parsedName].rawData) || ''}
-                              onChange={this.handleInputChange}
-                            />
-                          )}
-                        </label>
-                      </div>
-                    );
-                  })}
-                  <button className="FormBackButton btn btn-default" onClick={this.props.goBack}>
-                    <span>{translate('GO_BACK')}</span>
-                  </button>
-                  <button
-                    className="InteractExplorer-func-submit btn btn-primary FormReadButton"
-                    onClick={this.handleFunctionCall}
-                  >
-                    {translate('CONTRACT_READ')}
-                  </button>
-                </div>
-
-                <div className="ReadFunctionContent-arrow">
-                  <img src={arrow} alt="arrow" />
-                </div>
-                {
-                  // These are the outputs
-                }
-                <div className="Output-box">
-                  <h4 className="ReadFunctionContent-header"> Outputs </h4>
-
-                  {selectedFunction.contract.outputs.map((output: any, index: number) => {
-                    const { type, name } = output;
-                    const parsedName = name === '' ? index : name;
-                    const o = outputs[parsedName];
-                    const rawFieldValue = o === null || o === undefined ? '' : o;
-                    const decodedFieldValue = Buffer.isBuffer(rawFieldValue)
-                      ? bufferToHex(rawFieldValue)
-                      : rawFieldValue;
-                    const newName = selectedFunction.name + 'Output' + parsedName;
-                    return (
-                      <div key={parsedName} className="flex-wrapper InteractExplorer-func-out">
-                        <label className="output-group">
-                          <div className="input-group-header">{translate(newName)}</div>
-                          <Input
-                            className="InteractExplorer-func-out-input"
-                            isValid={!!decodedFieldValue}
-                            value={decodedFieldValue}
-                            disabled={true}
-                          />
-                        </label>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-          )}
+      <React.Fragment>
+        <div className="GovernanceSection-topsection">
+          <h2 className="ContractSection-topsection-title">{translate(this.props.contractCall)}</h2>
         </div>
-      </div>
+        <section className="Tab-content GovernanceSection-content">
+          <div className="GovernanceSection-form">
+            <h2 className="FormInput-title">{translate(this.props.contractCall)}</h2>
+            <p className="FormInput-subtitle">{translate(this.props.contractCall)}</p>
+
+            <div key={selectedFunction.name}>
+              {selectedFunction && (
+                <div key={selectedFunction.name}>
+                  {
+                    // These are the inputs
+                  }
+                  <div className="ReadFunctionContent flex-wrapper">
+                    <div className="Input-box">
+                      <h4 className="ReadFunctionContent-header"> Inputs </h4>
+                      {selectedFunction.contract.inputs.map((input, index) => {
+                        const { type, name } = input;
+                        // if name is not supplied to arg, use the index instead
+                        // since that's what the contract ABI function factory subsitutes for the name
+                        // if it is undefined
+                        const parsedName = name === '' ? index : name;
+                        const newName = selectedFunction.name + 'Input' + parsedName;
+                        const inputState = this.state.inputs[parsedName];
+                        return (
+                          <div
+                            key={parsedName}
+                            className="input-group-wrapper InteractExplorer-func-in"
+                          >
+                            <label className="input-group">
+                              <div className="input-group-header">{translateRaw(newName)}</div>
+                              {type === 'bool' ? (
+                                <Dropdown
+                                  options={[
+                                    { value: false, label: 'false' },
+                                    { value: true, label: 'true' }
+                                  ]}
+                                  value={
+                                    inputState
+                                      ? {
+                                          label: inputState.rawData,
+                                          value: inputState.parsedData as any
+                                        }
+                                      : undefined
+                                  }
+                                  clearable={false}
+                                  onChange={({ value }: { value: boolean }) => {
+                                    this.handleBooleanDropdownChange({ value, name: parsedName });
+                                  }}
+                                />
+                              ) : (
+                                <Input
+                                  className="InteractExplorer-func-in-input"
+                                  isValid={!!(inputs[parsedName] && inputs[parsedName].rawData)}
+                                  name={parsedName}
+                                  value={(inputs[parsedName] && inputs[parsedName].rawData) || ''}
+                                  onChange={this.handleInputChange}
+                                />
+                              )}
+                            </label>
+                          </div>
+                        );
+                      })}
+                      <button
+                        className="FormBackButton btn btn-default"
+                        onClick={this.props.goBack}
+                      >
+                        <span>{translate('GO_BACK')}</span>
+                      </button>
+                      <button
+                        className="InteractExplorer-func-submit btn btn-primary FormReadButton"
+                        onClick={this.handleFunctionCall}
+                      >
+                        {translate('CONTRACT_READ')}
+                      </button>
+                    </div>
+
+                    <div className="ReadFunctionContent-arrow">
+                      <img src={arrow} alt="arrow" />
+                    </div>
+                    {
+                      // These are the outputs
+                    }
+                    <div className="Output-box">
+                      <h4 className="ReadFunctionContent-header"> Outputs </h4>
+
+                      {selectedFunction.contract.outputs.map((output: any, index: number) => {
+                        const { type, name } = output;
+                        const parsedName = name === '' ? index : name;
+                        const o = outputs[parsedName];
+                        const rawFieldValue = o === null || o === undefined ? '' : o;
+                        const decodedFieldValue = Buffer.isBuffer(rawFieldValue)
+                          ? bufferToHex(rawFieldValue)
+                          : rawFieldValue;
+                        const newName = selectedFunction.name + 'Output' + parsedName;
+                        return (
+                          <div key={parsedName} className="flex-wrapper InteractExplorer-func-out">
+                            <label className="output-group">
+                              <div className="input-group-header">{translate(newName)}</div>
+                              <Input
+                                className="InteractExplorer-func-out-input"
+                                isValid={!!decodedFieldValue}
+                                value={decodedFieldValue}
+                                disabled={true}
+                              />
+                            </label>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
+      </React.Fragment>
     );
   }
 

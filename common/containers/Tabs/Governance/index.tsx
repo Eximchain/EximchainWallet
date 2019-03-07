@@ -317,13 +317,22 @@ class Governance extends Component<Props, State> {
     switch (this.state.stage) {
       case GovernanceFlowStages.START_PAGE:
         body = (
-          <div>
-            <h2 className="GovernanceSection-topsection-subtitle">
-              {translate('GENERATE_GOVERNANCE_DESC')}
-            </h2>
-            {this.buildFunctionOptions(COSTLYFUNCTIONCALLS, stages.COSTLY_CALL_PAGE)}
-            {this.buildFunctionOptions(FREEFUNCTIONCALLS, stages.FREE_CALL_PAGE)}
-          </div>
+          <React.Fragment>
+            <div className="GovernanceSection-topsection">
+              <h2 className="ContractSection-topsection-title">
+                {translate('GENERATE_GOVERNANCE_TITLE')}
+              </h2>
+            </div>
+            <section className="Tab-content GovernanceSection-content">
+              <div>
+                <h2 className="GovernanceSection-topsection-subtitle">
+                  {translate('GENERATE_GOVERNANCE_DESC')}
+                </h2>
+                {this.buildFunctionOptions(COSTLYFUNCTIONCALLS, stages.COSTLY_CALL_PAGE)}
+                {this.buildFunctionOptions(FREEFUNCTIONCALLS, stages.FREE_CALL_PAGE)}
+              </div>
+            </section>
+          </React.Fragment>
         );
         break;
       case GovernanceFlowStages.FREE_CALL_PAGE:
@@ -347,12 +356,7 @@ class Governance extends Component<Props, State> {
     }
     return (
       <TabSection isUnavailableOffline={true}>
-        <div className="GovernanceSection-topsection">
-          <h2 className="ContractSection-topsection-title">
-            {translate('GENERATE_GOVERNANCE_TITLE')}
-          </h2>
-        </div>
-        <section className="Tab-content GovernanceSection-content">{body}</section>
+        <React.Fragment>{body}</React.Fragment>
       </TabSection>
     );
   }

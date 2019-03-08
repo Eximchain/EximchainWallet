@@ -27,9 +27,8 @@ window.addEventListener('load', () => {
       lostNetworkNotif: () =>
         notificationsActions.showNotification(
           'danger',
-          `You’re not connected to the network. Please check your internet
-    connection or try changing networks from the dropdown in the
-    left sidebar. If you haven't synced an Eximchain Node, visit eximchain.zendesk.com for instructions.`,
+          `Not connected to network. Eximchain Wallet will automatically try to reconnect when it detects an internet connection.
+           If problems persist, visit eximchain.zendesk.com for help.`,
           Infinity
         ),
 

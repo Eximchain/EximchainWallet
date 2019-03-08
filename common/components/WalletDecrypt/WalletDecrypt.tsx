@@ -253,7 +253,7 @@ const WalletDecrypt = withRouter<Props>(
       return (
         <div className="WalletDecrypt-decrypt">
           <button className="WalletDecrypt-decrypt-back" onClick={this.clearWalletChoice}>
-            <i className="fa fa-arrow-left" />
+            <i className="fa fa-chevron-left" />
             {/* {translate('CHANGE_WALLET')} */}
           </button>
           <h2 className="WalletDecrypt-title">

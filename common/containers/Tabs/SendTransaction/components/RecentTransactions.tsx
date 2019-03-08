@@ -39,7 +39,7 @@ class RecentTransactions extends React.Component<Props> {
         <React.Fragment>
           <TransactionStatus txHash={activeTxHash} />
           <button className="RecentTxs-back btn btn-default" onClick={this.clearActiveTxHash}>
-            <i className="fa fa-arrow-left" /> {translate('BACK_TO_RECENT_TXS')}
+            <i className="fa fa-chevron-left" /> {translate('BACK_TO_RECENT_TXS')}
           </button>
         </React.Fragment>
       );

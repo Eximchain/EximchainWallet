@@ -20,7 +20,7 @@ export default class SwapInfoHeaderTitle extends PureComponent<SwapInfoHeaderTit
       <section className="SwapInfo-top row text-center">
         <div className="col-xs-3 text-left">
           <button className="SwapInfo-top-back" onClick={this.props.restartSwap}>
-            <i className="fa fa-arrow-left" />
+            <i className="fa fa-chevron-left" />
             {translate('NEW_SWAP')}
           </button>
         </div>

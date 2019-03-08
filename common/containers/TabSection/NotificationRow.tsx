@@ -44,7 +44,6 @@ export default class NotificationRow extends Component<Props, {}> {
 
     return (
       <div className={notifClass} role="alert" aria-live="assertive">
-        <span className="sr-only">{level}</span>
         <div className="Notification-message">{internal}</div>
         <button className="Notification-close" aria-label="dismiss" onClick={this.onClose} />
       </div>

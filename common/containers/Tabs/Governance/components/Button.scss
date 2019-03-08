@@ -4,23 +4,20 @@
 
 .FormReadButton {
   margin-left: 4px;
-
-  @media screen and (max-width: $screen-lg) {
-    min-width: 74%;
-  }
-  @media screen and (max-width: $screen-md) {
-    min-width: 68%;
-  }
-  @media screen and (max-width: $screen-sm) {
-    min-width: 66%;
-  }
+  
 }
 
 .FormBackButton {
   margin-right: 4px;
   float: left;
-  min-width: 17%;
-  margin-top: 6px;
+  // min-width: 17%;
+  margin-top: 3px;
+  margin-left: 15px;
+  &-hover {
+    cursor: pointer;
+    color: color(gray);
+
+  }
 }
 
 .FormInput {

@@ -218,9 +218,6 @@ export class ContractCallClass extends Component<Props, State> {
                   {translate('Next')}
                 </button>
               )}
-              <button className="FormBackButton btn btn-default" onClick={this.props.goBack}>
-                <span>{translate('GO_BACK')}</span>
-              </button>
             </div>
           </div>
         );
@@ -246,6 +243,7 @@ export class ContractCallClass extends Component<Props, State> {
     return (
       <React.Fragment>
         <div className="GovernanceSection-topsection">
+          <button className="FormBackButton fa fa-chevron-left" onClick={this.props.goBack} />
           <h2 className="ContractSection-topsection-title">{translate(this.props.contractCall)}</h2>
         </div>
         <section className="Tab-content GovernanceSection-content">{body}</section>

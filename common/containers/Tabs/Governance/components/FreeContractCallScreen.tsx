@@ -92,13 +92,11 @@ export class FreeContractCallClass extends Component<Props, State> {
     return (
       <React.Fragment>
         <div className="GovernanceSection-topsection">
+          <button className="FormBackButton fa fa-chevron-left" onClick={this.props.goBack} />
           <h2 className="ContractSection-topsection-title">{translate(this.props.contractCall)}</h2>
         </div>
         <section className="Tab-content GovernanceSection-content">
           <div className="GovernanceSection-form">
-            <h2 className="FormInput-title">{translate(this.props.contractCall)}</h2>
-            <p className="FormInput-subtitle">{translate(this.props.contractCall)}</p>
-
             <div key={selectedFunction.name}>
               {selectedFunction && (
                 <div key={selectedFunction.name}>
@@ -155,12 +153,7 @@ export class FreeContractCallClass extends Component<Props, State> {
                           </div>
                         );
                       })}
-                      <button
-                        className="FormBackButton btn btn-default"
-                        onClick={this.props.goBack}
-                      >
-                        <span>{translate('GO_BACK')}</span>
-                      </button>
+
                       <button
                         className="InteractExplorer-func-submit btn btn-primary FormReadButton"
                         onClick={this.handleFunctionCall}

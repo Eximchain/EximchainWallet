@@ -23,6 +23,21 @@
   }
 }
 
+.FormBackButton {
+  // position: absolute;
+  // bottom: 20px;
+  // left: 20px;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: color(n200);
+  &-hover {
+    cursor: pointer;
+    color: color(gray);
+
+  }
+}
+
 .Input-box {
   position: relative;
   padding: 1rem;
@@ -31,11 +46,8 @@
   width: 50%;
   margin-right: 10px;
 
-  .FormBackButton {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-  }
+
+
 
   .InteractExplorer-func-submit {
     position: absolute;

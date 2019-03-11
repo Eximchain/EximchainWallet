@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { AppState } from 'features/reducers';
 import { notificationsActions } from 'features/notifications';
 import { connect } from 'react-redux';
-import translate, { translateRaw } from 'translations';
+import translate from 'translations';
 import { AmountField } from './InteractExplorer/components/AmountField';
 import ResultScreen from './ResultScreen';
 
@@ -167,8 +167,10 @@ export class ContractCallClass extends Component<Props, State> {
       case ContractFlowStages.CONSTRUCT_TRANSACTION_SCREEN:
         body = (
           <div className="GovernanceSection-form-write">
-            <h2 className="FormInput-title">{translate(this.props.contractCall)}</h2>
-            <p className="FormInput-subtitle">{translate(this.props.contractCall)}</p>
+            <h2 className="FormInput-title">{translate(this.props.contractCall + 'Name')}</h2>
+            <p className="FormInput-subtitle">
+              {translate(this.props.selectedFunction.name + 'Description')}
+            </p>
 
             <div key={selectedFunction.name}>
               {selectedFunction.contract.inputs.map((input, index) => {
@@ -252,7 +254,11 @@ export class ContractCallClass extends Component<Props, State> {
       case ContractFlowStages.SUBMIT_TRANSACTION_SCREEN:
         body = (
           <React.Fragment>
+            <h2 className="FormInput-title">{translate('WalletScreen')}</h2>
+            <p className="FormInput-subtitle">{translate('WalletScreenDescription')}</p>
+
             <Fields button={generateOrWriteButton} />
+
             <button className="FormBackButton btn btn-default" onClick={this.back}>
               <span>{translate('GO_BACK')}</span>
             </button>
@@ -273,7 +279,7 @@ export class ContractCallClass extends Component<Props, State> {
     return (
       <React.Fragment>
         <div className="GovernanceSection-topsection">
-          <button className="FormBackButton fa fa-chevron-left" onClick={this.props.goBack} />
+          <button className="FormBackButton fa fa-chevron-left" onClick={this.back} />
           <h2 className="ContractSection-topsection-title">{translate(this.props.contractCall)}</h2>
         </div>
         <section className="Tab-content GovernanceSection-content">{body}</section>

@@ -43,10 +43,7 @@ class NonceField extends React.Component<Props> {
               <label className="input-group">
                 <div className="input-group-header">
                   {translate('OFFLINE_STEP2_LABEL_5')}
-                  <Help
-                    size="x1"
-                    link="https://support.mycrypto.com/transactions/what-is-nonce.html"
-                  />
+                  <Help size="x1" link="https://en.wikipedia.org/wiki/Cryptographic_nonce" />
                 </div>
                 <Input
                   isValid={!!value}

@@ -258,10 +258,6 @@ export class ContractCallClass extends Component<Props, State> {
             <p className="FormInput-subtitle">{translate('WalletScreenDescription')}</p>
 
             <Fields button={generateOrWriteButton} />
-
-            <button className="FormBackButton btn btn-default" onClick={this.back}>
-              <span>{translate('GO_BACK')}</span>
-            </button>
           </React.Fragment>
         );
         break;

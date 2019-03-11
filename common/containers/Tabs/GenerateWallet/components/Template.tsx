@@ -14,7 +14,7 @@ const GenerateWalletTemplate: React.SFC<Props> = ({ children, hideBack, onBack }
     {children}
     {!hideBack && (
       <Link className="GenerateWallet-back" to="/generate" onClick={onBack}>
-        <i className="fa fa-arrow-left" />
+        <i className="fa fa-chevron-left" />
       </Link>
     )}
   </div>

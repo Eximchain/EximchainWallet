@@ -1,3 +1,5 @@
+@import 'common/sass/variables/zindex.scss';
+
 .Modalz {
   position: fixed;
   display: flex;
@@ -5,7 +7,7 @@
   justify-content: center;
   width: 100vw;
   min-height: 100vh;
-  z-index: 1050;
+  z-index: $zindex-modal;
   background: rgba(0, 0, 0, 0.2);
   border-radius: 6px;
 }

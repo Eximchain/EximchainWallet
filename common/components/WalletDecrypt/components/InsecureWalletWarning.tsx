@@ -33,7 +33,7 @@ export class InsecureWalletWarning extends React.Component<Props> {
             {translate('WALLET_SUGGESTION_DESKTOP_APP')}
           </NewTabLink>
           <button className="WalletWarning-buttons-btn is-cancel" onClick={onCancel}>
-            <i className="fa fa-arrow-left" />
+            <i className="fa fa-chevron-left" />
             {translate('INSECURE_WALLET_GO_BACK')}
           </button>
         </div>

@@ -53,7 +53,8 @@
       .NextButton {
         float: right;
         margin-top: 6px;
-        min-width: 350px;
+        // min-width: 350px;
+        width: 100%;
       }
     }
   }
@@ -66,7 +67,7 @@
     padding-top: 20px;
     left: $electron-sidebar-width;
     z-index: 1000;
-    background-color: white;
+    background-color: color(n0);
     margin-left: 0;
     margin-right: 0;
     margin-top: 0;
@@ -74,6 +75,7 @@
     padding-bottom: 14px;
     margin-bottom: 18px;
     border-bottom: solid .5px color(n20);
+    text-transform: capitalize;
 
   h2 {
     text-align: left;

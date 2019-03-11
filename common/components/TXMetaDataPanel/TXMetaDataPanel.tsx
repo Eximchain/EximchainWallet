@@ -131,6 +131,17 @@ class TXMetaDataPanel extends React.Component<Props, State> {
     return (
       <div className={`Gas col-md-12 ${className}`}>
         <br />
+        {!offline &&
+          !disableToggle && (
+            <div className="help-block flex-wrapper">
+              <label>{translateRaw('CONFIRM_TX_FEE')}</label>
+              <a className="Gas-toggle" onClick={this.toggleAdvanced}>
+                {showAdvanced
+                  ? `${translateRaw('TRANS_SIMPLE')}`
+                  : `${translateRaw('TRANS_ADVANCED')}`}
+              </a>
+            </div>
+          )}
         {showAdvanced ? (
           advancedGasComponent
         ) : (
@@ -140,17 +151,6 @@ class TXMetaDataPanel extends React.Component<Props, State> {
             setGasPrice={this.props.inputGasPrice}
           />
         )}
-
-        {!offline &&
-          !disableToggle && (
-            <div className="help-block">
-              <a className="Gas-toggle" onClick={this.toggleAdvanced}>
-                {showAdvanced
-                  ? `- ${translateRaw('TRANS_SIMPLE')}`
-                  : `+ ${translateRaw('TRANS_ADVANCED')}`}
-              </a>
-            </div>
-          )}
       </div>
     );
   }

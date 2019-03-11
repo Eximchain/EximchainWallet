@@ -97,7 +97,7 @@ input[type='radio'],
 input[type='checkbox'] {
   margin: 3px 0 0;
   line-height: normal;
-  
+
 }
 
 // Misc
@@ -117,7 +117,7 @@ input[readonly] {
   display: block;
   margin-top: $space-xs;
   margin-bottom: $space-sm;
-  opacity: 0.8;
+  opacity: 1;
 
   &.is-valid {
     color: color(g70);

@@ -1,10 +1,22 @@
 @import 'common/sass/variables';
 
 .Gas {
+  // padding: 0;
+
+  .help-block {
+    display: flex;
+    margin-left: -1rem;
+    margin-right: -1rem;
+
+
+  }
   &-toggle {
-    display: inline-block;
+    display: block;
+    margin-left: auto;
     position: relative;
-    margin-top: $space-sm;
-    left: -14px;
+    margin-top: 0;
+    // left: -14px;
+    // margin-bottom: -14px !important;
+
   }
 }

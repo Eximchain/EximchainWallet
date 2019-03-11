@@ -16,34 +16,48 @@ $speed: 70ms;
 .rc-slider {
   &-rail {
     background: color(n30);
-    border-radius: 0;
+    // border-radius: 0;
   }
 
   &-track {
-    // height: 18px !important;
+    height: 6px !important;
     background: color(b60);
-    border: solid 2px color(b60);
     visibility: visible !important;
+  }
+
+  &-step {
+    height: 6px !important;
   }
 
   &-handle {
     top: 50%;
-    width: $handle-size;
-    height: $handle-size;
-    // background: color(b60);
-    margin: 0;
-    border: none;
+    border-radius: 100%;
+    margin: 1px 0 0 0px;
     transform: translate(-50%, -50%);
-    background: color(b60);
+    background: color(n0);
     border: solid 2px color(b60);
+    transition: width 100ms, height 100ms, transform 100ms;
 
     &:hover,
-    &:focus,
     &:active {
-      background: color(b90);
-      border: none;
+      background: color(n0);
+      border: solid 2px color(b60);
+      height: 18px;
+      width: 18px;
+      // transition: width 300ms;
+      // transition: height 300ms;
+      // transition-timing-function: ease;
+
       box-shadow: none;
     }
+
+    &:focus,
+    &:active {
+      background: color(n0);
+      border: solid 2px color(b60);
+      box-shadow: none;
+    }
+
 
   }
 

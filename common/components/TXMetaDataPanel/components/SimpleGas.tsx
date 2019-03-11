@@ -94,13 +94,21 @@ class SimpleGas extends React.Component<Props> {
 
     return (
       <div className="SimpleGas row form-group">
-        <div className="SimpleGas-title">
-          <div className="flex-wrapper">
-            <label>{translate('CONFIRM_TX_FEE')} </label>
-            <div className="flex-spacer" />
-            <InlineSpinner active={noncePending || gasLimitPending} text="Calculating" />
-          </div>
-        </div>
+        {
+          // <div className="SimpleGas-title">
+          // <div className="flex-wrapper">
+          // <label>{translate('CONFIRM_TX_FEE')}
+          // <FeeSummary
+          //   gasPrice={gasPrice}
+          //   scheduleGasPrice={scheduleGasPrice}
+          //   render={({ fee }) => <span>{fee}</span>}
+          // />
+          // </label>
+          // <div className="flex-spacer" />
+          //   <InlineSpinner active={noncePending || gasLimitPending} text="Calculating" />
+          // </div>
+          // </div>
+        }
 
         {gasLimitEstimationTimedOut && (
           <div className="prompt-toggle-gas-limit">

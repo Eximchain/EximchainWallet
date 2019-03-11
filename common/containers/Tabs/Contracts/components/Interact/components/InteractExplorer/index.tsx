@@ -104,7 +104,9 @@ class InteractExplorerClass extends Component<Props, State> {
             <div className="input-group-header">
               {translate('CONTRACT_INTERACT_TITLE')}
               <div className="flex-spacer" />
-              <span className="small">{to.raw}</span>
+              {
+                // <span className="small">{to.raw}</span>
+              }
             </div>
             <Dropdown
               name="exploreContract"

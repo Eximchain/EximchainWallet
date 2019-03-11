@@ -179,16 +179,16 @@ class DeterministicWalletsModalClass extends React.PureComponent<Props, State> {
           <div className="DWModal-addresses-nav">
             <button
               className="DWModal-addresses-nav-btn btn btn-sm btn-default"
-              onClick={this.nextPage}
-            >
-              {translate('ACTION_5')} →
-            </button>
-            <button
-              className="DWModal-addresses-nav-btn btn btn-sm btn-default"
               disabled={page === 0}
               onClick={this.prevPage}
             >
               ← {translate('ACTION_4')}
+            </button>
+            <button
+              className="DWModal-addresses-nav-btn btn btn-sm btn-default"
+              onClick={this.nextPage}
+            >
+              {translate('ACTION_5')} →
             </button>
           </div>
         </div>

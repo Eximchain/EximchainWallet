@@ -4,6 +4,18 @@
   margin-top: 0;
   margin-bottom: 0;
 
+  .FeeSummary {
+    padding: 0 !important;
+    width: max-content;
+    margin-left: auto !important;
+  }
+
+  .rc-slider-rail {
+    height: 6px !important;
+    width: 100% !important;
+
+  }
+
   &-input-group {
     display: flex;
     > .SimpleGas-slider {
@@ -11,15 +23,31 @@
       margin-right: $space;
 
       > .rc-slider > .rc-slider-step > .rc-slider-dot {
-        height: 16px;
+        height: 6px !important;
         width: 1px;
-        bottom: -6px;
-        border-radius: 6px;
-        margin-left: 0;
+        bottom: 0px;
+        // margin-left: auto;
+        // margin-right: 0;
       }
       .rc-slider-dot {
-        border-color: color(n100);
-        border-width: 1px;
+        border: none;
+        // border-left: 1px solid color(n30);
+        // border-right: 1px solid color(n30);
+        // border-top: none;
+        // border-bottom: none;
+        background: color(b40);
+        width: 6px !important;
+
+        &:first-child {
+          margin-left: 0;
+          border-top-left-radius: 3px;
+          border-bottom-left-radius: 3px;
+        }
+
+        &:last-child {
+          margin-right: 4px;
+        }
+
       }
 
       .rc-slider-track {
@@ -56,14 +84,14 @@
   &-slider {
     padding-top: 8px;
     margin-bottom: $space-xs;
-    padding-left: 22px;
-    padding-right: 22px;
+    padding-left: 0;
+    padding-right: 0;
 
     &-labels {
       margin-top: 4px;
       display: flex;
-      margin-left: -22px;
-      margin-right: -22px;
+      // margin-left: -22px;
+      // margin-right: -22px;
 
       > span {
         flex: 1;

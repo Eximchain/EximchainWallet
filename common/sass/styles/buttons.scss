@@ -53,12 +53,13 @@
 /************/
 
 .btn {
-  display: inline-block;
+  display: block;
   border-radius: 6px !important;
   margin-bottom: 0;
   font-weight: normal;
   text-align: center;
-  float: right;
+  // float: right;
+  margin-left: auto;
   vertical-align: middle;
   touch-action: manipulation;
   cursor: pointer;

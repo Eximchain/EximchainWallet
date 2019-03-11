@@ -1,6 +1,15 @@
 .TrezorDecrypt {
   text-align: center;
 
+  .alert {
+    margin-top: 1rem;
+    border-radius: 6px;
+  }
+
+  .btn {
+    margin-right: auto;
+  }
+
   &-help {
     margin-top: 10px;
     font-size: 13px;
@@ -9,6 +18,7 @@
   &-error {
     opacity: 0;
     transition: none;
+
 
     &.is-showing {
       opacity: 1;

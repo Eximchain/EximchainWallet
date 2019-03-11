@@ -73,12 +73,13 @@ class TrezorDecryptClass extends PureComponent<Props, State> {
         </button>
 
         <div className={`TrezorDecrypt-error alert alert-danger ${showErr}`}>{error || '-'}</div>
-
-        <div>
-          <NewTabLink className="TrezorDecrypt-buy btn btn-sm btn-default" href={trezorReferralURL}>
-            {translate('ORDER_TREZOR')}
-          </NewTabLink>
-        </div>
+        {
+          // <div>
+          //   <NewTabLink className="TrezorDecrypt-buy btn btn-sm btn-quiet-neutral" href={trezorReferralURL}>
+          //     {translate('ORDER_TREZOR')}
+          //   </NewTabLink>
+          // </div>
+        }
 
         <div className="TrezorDecrypt-help">
           <NewTabLink href="https://eximchain.zendesk.com/hc/en-us/articles/360015663354-Connect-Trezor-Hardware-Wallet">

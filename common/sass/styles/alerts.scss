@@ -11,6 +11,8 @@
   margin-bottom: 1rem;
   color: color(text-color-inverted);
 
+
+
   @include theme(dark) {
     border-radius: 2px;
     background-color: shade-dark(0.1);
@@ -18,12 +20,12 @@
   }
 
   a {
-    color: #FFF;
+    color: color(n0);
     font-weight: normal;
     text-decoration: underline;
 
     &:hover {
-      color: #FFF;
+      color: color(n0);
       opacity: 0.8;
     }
   }

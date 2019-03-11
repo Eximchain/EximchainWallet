@@ -161,10 +161,10 @@ class SimpleGas extends React.Component<Props> {
 
     return gasEstimates
       ? {
-          [gasEstimates.safeLow]: '',
+          // [gasEstimates.safeLow]: '',
           [gasEstimates.standard]: '',
-          [gasEstimates.fast]: '',
-          [gasEstimates.fastest]: ''
+          [gasEstimates.fast]: ''
+          // [gasEstimates.fastest]: ''
         }
       : {};
   };

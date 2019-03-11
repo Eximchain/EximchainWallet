@@ -10,6 +10,9 @@
   padding: 1rem;
   margin-bottom: 1rem;
   color: color(text-color-inverted);
+  margin-top: 1rem;
+  border-radius: 6px;
+
 
   @include theme(dark) {
     border-radius: 2px;
@@ -18,12 +21,12 @@
   }
 
   a {
-    color: #FFF;
+    color: color(n0);
     font-weight: normal;
     text-decoration: underline;
 
     &:hover {
-      color: #FFF;
+      color: color(n0);
       opacity: 0.8;
     }
   }

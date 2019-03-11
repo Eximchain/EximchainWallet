@@ -1,6 +1,10 @@
 .TrezorDecrypt {
   text-align: center;
 
+  .btn {
+    margin-right: auto;
+  }
+
   &-help {
     margin-top: 10px;
     font-size: 13px;

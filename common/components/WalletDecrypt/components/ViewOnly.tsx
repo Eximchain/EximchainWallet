@@ -49,9 +49,7 @@ class ViewOnlyDecryptClass extends PureComponent<Props, State> {
                 dropdownThreshold={0}
               />
             </section>
-            <section className="ViewOnly-fields-field">
-              <em>{translate('OR')}</em>
-            </section>
+            <section className="ViewOnly-fields-field">{translate('OR')}</section>
             <section className="ViewOnly-fields-field">
               <Input
                 isValid={isValid}

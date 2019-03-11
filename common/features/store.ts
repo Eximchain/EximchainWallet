@@ -30,7 +30,7 @@ window.addEventListener('load', () => {
           `You’re not connected to the network. Please check your internet
     connection or try changing networks from the dropdown in the
     left sidebar. If you haven't synced an Eximchain Node, visit eximchain.zendesk.com for instructions.`,
-          Infinity
+          5000
         ),
 
       offlineNotif: () =>
@@ -57,11 +57,9 @@ window.addEventListener('load', () => {
     const shepherdStatus = getShepherdStatus();
     const appOffline = getAppOnline();
     const onlineStateConflict = shepherdStatus.isOnline !== appOffline;
-
     if (shepherdStatus.pending || !onlineStateConflict) {
       return setTimeout(detectOnlineStateConflict, 1000);
     }
-
     // if app reports online but shepherd offline, then set app offline
     if (appOffline && !shepherdStatus.isOnline) {
       lostNetworkNotif();
@@ -77,8 +75,10 @@ window.addEventListener('load', () => {
     }
     detectOnlineStateConflict();
   }
-  detectOnlineStateConflict();
-
+  async function startOnlineDetect() {
+    setTimeout(detectOnlineStateConflict, 500);
+  }
+  startOnlineDetect();
   window.addEventListener('offline', () => {
     const previouslyOnline = getAppOnline();
 

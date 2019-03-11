@@ -175,7 +175,6 @@ export class ContractCallClass extends Component<Props, State> {
                 const { type, name } = input;
                 const parsedName = name === '' ? index : name;
                 const inputState = this.state.inputs[parsedName];
-                console.log(inputState, 'asdf');
 
                 return (
                   <div key={parsedName} className="input-group-wrapper">
@@ -291,11 +290,7 @@ export class ContractCallClass extends Component<Props, State> {
       const callData = { to: to.raw, data };
       this.goTo(ContractFlowStages.SUBMIT_TRANSACTION_SCREEN);
     } catch (e) {
-      this.props.showNotification(
-        'warning',
-        `Invalid input parameters: ${(e as Error).message}`,
-        5000
-      );
+      this.props.showNotification('warning', `All fields are required`, 5000);
     }
   };
 

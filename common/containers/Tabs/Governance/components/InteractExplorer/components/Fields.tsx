@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { SendButton, TXMetaDataPanel } from 'components';
 import WalletDecrypt, { DISABLE_WALLETS } from 'components/WalletDecrypt';
 import { FullWalletOnly } from 'components/renderCbs';
-import { AmountField } from './AmountField';
+import translate from 'translations';
 
 interface OwnProps {
   button: React.ReactElement<any>;
@@ -13,6 +13,8 @@ export class Fields extends Component<OwnProps> {
   public render() {
     const makeContent = () => (
       <React.Fragment>
+        <h2 className="FormInput-title">{translate('GovernanceTransactionFee')}</h2>
+        <p className="FormInput-subtitle">{translate('GovernanceTransactionFeeDescription')}</p>
         <div className="GovernanceSection-transaction-screen">
           <TXMetaDataPanel
             className="form-group"
@@ -23,15 +25,23 @@ export class Fields extends Component<OwnProps> {
             autoGenGasLimit={false}
           />
           {this.props.button}
+          <SendButton />
         </div>
-        <SendButton />
       </React.Fragment>
     );
 
     const makeDecrypt = () => (
-      <WalletDecrypt disabledWallets={DISABLE_WALLETS.READ_ONLY} shouldTransactionReset={false} />
+      <React.Fragment>
+        <h2 className="FormInput-title">{translate('UnlockWallet')}</h2>
+        <p className="FormInput-subtitle">{translate('UnlockWalletDescription')}</p>
+        <WalletDecrypt disabledWallets={DISABLE_WALLETS.READ_ONLY} shouldTransactionReset={false} />
+      </React.Fragment>
     );
 
-    return <FullWalletOnly withFullWallet={makeContent} withoutFullWallet={makeDecrypt} />;
+    return (
+      <React.Fragment>
+        <FullWalletOnly withFullWallet={makeContent} withoutFullWallet={makeDecrypt} />
+      </React.Fragment>
+    );
   }
 }

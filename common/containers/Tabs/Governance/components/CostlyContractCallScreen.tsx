@@ -254,9 +254,6 @@ export class ContractCallClass extends Component<Props, State> {
       case ContractFlowStages.SUBMIT_TRANSACTION_SCREEN:
         body = (
           <React.Fragment>
-            <h2 className="FormInput-title">{translate('WalletScreen')}</h2>
-            <p className="FormInput-subtitle">{translate('WalletScreenDescription')}</p>
-
             <Fields button={generateOrWriteButton} />
 
             <button className="FormBackButton btn btn-default" onClick={this.back}>
@@ -292,6 +289,8 @@ export class ContractCallClass extends Component<Props, State> {
       const data = this.encodeData();
       const { nodeLib, to, selectedFunction } = this.props;
       const callData = { to: to.raw, data };
+      console.log(this.state.setValue);
+      this.props.setDataField({ raw: data, value: Data(data) });
       this.goTo(ContractFlowStages.SUBMIT_TRANSACTION_SCREEN);
     } catch (e) {
       this.props.showNotification('warning', `All fields are required`, 5000);
@@ -301,6 +300,7 @@ export class ContractCallClass extends Component<Props, State> {
   private autoSetAmountValue(rawValue: any) {
     const value = rawValue * rawValue;
     this.setState({ setValue: value });
+    this.props.setCurrentValue(value.toString());
   }
   private handleFunctionCall = async (_: React.FormEvent<HTMLButtonElement>) => {
     try {
@@ -338,6 +338,7 @@ export class ContractCallClass extends Component<Props, State> {
     try {
       const data = this.encodeData();
       this.props.setDataField({ raw: data, value: Data(data) });
+      this.props.setCurrentValue(this.state.setValue.toString());
     } catch (e) {
       this.props.showNotification(
         'danger',
@@ -350,8 +351,6 @@ export class ContractCallClass extends Component<Props, State> {
     const rawValue: string = ev.currentTarget.value;
     if (ev.currentTarget.name === '_votes') {
       this.autoSetAmountValue(rawValue);
-      const value = parseInt(rawValue) * parseInt(rawValue);
-      this.props.setCurrentValue(value.toString());
     }
     const isArr = rawValue.startsWith('[') && rawValue.endsWith(']');
     const value = {

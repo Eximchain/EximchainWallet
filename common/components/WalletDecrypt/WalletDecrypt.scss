@@ -104,8 +104,6 @@ $speed: 1ms;
 
     &-generate {
       text-align: center;
-      // font-weight: 300;
-      // letter-spacing: -.2px;
       margin: $space 0;
     }
   }
@@ -113,38 +111,26 @@ $speed: 1ms;
   &-decrypt {
     position: relative;
     text-align: left;
-    // padding: 0 20px;
-    // margin: 0 -$space-md;
     height: 100%;
-    // background: red;
     border: solid 1px color(n40);
     border-radius: 6px;
-    margin: 70px auto 0 auto;
+    margin: 0 auto 0 auto;
     padding: 1rem;
     max-width: 55%;
+    top: 70px;
 
 
 
     @media (max-width: $screen-md) {
-      // padding-bottom: $space * 2;
     }
 
     &-back {
       @include reset-button;
-      // position: absolute;
-      // top: 0px;
-      // left: 0px;
+
       line-height: 2.2rem;
       opacity: 0.4;
       // transition: opacity 120ms ease, transform 120ms ease;
       z-index: 990;
-
-      // @media (max-width: $screen-md) {
-      //   top: auto;
-      //   bottom: -10px;
-      //   left: 50%;
-      //   transform: translateX(-50%);
-      // }
 
       &:hover,
       &:focus {
@@ -181,14 +167,8 @@ $speed: 1ms;
           border-bottom-right-radius: 0;
           border-right: 0;
           resize: none;
-
-
         }
       }
-    }
-    .btn-primary {
-      // float: right !important;
-      // width: auto;
     }
 
     &-label {

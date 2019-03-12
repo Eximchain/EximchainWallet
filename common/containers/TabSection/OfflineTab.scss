@@ -15,13 +15,17 @@
   text-align: center;
   color: #5D6977;
 
-.Tab-content-pane {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-    .fa-stack {
-      margin: 0 auto 0 auto;  }
-    }
+  .Tab-content-pane {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+      .fa-stack {
+        margin: 0 auto;
+      }
+
+  }
+
   &-icon {
     opacity: 0.8;
 

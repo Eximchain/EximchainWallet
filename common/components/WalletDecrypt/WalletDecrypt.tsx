@@ -173,7 +173,7 @@ const WalletDecrypt = withRouter<Props>(
       [InsecureWalletName.PRIVATE_KEY]: {
         lid: 'X_PRIVKEY2',
         icon: PrivateKeyIcon,
-        example: 'This key allows you to use the tokens on your wallet.',
+        example: 'Lets you access your wallet.',
         component: PrivateKeyDecrypt,
         initialParams: {
           key: '',
@@ -185,7 +185,7 @@ const WalletDecrypt = withRouter<Props>(
       [MiscWalletName.VIEW_ONLY]: {
         lid: 'VIEW_ADDR',
         icon: AddressIcon,
-        example: "View an address' balance, QR code, and recent transactions.",
+        example: "View an address' info.",
         component: ViewOnlyDecrypt,
         initialParams: {},
         unlock: this.props.setWallet,

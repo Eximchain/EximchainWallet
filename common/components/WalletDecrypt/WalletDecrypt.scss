@@ -16,9 +16,20 @@ $speed: 1ms;
 
 }
 
+// .Tab-content {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+// }
+
 .WalletDecrypt {
   position: relative;
   height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+
+
+
 
 
   &-title {
@@ -105,6 +116,12 @@ $speed: 1ms;
     // padding: 0 20px;
     // margin: 0 -$space-md;
     height: 100%;
+    // background: red;
+    border: solid 1px color(n40);
+    border-radius: 6px;
+    margin: 70px auto 0 auto;
+    padding: 1rem;
+    max-width: 55%;
 
 
 
@@ -121,7 +138,6 @@ $speed: 1ms;
       opacity: 0.4;
       // transition: opacity 120ms ease, transform 120ms ease;
       z-index: 990;
-      padding-top: 60px;
 
       // @media (max-width: $screen-md) {
       //   top: auto;
@@ -155,8 +171,8 @@ $speed: 1ms;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      max-width: 600px;
-      width: 70%;
+      // max-width: 600px;
+      // width: 70%;
       margin: 0 auto;
 
       .TogglablePassword {

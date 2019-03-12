@@ -8,6 +8,8 @@
 
 
 
+
+
   &-transaction-screen {
     max-width: 55%;
     margin: auto;
@@ -29,6 +31,14 @@
   &-content {
     padding-top: $electron-osx-control-spacing;
     margin: auto;
+
+    .WalletDecrypt-wallets {
+      padding-top: 0;
+    }
+
+    .WalletDecrypt-decrypt {
+      margin-top: 0;
+    }
 
     .AdvancedGas {
 

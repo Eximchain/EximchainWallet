@@ -2,7 +2,19 @@
   "code": "en",
   "data": {
 
-    "VOTEName": "test",
+    "VOTEName": "Ballot Entry",
+    "voteDescription": "Complete the form to nominate of vote for a member.",
+
+    "CLAIMName": "Claim Tokens",
+    "startWithdrawDescription": "Complete the form to start the withdrawal of your tokens.",
+
+    "COLLECTName": "Collect Tokens",
+    "finalizeWithdrawDescription": "Complete the form to finalize the withdrawal of your tokens.",
+
+    "WalletScreen": "Log into a wallet",
+    "WalletScreenDescription": "Select a wallet type and enter the required info.",
+
+
     "_electionfalse": "Demotion",
     "_electiontrue": "Promotion",
 

@@ -290,7 +290,7 @@ export class ContractCallClass extends Component<Props, State> {
       const callData = { to: to.raw, data };
       this.goTo(ContractFlowStages.SUBMIT_TRANSACTION_SCREEN);
     } catch (e) {
-      this.props.showNotification('warning', `All fields are required`, 5000);
+      this.props.showNotification('warning', `All fields are required.`, 5000);
     }
   };
 

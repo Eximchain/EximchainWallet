@@ -10,6 +10,10 @@
   transition: border-color 120ms;
   height: $input-height-base;
 
+  &-clear-zone {
+    padding-right: 8px;
+  }
+
   &-arrow {
     border-color: color(gray) transparent transparent;
 

@@ -1,6 +1,20 @@
 {
   "code": "en",
   "data": {
+
+    "VOTEName": "Ballot Entry",
+    "voteDescription": "Complete the form to nominate of vote for a member.",
+
+    "CLAIMName": "Claim Tokens",
+    "startWithdrawDescription": "Complete the form to start the withdrawal of your tokens.",
+
+    "COLLECTName": "Collect Tokens",
+    "finalizeWithdrawDescription": "Complete the form to finalize the withdrawal of your tokens.",
+
+    "WalletScreen": "Log into a wallet",
+    "WalletScreenDescription": "Select a wallet type and enter the required info.",
+
+
     "_electionfalse": "Demotion",
     "_electiontrue": "Promotion",
 
@@ -159,7 +173,7 @@
     "ORDER_TREZOR": "Buy a Trezor",
     "HOWTO_TREZOR": "How to use Trezor with Eximchain Wallet",
     "X_KEEPKEY": "KeepKey",
-    "UNLOCK_WALLET": "Unlock Your $wallet",
+    "UNLOCK_WALLET": "Unlock $wallet",
     "ADD_RADIO_2": "Select Your Wallet File (Keystore / JSON) ",
     "ADD_RADIO_2_ALT": "Select Your Wallet File ",
     "ADD_RADIO_2_SHORT": "Select wallet file",
@@ -172,9 +186,9 @@
     "ADD_LABEL_7": "Add Account ",
     "ADD_LABEL_8": "Password (optional): ",
     "ADD_LABEL_9": "Add label",
-    "ADD_WEB3DESC": "Connect & sign via your browser or extension.",
+    "ADD_WEB3DESC": "Connect via browser or extension.",
     "ADD_HARDWAREDESC": "A dedicated device that generates & stores your private key. This wallet type costs money, but transactions are signed on the device, making it more secure.",
-    "ADD_TREZORDESC": "A hardware wallet built by trezor.io",
+    "ADD_TREZORDESC": "Hardware wallet from trezor.io",
     "ADD_LEDGERDESC": "A hardware wallet built by ledger.com",
     "ADD_SAFE-TMINIDESC": "Connect & sign via your Safe-T Mini wallet",
     "MYWAL_NICK": "Wallet Nickname ",

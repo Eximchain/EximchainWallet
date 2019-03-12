@@ -89,7 +89,9 @@ class InteractForm extends Component<Props, State> {
 
     if (this.isContractsValid()) {
       const contractOptions = contracts.map(con => {
-        const addr = con.address ? `(${con.address.substr(0, 10)}...)` : '';
+        const addr = con.address
+          ? `(${con.address.substr(0, 6)}...${con.address.substr(38, 42)})`
+          : '';
         return {
           name: `${con.name} ${addr}`,
           value: this.makeContractValue(con)

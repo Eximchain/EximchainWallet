@@ -8,8 +8,10 @@
 
 
 
+
+
   &-transaction-screen {
-    max-width: 434px;
+    max-width: 55%;
     margin: auto;
 
     // .WalletDecrypt{
@@ -30,6 +32,14 @@
     padding-top: $electron-osx-control-spacing;
     margin: auto;
 
+    .WalletDecrypt-wallets {
+      padding-top: 0;
+    }
+
+    .WalletDecrypt-decrypt {
+      margin-top: 0;
+    }
+
     .AdvancedGas {
 
       .InteractExplorer-func-submit {
@@ -48,7 +58,7 @@
 
 
     &-write {
-      max-width: 434px;
+      max-width: 55%;
       margin: auto;
       .NextButton {
         float: right;

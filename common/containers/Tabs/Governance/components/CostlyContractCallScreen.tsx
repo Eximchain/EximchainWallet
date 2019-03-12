@@ -255,10 +255,6 @@ export class ContractCallClass extends Component<Props, State> {
         body = (
           <React.Fragment>
             <Fields button={generateOrWriteButton} />
-
-            <button className="FormBackButton btn btn-default" onClick={this.back}>
-              <span>{translate('GO_BACK')}</span>
-            </button>
           </React.Fragment>
         );
         break;
@@ -293,7 +289,7 @@ export class ContractCallClass extends Component<Props, State> {
       this.props.setDataField({ raw: data, value: Data(data) });
       this.goTo(ContractFlowStages.SUBMIT_TRANSACTION_SCREEN);
     } catch (e) {
-      this.props.showNotification('warning', `All fields are required`, 5000);
+      this.props.showNotification('warning', `All fields are required.`, 5000);
     }
   };
 

@@ -173,7 +173,7 @@ const WalletDecrypt = withRouter<Props>(
       [InsecureWalletName.PRIVATE_KEY]: {
         lid: 'X_PRIVKEY2',
         icon: PrivateKeyIcon,
-        example: 'This key allows you to use the tokens on your wallet.',
+        example: 'Lets you access your wallet.',
         component: PrivateKeyDecrypt,
         initialParams: {
           key: '',
@@ -185,7 +185,7 @@ const WalletDecrypt = withRouter<Props>(
       [MiscWalletName.VIEW_ONLY]: {
         lid: 'VIEW_ADDR',
         icon: AddressIcon,
-        example: "View an address' balance, QR code, and recent transactions.",
+        example: "View an address' info.",
         component: ViewOnlyDecrypt,
         initialParams: {},
         unlock: this.props.setWallet,
@@ -252,15 +252,15 @@ const WalletDecrypt = withRouter<Props>(
 
       return (
         <div className="WalletDecrypt-decrypt">
-          <button className="WalletDecrypt-decrypt-back" onClick={this.clearWalletChoice}>
-            <i className="fa fa-chevron-left" />
-            {/* {translate('CHANGE_WALLET')} */}
-          </button>
           <h2 className="WalletDecrypt-title">
             {!selectedWallet.isReadOnly &&
               translate('UNLOCK_WALLET', {
                 $wallet: translateRaw(selectedWallet.lid)
               })}
+            <button className="WalletDecrypt-decrypt-back" onClick={this.clearWalletChoice}>
+              <i className="fa fa-chevron-down" />
+              {/* {translate('CHANGE_WALLET')} */}
+            </button>
           </h2>
 
           <section className="WalletDecrypt-decrypt-form">

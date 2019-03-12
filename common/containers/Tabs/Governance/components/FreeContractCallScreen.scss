@@ -1,13 +1,13 @@
 @import 'common/sass/variables';
 @import 'common/sass/mixins';
 
-.output-group {
-  width: 100%;
-  // background: red;
-}
-
 .ReadFunctionContent {
-  min-height: 360px;
+  min-height: 500px;
+
+  .ElectronNav-controls-btn-icon {
+    margin-left: 0;
+    color: color(n800);
+  }
 
   &-header {
     margin-top: 0;
@@ -24,9 +24,6 @@
 }
 
 .FormBackButton {
-  // position: absolute;
-  // bottom: 20px;
-  // left: 20px;
   background: none !important;
   border: none !important;
   box-shadow: none !important;
@@ -34,65 +31,82 @@
   &-hover {
     cursor: pointer;
     color: color(gray);
-
   }
 }
 
+.Input-container {
+  position: relative;
+  border-radius: 6px;
+  width: 50%;
+  margin-right: 10px;
+
+  .InteractExplorer-func-submit {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+  }
+
+}
 .Input-box {
   position: relative;
   padding: 1rem;
   border: solid 1px color(n40);
   border-radius: 6px;
+  width: 100%;
+  min-height: 85%;
+}
+
+.Output-container {
+  position: relative;
+  margin-left: 10px;
   width: 50%;
-  margin-right: 10px;
-
-
-
-
-  .InteractExplorer-func-submit {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-  }
-
 }
 
 .Output-box {
   position: relative;
-
-  margin-left: 10px;
   padding: 1rem;
-  width: 50%;
   border: solid 1px color(n40);
   border-radius: 6px;
   background: color(n10);
+  min-height: 100%;
+
+  label {
+    margin-bottom: 0;
+  }
+
+  .output-group {
+    flex-direction: row;
+    padding-bottom: 8px;
+    padding-top: 8px;
+    // border-bottom: 1px solid color(n30);
+    width: 100%;
+  }
 
   .input-group-header {
-    padding: 0.75rem .5rem 0 0;
+    padding: 0 .5rem 0 0;
     background: none;
     margin-left: 0;
     width: max-content;
     float: left;
-    font-size: 14px;
+    font-size: 13px;
     vertical-align: center;
     text-align: left;
-  }
-
-  .input-group {
-    flex-direction: row;
+    font-weight: 300;
   }
 
   .input-group-input {
     border: none;
     background: none;
-    padding: 0.75rem 0 0 .5rem;
+    padding: 0 0 0 .5rem;
     text-align: right;
     height: auto;
     margin-bottom: 0;
     width: max-content;
-    font-size: 14px;
-
+    font-size: 13px;
     float: right;
+    font-weight: 600;
+
   }
 
 }

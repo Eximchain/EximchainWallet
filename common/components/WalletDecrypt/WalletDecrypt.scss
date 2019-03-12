@@ -16,34 +16,40 @@ $speed: 1ms;
 
 }
 
+// .Tab-content {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+// }
+
 .WalletDecrypt {
   position: relative;
   height: 100%;
-
+  margin-left: auto;
+  margin-right: auto;
 
   &-title {
     width: 100%;
     padding-top: 2px;
     text-align: left;
-    padding-left: 20px;
+    // padding-left: 20px;
     line-height: 1.4;
-    margin: $space 0 2rem;
+    margin: 0 0 1rem;
     font-weight: 400;
     font-size: 16px;
     left: $electron-sidebar-width + 20px;
     // @include decrypt-title;
     background-color: white;
     z-index: 1030;
-    margin-top: -30px;
+    // margin-top: -30px;
     padding-bottom: 10px;
-    border-bottom: solid .5px color(n20);
+    // border-bottom: solid .5px color(n20);
 
   }
 
   &-wallets {
     margin: 0 - $space-md;
     padding-top: $electron-osx-control-spacing + 30px;
-
 
     &-topsection {
       position: fixed;
@@ -93,8 +99,6 @@ $speed: 1ms;
 
     &-generate {
       text-align: center;
-      // font-weight: 300;
-      // letter-spacing: -.2px;
       margin: $space 0;
     }
   }
@@ -102,33 +106,26 @@ $speed: 1ms;
   &-decrypt {
     position: relative;
     text-align: left;
-    // padding: 0 20px;
-    // margin: 0 -$space-md;
     height: 100%;
+    border: solid 1px color(n40);
+    border-radius: 6px;
+    margin: 0 auto;
+    padding: 1rem;
+    max-width: 55%;
+    top: 70px;
 
 
 
     @media (max-width: $screen-md) {
-      // padding-bottom: $space * 2;
     }
 
     &-back {
       @include reset-button;
-      // position: absolute;
-      // top: 0px;
-      // left: 0px;
-      line-height: 2.2rem;
+      float: right;
+      // line-height: 2.2rem;
       opacity: 0.4;
       // transition: opacity 120ms ease, transform 120ms ease;
       z-index: 990;
-      padding-top: 60px;
-
-      // @media (max-width: $screen-md) {
-      //   top: auto;
-      //   bottom: -10px;
-      //   left: 50%;
-      //   transform: translateX(-50%);
-      // }
 
       &:hover,
       &:focus {
@@ -155,8 +152,8 @@ $speed: 1ms;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      max-width: 600px;
-      width: 70%;
+      // max-width: 600px;
+      // width: 70%;
       margin: 0 auto;
 
       .TogglablePassword {
@@ -165,14 +162,8 @@ $speed: 1ms;
           border-bottom-right-radius: 0;
           border-right: 0;
           resize: none;
-
-
         }
       }
-    }
-    .btn-primary {
-      // float: right !important;
-      // width: auto;
     }
 
     &-label {

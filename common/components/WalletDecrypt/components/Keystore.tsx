@@ -5,6 +5,7 @@ import { isKeystorePassRequired } from 'libs/wallet';
 import { notificationsActions } from 'features/notifications';
 import Spinner from 'components/ui/Spinner';
 import { Input } from 'components/ui';
+import './Keystore.scss';
 
 export interface KeystoreValue {
   file: string;
@@ -54,6 +55,7 @@ export class KeystoreDecrypt extends PureComponent {
           />
           <label htmlFor="fselector" style={{ width: '100%' }}>
             <a className="btn btn-default btn-block" id="aria1" tabIndex={0} role="button">
+              <i className="ElectronNav-controls-btn-icon fa fa-paperclip" />
               {translate('ADD_RADIO_2_SHORT')}
             </a>
           </label>

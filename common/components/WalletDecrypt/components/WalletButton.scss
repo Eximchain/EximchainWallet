@@ -18,9 +18,9 @@
   height: auto;
   // max-width: 400px;
   min-width: 300px;
-  padding: 15px 15px;
-  margin: 0 $space-md $space;
-  margin-bottom: 20px;
+  padding: 12px 12px;
+  margin: 0 $space-sm $space;
+  // margin-bottom: 20px;
   background: color(control-bg);
   border: solid 1px color(n40);
   border-radius: 6px;
@@ -44,7 +44,7 @@
       border-color: color(b50);
       border-width: 1px;
       transition: 60ms ease;
-      padding: 15px 15px;
+      padding: 12px 12px;
       // box-shadow: 0 1px 4px rgba(#000, 0.06), 0 2px 6px rgba(#000, 0.06);
       // transform: translateY(-2px);
 

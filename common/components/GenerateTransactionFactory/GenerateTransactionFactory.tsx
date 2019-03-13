@@ -62,7 +62,7 @@ export class GenerateTransactionFactoryClass extends Component<Props> {
     const isButtonDisabled =
       !isFullTransaction || networkRequestPending || !validGasPrice || !validGasLimit;
 
-    var body = (
+    return (
       <React.Fragment>
         <WithSigner
           isWeb3={isWeb3Wallet}
@@ -70,7 +70,9 @@ export class GenerateTransactionFactoryClass extends Component<Props> {
             this.props.withProps({
               disabled: isButtonDisabled,
               isWeb3Wallet,
-              onClick: () => signer(transaction)
+              onClick: () => {
+                signer(transaction);
+              }
             })
           }
         />
@@ -102,36 +104,6 @@ export class GenerateTransactionFactoryClass extends Component<Props> {
         )}
       </React.Fragment>
     );
-    console.log(isWeb3Wallet);
-    if (isWeb3Wallet && isGovernanceTransaction) {
-      body = (
-        <React.Fragment>
-          {signedTx && (
-            <React.Fragment>
-              {/* shows the json representation of the transaction */}
-              <div className="col-xs-12">
-                <label>
-                  {walletType.isWeb3Wallet ? 'Transaction Parameters' : translate('SEND_RAW')}
-                </label>
-                <CodeBlock>{getStringifiedTx(serializedTransaction as Buffer)}</CodeBlock>
-              </div>
-              {serializedTransaction && (
-                <div className="col-xs-12">
-                  <label>
-                    {walletType.isWeb3Wallet
-                      ? 'Serialized Transaction Parameters'
-                      : translate('SEND_SIGNED')}
-                  </label>
-                  <CodeBlock>{addHexPrefix(serializedTransaction.toString('hex'))}</CodeBlock>
-                </div>
-              )}
-              <OfflineBroadcast />
-            </React.Fragment>
-          )}
-        </React.Fragment>
-      );
-    }
-    return <React.Fragment>{body}</React.Fragment>;
   }
 }
 

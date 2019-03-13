@@ -7,6 +7,7 @@ import './GenerateTransaction.scss';
 
 interface OwnProps {
   isGovernanceTransaction?: boolean;
+  onClick?: any;
 }
 export const GenerateTransaction: React.SFC<OwnProps> = props => {
   return (
@@ -18,7 +19,12 @@ export const GenerateTransaction: React.SFC<OwnProps> = props => {
             <button
               disabled={disabled}
               className="btn btn-primary btn-block GenerateTransaction"
-              onClick={onClick}
+              onClick={() => {
+                onClick();
+                if (!isWeb3Wallet) {
+                  props.onClick();
+                }
+              }}
             >
               {isWeb3Wallet ? translate('SEND_GENERATE') : translate('DEP_SIGNTX')}
             </button>

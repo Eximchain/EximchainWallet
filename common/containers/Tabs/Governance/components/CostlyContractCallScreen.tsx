@@ -67,6 +67,7 @@ interface State {
   setValue?: any;
   broadcastHash?: any;
   promoDemoBool?: any;
+  confirmTransaction: boolean;
 }
 
 interface ContractFunction {
@@ -97,7 +98,8 @@ export class ContractCallClass extends Component<Props, State> {
     stage: ContractFlowStages.CONSTRUCT_TRANSACTION_SCREEN,
     stageHistory: [],
     inputs: {},
-    outputs: {}
+    outputs: {},
+    confirmTransaction: false
   };
   public componentDidMount() {
     this.props.setAsContractInteraction();
@@ -121,7 +123,18 @@ export class ContractCallClass extends Component<Props, State> {
       this.goTo(ContractFlowStages.RESULT_SCREEN);
     }
   }
-
+  private onClick = () => {
+    console.log(this.state);
+    if (this.state.confirmTransaction) {
+      this.setState({
+        confirmTransaction: false
+      });
+    } else {
+      this.setState({
+        confirmTransaction: true
+      });
+    }
+  };
   private goTo(stage: ContractFlowStages) {
     this.setState((state: State) => {
       let newState = Object.assign({}, state);
@@ -135,6 +148,7 @@ export class ContractCallClass extends Component<Props, State> {
     if (this.state.stage === ContractFlowStages.CONSTRUCT_TRANSACTION_SCREEN) {
       this.props.goBack();
     }
+
     this.setState((state: State) => {
       // tslint:disable-next-line:prefer-const
       let newState = Object.assign({}, state);
@@ -143,6 +157,9 @@ export class ContractCallClass extends Component<Props, State> {
           ? newState.stageHistory.pop()
           : ContractFlowStages.CONSTRUCT_TRANSACTION_SCREEN;
       newState.stage = prevStage;
+      if (this.state.stage === ContractFlowStages.SUBMIT_TRANSACTION_SCREEN) {
+        newState.confirmTransaction = false;
+      }
       return newState;
     });
   }
@@ -153,7 +170,7 @@ export class ContractCallClass extends Component<Props, State> {
     const { inputs, outputs } = this.state;
     const selectedFunction = this.props.selectedFunction;
     const generateOrWriteButton = this.props.dataExists ? (
-      <GenerateTransaction isGovernanceTransaction={true} />
+      <GenerateTransaction isGovernanceTransaction={true} onClick={this.onClick} />
     ) : (
       <button
         className="InteractExplorer-func-submit btn btn-primary"
@@ -253,7 +270,11 @@ export class ContractCallClass extends Component<Props, State> {
       case ContractFlowStages.SUBMIT_TRANSACTION_SCREEN:
         body = (
           <React.Fragment>
-            <Fields button={generateOrWriteButton} />
+            <Fields
+              button={generateOrWriteButton}
+              onClick={this.onClick}
+              confirmTransaction={this.state.confirmTransaction}
+            />
           </React.Fragment>
         );
         break;

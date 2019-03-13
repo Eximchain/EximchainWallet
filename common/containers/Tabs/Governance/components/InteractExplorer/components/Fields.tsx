@@ -13,8 +13,10 @@ export class Fields extends Component<OwnProps> {
   public render() {
     const makeContent = () => (
       <React.Fragment>
-        <h2 className="FormInput-title">{translate('GovernanceTransactionFee')}</h2>
-        <p className="FormInput-subtitle">{translate('GovernanceTransactionFeeDescription')}</p>
+        <div className="GovernanceSection-form-write">
+          <h2 className="FormInput-title">{translate('GovernanceTransactionFee')}</h2>
+          <p className="FormInput-subtitle">{translate('GovernanceTransactionFeeDescription')}</p>
+        </div>
         <div className="GovernanceSection-transaction-screen">
           <TXMetaDataPanel
             className="form-group"
@@ -32,8 +34,10 @@ export class Fields extends Component<OwnProps> {
 
     const makeDecrypt = () => (
       <React.Fragment>
-        <h2 className="FormInput-title">{translate('UnlockWallet')}</h2>
-        <p className="FormInput-subtitle">{translate('UnlockWalletDescription')}</p>
+        <div className="GovernanceSection-form-write">
+          <h2 className="FormInput-title">{translate('UnlockWallet')}</h2>
+          <p className="FormInput-subtitle">{translate('UnlockWalletDescription')}</p>
+        </div>
         <WalletDecrypt disabledWallets={DISABLE_WALLETS.READ_ONLY} shouldTransactionReset={false} />
       </React.Fragment>
     );

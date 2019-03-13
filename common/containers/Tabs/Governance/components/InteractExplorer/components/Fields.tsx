@@ -63,28 +63,32 @@ export class FieldsClass extends Component<Props> {
           <React.Fragment>
             <h2 className="FormInput-title">{translate('GovernanceTransactionFee')}</h2>
             <p className="FormInput-subtitle">{translate('GovernanceTransactionFeeDescription')}</p>
-            <div className="GovernanceSection-transaction-screen">
-              <TXMetaDataPanel
-                className="form-group"
-                initialState="advanced"
-                disableToggle={true}
-                advancedGasOptions={{ dataField: true }}
-                shouldTransactionReset={false}
-                autoGenGasLimit={false}
-              />
-              {this.props.button}
-              <SendButton />
-            </div>
+            <TXMetaDataPanel
+              className="form-group"
+              initialState="advanced"
+              disableToggle={true}
+              advancedGasOptions={{ dataField: true }}
+              shouldTransactionReset={false}
+              autoGenGasLimit={false}
+            />
+            {this.props.button}
+            <SendButton />
           </React.Fragment>
         );
       }
-      return <React.Fragment>{body}</React.Fragment>;
+      return (
+        <React.Fragment>
+          <div className="GovernanceSection-form-write">{body}</div>
+        </React.Fragment>
+      );
     };
 
     const makeDecrypt = () => (
       <React.Fragment>
-        <h2 className="FormInput-title">{translate('UnlockWallet')}</h2>
-        <p className="FormInput-subtitle">{translate('UnlockWalletDescription')}</p>
+        <div className="GovernanceSection-form-write">
+          <h2 className="FormInput-title">{translate('UnlockWallet')}</h2>
+          <p className="FormInput-subtitle">{translate('UnlockWalletDescription')}</p>
+        </div>
         <WalletDecrypt disabledWallets={DISABLE_WALLETS.READ_ONLY} shouldTransactionReset={false} />
       </React.Fragment>
     );

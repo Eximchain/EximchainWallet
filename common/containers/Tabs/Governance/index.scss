@@ -10,6 +10,7 @@
 
 
 
+
   &-transaction-screen {
     max-width: 55%;
     margin: auto;
@@ -38,6 +39,7 @@
 
     .WalletDecrypt-decrypt {
       margin-top: 0;
+      top: 0;
     }
 
     .AdvancedGas {
@@ -50,20 +52,16 @@
   }
 
   &-form {
-    // padding-top: $electron-osx-control-spacing;
     margin: 0 auto;
     padding-bottom: $electron-osx-control-spacing;
-
-
-
 
     &-write {
       max-width: 55%;
       margin: auto;
+
       .NextButton {
         float: right;
         margin-top: 6px;
-        // min-width: 350px;
         width: 100%;
       }
     }

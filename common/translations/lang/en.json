@@ -11,15 +11,18 @@
     "COLLECTName": "Collect Tokens",
     "finalizeWithdrawDescription": "Complete the form to finalize the withdrawal of your tokens.",
 
-    "WalletScreen": "Log into a wallet",
-    "WalletScreenDescription": "Select a wallet type and enter the required info.",
+    "UnlockWallet": "Log into a wallet",
+    "UnlockWalletDescription": "Select a wallet type and enter the required info.",
+
+    "GovernanceTransactionFee": "Transaction fee",
+    "GovernanceTransactionFeeDescription": "Your wallet will be charged the amount summarized below.",
 
 
     "_electionfalse": "Demotion",
     "_electiontrue": "Promotion",
 
-    "_inSupportfalse": "Points for (-)",
-    "_inSupporttrue": "Points against (+)",
+    "_inSupportfalse": "Points against (-)",
+    "_inSupporttrue": "Points for (+)",
 
     "ballotHistoryInput0": "Public EXC Address",
     "ballotHistoryInput1": "Number of the ballot entry cast",
@@ -171,7 +174,7 @@
     "X_HARDWARE_WALLET_2": "hardware wallet ",
     "ADD_TREZOR_SCAN": "Connect to Trezor ",
     "ORDER_TREZOR": "Buy a Trezor",
-    "HOWTO_TREZOR": "How to use Trezor with Eximchain Wallet",
+    "HOWTO_TREZOR": "See detailed instructions",
     "X_KEEPKEY": "KeepKey",
     "UNLOCK_WALLET": "Unlock $wallet",
     "ADD_RADIO_2": "Select Your Wallet File (Keystore / JSON) ",
@@ -186,7 +189,7 @@
     "ADD_LABEL_7": "Add Account ",
     "ADD_LABEL_8": "Password (optional): ",
     "ADD_LABEL_9": "Add label",
-    "ADD_WEB3DESC": "Connect via browser or extension.",
+    "ADD_WEB3DESC": "Connect via browser or extension",
     "ADD_HARDWAREDESC": "A dedicated device that generates & stores your private key. This wallet type costs money, but transactions are signed on the device, making it more secure.",
     "ADD_TREZORDESC": "Hardware wallet from trezor.io",
     "ADD_LEDGERDESC": "A hardware wallet built by ledger.com",
@@ -685,7 +688,7 @@
     "NEW_SWAP": "Start New Swap",
     "ERROR_GAS_LIMIT_LOW": "Gas limit must be at least $limit for transactions",
     "ERROR_GAS_LIMIT_HIGH": "Gas price too high. Please contact support if this was not a mistake.",
-    "VIEW_ADDR": "View Address",
+    "VIEW_ADDR": "Look Up Address",
     "X_JSONDESC": "This is the unencrypted, JSON format of your private key. This means you do not need the password but anyone who finds your JSON can access your wallet & Ether without the password. ",
     "GENERATE_CONTRACT_TITLE": "Contracts",
     "GENERATE_CONTRACT_DESC": "Interact with or deploy a smart contract.",

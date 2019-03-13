@@ -171,7 +171,6 @@ export class ContractCallClass extends Component<Props, State> {
             <p className="FormInput-subtitle">
               {translate(this.props.selectedFunction.name + 'Description')}
             </p>
-
             <div key={selectedFunction.name}>
               {selectedFunction.contract.inputs.map((input, index) => {
                 const { type, name } = input;

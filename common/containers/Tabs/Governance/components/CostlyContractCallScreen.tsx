@@ -176,7 +176,7 @@ export class ContractCallClass extends Component<Props, State> {
         {translate('CONTRACT_WRITE')}
       </button>
     );
-    var body;
+    let body;
     switch (this.state.stage) {
       case ContractFlowStages.CONSTRUCT_TRANSACTION_SCREEN:
         body = (

@@ -76,7 +76,7 @@ class AdvancedGas extends React.Component<Props, State> {
     } = this.props;
     const { gasPriceField, gasLimitField, nonceField, dataField } = this.state.options;
     const to = this.props.to.raw;
-    var checkbox;
+    let checkbox;
     if (autoGenGasLimit) {
       checkbox = (
         <React.Fragment>

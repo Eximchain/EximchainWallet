@@ -105,7 +105,7 @@ class TXMetaDataPanel extends React.Component<Props, State> {
     } = this.props;
     const { gasPrice } = this.state;
     const showAdvanced = this.state.sliderState === 'advanced' || offline;
-    var advancedGasComponent;
+    let advancedGasComponent;
     if (autoGenGasLimit === false) {
       advancedGasComponent = (
         <AdvancedGas

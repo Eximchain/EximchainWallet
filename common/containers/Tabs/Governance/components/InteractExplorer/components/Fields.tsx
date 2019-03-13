@@ -29,7 +29,7 @@ type Props = OwnProps & StateProps;
 export class FieldsClass extends Component<Props> {
   public render() {
     const { serializedTransaction, walletType } = this.props;
-    var body;
+    let body;
     const getStringifiedTx = (serializedTx: Buffer) =>
       JSON.stringify(getTransactionFields(makeTransaction(serializedTx)), null, 2);
     const makeContent = () => {

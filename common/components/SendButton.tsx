@@ -11,7 +11,6 @@ export const SendButton: React.SFC<{
   signing?: boolean;
   customModal?: typeof ConfirmationModal;
 }> = ({ signing, customModal, className }) => {
-  console.log(signing);
   return (
     <React.Fragment>
       <SendButtonFactory

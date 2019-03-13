@@ -124,7 +124,6 @@ export class ContractCallClass extends Component<Props, State> {
     }
   }
   private onClick = () => {
-    console.log(this.state);
     if (this.state.confirmTransaction) {
       this.setState({
         confirmTransaction: false
@@ -165,8 +164,6 @@ export class ContractCallClass extends Component<Props, State> {
   }
 
   render() {
-    console.log(this.state.stageHistory);
-    console.log(this.state.stage);
     const { inputs, outputs } = this.state;
     const selectedFunction = this.props.selectedFunction;
     const generateOrWriteButton = this.props.dataExists ? (
@@ -305,7 +302,6 @@ export class ContractCallClass extends Component<Props, State> {
       const data = this.encodeData();
       const { nodeLib, to, selectedFunction } = this.props;
       const callData = { to: to.raw, data };
-      console.log(this.state.setValue);
       this.props.setDataField({ raw: data, value: Data(data) });
       this.goTo(ContractFlowStages.SUBMIT_TRANSACTION_SCREEN);
     } catch (e) {

@@ -153,7 +153,7 @@ export class ContractCallClass extends Component<Props, State> {
     const { inputs, outputs } = this.state;
     const selectedFunction = this.props.selectedFunction;
     const generateOrWriteButton = this.props.dataExists ? (
-      <GenerateTransaction />
+      <GenerateTransaction isGovernanceTransaction={true} />
     ) : (
       <button
         className="InteractExplorer-func-submit btn btn-primary"

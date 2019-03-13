@@ -21,8 +21,8 @@
     "_electionfalse": "Demotion",
     "_electiontrue": "Promotion",
 
-    "_inSupportfalse": "Points for (-)",
-    "_inSupporttrue": "Points against (+)",
+    "_inSupportfalse": "Points against (-)",
+    "_inSupporttrue": "Points for (+)",
 
     "ballotHistoryInput0": "Public EXC Address",
     "ballotHistoryInput1": "Number of the ballot entry cast",
@@ -174,7 +174,7 @@
     "X_HARDWARE_WALLET_2": "hardware wallet ",
     "ADD_TREZOR_SCAN": "Connect to Trezor ",
     "ORDER_TREZOR": "Buy a Trezor",
-    "HOWTO_TREZOR": "How to use Trezor with Eximchain Wallet",
+    "HOWTO_TREZOR": "See detailed instructions",
     "X_KEEPKEY": "KeepKey",
     "UNLOCK_WALLET": "Unlock $wallet",
     "ADD_RADIO_2": "Select Your Wallet File (Keystore / JSON) ",

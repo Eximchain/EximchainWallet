@@ -6,18 +6,20 @@
 
   .fa {
     margin-left: 0;
-    margin-right: 4px;
+    margin-right: 8px;
+    font-size: 20px;
+    // padding-top: 10px;
   }
 
   .fa-exclamation-circle {
-    color: color(r70);
+    color: color(y80);
   }
 
   .alert {
+    padding: 1.5rem 3rem 1.5rem 1.5rem;
     position: fixed;
     bottom: 20px;
     right: 20px;
-    margin-top: 1rem;
     border-radius: 4px;
     box-shadow: 0 0px 12px 2px rgba(0,0,0,0.12), 0 2px 4px 0 rgba(0,0,0,0.08);
     color: color(n800);
@@ -28,6 +30,8 @@
     a {
       color: color(b60);
       text-decoration: none;
+      font-weight: 300 !important;
+
     }
 
     &-danger {
@@ -42,8 +46,8 @@
 
   &-help {
     margin-top: 10px;
-    font-size: 13px;
-    margin-left: 23px;
+    font-size: 14px;
+    margin-left: 27px;
   }
 
   &-error {

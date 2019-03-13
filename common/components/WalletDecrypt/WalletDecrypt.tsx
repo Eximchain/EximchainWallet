@@ -124,7 +124,7 @@ const WalletDecrypt = withRouter<Props>(
       [SecureWalletName.WEB3]: {
         lid: web3info.lid,
         icon: Web3Icon,
-        description: 'ADD_WEB3DESC',
+        // description: 'ADD_WEB3DESC',
         component: Web3Decrypt,
         initialParams: {},
         unlock: this.props.unlockWeb3,
@@ -143,7 +143,7 @@ const WalletDecrypt = withRouter<Props>(
       [SecureWalletName.TREZOR]: {
         lid: 'X_TREZOR',
         icon: TrezorIcon,
-        description: 'ADD_TREZORDESC',
+        // description: 'ADD_TREZORDESC',
         component: TrezorDecrypt,
         initialParams: {},
         unlock: this.props.setWallet,
@@ -152,7 +152,7 @@ const WalletDecrypt = withRouter<Props>(
       [InsecureWalletName.KEYSTORE_FILE]: {
         lid: 'X_KEYSTORE2',
         icon: KeystoreIcon,
-        example: 'Encrypted version of a private key',
+        // example: 'Encrypted version of a private key',
         component: KeystoreDecrypt,
         initialParams: {
           file: '',
@@ -164,7 +164,7 @@ const WalletDecrypt = withRouter<Props>(
       [InsecureWalletName.MNEMONIC_PHRASE]: {
         lid: 'X_MNEMONIC',
         icon: SeedPhraseIcon,
-        example: 'Word list that unlocks a wallet',
+        // example: 'Word list that unlocks a wallet',
         component: MnemonicDecrypt,
         initialParams: {},
         unlock: this.props.unlockMnemonic,
@@ -173,7 +173,7 @@ const WalletDecrypt = withRouter<Props>(
       [InsecureWalletName.PRIVATE_KEY]: {
         lid: 'X_PRIVKEY2',
         icon: PrivateKeyIcon,
-        example: 'Password paired with a public key',
+        // example: 'Password paired with a public key',
         component: PrivateKeyDecrypt,
         initialParams: {
           key: '',
@@ -185,7 +185,7 @@ const WalletDecrypt = withRouter<Props>(
       [MiscWalletName.VIEW_ONLY]: {
         lid: 'VIEW_ADDR',
         icon: AddressIcon,
-        example: 'QR code, recent txs, balance',
+        // example: 'QR code, recent txs, balance',
         component: ViewOnlyDecrypt,
         initialParams: {},
         unlock: this.props.setWallet,

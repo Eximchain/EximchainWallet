@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect, MapStateToProps } from 'react-redux';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import wallet from 'assets/images/wallets/wallet.svg';
 
 import translate, { translateRaw } from 'translations';
 import { AppState } from 'features/reducers';
@@ -69,33 +70,35 @@ class AccountAddress extends React.Component<Props, State> {
     }`;
 
     return (
-      <div className="AccountInfo">
+      <div>
         <h2 className="AccountInfo-section-top-header">{translate('SIDEBAR_ACCOUNTHEADER')}</h2>
-        <br />
-        <h5 className="AccountInfo-section-header">{translate('SIDEBAR_ACCOUNTADDR')}</h5>
-        <div className="AccountInfo-section AccountInfo-address-section">
+
+        <div className="flex-wrapper">
           <div className="AccountInfo-address-icon">
             <Identicon address={address} size="100%" />
           </div>
-          <div className="AccountInfo-address-wrapper">
-            {labelContent}
-            <div className={addressClassName}>
-              <Address address={address} />
-            </div>
+          <div className="AccountInfo-section-top-header">
+            <Address address={address} />
             <CopyToClipboard onCopy={this.handleCopy} text={address}>
               <div
                 className={`AccountInfo-copy ${copied ? 'is-copied' : ''}`}
                 title={translateRaw('COPY_TO_CLIPBOARD')}
               >
                 <i className="fa fa-clone" />
-                <span>{translateRaw(copied ? 'COPIED' : 'COPY_ADDRESS')}</span>
+                <span>{translateRaw(copied ? 'COPIED' : '')}</span>
               </div>
             </CopyToClipboard>
-            <div className="AccountInfo-label" title={translateRaw('EDIT_LABEL_2')}>
-              {labelButton}
+
+            <div className="AccountInfo-address-wrapper">
+              {labelContent}
+              <div className="AccountInfo-label" title={translateRaw('EDIT_LABEL_2')}>
+                {labelButton}
+              </div>
             </div>
           </div>
         </div>
+
+        <div className="AccountInfo-section AccountInfo-address-section" />
       </div>
     );
   }
@@ -155,18 +158,17 @@ class AccountAddress extends React.Component<Props, State> {
     const { editingLabel } = this.state;
     const labelButton = editingLabel ? (
       <React.Fragment>
-        <i className="fa fa-save" />
         <span role="button" title={translateRaw('SAVE_LABEL')} onClick={this.stopEditingLabel}>
           {translate('SAVE_LABEL')}
         </span>
       </React.Fragment>
     ) : (
       <React.Fragment>
-        <i className="fa fa-tag" />
         <span
           role="button"
           title={addressLabel ? translateRaw('EDIT_LABEL') : translateRaw('ADD_LABEL_9')}
           onClick={this.startEditingLabel}
+          className="AccountInfo-label"
         >
           {addressLabel ? translate('EDIT_LABEL') : translate('ADD_LABEL_9')}
         </span>

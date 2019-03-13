@@ -77,7 +77,7 @@ class AccountInfo extends React.Component<Props, State> {
     const { address, showLongBalance, confirmAddr } = this.state;
 
     return (
-      <div>
+      <div className="AccountInfo">
         <AccountAddress address={toChecksumAddress(address)} />
 
         {isHardwareWallet(wallet) && (
@@ -108,7 +108,6 @@ class AccountInfo extends React.Component<Props, State> {
         )}
 
         <div className="AccountInfo-section">
-          <h5 className="AccountInfo-section-header">{translate('SIDEBAR_ACCOUNTBAL')}</h5>
           <ul className="AccountInfo-list">
             <li className="AccountInfo-list-item AccountInfo-balance">
               <span

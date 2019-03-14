@@ -33,8 +33,8 @@ export class CopyTransaction extends React.Component<Props, State> {
             className={`AccountInfo-copy ${copied ? 'is-copied' : ''}`}
             title={translateRaw('COPY_TO_CLIPBOARD')}
           >
-            <i className="fa fa-clone" />
             <span>{translateRaw(copied ? 'COPIED' : '')}</span>
+            <i className="fa fa-clone" />
           </div>
         </CopyToClipboard>
       </React.Fragment>

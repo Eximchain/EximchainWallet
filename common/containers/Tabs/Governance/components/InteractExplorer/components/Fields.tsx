@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-
+import { CopyTransaction } from './CopyTransaction';
 import { SendButton, TXMetaDataPanel } from 'components';
 import WalletDecrypt, { DISABLE_WALLETS } from 'components/WalletDecrypt';
 import { FullWalletOnly } from 'components/renderCbs';
-import translate from 'translations';
+import translate, { translateRaw } from 'translations';
 import { walletSelectors } from 'features/wallet';
 import { AppState } from 'features/reducers';
 import { addHexPrefix } from 'ethereumjs-util';
@@ -43,11 +43,9 @@ export class FieldsClass extends Component<Props> {
             <div className="col-xs-12">
               <label>
                 {walletType.isWeb3Wallet ? 'Transaction Parameters' : translate('SEND_RAW')}
+                <CopyTransaction text={getStringifiedTx(serializedTransaction as Buffer)} />
               </label>
-              <CodeBlock
-                text={getStringifiedTx(serializedTransaction as Buffer)}
-                className="RawTransaction"
-              >
+              <CodeBlock className="RawTransaction">
                 {getStringifiedTx(serializedTransaction as Buffer)}
               </CodeBlock>
             </div>
@@ -57,11 +55,9 @@ export class FieldsClass extends Component<Props> {
                   {walletType.isWeb3Wallet
                     ? 'Serialized Transaction Parameters'
                     : translate('SEND_SIGNED')}
+                  <CopyTransaction text={addHexPrefix(serializedTransaction.toString('hex'))} />
                 </label>
-                <CodeBlock
-                  text={addHexPrefix(serializedTransaction.toString('hex'))}
-                  className="SignedTransaction"
-                >
+                <CodeBlock className="SignedTransaction">
                   {addHexPrefix(serializedTransaction.toString('hex'))}
                 </CodeBlock>
               </div>

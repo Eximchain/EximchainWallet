@@ -43,13 +43,13 @@ export class FieldsClass extends Component<Props> {
             <div className="col-xs-12">
               <label>
                 {walletType.isWeb3Wallet ? 'Transaction Parameters' : translate('SEND_RAW')}
-                <CopyToClipboard text={getStringifiedTx(serializedTransaction as Buffer)}>
-                  <button className="Copy btn btn-primary btn-block">
-                    {translate('Copy Raw')}
-                  </button>
-                </CopyToClipboard>
               </label>
-              <CodeBlock>{getStringifiedTx(serializedTransaction as Buffer)}</CodeBlock>
+              <CodeBlock
+                text={getStringifiedTx(serializedTransaction as Buffer)}
+                className="RawTransaction"
+              >
+                {getStringifiedTx(serializedTransaction as Buffer)}
+              </CodeBlock>
             </div>
             {serializedTransaction && (
               <div className="col-xs-12">
@@ -57,13 +57,13 @@ export class FieldsClass extends Component<Props> {
                   {walletType.isWeb3Wallet
                     ? 'Serialized Transaction Parameters'
                     : translate('SEND_SIGNED')}
-                  <CopyToClipboard text={addHexPrefix(serializedTransaction.toString('hex'))}>
-                    <button className="Copy btn btn-primary btn-block">
-                      {translate('Copy Signed')}
-                    </button>
-                  </CopyToClipboard>
                 </label>
-                <CodeBlock>{addHexPrefix(serializedTransaction.toString('hex'))}</CodeBlock>
+                <CodeBlock
+                  text={addHexPrefix(serializedTransaction.toString('hex'))}
+                  className="SignedTransaction"
+                >
+                  {addHexPrefix(serializedTransaction.toString('hex'))}
+                </CodeBlock>
               </div>
             )}
             <SendButton />

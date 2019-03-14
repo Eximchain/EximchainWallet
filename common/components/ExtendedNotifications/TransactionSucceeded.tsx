@@ -6,6 +6,7 @@ import translate from 'translations';
 import { BlockExplorerConfig } from 'types/network';
 import { getTXDetailsCheckURL } from 'libs/scheduling';
 import { NewTabLink } from 'components/ui';
+import './TransactionSucceeded.scss';
 
 export interface TransactionSucceededProps {
   txHash: string;
@@ -47,6 +48,7 @@ const TransactionSucceeded = ({ txHash, blockExplorer, scheduling }: Transaction
       <p>
         {translate('SUCCESS_3')} {txHash}
       </p>
+
       {scheduleDetailsBtn}
       {verifyBtn}
       {altVerifyBtn}

@@ -8,6 +8,11 @@
   //   border-top: solid .5px color(n40);
   // }
 
+  .table > thead > tr > th, .table > thead > tr > td, .table > tbody > tr > th, .table > tbody > tr > td, .table > tfoot > tr > th, .table > tfoot > tr > td {
+
+    vertical-align: middle;
+}
+
   tr {
     // border-collapse: separate !important;
     // border-radius: 100px !important;
@@ -220,7 +225,7 @@
         }
 
         &-text {
-          font-size: 10px;
+          font-size: 14px;
         }
       }
 

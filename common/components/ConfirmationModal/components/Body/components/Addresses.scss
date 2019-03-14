@@ -36,7 +36,7 @@
     }
     &-address {
       margin: 0;
-      font-family: $font-family-monospace;
+      font-family: $font-family-base;
       font-weight: 400;
       color: color(n800);
       word-wrap: break-word;
@@ -59,7 +59,7 @@
       color: shade-dark(0.4);
     }
     &-link {
-      font-family: $font-family-monospace;
+      font-family: $font-family-base;
       font-weight: 400;
     }
   }

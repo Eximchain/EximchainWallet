@@ -11,6 +11,7 @@
 
 
 
+
   &-transaction-screen {
     max-width: 55%;
     margin: auto;
@@ -58,6 +59,30 @@
     &-write {
       max-width: 55%;
       margin: auto;
+
+      label {
+        width: 100%;
+      }
+
+      .AccountInfo-copy {
+        float: right;
+        margin-right: 0;
+        text-transform: capitalize;
+
+        span {
+          margin-top: -10px;
+        }
+
+        .fa {
+          margin: 0;
+        }
+      }
+
+      .CodeBlock > code {
+        max-height: none;
+        // height: 171px;
+        // margin: 1rem;
+      }
 
       .col-xs-12 {
         padding: 0;
@@ -137,8 +162,9 @@
       margin: 0;
     }
 
-    &:last-child {
-      // margin: 0;
-    }
+    // &:last-child {
+    //   flex-shrink: 0;
+    //
+    // }
   }
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import { SendButton, TXMetaDataPanel } from 'components';
 import WalletDecrypt, { DISABLE_WALLETS } from 'components/WalletDecrypt';
@@ -42,6 +43,11 @@ export class FieldsClass extends Component<Props> {
             <div className="col-xs-12">
               <label>
                 {walletType.isWeb3Wallet ? 'Transaction Parameters' : translate('SEND_RAW')}
+                <CopyToClipboard text={getStringifiedTx(serializedTransaction as Buffer)}>
+                  <button className="Copy btn btn-primary btn-block">
+                    {translate('Copy Raw')}
+                  </button>
+                </CopyToClipboard>
               </label>
               <CodeBlock>{getStringifiedTx(serializedTransaction as Buffer)}</CodeBlock>
             </div>
@@ -51,6 +57,11 @@ export class FieldsClass extends Component<Props> {
                   {walletType.isWeb3Wallet
                     ? 'Serialized Transaction Parameters'
                     : translate('SEND_SIGNED')}
+                  <CopyToClipboard text={addHexPrefix(serializedTransaction.toString('hex'))}>
+                    <button className="Copy btn btn-primary btn-block">
+                      {translate('Copy Signed')}
+                    </button>
+                  </CopyToClipboard>
                 </label>
                 <CodeBlock>{addHexPrefix(serializedTransaction.toString('hex'))}</CodeBlock>
               </div>

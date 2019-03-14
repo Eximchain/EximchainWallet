@@ -22,7 +22,9 @@ export const GenerateTransaction: React.SFC<OwnProps> = props => {
               onClick={() => {
                 onClick();
                 if (!isWeb3Wallet) {
-                  props.onClick();
+                  if (props.onClick) {
+                    props.onClick();
+                  }
                 }
               }}
             >

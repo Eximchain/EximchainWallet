@@ -28,7 +28,7 @@ export default class Dropdown extends React.Component<Props> {
   };
 
   public render() {
-    const { onChange } = this.props;
+    const { onChange, value } = this.props;
     const { selectedOption } = this.state;
     const options = this.formatOptions(this.props.options);
 
@@ -44,7 +44,7 @@ export default class Dropdown extends React.Component<Props> {
         }}
         {...this.props}
         className={`${this.props.className} ${this.state.hasBlurred ? 'has-blurred' : ''}`}
-        value={selectedOption}
+        value={value ? value : selectedOption}
         onChange={obj => {
           this.handleChange(obj as any);
           onChange(obj as any);

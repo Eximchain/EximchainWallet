@@ -343,7 +343,9 @@ export class ContractCallClass extends Component<Props, State> {
       this.props.resetTransactionRequested();
       const data = this.encodeData();
       this.props.setDataField({ raw: data, value: Data(data) });
-      this.props.setCurrentValue(this.state.setValue.toString());
+      if (this.state.setValue) {
+        this.props.setCurrentValue(this.state.setValue.toString());
+      }
       this.handleStageChange();
     } catch (e) {
       this.props.showNotification('danger', `All fields are required.`, 5000);

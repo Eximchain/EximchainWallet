@@ -191,7 +191,6 @@
         color: color(gray);
       }
 
-
       &-token {
         width: 82px;
         background: color(control-bg);
@@ -202,15 +201,10 @@
       &-address {
         font-size: $font-size-small;
         text-align: left;
-        font-family: $font-family-monospace;
+        font-family: $font-family-base;
         display: flex;
         align-items: center;
         font-feature-settings: 'ss02' 1;
-
-
-
-
-
 
         &-label {
           text-transform: uppercase;

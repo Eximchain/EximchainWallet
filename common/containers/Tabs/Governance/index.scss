@@ -59,6 +59,10 @@
       max-width: 55%;
       margin: auto;
 
+      .col-xs-12 {
+        padding: 0;
+      }
+
       .NextButton {
         float: right;
         margin-top: 6px;

@@ -9,7 +9,13 @@ interface Props {
 
 const CodeBlock = ({ children, className }: Props) => (
   <pre className={`${className} CodeBlock`}>
-    <code>{children}</code>
+    {
+      //   <div className="CodeBlock-fade-right"></div>
+      // <div className="CodeBlock-fade-bottom"></div>
+    }
+    <code className="CodeBlock-content">
+      <code>{children}</code>
+    </code>
   </pre>
 );
 

@@ -2,38 +2,48 @@
 @import 'common/sass/mixins';
 
 .AccountInfo {
-  padding-top: 14px;
+  padding: 14px 0 8px 0;
+  background-color: color(n0);
+  // border: solid 1px color(n40);
+  border-radius: 6px;
+  box-shadow: 0 0px 12px 0px rgba(31,47,71,0.12), 0 2px 4px 0 rgba(31,47,71,0.08);
+
 
   &-copy {
     display: inline-block;
     cursor: pointer;
-    color: color(text-color);
+    color: color(b60);
     font-size: $font-size-xs;
-    opacity: 0.5;
+    // opacity: 0.5;
     transition: $transition;
     margin-right: $space-sm;
+
 
     &:hover {
       opacity: 1;
     }
 
     &.is-copied {
-      color: color(g70);
+      // color: color(g70);
       opacity: 1;
     }
 
     .fa {
       margin-right: $space-xs;
       margin-left: 0.1rem;
+      font-size: 18px;
+
+      padding-left: 8px;
+
     }
   }
 
   &-label {
     display: inline-block;
     cursor: pointer;
-    color: color(text-color);
+    color: color(b60);
     font-size: $font-size-xs;
-    opacity: 0.5;
+
 
     .fa {
       margin: 0 $space-xs 0 $space-sm;
@@ -48,7 +58,7 @@
     }
 
     &-header {
-      padding-top: 20px;
+      // padding-top: 20px;
       margin-top: 0;
       display: inline-block;
       font-size: $font-size-xs-bump;
@@ -62,18 +72,25 @@
 
     &-top-header {
       margin-top: 0;
-      padding-top: 6px;
-      padding-bottom: 20px;
+      padding-top: 3px;
+      // padding-bottom: 20px;
       display: inline-block;
-      font-size: $font-size-bump-more;
+      font-size: $font-size-bump;
       font-weight: 400;
       color: color(n800);
       text-transform: capitalize;
       letter-spacing: 0;
-      border-bottom: solid 1px color(n20);
+      // border-bottom: solid 1px color(n20);
       width: 100%;
       padding-left: 20px;
       padding-right: 20px;
+
+      img {
+        height: 20px;
+        margin-right: 6px;
+        margin-left: -1px;
+
+      }
     }
 
     &-refresh {
@@ -113,7 +130,7 @@
       flex-direction: row;
       flex-wrap: nowrap;
       align-items: center;
-      margin-top: 8px;
+      // margin-top: 8px;
       padding-left: 20px;
       padding-right: 20px;
     }
@@ -128,9 +145,10 @@
     }
 
     &-icon {
-      width: 44px;
-      height: 44px;
+      width: 30px;
+      height: 30px;
       margin-right: $space-md;
+      padding-left: 20px;
     }
 
     &-addr {
@@ -153,14 +171,29 @@
     }
 
     &-label {
-      font-size: $font-size-small;
+      font-size: $font-size-xs;
       overflow: hidden;
       text-overflow: ellipsis;
       word-wrap: break-word;
       text-transform: uppercase;
-      margin-bottom: 0;
-      letter-spacing: .7px;
-      color: color(gray);
+      margin-bottom: -5px;
+      letter-spacing: .4px;
+      color: color(n800);
+      width: 100%;
+      background: color(n30);
+      // border: 1px solid black;
+      border-radius: 6px;
+      padding: 2px 6px;
+      margin-top: 4px;
+      margin-right: 8px;
+      width: max-content;
+
+      &:empty {
+        display: none;
+        padding: 0;
+        margin: 0;
+        height: 0;
+      }
     }
   }
 
@@ -179,7 +212,7 @@
       margin-bottom: 0;
       list-style-type: none;
       word-break: break-all;
-      padding-left: 20px;
+      padding-left: 62px;
       padding-right: 20px;
 
       &-clickable:hover {

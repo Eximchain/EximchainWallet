@@ -5,6 +5,15 @@
 .InteractForm {
   padding-top: 60px;
 
+  .CodeBlock {
+    max-height: 100px;
+
+  }
+
+  .CodeBlock-content {
+    width: 100%;
+  }
+
 &-submit {
   // width: auto;
   // float: right;

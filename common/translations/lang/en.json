@@ -1,36 +1,26 @@
 {
   "code": "en",
   "data": {
-
+    "ConfirmTransaction": "Signed Transaction",
+    "ConfirmTransactionDescription": "Copy the info below if you wish to save the transaction data.",
     "VOTEName": "Ballot Entry",
     "voteDescription": "Complete the form to nominate of vote for a member.",
-
     "CLAIMName": "Claim Tokens",
     "startWithdrawDescription": "Complete the form to start the withdrawal of your tokens.",
-
     "COLLECTName": "Collect Tokens",
     "finalizeWithdrawDescription": "Complete the form to finalize the withdrawal of your tokens.",
-
     "UnlockWallet": "Log into a wallet",
     "UnlockWalletDescription": "Select a wallet type and enter the required info.",
-
     "GovernanceTransactionFee": "Transaction fee",
     "GovernanceTransactionFeeDescription": "Your wallet will be charged the amount summarized below.",
-
-
     "_electionfalse": "Demotion",
     "_electiontrue": "Promotion",
-
-    "_inSupportfalse": "Points for (-)",
-    "_inSupporttrue": "Points against (+)",
-
+    "_inSupportfalse": "Points against (-)",
+    "_inSupporttrue": "Points for (+)",
     "ballotHistoryInput0": "Public EXC Address",
     "ballotHistoryInput1": "Number of the ballot entry cast",
-
     "ballotHistoryOutput0": "Ballot Record ID",
-
     "currentGovernanceCycleOutput0": "Current Cycle",
-
     "withdrawRecordsInput0": "Withdraw Record ID",
     "withdrawRecordsOutputamount": "EXC Amount",
     "withdrawRecordsOutputstatus": "Withrawal Status",
@@ -38,7 +28,6 @@
     "withdrawRecordsOutputbeneficiary": "Withdrawn to",
     "withdrawRecordsOutputballotId": "Ballot Record ID",
     "withdrawRecordsOutputtimestamp": "Last changed at",
-
     "governanceCycleRecordsInput0": "Cycle Number",
     "governanceCycleRecordsOutputtotalPayments": "Token pool amount",
     "governanceCycleRecordsOutputstatus": "Cycle Status",
@@ -48,7 +37,6 @@
     "governanceCycleRecordsOutputelected": "Promotion winner address",
     "governanceCycleRecordsOutputevicted": "Demotion winner address",
     "governanceCycleRecordsOutputstart": "Time cycle was opened",
-
     "nomineeBallotsInput0": "Nominee's Public EXC Address",
     "nomineeBallotsOutputgovernanceCycleId": "Cycle Number",
     "nomineeBallotsOutputelection": "Ballot Type",
@@ -56,20 +44,15 @@
     "nomineeBallotsOutputpositiveVotes": "Total Positive Points",
     "nomineeBallotsOutputnegativeVotes": "Total Negative Negative",
     "nomineeBallotsOutputtotalVoters": "Total voters",
-
     "canGovernInputregistrant": "Public EXC Address",
     "canGovernOutput0": "Eligible to participate in governance",
-
     "isKYCApprovedInputregistrant": "Public EXC Address",
     "isKYCApprovedOutput0": "Is KYC Approved?",
-
     "isKYCDeniedInputregistrant": "Public EXC Address",
     "isKYCDeniedOutput0": "Is KYC Denied?",
-
     "withdrawHistoryInput0": "Public EXC Address",
     "withdrawHistoryInput1": "Number of times this address has claimed tokens",
     "withdrawHistoryOutput0": "Withdraw Record ID",
-
 
     "EXIMCHAIN_TITLE": "Eximchain",
     "NETWORK_AUTO":"Auto",
@@ -159,7 +142,7 @@
     "X_CUSTOM": "Custom ",
     "CX_WARNING_1": "Make sure you have **external backups** of any wallets you store here. Many things could happen that would cause you to lose the data in this Chrome Extension, including uninstalling and reinstalling the extension. This extension is a way to easily access your wallets, **not** a way to back them up. ",
     "SIDEBAR_ACCOUNTADDR": "Account Address ",
-    "SIDEBAR_ACCOUNTHEADER": "Wallet Info ",
+    "SIDEBAR_ACCOUNTHEADER": "Signed in as ",
     "SIDEBAR_ACCOUNTBAL": "Account Balance ",
     "SIDEBAR_TOKENBAL": "Token Balances ",
     "SIDEBAR_EQUIV": "Equivalent Values ",
@@ -174,7 +157,7 @@
     "X_HARDWARE_WALLET_2": "hardware wallet ",
     "ADD_TREZOR_SCAN": "Connect to Trezor ",
     "ORDER_TREZOR": "Buy a Trezor",
-    "HOWTO_TREZOR": "How to use Trezor with Eximchain Wallet",
+    "HOWTO_TREZOR": "See detailed instructions",
     "X_KEEPKEY": "KeepKey",
     "UNLOCK_WALLET": "Unlock $wallet",
     "ADD_RADIO_2": "Select Your Wallet File (Keystore / JSON) ",
@@ -734,7 +717,7 @@
     "REMOVE": "Remove",
     "COPY_TO_CLIPBOARD": "Copy to clipboard",
     "COPIED": "copied!",
-    "COPY_ADDRESS": "Copy",
+    "COPY_ADDRESS": "Copy Address",
     "EDIT_LABEL_2": "Edit label",
     "NETWORK": "Network",
     "NETWORK_2": "$network network",

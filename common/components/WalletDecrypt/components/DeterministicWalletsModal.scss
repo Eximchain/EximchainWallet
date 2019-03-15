@@ -8,6 +8,11 @@
   //   border-top: solid .5px color(n40);
   // }
 
+  .table > thead > tr > th, .table > thead > tr > td, .table > tbody > tr > th, .table > tbody > tr > td, .table > tfoot > tr > th, .table > tfoot > tr > td {
+
+    vertical-align: middle;
+}
+
   tr {
     // border-collapse: separate !important;
     // border-radius: 100px !important;
@@ -186,7 +191,6 @@
         color: color(gray);
       }
 
-
       &-token {
         width: 82px;
         background: color(control-bg);
@@ -197,18 +201,12 @@
       &-address {
         font-size: $font-size-small;
         text-align: left;
-        font-family: $font-family-monospace;
+        font-family: $font-family-base;
         display: flex;
         align-items: center;
         font-feature-settings: 'ss02' 1;
 
-
-
-
-
-
         &-label {
-          // font-weight: bold;
           text-transform: uppercase;
           letter-spacing: 0.7px;
           color: color(gray);
@@ -220,7 +218,7 @@
         }
 
         &-text {
-          font-size: 10px;
+          font-size: 14px;
         }
       }
 

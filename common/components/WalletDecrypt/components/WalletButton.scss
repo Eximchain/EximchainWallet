@@ -16,20 +16,15 @@
   position: relative;
   flex: 1;
   height: auto;
-  // max-width: 400px;
   min-width: 300px;
-  padding: 12px 12px;
+  padding: 10px 10px;
   margin: 0 $space-sm $space;
-  // margin-bottom: 20px;
   background: color(control-bg);
   border: solid 1px color(n40);
   border-radius: 6px;
   text-align: left;
   cursor: pointer;
-  // box-shadow: 0 1px 4px rgba(#000, 0.2);
-  // transition: transform 150ms ease;
-  // animation: wallet-button-enter 400ms ease 1;
-  // animation-fill-mode: backwards;
+
 
   @for $i from 0 to 6 {
     &:nth-child(#{$i}) {
@@ -44,9 +39,7 @@
       border-color: color(b50);
       border-width: 1px;
       transition: 60ms ease;
-      padding: 12px 12px;
-      // box-shadow: 0 1px 4px rgba(#000, 0.06), 0 2px 6px rgba(#000, 0.06);
-      // transform: translateY(-2px);
+      padding: 10px 10px;
 
 
       .WalletButton-title {
@@ -83,7 +76,7 @@
     justify-content: left;
     align-items: center;
     // font-size: $font-size-bump;
-    margin-bottom: 3px;
+    // margin-bottom: 3px;
     transition: color 150ms ease;
 
     &-icon {

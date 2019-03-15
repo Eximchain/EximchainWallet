@@ -10,6 +10,8 @@
 
 
 
+
+
   &-transaction-screen {
     max-width: 55%;
     margin: auto;
@@ -39,6 +41,7 @@
 
     .WalletDecrypt-decrypt {
       margin-top: 0;
+      top: 0;
     }
 
     .AdvancedGas {
@@ -51,20 +54,44 @@
   }
 
   &-form {
-    // padding-top: $electron-osx-control-spacing;
     margin: 0 auto;
     padding-bottom: $electron-osx-control-spacing;
-
-
-
 
     &-write {
       max-width: 55%;
       margin: auto;
+
+      label {
+        width: 100%;
+      }
+
+      .AccountInfo-copy {
+        float: right;
+        margin-right: 0;
+        text-transform: capitalize;
+
+        span {
+          margin-top: -10px;
+        }
+
+        .fa {
+          margin: 0;
+        }
+      }
+
+      .CodeBlock > code {
+        max-height: none;
+        // height: 171px;
+        // margin: 1rem;
+      }
+
+      .col-xs-12 {
+        padding: 0;
+      }
+
       .NextButton {
         float: right;
         margin-top: 6px;
-        // min-width: 350px;
         width: 100%;
       }
     }
@@ -136,8 +163,9 @@
       margin: 0;
     }
 
-    &:last-child {
-      // margin: 0;
-    }
+    // &:last-child {
+    //   flex-shrink: 0;
+    //
+    // }
   }
 }

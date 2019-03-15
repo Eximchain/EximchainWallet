@@ -106,9 +106,9 @@ class Governance extends Component<Props, State> {
     super(props);
 
     const contractNumber = this.props.contracts.length;
-    var i = 0;
+    let i = 0;
     for (i; i < contractNumber; i++) {
-      var currentInstance = this.props.contracts[i];
+      let currentInstance = this.props.contracts[i];
       if (currentInstance.name === 'Weyl Governance') {
         if (currentInstance.address === '0x000000000000000000000000000000000000002a') {
           // this.props.setCurrentTo(currentInstance.address);
@@ -136,7 +136,7 @@ class Governance extends Component<Props, State> {
     this.goBack = this.goBack.bind(this);
   }
 
-  public formatOptions = (options: Option[]) => {
+  private formatOptions = (options: Option[]) => {
     if (typeof options[0] === 'object') {
       return options;
     }
@@ -147,9 +147,9 @@ class Governance extends Component<Props, State> {
   };
   private setContract() {
     const contractNumber = this.props.contracts.length;
-    var i = 0;
+    let i = 0;
     for (i; i < contractNumber; i++) {
-      var currentInstance = this.props.contracts[i];
+      let currentInstance = this.props.contracts[i];
       if (currentInstance.name === 'Weyl Governance') {
         if (currentInstance.address === '0x000000000000000000000000000000000000002a') {
           this.props.setCurrentTo(currentInstance.address);
@@ -181,19 +181,19 @@ class Governance extends Component<Props, State> {
     const currentContract = this.state.currentContract;
     const contractFunctions = Contract.getFunctions(currentContract);
     const contractOptions = this.contractOptions(contractFunctions);
-    var contractOptionsMap: { [name: string]: any } = {};
+    let contractOptionsMap: { [name: string]: any } = {};
     contractOptions.map(value => {
       contractOptionsMap[value.name] = value;
     });
     return contractOptionsMap as any;
   }
 
-  public accessContract(contractAbi: string) {
+  private accessContract(contractAbi: string) {
     const parsedAbi = JSON.parse(contractAbi);
     return new Contract(parsedAbi);
   }
 
-  public GOVERNANCECALLS: GovernanceCall = {
+  private GOVERNANCECALLS: GovernanceCall = {
     [CostlyContractCallName.VOTE]: {
       name: CostlyContractCallName.VOTE,
       description: 'Requires EXC',
@@ -254,7 +254,7 @@ class Governance extends Component<Props, State> {
     }
   };
 
-  public buildFunctionOptions(
+  private buildFunctionOptions(
     contractCallMap: ContractFuncNames[],
     stateTransition: GovernanceFlowStages
   ) {
@@ -276,7 +276,7 @@ class Governance extends Component<Props, State> {
     );
   }
 
-  public goBack() {
+  private goBack() {
     // your transition
     const stage = GovernanceFlowStages.START_PAGE;
     this.props.resetTransactionRequested();
@@ -288,12 +288,12 @@ class Governance extends Component<Props, State> {
       return newState;
     });
   }
-  public componentDidUpdate(prevProps, prevStates) {
+  componentDidUpdate(prevProps, prevStates) {
     if (prevStates.stage !== GovernanceFlowStages.START_PAGE) {
       this.goBack();
     }
   }
-  public componentWillUnmount() {
+  componentWillUnmount() {
     this.props.resetTransactionRequested();
   }
   private contractOptions = (contractFunctions: any) => {
@@ -313,7 +313,7 @@ class Governance extends Component<Props, State> {
     const currentContract = this.state.currentContract;
     const contractFunctions = Contract.getFunctions(currentContract);
     let stages = GovernanceFlowStages;
-    var body;
+    let body;
     switch (this.state.stage) {
       case GovernanceFlowStages.START_PAGE:
         body = (

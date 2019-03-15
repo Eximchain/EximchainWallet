@@ -11,6 +11,7 @@ import { RedirectWithQuery } from 'components/RedirectWithQuery';
 import { UnlockHeader } from 'components/ui';
 import SubTabs, { Tab } from 'components/SubTabs';
 import { RouteNotFound } from 'components/RouteNotFound';
+import { BalanceSidebar } from 'components';
 import {
   WalletInfo,
   RequestPayment,
@@ -77,7 +78,7 @@ class SendTransaction extends React.Component<Props> {
           <UnlockHeader showGenerateLink={true} />
           {wallet && (
             <div className="SubTabs-content row">
-              <div className="col-sm-8">
+              <div className="col-sm-12">
                 <Switch>
                   <Route
                     exact={true}
@@ -116,8 +117,12 @@ class SendTransaction extends React.Component<Props> {
                     exact={true}
                     render={() => <AddressBook />}
                   />
+
                   <RouteNotFound />
                 </Switch>
+                <section className="SubTabs-sidebar">
+                  <BalanceSidebar />
+                </section>
               </div>
               <SideBar />
             </div>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { AppState } from 'features/reducers';
 import { notificationsActions } from 'features/notifications';
 import { connect } from 'react-redux';
-import translate from 'translations';
+import translate, { translateRaw } from 'translations';
 import { AmountField } from './InteractExplorer/components/AmountField';
 import ResultScreen from './ResultScreen';
 
@@ -44,6 +44,7 @@ interface DispatchProps {
   setAsContractInteraction: transactionMetaActions.TSetAsContractInteraction;
   setAsViewAndSend: transactionMetaActions.TSetAsViewAndSend;
   setCurrentValue: transactionActions.TSetCurrentValue;
+  resetTransactionRequested: transactionFieldsActions.TResetTransactionRequested;
 }
 
 interface OwnProps {
@@ -69,6 +70,7 @@ interface State {
   setValue?: any;
   broadcastHash?: any;
   promoDemoBool?: any;
+  confirmTransaction: boolean;
 }
 
 interface ContractFunction {
@@ -99,11 +101,11 @@ export class ContractCallClass extends Component<Props, State> {
     stage: ContractFlowStages.CONSTRUCT_TRANSACTION_SCREEN,
     stageHistory: [],
     inputs: {},
-    outputs: {}
+    outputs: {},
+    confirmTransaction: false
   };
   public componentDidMount() {
     this.props.setAsContractInteraction();
-    //
   }
 
   public componentWillUnmount() {
@@ -123,20 +125,31 @@ export class ContractCallClass extends Component<Props, State> {
       }
     }
   }
-
-  private goTo(stage: ContractFlowStages) {
+  private onClick = () => {
+    if (this.state.confirmTransaction) {
+      this.setState({
+        confirmTransaction: false
+      });
+    } else {
+      this.setState({
+        confirmTransaction: true
+      });
+    }
+  };
+  private goTo = (stage: ContractFlowStages) => {
     this.setState((state: State) => {
       let newState = Object.assign({}, state);
       newState.stageHistory.push(this.state.stage);
       newState.stage = stage;
       return newState;
     });
-  }
+  };
 
-  private back() {
+  private back = () => {
     if (this.state.stage === ContractFlowStages.CONSTRUCT_TRANSACTION_SCREEN) {
       this.props.goBack();
     }
+
     this.setState((state: State) => {
       // tslint:disable-next-line:prefer-const
       let newState = Object.assign({}, state);
@@ -145,17 +158,18 @@ export class ContractCallClass extends Component<Props, State> {
           ? newState.stageHistory.pop()
           : ContractFlowStages.CONSTRUCT_TRANSACTION_SCREEN;
       newState.stage = prevStage;
+      if (this.state.stage === ContractFlowStages.SUBMIT_TRANSACTION_SCREEN) {
+        newState.confirmTransaction = false;
+      }
       return newState;
     });
-  }
+  };
 
   render() {
-    console.log(this.state.stageHistory);
-    console.log(this.state.stage);
     const { inputs, outputs } = this.state;
     const selectedFunction = this.props.selectedFunction;
     const generateOrWriteButton = this.props.dataExists ? (
-      <GenerateTransaction />
+      <GenerateTransaction isGovernanceTransaction={true} onClick={this.onClick} />
     ) : (
       <button
         className="InteractExplorer-func-submit btn btn-primary"
@@ -164,7 +178,7 @@ export class ContractCallClass extends Component<Props, State> {
         {translate('CONTRACT_WRITE')}
       </button>
     );
-    var body;
+    let body;
     switch (this.state.stage) {
       case ContractFlowStages.CONSTRUCT_TRANSACTION_SCREEN:
         body = (
@@ -173,7 +187,6 @@ export class ContractCallClass extends Component<Props, State> {
             <p className="FormInput-subtitle">
               {translate(this.props.selectedFunction.name + 'Description')}
             </p>
-
             <div key={selectedFunction.name}>
               {selectedFunction.contract.inputs.map((input, index) => {
                 const { type, name } = input;
@@ -192,14 +205,14 @@ export class ContractCallClass extends Component<Props, State> {
                       {type === 'bool' ? (
                         <Dropdown
                           options={[
-                            { value: false, label: translate(parsedName + 'false') },
-                            { value: true, label: translate(parsedName + 'true') }
+                            { value: false, label: translateRaw(parsedName + 'false') },
+                            { value: true, label: translateRaw(parsedName + 'true') }
                           ]}
                           value={
                             inputState
                               ? {
-                                  label: inputState.rawData,
-                                  value: inputState.parsedData as any
+                                  value: inputState.parsedData as any,
+                                  label: translateRaw(parsedName + inputState.rawData)
                                 }
                               : undefined
                           }
@@ -244,7 +257,7 @@ export class ContractCallClass extends Component<Props, State> {
               ) : (
                 <button
                   className="InteractExplorer-func-submit NextButton btn btn-primary"
-                  onClick={this.handleStageChange}
+                  onClick={this.handleFunctionSend}
                 >
                   {translate('Next')}
                 </button>
@@ -256,7 +269,11 @@ export class ContractCallClass extends Component<Props, State> {
       case ContractFlowStages.SUBMIT_TRANSACTION_SCREEN:
         body = (
           <React.Fragment>
-            <Fields button={generateOrWriteButton} />
+            <Fields
+              button={generateOrWriteButton}
+              onClick={this.onClick}
+              confirmTransaction={this.state.confirmTransaction}
+            />
           </React.Fragment>
         );
         break;
@@ -285,23 +302,14 @@ export class ContractCallClass extends Component<Props, State> {
   }
 
   private handleStageChange = () => {
-    try {
-      const data = this.encodeData();
-      const { nodeLib, to, selectedFunction } = this.props;
-      const callData = { to: to.raw, data };
-      console.log(this.state.setValue);
-      this.props.setDataField({ raw: data, value: Data(data) });
-      this.goTo(ContractFlowStages.SUBMIT_TRANSACTION_SCREEN);
-    } catch (e) {
-      this.props.showNotification('warning', `All fields are required.`, 5000);
-    }
+    this.goTo(ContractFlowStages.SUBMIT_TRANSACTION_SCREEN);
   };
 
-  private autoSetAmountValue(rawValue: any) {
+  private autoSetAmountValue = (rawValue: any) => {
     const value = rawValue * rawValue;
     this.setState({ setValue: value });
     this.props.setCurrentValue(value.toString());
-  }
+  };
   private handleFunctionCall = async (_: React.FormEvent<HTMLButtonElement>) => {
     try {
       const data = this.encodeData();
@@ -336,33 +344,47 @@ export class ContractCallClass extends Component<Props, State> {
   };
   private handleFunctionSend = (_: React.FormEvent<HTMLButtonElement>) => {
     try {
+      this.props.resetTransactionRequested();
       const data = this.encodeData();
       this.props.setDataField({ raw: data, value: Data(data) });
-      this.props.setCurrentValue(this.state.setValue.toString());
+      if (this.state.setValue) {
+        this.props.setCurrentValue(this.state.setValue.toString());
+      }
+      this.handleStageChange();
     } catch (e) {
-      this.props.showNotification(
-        'danger',
-        `Function send error: ${(e as Error).message}` || 'Invalid input parameters',
-        5000
-      );
+      this.props.showNotification('danger', `All fields are required.`, 5000);
     }
   };
   private handleInputChange = (ev: React.FormEvent<HTMLInputElement>) => {
     const rawValue: string = ev.currentTarget.value;
+
     if (ev.currentTarget.name === '_votes') {
       this.autoSetAmountValue(rawValue);
     }
     const isArr = rawValue.startsWith('[') && rawValue.endsWith(']');
-    const value = {
-      rawData: rawValue,
-      parsedData: isArr ? this.tryParseJSON(rawValue) : rawValue
-    };
-    this.setState({
-      inputs: {
-        ...this.state.inputs,
-        [ev.currentTarget.name]: value
+
+    if (rawValue === '') {
+      if (this.state.inputs[ev.currentTarget.name] !== undefined) {
+        let inputs = this.state.inputs;
+        delete inputs[ev.currentTarget.name];
+        this.setState({
+          inputs: {
+            ...inputs
+          }
+        });
       }
-    });
+    } else {
+      const value = {
+        rawData: rawValue,
+        parsedData: isArr ? this.tryParseJSON(rawValue) : rawValue
+      };
+      this.setState({
+        inputs: {
+          ...this.state.inputs,
+          [ev.currentTarget.name]: value
+        }
+      });
+    }
   };
   private tryParseJSON(input: string) {
     try {

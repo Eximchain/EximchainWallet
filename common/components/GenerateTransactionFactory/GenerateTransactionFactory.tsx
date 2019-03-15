@@ -37,6 +37,7 @@ interface StateProps {
 
 interface OwnProps {
   withProps(props: CallbackProps): React.ReactElement<any> | null;
+  isGovernanceTransaction?: boolean;
 }
 
 type Props = OwnProps & StateProps;
@@ -44,6 +45,7 @@ type Props = OwnProps & StateProps;
 export class GenerateTransactionFactoryClass extends Component<Props> {
   public render() {
     const {
+      isGovernanceTransaction,
       walletType,
       serializedTransaction,
       isFullTransaction,
@@ -57,9 +59,9 @@ export class GenerateTransactionFactoryClass extends Component<Props> {
 
     const getStringifiedTx = (serializedTx: Buffer) =>
       JSON.stringify(getTransactionFields(makeTransaction(serializedTx)), null, 2);
-
     const isButtonDisabled =
       !isFullTransaction || networkRequestPending || !validGasPrice || !validGasLimit;
+
     return (
       <React.Fragment>
         <WithSigner
@@ -68,30 +70,36 @@ export class GenerateTransactionFactoryClass extends Component<Props> {
             this.props.withProps({
               disabled: isButtonDisabled,
               isWeb3Wallet,
-              onClick: () => signer(transaction)
+              onClick: () => {
+                signer(transaction);
+              }
             })
           }
         />
-        {signedTx && (
+        {!isGovernanceTransaction && (
           <React.Fragment>
-            {/* shows the json representation of the transaction */}
-            <div className="col-xs-12">
-              <label>
-                {walletType.isWeb3Wallet ? 'Transaction Parameters' : translate('SEND_RAW')}
-              </label>
-              <CodeBlock>{getStringifiedTx(serializedTransaction as Buffer)}</CodeBlock>
-            </div>
-            {serializedTransaction && (
-              <div className="col-xs-12">
-                <label>
-                  {walletType.isWeb3Wallet
-                    ? 'Serialized Transaction Parameters'
-                    : translate('SEND_SIGNED')}
-                </label>
-                <CodeBlock>{addHexPrefix(serializedTransaction.toString('hex'))}</CodeBlock>
-              </div>
+            {signedTx && (
+              <React.Fragment>
+                {/* shows the json representation of the transaction */}
+                <div className="col-xs-12">
+                  <label>
+                    {walletType.isWeb3Wallet ? 'Transaction Parameters' : translate('SEND_RAW')}
+                  </label>
+                  <CodeBlock>{getStringifiedTx(serializedTransaction as Buffer)}</CodeBlock>
+                </div>
+                {serializedTransaction && (
+                  <div className="col-xs-12">
+                    <label>
+                      {walletType.isWeb3Wallet
+                        ? 'Serialized Transaction Parameters'
+                        : translate('SEND_SIGNED')}
+                    </label>
+                    <CodeBlock>{addHexPrefix(serializedTransaction.toString('hex'))}</CodeBlock>
+                  </div>
+                )}
+                <OfflineBroadcast />
+              </React.Fragment>
             )}
-            <OfflineBroadcast />
           </React.Fragment>
         )}
       </React.Fragment>

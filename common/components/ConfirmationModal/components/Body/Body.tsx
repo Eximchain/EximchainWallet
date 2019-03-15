@@ -39,14 +39,16 @@ class BodyClass extends React.Component<StateProps, State> {
         )}
         <Addresses />
         <Amounts />
-        <button
-          className={`tx-modal-details-button ${
-            showDetails ? 'tx-modal-details-button--open' : ''
-          }`}
-          onClick={this.toggleDetails}
-        >
-          {translate('ACTION_8')}
-        </button>
+        {
+          //   <button
+          //   className={`tx-modal-details-button ${
+          //     showDetails ? 'tx-modal-details-button--open' : ''
+          //   }`}
+          //   onClick={this.toggleDetails}
+          // >
+          //   {translate('ACTION_8')}
+          // </button>
+        }
         {showDetails && <Details />}
       </div>
     );

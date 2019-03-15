@@ -43,6 +43,7 @@ import {
   InsecureWalletWarning
 } from './components';
 import './WalletDecrypt.scss';
+import { Dropdown } from '../ui';
 
 interface OwnProps {
   hidden?: boolean;
@@ -70,6 +71,7 @@ interface StateProps {
 type Props = OwnProps & StateProps & DispatchProps & RouteComponentProps<{}>;
 
 type UnlockParams = {} | PrivateKeyValue;
+
 interface State {
   selectedWalletKey: WalletName | null;
   isInsecureOverridden: boolean;
@@ -124,7 +126,7 @@ const WalletDecrypt = withRouter<Props>(
       [SecureWalletName.WEB3]: {
         lid: web3info.lid,
         icon: Web3Icon,
-        description: 'ADD_WEB3DESC',
+        // description: 'ADD_WEB3DESC',
         component: Web3Decrypt,
         initialParams: {},
         unlock: this.props.unlockWeb3,
@@ -143,7 +145,7 @@ const WalletDecrypt = withRouter<Props>(
       [SecureWalletName.TREZOR]: {
         lid: 'X_TREZOR',
         icon: TrezorIcon,
-        description: 'ADD_TREZORDESC',
+        // description: 'ADD_TREZORDESC',
         component: TrezorDecrypt,
         initialParams: {},
         unlock: this.props.setWallet,
@@ -152,7 +154,7 @@ const WalletDecrypt = withRouter<Props>(
       [InsecureWalletName.KEYSTORE_FILE]: {
         lid: 'X_KEYSTORE2',
         icon: KeystoreIcon,
-        example: 'Encrypted version of a private key',
+        // example: 'Encrypted version of a private key',
         component: KeystoreDecrypt,
         initialParams: {
           file: '',
@@ -164,7 +166,7 @@ const WalletDecrypt = withRouter<Props>(
       [InsecureWalletName.MNEMONIC_PHRASE]: {
         lid: 'X_MNEMONIC',
         icon: SeedPhraseIcon,
-        example: 'Word list that unlocks a wallet',
+        // example: 'Word list that unlocks a wallet',
         component: MnemonicDecrypt,
         initialParams: {},
         unlock: this.props.unlockMnemonic,
@@ -173,7 +175,7 @@ const WalletDecrypt = withRouter<Props>(
       [InsecureWalletName.PRIVATE_KEY]: {
         lid: 'X_PRIVKEY2',
         icon: PrivateKeyIcon,
-        example: 'Password paired with a public key',
+        // example: 'Password paired with a public key',
         component: PrivateKeyDecrypt,
         initialParams: {
           key: '',
@@ -185,7 +187,7 @@ const WalletDecrypt = withRouter<Props>(
       [MiscWalletName.VIEW_ONLY]: {
         lid: 'VIEW_ADDR',
         icon: AddressIcon,
-        example: 'QR code, recent txs, balance',
+        // example: 'QR code, recent txs, balance',
         component: ViewOnlyDecrypt,
         initialParams: {},
         unlock: this.props.setWallet,
@@ -257,10 +259,12 @@ const WalletDecrypt = withRouter<Props>(
               translate('UNLOCK_WALLET', {
                 $wallet: translateRaw(selectedWallet.lid)
               })}
-            <button className="WalletDecrypt-decrypt-back" onClick={this.clearWalletChoice}>
-              <i className="fa fa-chevron-down" />
-              {/* {translate('CHANGE_WALLET')} */}
-            </button>
+            <button
+              className="FormBackButton fa fa-chevron-left"
+              onClick={this.clearWalletChoice}
+            />
+
+            {this.buildWalletOptionDropdown()}
           </h2>
 
           <section className="WalletDecrypt-decrypt-form">
@@ -295,6 +299,78 @@ const WalletDecrypt = withRouter<Props>(
             </Errorable>
           </section>
         </div>
+      );
+    }
+    public buildWalletOptionDropdown() {
+      const { computedDisabledWallets } = this.props;
+      const { selectedWalletKey } = this.state;
+      let wallet;
+      if (selectedWalletKey !== null) {
+        wallet = this.WALLETS[selectedWalletKey];
+      }
+      const { reasons } = computedDisabledWallets;
+      console.log(selectedWalletKey, 'dropdown');
+      const HardwareWalletMap = HARDWARE_WALLETS.map((walletType: SecureWalletName) => {
+        const wallet = this.WALLETS[walletType];
+        return {
+          key: walletType,
+          label: translateRaw(wallet.lid),
+          isDisabled: this.isWalletDisabled(walletType)
+        };
+      });
+
+      const SecureWalletMap = SECURE_WALLETS.map((walletType: SecureWalletName) => {
+        const wallet = this.WALLETS[walletType];
+        return {
+          key: walletType,
+          label: translateRaw(wallet.lid),
+          isDisabled: this.isWalletDisabled(walletType)
+        };
+      });
+
+      const MiscWalletMap = MISC_WALLETS.map((walletType: MiscWalletName) => {
+        const wallet = this.WALLETS[walletType];
+        return {
+          key: walletType,
+          label: translateRaw(wallet.lid),
+          isDisabled: this.isWalletDisabled(walletType)
+        };
+      });
+
+      const InsecureWalletMap = INSECURE_WALLETS.map((walletType: InsecureWalletName) => {
+        const wallet = this.WALLETS[walletType];
+        return {
+          key: walletType,
+          label: translateRaw(wallet.lid),
+          isDisabled: this.isWalletDisabled(walletType)
+        };
+      });
+      return (
+        <Dropdown
+          options={[
+            ...HardwareWalletMap,
+            ...SecureWalletMap,
+            ...MiscWalletMap,
+            ...InsecureWalletMap
+          ].filter(function(obj) {
+            return !obj.isDisabled;
+          })}
+          value={
+            wallet && selectedWalletKey
+              ? {
+                  key: selectedWalletKey,
+                  label: translateRaw(wallet.lid),
+                  isDisabled: this.isWalletDisabled(selectedWalletKey)
+                }
+              : undefined
+          }
+          clearable={false}
+          onChange={({ key, isDisabled }: { key: WalletName; isDisabled: boolean }) => {
+            if (!isDisabled) {
+              this.handleWalletChoice(key);
+            }
+          }}
+        />
       );
     }
 
@@ -380,7 +456,6 @@ const WalletDecrypt = withRouter<Props>(
               );
             })}
           </div>
-
           {this.props.showGenerateLink && (
             <div className="WalletDecrypt-wallets-generate">
               <Link to="/generate">{translate('DONT_HAVE_WALLET_PROMPT')}</Link>
@@ -392,7 +467,7 @@ const WalletDecrypt = withRouter<Props>(
 
     public handleWalletChoice = async (walletType: WalletName) => {
       const wallet = this.WALLETS[walletType];
-
+      console.log('here', walletType);
       if (!wallet) {
         return;
       }

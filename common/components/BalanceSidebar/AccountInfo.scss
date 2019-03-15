@@ -2,11 +2,17 @@
 @import 'common/sass/mixins';
 
 .AccountInfo {
+  position: relative;
   padding: 14px 0 8px 0;
   background-color: color(n0);
   // border: solid 1px color(n40);
   border-radius: 6px;
-  box-shadow: 0 0px 12px 0px rgba(31,47,71,0.12), 0 2px 4px 0 rgba(31,47,71,0.08);
+  box-shadow: 0 1px 16px 0px rgba(31,47,71,0.12), 0 2px 4px 0 rgba(31,47,71,0.06);
+  // box-shadow: 0px 2px 28px rgba(43, 51, 63, 0.18);
+
+  &-padding-top {
+    padding-top: 8px;
+  }
 
 
   &-copy {
@@ -31,7 +37,7 @@
     .fa {
       margin-right: $space-xs;
       margin-left: 0.1rem;
-      font-size: 18px;
+      font-size: 14px;
 
       padding-left: 8px;
 
@@ -57,6 +63,12 @@
       margin-top: 0;
     }
 
+    &-label {
+      position: absolute;
+      bottom: 16px;
+      right: 16px;
+    }
+
     &-header {
       // padding-top: 20px;
       margin-top: 0;
@@ -70,19 +82,24 @@
       padding-right: 20px;
     }
 
+    h2 {
+      font-weight: 600;
+    }
+
     &-top-header {
       margin-top: 0;
-      padding-top: 3px;
+      padding-top: 6px;
       // padding-bottom: 20px;
       display: inline-block;
-      font-size: $font-size-bump;
-      font-weight: 400;
+      font-size: $font-size-base;
       color: color(n800);
       text-transform: capitalize;
       letter-spacing: 0;
       // border-bottom: solid 1px color(n20);
       width: 100%;
-      padding-left: 20px;
+      margin-left: 20px;
+      flex: 1;
+
       padding-right: 20px;
 
       img {
@@ -144,11 +161,20 @@
       }
     }
 
+
+
     &-icon {
+      position: absolute;
+      right: 24px;
+      top: 16px;
       width: 30px;
       height: 30px;
       margin-right: $space-md;
       padding-left: 20px;
+
+      // .Identicon {
+      //   margin-right: 3px !important;
+      // }
     }
 
     &-addr {
@@ -212,8 +238,9 @@
       margin-bottom: 0;
       list-style-type: none;
       word-break: break-all;
-      padding-left: 62px;
+      padding-left: 20px;
       padding-right: 20px;
+      font-size: $font-size-base;
 
       &-clickable:hover {
         cursor: pointer;

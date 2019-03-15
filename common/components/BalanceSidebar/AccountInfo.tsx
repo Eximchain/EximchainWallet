@@ -111,9 +111,11 @@ class AccountInfo extends React.Component<Props, State> {
           <ul className="AccountInfo-list">
             <li className="AccountInfo-list-item AccountInfo-balance">
               <span
-                className="AccountInfo-list-item-clickable AccountInfo-balance-amount mono wrap"
+                className="AccountInfo-list-item-clickable AccountInfo-balance-amount wrap"
                 onClick={this.toggleShowLongBalance}
               >
+                {' '}
+                Balance:&nbsp;
                 <UnitDisplay
                   value={balance.wei}
                   unit={'ether'}

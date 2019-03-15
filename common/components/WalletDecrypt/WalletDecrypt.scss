@@ -32,19 +32,32 @@ $speed: 1ms;
     width: 100%;
     padding-top: 2px;
     text-align: left;
-    // padding-left: 20px;
     line-height: 1.4;
-    margin: 0 0 1rem;
+    margin: 0;
+    font-weight: 400;
+    font-size: 16px;
+    left: $electron-sidebar-width + 20px;
+    // @include decrypt-title;
+    background-color: white;
+    // z-index: 1030;
+    padding-bottom: 30px;
+    // border-bottom: 1px solid color(n40);
+  }
+
+  &-topsection {
+    width: 100%;
+    padding-top: 2px;
+    text-align: left;
+    line-height: 1.4;
+    margin: 0;
     font-weight: 400;
     font-size: 16px;
     left: $electron-sidebar-width + 20px;
     // @include decrypt-title;
     background-color: white;
     z-index: 1030;
-    // margin-top: -30px;
-    padding-bottom: 10px;
-    // border-bottom: solid .5px color(n20);
-
+    padding-bottom: 30px;
+    border-bottom: 1px solid color(n40);
   }
 
   &-wallets {
@@ -109,10 +122,10 @@ $speed: 1ms;
     position: relative;
     text-align: left;
     height: 100%;
-    border: solid 1px color(n40);
+    // border: solid 1px color(n40);
     border-radius: 6px;
     margin: 0 auto;
-    padding: 1rem 1rem 4px 1rem;
+    // padding: 1rem 1rem 4px 1rem;
     max-width: 55%;
     top: 70px;
 
@@ -154,9 +167,8 @@ $speed: 1ms;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      // max-width: 600px;
-      // width: 70%;
       margin: 0 auto;
+      padding-top: 30px;
 
       .TogglablePassword {
         .input-group-input {

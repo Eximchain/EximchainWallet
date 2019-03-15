@@ -256,18 +256,30 @@ const WalletDecrypt = withRouter<Props>(
         <div className="WalletDecrypt-decrypt">
           <h2 className="WalletDecrypt-title">
             {!selectedWallet.isReadOnly &&
-              translate('UNLOCK_WALLET', {
+              translate('WALLET_TYPE', {
                 $wallet: translateRaw(selectedWallet.lid)
               })}
+
             <button
               className="FormBackButton fa fa-chevron-left"
               onClick={this.clearWalletChoice}
             />
-
-            {this.buildWalletOptionDropdown()}
           </h2>
+          <div className="WalletDecrypt-topsection">{this.buildWalletOptionDropdown()}</div>
 
           <section className="WalletDecrypt-decrypt-form">
+            <h2 className="WalletDecrypt-title">
+              {!selectedWallet.isReadOnly &&
+                translate('UNLOCK_WALLET', {
+                  $wallet: translateRaw(selectedWallet.lid)
+                })}
+              {
+                // <button
+                //   className="FormBackButton fa fa-chevron-left"
+                //   onClick={this.clearWalletChoice}
+                // />
+              }
+            </h2>
             <Errorable
               errorMessage={`Oops, looks like ${translateRaw(
                 selectedWallet.lid

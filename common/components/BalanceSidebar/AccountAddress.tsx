@@ -71,13 +71,10 @@ class AccountAddress extends React.Component<Props, State> {
 
     return (
       <div>
-        <h2 className="AccountInfo-section-top-header">{translate('SIDEBAR_ACCOUNTHEADER')}</h2>
-
         <div className="flex-wrapper">
-          <div className="AccountInfo-address-icon">
-            <Identicon address={address} size="100%" />
-          </div>
           <div className="AccountInfo-section-top-header">
+            {translate('SIDEBAR_ACCOUNTHEADER')}
+
             <Address address={address} />
             <CopyToClipboard onCopy={this.handleCopy} text={address}>
               <div
@@ -88,17 +85,20 @@ class AccountAddress extends React.Component<Props, State> {
                 <span>{translateRaw(copied ? 'COPIED' : '')}</span>
               </div>
             </CopyToClipboard>
-
-            <div className="AccountInfo-address-wrapper">
-              {labelContent}
-              <div className="AccountInfo-label" title={translateRaw('EDIT_LABEL_2')}>
-                {labelButton}
-              </div>
-            </div>
           </div>
         </div>
 
-        <div className="AccountInfo-section AccountInfo-address-section" />
+        <div className="AccountInfo-address-icon">
+          <Identicon address={address} size="100%" />
+        </div>
+
+        <div className="AccountInfo-section-top-header" style={{ paddingBottom: 16 + 'px' }} />
+        <div className="AccountInfo-section-label" style={{ paddingBottom: 10 + 'px' }}>
+          {labelContent}
+          <div className="AccountInfo-label" title={translateRaw('EDIT_LABEL_2')}>
+            {labelButton}
+          </div>
+        </div>
       </div>
     );
   }

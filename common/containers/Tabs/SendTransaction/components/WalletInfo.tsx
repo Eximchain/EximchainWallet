@@ -83,7 +83,7 @@ class WalletInfo extends React.PureComponent<Props, State> {
 
         <div className="Tab-content-pane">
           <div className="row">
-            <div className="col-xs-6">
+            <div className="col-xs-4">
               <label>{translate('TOKEN_ADDR')}</label>
               <div className="WalletInfo-qr well well-lg">
                 <QRCode data={address} />
@@ -91,7 +91,7 @@ class WalletInfo extends React.PureComponent<Props, State> {
             </div>
             {privateKey && (
               <div>
-                <div className="col-xs-6">
+                <div className="col-xs-4">
                   <label>{translate('X_PRIVKEY2')}</label>
                   <div className="WalletInfo-qr well well-lg" onClick={this.togglePrivateKey}>
                     <QRCode data={isPrivateKeyVisible ? privateKey : '0'} />
@@ -103,14 +103,14 @@ class WalletInfo extends React.PureComponent<Props, State> {
                   </div>
                 </div>
 
-                <div className="col-xs-6">
+                <div className="col-xs-4">
                   <label>{translate('WALLET_INFO_UTILITIES')}</label>
 
-                  <button className="btn btn-primary btn-block" onClick={this.openPaperWalletModal}>
+                  <button className="btn btn-default btn-block" onClick={this.openPaperWalletModal}>
                     {translate('X_SAVE_PAPER')}
                   </button>
 
-                  <button className="btn btn-primary btn-block" onClick={this.openKeystoreModal}>
+                  <button className="btn btn-default btn-block" onClick={this.openKeystoreModal}>
                     {translate('GENERATE_KEYSTORE_TITLE')}
                   </button>
                 </div>

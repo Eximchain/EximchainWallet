@@ -79,6 +79,9 @@ class SendTransaction extends React.Component<Props> {
           {wallet && (
             <div className="SubTabs-content row">
               <div className="col-sm-12">
+                <section className="SubTabs-sidebar">
+                  <BalanceSidebar />
+                </section>
                 <Switch>
                   <Route
                     exact={true}
@@ -120,9 +123,6 @@ class SendTransaction extends React.Component<Props> {
 
                   <RouteNotFound />
                 </Switch>
-                <section className="SubTabs-sidebar">
-                  <BalanceSidebar />
-                </section>
               </div>
               <SideBar />
             </div>

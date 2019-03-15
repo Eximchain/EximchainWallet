@@ -1,0 +1,71 @@
+@import 'common/sass/variables';
+@import 'common/sass/mixins';
+
+.ErrorScreenFlexContainer {
+    display: flex;
+    flex:auto;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.ErrorScreenBody {
+    margin-top: -3.236em;
+    flex-direction: column;
+    justify-self: center;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.resultFlexRow{
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    -webkit-flex-direction: row;
+}
+
+.resultContent-header {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+a.errorScreenBtnLink{
+    height: max-content;
+    position: relative;
+    flex: 1;
+    min-width: 300px;
+    margin: 0 $space-sm;
+
+    &:hover,
+    &:focus {
+      z-index: 2;
+
+      .Button-title {
+        // color: shade-dark(.8);
+
+        &-icon {
+          // opacity: .8;
+        }
+      }
+    }
+
+    &:first-child {
+        margin-left: 0;
+    }
+
+    &:last-child {
+        margin-right: 0;
+    }
+
+    &-back {
+        background-color: color(b60);
+        color: color(n0);
+    }
+
+    &-main {
+        background-color: color(n20);
+        color: color(n800);
+    }
+}

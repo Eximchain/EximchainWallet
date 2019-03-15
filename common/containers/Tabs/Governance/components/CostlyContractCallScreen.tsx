@@ -26,6 +26,7 @@ import './InteractExplorer/InteractExplorer.scss';
 import { ContractFuncNames } from '..';
 
 import '../index.scss';
+import ErrorScreen from './ErrorScreen';
 
 interface StateProps {
   nodeLib: INode;
@@ -54,7 +55,8 @@ interface OwnProps {
 enum ContractFlowStages {
   CONSTRUCT_TRANSACTION_SCREEN = 'construct transaction screen',
   SUBMIT_TRANSACTION_SCREEN = 'submit transaction screen',
-  RESULT_SCREEN = 'result screen'
+  RESULT_SCREEN = 'result screen',
+  ERROR_SCREEN = 'error screen'
 }
 
 interface State {
@@ -109,16 +111,16 @@ export class ContractCallClass extends Component<Props, State> {
   }
 
   public componentDidUpdate(prevProps: Props) {
-    if (
-      prevProps.txBroadcasted == false &&
-      this.props.txBroadcasted &&
-      !this.props.currentTransactionFailed
-    ) {
-      const broadcastedHash = this.props.broadcastState[
-        this.props.currentTransactionIndex.indexingHash
-      ].broadcastedHash;
-      this.setState({ broadcastHash: broadcastedHash });
-      this.goTo(ContractFlowStages.RESULT_SCREEN);
+    if (prevProps.txBroadcasted == false && this.props.txBroadcasted) {
+      if (this.props.currentTransactionFailed) {
+        this.goTo(ContractFlowStages.ERROR_SCREEN);
+      } else {
+        const broadcastedHash = this.props.broadcastState[
+          this.props.currentTransactionIndex.indexingHash
+        ].broadcastedHash;
+        this.setState({ broadcastHash: broadcastedHash });
+        this.goTo(ContractFlowStages.RESULT_SCREEN);
+      }
     }
   }
 
@@ -268,6 +270,8 @@ export class ContractCallClass extends Component<Props, State> {
           />
         );
         break;
+      case ContractFlowStages.ERROR_SCREEN:
+        body = <ErrorScreen backToGovernance={this.props.goBack} />;
     }
     return (
       <React.Fragment>

@@ -63,7 +63,9 @@ class WalletInfo extends React.PureComponent<Props, State> {
     return (
       <div className="WalletInfo">
         <div className="Tab-content-pane">
-          <AddressField isSelfAddress={true} />
+          {
+            // <AddressField isSelfAddress={true} />
+          }
 
           {privateKey && (
             <div className="row form-group">

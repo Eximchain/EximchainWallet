@@ -73,8 +73,6 @@ class AccountAddress extends React.Component<Props, State> {
       <div>
         <div className="flex-wrapper">
           <div className="AccountInfo-section-top-header">
-            {translate('SIDEBAR_ACCOUNTHEADER')}
-
             <Address address={address} />
             <CopyToClipboard onCopy={this.handleCopy} text={address}>
               <div
@@ -91,9 +89,7 @@ class AccountAddress extends React.Component<Props, State> {
         <div className="AccountInfo-address-icon">
           <Identicon address={address} size="100%" />
         </div>
-
-        <div className="AccountInfo-section-top-header" style={{ paddingBottom: 16 + 'px' }} />
-        <div className="AccountInfo-section-label" style={{ paddingBottom: 10 + 'px' }}>
+        <div className="AccountInfo-section-label">
           {labelContent}
           <div className="AccountInfo-label" title={translateRaw('EDIT_LABEL_2')}>
             {labelButton}
@@ -130,6 +126,7 @@ class AccountAddress extends React.Component<Props, State> {
       labelContent = (
         <React.Fragment>
           <Input
+            className="AccountInfo-add"
             title={translateRaw('ADD_LABEL')}
             placeholder={translateRaw('NEW_LABEL')}
             defaultValue={addressLabel}
@@ -158,7 +155,12 @@ class AccountAddress extends React.Component<Props, State> {
     const { editingLabel } = this.state;
     const labelButton = editingLabel ? (
       <React.Fragment>
-        <span role="button" title={translateRaw('SAVE_LABEL')} onClick={this.stopEditingLabel}>
+        <span
+          className="AccountInfo-save"
+          role="button"
+          title={translateRaw('SAVE_LABEL')}
+          onClick={this.stopEditingLabel}
+        >
           {translate('SAVE_LABEL')}
         </span>
       </React.Fragment>
@@ -168,7 +170,7 @@ class AccountAddress extends React.Component<Props, State> {
           role="button"
           title={addressLabel ? translateRaw('EDIT_LABEL') : translateRaw('ADD_LABEL_9')}
           onClick={this.startEditingLabel}
-          className="AccountInfo-label"
+          className={addressLabel ? 'AccountInfo-edit' : 'AccountInfo-add'}
         >
           {addressLabel ? translate('EDIT_LABEL') : translate('ADD_LABEL_9')}
         </span>

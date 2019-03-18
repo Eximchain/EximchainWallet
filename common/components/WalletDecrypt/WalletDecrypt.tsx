@@ -149,7 +149,7 @@ const WalletDecrypt = withRouter<Props>(
         component: TrezorDecrypt,
         initialParams: {},
         unlock: this.props.setWallet,
-        helpLink: 'https://support.eximchain.com/'
+        helpLink: 'https://eximchain.zendesk.com/hc/en-us/'
       },
       [InsecureWalletName.KEYSTORE_FILE]: {
         lid: 'X_KEYSTORE2',

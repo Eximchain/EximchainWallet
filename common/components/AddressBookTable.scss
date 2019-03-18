@@ -107,6 +107,7 @@
       .btn {
         margin-left: $space-sm;
         height: $space-lg * 2;
+        margin-bottom: 0;
 
         @media (max-width: 650px) {
           align-self: flex-end;

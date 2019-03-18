@@ -136,7 +136,7 @@ yarn test:int
 └── webpack_config - Webpack configuration
 ```
 
-### More information is available on the [Wiki Pages](https://support.eximchain.com)
+### More information is available on the [Wiki Pages](https://eximchain.zendesk.com/hc/en-us)
 
 ## Thanks & Support
 

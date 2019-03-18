@@ -77,74 +77,75 @@ class AccountInfo extends React.Component<Props, State> {
     const { address, showLongBalance, confirmAddr } = this.state;
 
     return (
-      <div className="AccountInfo">
-        <AccountAddress address={toChecksumAddress(address)} />
+      <div>
+        <div className="AccountInfo-section-header">{translate('SIDEBAR_ACCOUNTHEADER')}</div>
+        <div className="AccountInfo">
+          <AccountAddress address={toChecksumAddress(address)} />
 
-        {isHardwareWallet(wallet) && (
-          <div className="AccountInfo-section">
-            <a
-              className="AccountInfo-address-hw-addr"
-              onClick={() => {
-                this.toggleConfirmAddr();
-                wallet
-                  .displayAddress()
-                  .then(() => this.toggleConfirmAddr())
-                  .catch((e: Error | string) => {
-                    console.error('Display address failed', e);
-                    this.toggleConfirmAddr();
-                  });
-              }}
-            >
-              {confirmAddr
-                ? null
-                : translate('SIDEBAR_DISPLAY_ADDR', { $wallet: wallet.getWalletType() })}
-            </a>
-            {confirmAddr ? (
-              <span className="AccountInfo-address-confirm">
-                <Spinner /> Confirm address on {wallet.getWalletType()}
-              </span>
-            ) : null}
-          </div>
-        )}
-
-        <div className="AccountInfo-section">
-          <ul className="AccountInfo-list">
-            <li className="AccountInfo-list-item AccountInfo-balance">
-              <span
-                className="AccountInfo-list-item-clickable AccountInfo-balance-amount wrap"
-                onClick={this.toggleShowLongBalance}
+          {isHardwareWallet(wallet) && (
+            <div className="AccountInfo-section">
+              <a
+                className="AccountInfo-address-hw-addr"
+                onClick={() => {
+                  this.toggleConfirmAddr();
+                  wallet
+                    .displayAddress()
+                    .then(() => this.toggleConfirmAddr())
+                    .catch((e: Error | string) => {
+                      console.error('Display address failed', e);
+                      this.toggleConfirmAddr();
+                    });
+                }}
               >
-                {' '}
-                Balance:&nbsp;
-                <UnitDisplay
-                  value={balance.wei}
-                  unit={'ether'}
-                  displayShortBalance={!showLongBalance}
-                  checkOffline={true}
-                  symbol={balance.wei ? this.setSymbol(network) : null}
-                />
-              </span>
-              {balance.wei && (
-                <React.Fragment>
-                  {balance.isPending ? (
-                    <Spinner />
-                  ) : (
-                    !isOffline && (
-                      <button
-                        className="AccountInfo-section-refresh"
-                        onClick={this.props.refreshAccountBalance}
-                      >
-                        <i className="fa fa-refresh" />
-                      </button>
-                    )
-                  )}
-                </React.Fragment>
-              )}
-            </li>
-          </ul>
-        </div>
+                {confirmAddr
+                  ? null
+                  : translate('SIDEBAR_DISPLAY_ADDR', { $wallet: wallet.getWalletType() })}
+              </a>
+              {confirmAddr ? (
+                <span className="AccountInfo-address-confirm">
+                  <Spinner /> Confirm address on {wallet.getWalletType()}
+                </span>
+              ) : null}
+            </div>
+          )}
 
-        {/* {(!!blockExplorer || !!tokenExplorer) && (
+          <div className="AccountInfo-section">
+            <ul className="AccountInfo-list">
+              <li className="AccountInfo-list-item AccountInfo-balance">
+                <span
+                  className="AccountInfo-list-item-clickable AccountInfo-balance-amount wrap"
+                  onClick={this.toggleShowLongBalance}
+                >
+                  {' '}
+                  <UnitDisplay
+                    value={balance.wei}
+                    unit={'ether'}
+                    displayShortBalance={!showLongBalance}
+                    checkOffline={true}
+                    symbol={balance.wei ? this.setSymbol(network) : null}
+                  />
+                </span>
+                {balance.wei && (
+                  <React.Fragment>
+                    {balance.isPending ? (
+                      <Spinner />
+                    ) : (
+                      !isOffline && (
+                        <button
+                          className="AccountInfo-section-refresh"
+                          onClick={this.props.refreshAccountBalance}
+                        >
+                          <i className="fa fa-refresh" />
+                        </button>
+                      )
+                    )}
+                  </React.Fragment>
+                )}
+              </li>
+            </ul>
+          </div>
+
+          {/* {(!!blockExplorer || !!tokenExplorer) && (
           <div className="AccountInfo-section">
             <h5 className="AccountInfo-section-header">{translate('SIDEBAR_TRANSHISTORY')}</h5>
             <ul className="AccountInfo-list">
@@ -172,6 +173,7 @@ class AccountInfo extends React.Component<Props, State> {
             </ul>
           </div>
         )} */}
+        </div>
       </div>
     );
   }

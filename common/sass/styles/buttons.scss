@@ -202,7 +202,7 @@
 .btn-quiet-neutral {
   min-width: 0 !important;
   @include button-variant(
-    color(control-color),
+    color(n600),
     color(control-bg),
     none,
     color(n20),

@@ -129,6 +129,14 @@ $speed: 1ms;
     max-width: 55%;
     top: 70px;
 
+    .FormBackButton {
+      margin-right: 4px;
+      float: left;
+      margin-top: 0;
+      margin-left: 0;
+      padding-left: 0;
+    }
+
 
 
     @media (max-width: $screen-md) {

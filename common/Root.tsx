@@ -120,7 +120,7 @@ class RootClass extends Component<Props, State> {
             </React.Fragment>
           </Router>
         </Provider>
-        <div className="ModalContainer" id="ModalContainer" />
+        <div id="ModalContainer" />
       </React.Fragment>
     );
   }

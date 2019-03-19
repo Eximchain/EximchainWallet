@@ -63,7 +63,7 @@ class MnemonicDecryptClass extends PureComponent<Props, State> {
               onEnter={isValidMnemonic ? this.onDWModalOpen : undefined}
             />
           </div>
-          <div className="form-group">
+          <div className="input-group">
             <p className="input-group-header">{translate('ADD_LABEL_8')}</p>
             <Input
               isValid={true}

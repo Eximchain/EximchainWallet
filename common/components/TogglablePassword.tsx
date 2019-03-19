@@ -67,7 +67,7 @@ export default class TogglablePassword extends React.PureComponent<Props, State>
     const { isVisible } = this.state;
 
     return (
-      <div className={`TogglablePassword input-group input-group-inline`}>
+      <div className={`TogglablePassword input-group`}>
         {isTextareaWhenVisible && isVisible ? (
           <TextArea
             isValid={!!isValid}
@@ -91,7 +91,7 @@ export default class TogglablePassword extends React.PureComponent<Props, State>
             name={name}
             disabled={disabled}
             type={isVisible ? 'text' : 'password'}
-            className={`${className} border-rad-right-0 border-right-0`}
+            className={`${className}`}
             placeholder={placeholder}
             onChange={onChange}
             onFocus={onFocus}

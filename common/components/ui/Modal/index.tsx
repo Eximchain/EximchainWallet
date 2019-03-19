@@ -35,7 +35,7 @@ interface ModalStyle {
 }
 
 const Fade = ({ ...props }: any) => (
-  <CSSTransition {...props} timeout={300} classNames="animate-modal" />
+  <CSSTransition {...props} timeout={50} classNames="animate-modal" />
 );
 
 export default class Modal extends PureComponent<Props, {}> {

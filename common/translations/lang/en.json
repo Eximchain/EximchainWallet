@@ -227,7 +227,7 @@
     "SCHEDULE_WINDOW_SIZE_TOOLTIP_TIME": "Range of minutes during which the transaction may be executed. ",
     "SCHEDULE_WINDOW_SIZE_TOOLTIP_BLOCK": "Range of blocks during which the transaction may be executed. ",
     "SEND_GAS": "Gas ",
-    "SEND_TRANSFERTOTAL": "Add entire balance ",
+    "SEND_TRANSFERTOTAL": "Add Entire Balance ",
     "SEND_GENERATE": "Generate transaction ",
     "SEND_RAW": "Raw transaction ",
     "SEND_SIGNED": "Signed transaction ",

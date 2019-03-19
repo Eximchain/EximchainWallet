@@ -24,19 +24,32 @@ export const AmountField: React.SFC<Props> = ({
     withProps={({ currentValue: { raw }, isValid, onChange, readOnly }) => (
       <div className="AmountField input-group-wrapper">
         <label className="AmountField-group input-group">
-          <div className="input-group-inline">
-            <div className="input-group-header">{translate('SEND_AMOUNT_SHORT')}</div>
-            <Input
-              isValid={isAmountValid(raw, customValidator, isValid)}
-              type="number"
-              placeholder="1"
-              value={raw}
-              readOnly={!!readOnly}
-              onChange={onChange}
-              showInvalidWithoutValue={showInvalidWithoutValue}
-            />
+          <div>
+            <div className="input-group">
+              <div className="input-group-header">{translate('SEND_AMOUNT_SHORT')}</div>
+              <Input
+                isValid={isAmountValid(raw, customValidator, isValid)}
+                type="number"
+                placeholder="1"
+                value={raw}
+                readOnly={!!readOnly}
+                onChange={onChange}
+                showInvalidWithoutValue={showInvalidWithoutValue}
+              />
+            </div>
+            <div
+              style={{
+                position: 'absolute',
+                right: '12px',
+                top: '20px',
+                color: '#6B7C92',
+                fontSize: '15px',
+                fontWeight: '300'
+              }}
+            >
+              EXC
+            </div>
             {hasSendEverything && <SendEverything />}
-            {hasUnitDropdown && <UnitDropDown showAllTokens={showAllTokens} />}
           </div>
         </label>
       </div>

@@ -1,6 +1,8 @@
 import React from 'react';
 import { CostlyContractCallName } from '..';
 import { translateRaw } from 'translations';
+import { Link } from 'react-router-dom';
+
 import './ResultScreen.scss';
 import { Button } from './Button';
 import voteIllustration from 'assets/images/vote-or-nominate.svg';
@@ -66,12 +68,12 @@ class ResultScreen extends React.Component<Props, State> {
                   >
                     Verify on blk.io
                   </a>
-                  <a
+                  <Link
+                    to={`/tx-status?txHash=${this.props.txHash}`}
                     className="resultScreenBtnLink btn btn-default resultScreenBtnLink-main"
-                    href={`tx-status?txHash=${this.props.txHash}`}
                   >
                     Check transaction status
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

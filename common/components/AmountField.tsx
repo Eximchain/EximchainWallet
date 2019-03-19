@@ -41,9 +41,9 @@ export const AmountField: React.SFC<Props> = ({
               style={{
                 position: 'absolute',
                 right: '12px',
-                top: '22px',
+                top: '20px',
                 color: '#6B7C92',
-                fontSize: '14px',
+                fontSize: '15px',
                 fontWeight: '300'
               }}
             >

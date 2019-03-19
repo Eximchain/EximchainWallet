@@ -11,6 +11,7 @@
   .table > thead > tr > th, .table > thead > tr > td, .table > tbody > tr > th, .table > tbody > tr > td, .table > tfoot > tr > th, .table > tfoot > tr > td {
 
     vertical-align: middle;
+    border-top: none;
 }
 
   tr {
@@ -125,7 +126,23 @@
 
   }
 
+  .table-heading {
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    font-size: $font-size-xs-bump;
+    color: color(gray);
+    border-bottom: 1px solid color(n20);
+  }
 
+  .table-tokenAmount {
+    text-align: right;
+    font-feature-settings: 'tnum' 1;
+
+  }
+
+  .table-addressNumber {
+    text-align: left;
+  }
   &-path {
     margin-bottom: 20px;
 
@@ -167,11 +184,10 @@
     overflow-y: auto;
 
     &-table {
-      width: 732px;
+      width: 650px;
       text-align: left;
       margin: auto;
       margin-bottom: 10px;
-      font-feature-settings: 'tnum' 1;
       font-size: $font-size-small;
 
 
@@ -184,12 +200,7 @@
 
 
 
-      .table-heading {
-        text-transform: uppercase;
-        letter-spacing: 0.4px;
-        font-size: $font-size-small;
-        color: color(gray);
-      }
+
 
       &-token {
         width: 82px;
@@ -204,7 +215,7 @@
         font-family: $font-family-base;
         display: flex;
         align-items: center;
-        font-feature-settings: 'ss02' 1;
+        // width: max-content;
 
         &-label {
           text-transform: uppercase;
@@ -219,6 +230,8 @@
 
         &-text {
           font-size: 14px;
+          font-feature-settings: 'ss02' 1;
+
         }
       }
 
@@ -260,9 +273,14 @@
 
         &:first-child {
           margin-left: 0;
+          width: auto;
         }
         &:last-child {
           margin-right: 0;
+          width: auto;
+          float: right;
+
+
         }
       }
     }

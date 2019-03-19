@@ -9,34 +9,34 @@ $m-window-padding-h-mobile: 10px;
 $m-header-height: 62px;
 $m-header-padding: 2rem 2rem 2rem 2rem;
 $m-content-padding: 0 2rem 0.5rem 2rem;
-$m-footer-padding: 0.5rem 2rem 1rem 2rem;
+$m-footer-padding: 0.5rem 2rem 2rem 2rem;
 $m-close-size: 26px;
 $m-anim-speed: 400ms;
 
 .Modal {
-  position: fixed;
-  top: $m-window-padding-h;
+  position: absolute;
+  top: 50%;
   left: 50%;
-  width: initial;
+  transform: translate(-50%, -50%) !important;
+  width: auto;
   max-width: 95%;
   max-width: calc(100% - #{$m-window-padding-w * 2});
   max-height: 95%;
   max-height: calc(100% - #{$m-window-padding-h * 2});
   background: $m-background;
   border-radius: 6px;
-  transform: translateX(-50%);
+  // transform: translateX(-50%);
   z-index: $zindex-modal;
   overflow: hidden;
   animation: modal-open $m-anim-speed ease 1;
   text-align: left;
   display: flex;
   flex-direction: column;
-
   // height: 100%;
   // justify-content: center;
   // padding-bottom: 100px;
-  box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, 0.1), 0px 16px 24px 2px rgba(0, 0, 0, 0.07),
-    0px 6px 20px 5px rgba(0, 0, 0, 0.06);
+  // box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, 0.1), 0px 16px 24px 2px rgba(0, 0, 0, 0.07),
+  //   0px 6px 20px 5px rgba(0, 0, 0, 0.06);
 
   &-overlay {
     position: fixed;
@@ -44,7 +44,7 @@ $m-anim-speed: 400ms;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(#000, 0.54);
+    background-color: rgba(#000, 0.4);
     z-index: $zindex-modal-background;
     display: block;
   }
@@ -70,7 +70,7 @@ $m-anim-speed: 400ms;
     align-items: center;
 
     &-title {
-      font-size: 1.25rem;
+      font-size: $font-size-bump;
       font-weight: 400;
       margin: 0;
       white-space: nowrap;

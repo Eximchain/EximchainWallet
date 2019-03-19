@@ -63,12 +63,15 @@ class WalletInfo extends React.PureComponent<Props, State> {
     return (
       <div className="WalletInfo">
         <div className="Tab-content-pane">
-          <AddressField isSelfAddress={true} />
+          <h6 className="ViewSendHeading">Wallet Info</h6>
+          {
+            // <AddressField isSelfAddress={true} />
+          }
 
           {privateKey && (
             <div className="row form-group">
               <div className="col-xs-12">
-                <label>{translate('X_PRIVKEY')}</label>
+                <label className="AccountInfo-section-header">{translate('X_PRIVKEY')}</label>
                 <TogglablePassword
                   disabled={true}
                   value={privateKey}
@@ -84,7 +87,7 @@ class WalletInfo extends React.PureComponent<Props, State> {
         <div className="Tab-content-pane">
           <div className="row">
             <div className="col-xs-4">
-              <label>{translate('TOKEN_ADDR')}</label>
+              <label className="AccountInfo-section-header">{translate('TOKEN_ADDR')}</label>
               <div className="WalletInfo-qr well well-lg">
                 <QRCode data={address} />
               </div>
@@ -92,7 +95,7 @@ class WalletInfo extends React.PureComponent<Props, State> {
             {privateKey && (
               <div>
                 <div className="col-xs-4">
-                  <label>{translate('X_PRIVKEY2')}</label>
+                  <label className="AccountInfo-section-header">{translate('X_PRIVKEY2')}</label>
                   <div className="WalletInfo-qr well well-lg" onClick={this.togglePrivateKey}>
                     <QRCode data={isPrivateKeyVisible ? privateKey : '0'} />
                     {!isPrivateKeyVisible && (
@@ -104,7 +107,9 @@ class WalletInfo extends React.PureComponent<Props, State> {
                 </div>
 
                 <div className="col-xs-4">
-                  <label>{translate('WALLET_INFO_UTILITIES')}</label>
+                  <label className="AccountInfo-section-header">
+                    {translate('WALLET_INFO_UTILITIES')}
+                  </label>
 
                   <button className="btn btn-default btn-block" onClick={this.openPaperWalletModal}>
                     {translate('X_SAVE_PAPER')}

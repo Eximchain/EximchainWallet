@@ -78,12 +78,14 @@ class AddressBookTable extends React.Component<Props, State> {
 
     return (
       <section className="AddressBookTable" onKeyDown={this.handleKeyDown}>
+        <h6 className="ViewSendHeading">Address Book</h6>
+
         <div className="AddressBookTable-row AddressBookTable-row-labels">
           <label className="AddressBookTable-row-label" htmlFor="temporaryAddress">
-            {translate('ADDRESS')}
+            {translate('ADDRESSES')}
           </label>
           <label className="AddressBookTable-row-label" htmlFor="temporaryLabel">
-            {translate('LABEL')}
+            {translate('LABELS')}
           </label>
         </div>
         <div className="AddressBookTable-row AddressBookTable-row-inputs">
@@ -93,7 +95,7 @@ class AddressBookTable extends React.Component<Props, State> {
                 className="AddressBookTable-row-input-wrapper-label"
                 htmlFor="temporaryAddress"
               >
-                {translate('ADDRESS')}
+                {translate('ADDRESSES')}
               </label>
               <Input
                 name="temporaryAddress"
@@ -121,7 +123,7 @@ class AddressBookTable extends React.Component<Props, State> {
           <div className="AddressBookTable-row-input">
             <div className="AddressBookTable-row-input-wrapper">
               <label className="AddressBookTable-row-input-wrapper-label" htmlFor="temporaryLabel">
-                {translate('LABEL')}
+                {translate('LABELS')}
               </label>
               <Input
                 name="temporaryLabel"
@@ -136,7 +138,7 @@ class AddressBookTable extends React.Component<Props, State> {
             </div>
             <button
               title={translateRaw('ADD_LABEL')}
-              className="btn btn-sm btn-success"
+              className="btn btn-sm btn-primary"
               onClick={this.handleAddEntry}
             >
               <i className="fa fa-plus" />

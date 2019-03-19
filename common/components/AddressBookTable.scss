@@ -14,8 +14,21 @@
       box-shadow: 0 1px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.12);
     }
 
+    &-labels {
+      margin-bottom: 0;
+    }
+
     &-label {
       flex: 1 0;
+      margin-top: 0;
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: var(--color-gray);
+      text-transform: capitalize;
+      letter-spacing: 0;
+      padding-bottom: 8px;
+      padding-right: 1rem;
     }
 
     &-error {
@@ -59,7 +72,7 @@
 
     &-identicon {
       margin-left: $space-sm;
-      padding-top: .9rem;
+      padding-top: 0rem;
 
       &-mobile {
         width: 30px;
@@ -72,8 +85,9 @@
       }
 
       &-non-mobile {
-        width: 80px;
-        height: 80px;
+        // width: 80px;
+        padding-right: 2rem;
+        // height: 80px;
 
         @media (max-width: 650px) {
           display: none;
@@ -107,6 +121,7 @@
       .btn {
         margin-left: $space-sm;
         height: $space-lg * 2;
+        margin-bottom: 0;
 
         @media (max-width: 650px) {
           align-self: flex-end;

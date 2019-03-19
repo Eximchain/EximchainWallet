@@ -5,13 +5,33 @@
   position: relative;
   padding: 14px 0 8px 0;
   background-color: color(n0);
-  // border: solid 1px color(n40);
+  border: solid 1px color(n40);
   border-radius: 6px;
-  box-shadow: 0 1px 16px 0px rgba(31,47,71,0.12), 0 2px 4px 0 rgba(31,47,71,0.06);
+  // box-shadow: 0 1px 16px 0px rgba(31,47,71,0.12), 0 2px 4px 0 rgba(31,47,71,0.06);
   // box-shadow: 0px 2px 28px rgba(43, 51, 63, 0.18);
+
+  &-save {
+    // position: absolute;
+    opacity: 1 !important;
+    right: 0;
+    // bottom: 2px;
+  }
+  &-add {
+    opacity: 1 !important;
+  }
+
+
+  &-edit {
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
 
   &-padding-top {
     padding-top: 8px;
+  }
+
+  .Identicon-shadow {
+    box-shadow: none;
   }
 
 
@@ -20,9 +40,11 @@
     cursor: pointer;
     color: color(b60);
     font-size: $font-size-xs;
-    // opacity: 0.5;
     transition: $transition;
     margin-right: $space-sm;
+    font-weight: 400;
+    opacity: 0;
+
 
 
     &:hover {
@@ -38,7 +60,6 @@
       margin-right: $space-xs;
       margin-left: 0.1rem;
       font-size: 14px;
-
       padding-left: 8px;
 
     }
@@ -49,6 +70,19 @@
     cursor: pointer;
     color: color(b60);
     font-size: $font-size-xs;
+    float: right;
+    margin-top: 3px;
+
+    &:hover {
+      .AccountInfo-edit {
+        opacity: 1;
+      }
+    }
+
+
+
+
+
 
 
     .fa {
@@ -65,8 +99,29 @@
 
     &-label {
       position: absolute;
-      bottom: 16px;
-      right: 16px;
+      bottom: .8rem;
+      left: 1rem;
+      .input-group-input {
+        margin-bottom: .25rem;
+        padding: 4px;
+        height: auto;
+        text-transform: uppercase;
+        letter-spacing: .4px;
+        font-size: $font-size-xs;
+        font-weight: 400;
+        // position: absolute;
+        // left: 0;
+        // bottom: 0;
+      }
+
+      &:hover {
+
+        .AccountInfo-edit {
+        opacity: 1;
+        }
+
+      }
+      // padding-left: 1rem;
     }
 
     &-header {
@@ -78,8 +133,9 @@
       color: color(gray);
       text-transform: capitalize;
       letter-spacing: 0;
-      padding-left: 20px;
-      padding-right: 20px;
+      // padding-left: 1rem;
+      padding-bottom: 8px;
+      padding-right: 1rem;
     }
 
     h2 {
@@ -88,19 +144,24 @@
 
     &-top-header {
       margin-top: 0;
-      padding-top: 6px;
-      // padding-bottom: 20px;
       display: inline-block;
       font-size: $font-size-base;
+      font-weight: 600;
       color: color(n800);
       text-transform: capitalize;
       letter-spacing: 0;
       // border-bottom: solid 1px color(n20);
       width: 100%;
-      margin-left: 20px;
+      margin-left: 4.5rem;
       flex: 1;
+      padding-top: 6px;
+      padding-right: 1rem;
 
-      padding-right: 20px;
+      &:hover {
+        .AccountInfo-copy {
+          opacity: 1;
+        }
+      }
 
       img {
         height: 20px;
@@ -116,15 +177,16 @@
       padding: 0;
       height: 1.4rem;
       width: 1.2rem;
-      opacity: 0.3;
-      transition: opacity 0.3s;
+      opacity: 0;
+      color: color(b60);
+      transition: opacity 0.5s;
       > img {
         height: inherit;
         width: inherit;
         vertical-align: top;
       }
       &:hover {
-        opacity: 0.54;
+        opacity: 0.5;
       }
       &:active {
         transition: opacity 120ms;
@@ -157,7 +219,11 @@
 
       &-error {
         color: color(r70);
-        margin-bottom: $space-md;
+        font-size: $font-size-xs;
+        // margin-top: -6px;
+        padding-top: 0;
+        margin-bottom: 0;
+
       }
     }
 
@@ -165,12 +231,12 @@
 
     &-icon {
       position: absolute;
-      right: 24px;
+      left: 0;
       top: 16px;
-      width: 30px;
-      height: 30px;
+      width: 46px !important;
+      height: 46px !important;
       margin-right: $space-md;
-      padding-left: 20px;
+      padding-left: 1rem;
 
       // .Identicon {
       //   margin-right: 3px !important;
@@ -202,15 +268,14 @@
       text-overflow: ellipsis;
       word-wrap: break-word;
       text-transform: uppercase;
-      margin-bottom: -5px;
+      margin-bottom: 0;
       letter-spacing: .4px;
-      color: color(n800);
+      color: color(n600);
       width: 100%;
-      background: color(n30);
-      // border: 1px solid black;
+      background: color(n20);
       border-radius: 6px;
       padding: 2px 6px;
-      margin-top: 4px;
+      margin-top: 0;
       margin-right: 8px;
       width: max-content;
 
@@ -238,9 +303,18 @@
       margin-bottom: 0;
       list-style-type: none;
       word-break: break-all;
-      padding-left: 20px;
-      padding-right: 20px;
-      font-size: $font-size-base;
+      padding-left: 4.5rem;
+      margin-bottom: 3rem;
+      padding-right: 1rem;
+      padding-top: .2rem;
+      font-size: 15px;
+      color: color(n800);
+
+      &:hover {
+        .AccountInfo-section-refresh {
+          opacity: 1;
+        }
+      }
 
       &-clickable:hover {
         cursor: pointer;

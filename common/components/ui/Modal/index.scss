@@ -18,14 +18,10 @@ $m-anim-speed: 400ms;
 }
 
 .Modal {
-  position: fixed;
-  top: 10%;
-  // transform: translateY(-50%);
-  // height: auto;
-  // bottom: 50%;
-  // margin-top: auto;
-  // margin-bottom: auto;
-  bottom: 10%;
+  position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) !important;
   left: 50%;
   width: auto;
   max-width: 95%;
@@ -34,7 +30,7 @@ $m-anim-speed: 400ms;
   max-height: calc(100% - #{$m-window-padding-h * 2});
   background: $m-background;
   border-radius: 6px;
-  transform: translateX(-50%);
+  // transform: translateX(-50%);
   z-index: $zindex-modal;
   overflow: hidden;
   animation: modal-open $m-anim-speed ease 1;

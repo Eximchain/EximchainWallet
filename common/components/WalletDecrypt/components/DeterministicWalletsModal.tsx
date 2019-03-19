@@ -152,24 +152,26 @@ class DeterministicWalletsModalClass extends React.PureComponent<Props, State> {
           <div className="DWModal-addresses">
             <table className="DWModal-addresses-table table table-lines table-hover">
               <thead>
-                <tr>
-                  <td className="table-heading">#</td>
-                  <td className="table-heading">Address</td>
-                  <td className="table-heading">{network.unit}</td>
-                  <td>
-                    <select
-                      className="DWModal-addresses-table-token table-heading"
-                      value={desiredToken}
-                      onChange={this.handleChangeToken}
-                    >
-                      <option value="">-Token-</option>
-                      {tokens.map(t => (
-                        <option key={t.symbol} value={t.symbol}>
-                          {t.symbol}
-                        </option>
-                      ))}
-                    </select>
-                  </td>
+                <tr className="table-heading">
+                  <td>#</td>
+                  <td>Address</td>
+                  <td>Balance</td>
+                  {
+                    // <td>
+                    //   <select
+                    //     className="DWModal-addresses-table-token table-heading"
+                    //     value={desiredToken}
+                    //     onChange={this.handleChangeToken}
+                    //   >
+                    //     <option value="">-Token-</option>
+                    //     {tokens.map(t => (
+                    //       <option key={t.symbol} value={t.symbol}>
+                    //         {t.symbol}
+                    //       </option>
+                    //     ))}
+                    //   </select>
+                    // </td>
+                  }
                   {/* <td>{translate('ACTION_5')}</td> */}
                 </tr>
               </thead>
@@ -178,17 +180,17 @@ class DeterministicWalletsModalClass extends React.PureComponent<Props, State> {
           </div>
           <div className="DWModal-addresses-nav">
             <button
-              className="DWModal-addresses-nav-btn btn btn-sm btn-default"
+              className="DWModal-addresses-nav-btn btn btn-sm btn-quiet-neutral"
               disabled={page === 0}
               onClick={this.prevPage}
             >
-              ← {translate('ACTION_4')}
+              ← {translate('ACTION_16')}
             </button>
             <button
-              className="DWModal-addresses-nav-btn btn btn-sm btn-default"
+              className="DWModal-addresses-nav-btn btn btn-sm btn-quiet-neutral"
               onClick={this.nextPage}
             >
-              {translate('ACTION_5')} →
+              {translate('ACTION_15')} →
             </button>
           </div>
         </div>
@@ -287,7 +289,7 @@ class DeterministicWalletsModalClass extends React.PureComponent<Props, State> {
         key={wallet.address}
         onClick={this.selectAddress.bind(this, wallet.address, wallet.index)}
       >
-        <td>{wallet.index + 1}</td>
+        <td className="table-addressNumber">{wallet.index + 1}</td>
         <td className="DWModal-addresses-table-address">
           <input
             type="radio"
@@ -301,7 +303,7 @@ class DeterministicWalletsModalClass extends React.PureComponent<Props, State> {
             <span className={spanClassName}>{wallet.address}</span>
           </div>
         </td>
-        <td>
+        <td className="table-tokenAmount">
           <UnitDisplay
             unit={'ether'}
             value={wallet.value}
@@ -310,19 +312,21 @@ class DeterministicWalletsModalClass extends React.PureComponent<Props, State> {
             checkOffline={true}
           />
         </td>
-        <td>
-          {desiredToken ? (
-            <UnitDisplay
-              decimal={token ? token.decimal : 0}
-              value={token ? token.value : null}
-              symbol={desiredToken}
-              displayShortBalance={true}
-              checkOffline={true}
-            />
-          ) : (
-            <span className="DWModal-addresses-table-na">N/A</span>
-          )}
-        </td>
+        {
+          // <td>
+          //   {desiredToken ? (
+          //     <UnitDisplay
+          //       decimal={token ? token.decimal : 0}
+          //       value={token ? token.value : null}
+          //       symbol={desiredToken}
+          //       displayShortBalance={true}
+          //       checkOffline={true}
+          //     />
+          //   ) : (
+          //     <span className="DWModal-addresses-table-na">N/A</span>
+          //   )}
+          // </td>
+        }
         {/* <td>
           <a
             target="_blank"

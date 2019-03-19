@@ -553,6 +553,10 @@
     "ACTION_12": "Download",
     "ACTION_13": "Download $thing",
     "ACTION_14": "Continue",
+    "ACTION_15": "Next Page",
+    "ACTION_16": "Previous Page",
+
+
     "DOWNLOAD_PHONE_APP": "Download for $os",
     "CONFIRM_HARDWARE_WALLET_TRANSACTION": "Confirm transaction on hardware wallet",
     "WALLET_LOGOUT_MODAL_TITLE": "You are about to log out",

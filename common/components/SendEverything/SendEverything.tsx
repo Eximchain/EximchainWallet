@@ -33,7 +33,6 @@ class SendEverythingClass extends Component<Props> {
             aria-label={translateRaw('SEND_TRANSFERTOTAL')}
           >
             {translate('SEND_TRANSFERTOTAL')}
-            <Tooltip>{translate('SEND_TRANSFERTOTAL')}</Tooltip>
           </button>
         )}
       />

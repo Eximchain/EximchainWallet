@@ -159,7 +159,7 @@ const TransactionDataTable: React.SFC<Props> = ({ data, receipt, network }) => {
 
   const filteredRows = rows.filter(row => !!row.data);
   return (
-    <table className="TxData table table-striped">
+    <table className="TxData table">
       <tbody>
         {filteredRows.map((row, idx) => (
           <tr className="TxData-row" key={idx}>

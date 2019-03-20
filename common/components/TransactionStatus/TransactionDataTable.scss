@@ -1,17 +1,50 @@
 @import 'common/sass/variables';
 @import 'common/sass/mixins';
 
+.table > thead > tr > th, .table > thead > tr > td, .table > tbody > tr > th, .table > tbody > tr > td, .table > tfoot > tr > th, .table > tfoot > tr > td {
+  border-top: none;
+  vertical-align: middle;
+}
+
+td.TxData-row-label {
+
+}
 .TxData {
   &-row {
     font-size: 0.9rem;
+    border-bottom: solid 1px color(n20);
+
+    &:last-child {
+      border-bottom: none;
+
+    }
+
+
+
+
+
+
 
     &-label {
-      font-weight: bold;
-      text-align: right;
+      // font-weight: bold;
+      // text-align: right;
+      color: color(gray);
+      text-transform: uppercase;
+      letter-spacing: .4px;
+      font-size: .8rem;
+      padding-left: 0 !important;
+
     }
 
     &-data {
-      @include mono;
+      // @include mono;
+      padding-right: 0 !important;
+
+
+      a {
+        vertical-align: middle;
+
+      }
 
       &-more {
         margin-left: $space-sm;

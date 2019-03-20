@@ -309,7 +309,6 @@ const WalletDecrypt = withRouter<Props>(
         wallet = this.WALLETS[selectedWalletKey];
       }
       const { reasons } = computedDisabledWallets;
-      console.log(selectedWalletKey, 'dropdown');
       const HardwareWalletMap = HARDWARE_WALLETS.map((walletType: SecureWalletName) => {
         const wallet = this.WALLETS[walletType];
         return {
@@ -360,8 +359,6 @@ const WalletDecrypt = withRouter<Props>(
       var currentWallet = WalletMap.find(obj => {
         return obj.key === selectedWalletKey;
       });
-      console.log(WalletMap);
-      console.log(currentWallet);
       return (
         <Dropdown
           options={WalletMap}
@@ -467,7 +464,6 @@ const WalletDecrypt = withRouter<Props>(
 
     public handleWalletChoice = async (walletType: WalletName) => {
       const wallet = this.WALLETS[walletType];
-      console.log('here', walletType);
       if (!wallet) {
         return;
       }

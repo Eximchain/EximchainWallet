@@ -52,7 +52,9 @@ class MnemonicDecryptClass extends PureComponent<Props, State> {
     return (
       <React.Fragment>
         <div id="selectedTypeKey">
-          <div className="form-group">
+          <div className="input-group">
+            <p className="input-group-header">Seed Phrase</p>
+
             <TogglablePassword
               value={phrase}
               rows={4}

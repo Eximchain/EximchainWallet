@@ -57,6 +57,8 @@ export class PrivateKeyDecrypt extends PureComponent<Props> {
       <form id="selectedTypeKey" onSubmit={this.unlock}>
         <div className="input-group-wrapper">
           <label className="input-group">
+            <p className="input-group-header">Private Key</p>
+
             <TogglablePassword
               value={key}
               rows={4}

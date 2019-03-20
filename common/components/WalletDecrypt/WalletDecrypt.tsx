@@ -43,7 +43,7 @@ import {
   InsecureWalletWarning
 } from './components';
 import './WalletDecrypt.scss';
-import { Dropdown } from '../ui';
+import { Dropdown } from 'components/ui';
 
 interface OwnProps {
   hidden?: boolean;
@@ -309,11 +309,11 @@ const WalletDecrypt = withRouter<Props>(
         wallet = this.WALLETS[selectedWalletKey];
       }
       const { reasons } = computedDisabledWallets;
-      console.log(selectedWalletKey, 'dropdown');
       const HardwareWalletMap = HARDWARE_WALLETS.map((walletType: SecureWalletName) => {
         const wallet = this.WALLETS[walletType];
         return {
           key: walletType,
+          value: walletType,
           label: translateRaw(wallet.lid),
           isDisabled: this.isWalletDisabled(walletType)
         };
@@ -323,6 +323,7 @@ const WalletDecrypt = withRouter<Props>(
         const wallet = this.WALLETS[walletType];
         return {
           key: walletType,
+          value: walletType,
           label: translateRaw(wallet.lid),
           isDisabled: this.isWalletDisabled(walletType)
         };
@@ -332,6 +333,7 @@ const WalletDecrypt = withRouter<Props>(
         const wallet = this.WALLETS[walletType];
         return {
           key: walletType,
+          value: walletType,
           label: translateRaw(wallet.lid),
           isDisabled: this.isWalletDisabled(walletType)
         };
@@ -341,34 +343,29 @@ const WalletDecrypt = withRouter<Props>(
         const wallet = this.WALLETS[walletType];
         return {
           key: walletType,
+          value: walletType,
           label: translateRaw(wallet.lid),
           isDisabled: this.isWalletDisabled(walletType)
         };
       });
+      const WalletMap = [
+        ...HardwareWalletMap,
+        ...SecureWalletMap,
+        ...MiscWalletMap,
+        ...InsecureWalletMap
+      ].filter(function(obj) {
+        return !obj.isDisabled;
+      });
+      var currentWallet = WalletMap.find(obj => {
+        return obj.key === selectedWalletKey;
+      });
       return (
         <Dropdown
-          options={[
-            ...HardwareWalletMap,
-            ...SecureWalletMap,
-            ...MiscWalletMap,
-            ...InsecureWalletMap
-          ].filter(function(obj) {
-            return !obj.isDisabled;
-          })}
-          value={
-            wallet && selectedWalletKey
-              ? {
-                  key: selectedWalletKey,
-                  label: translateRaw(wallet.lid),
-                  isDisabled: this.isWalletDisabled(selectedWalletKey)
-                }
-              : undefined
-          }
+          options={WalletMap}
+          value={currentWallet}
           clearable={false}
-          onChange={({ key, isDisabled }: { key: WalletName; isDisabled: boolean }) => {
-            if (!isDisabled) {
-              this.handleWalletChoice(key);
-            }
+          onChange={({ key }: { key: WalletName }) => {
+            this.handleWalletChoice(key);
           }}
         />
       );
@@ -467,7 +464,6 @@ const WalletDecrypt = withRouter<Props>(
 
     public handleWalletChoice = async (walletType: WalletName) => {
       const wallet = this.WALLETS[walletType];
-      console.log('here', walletType);
       if (!wallet) {
         return;
       }

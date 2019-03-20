@@ -40,8 +40,8 @@ export const AmountField: React.SFC<Props> = ({
             <div
               style={{
                 position: 'absolute',
-                right: '12px',
-                top: '20px',
+                right: '16px',
+                top: '22px',
                 color: '#6B7C92',
                 fontSize: '15px',
                 fontWeight: '300'

@@ -227,16 +227,23 @@
   }
 
   // Mobile handling
+  @media screen and (max-width: $screen-lg) {
+    min-width: 31.8%;
+    max-width: 31.8%;
+  }
   @media screen and (max-width: $screen-md) {
-    min-width: 220px;
+    min-width: 31.2%;
+    max-width: 31.2%;
   }
   @media screen and (max-width: $screen-sm) {
-    min-width: 200px;
+    min-width: 31.2%;
+    max-width: 31.2%;
   }
   @media screen and (max-width: $screen-xs) {
     padding: 14px;
     margin-bottom: 10px;
-    min-width: 200px;
+    min-width: 31.2%;
+    max-width: 31.2%;
 
 
     &,

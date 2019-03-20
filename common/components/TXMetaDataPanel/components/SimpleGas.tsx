@@ -137,6 +137,9 @@ class SimpleGas extends React.Component<Props> {
               <span>{translate('TX_FEE_SCALE_LEFT')}</span>
               <span>{translate('TX_FEE_SCALE_RIGHT')}</span>
             </div>
+            <button onClick={() => this.setGasPrice('low')}>Slow</button>
+            <button onClick={() => this.setGasPrice('average')}>Average</button>
+            <button onClick={() => this.setGasPrice('fast')}>Fast</button>
           </div>
           <FeeSummary
             gasPrice={gasPrice}
@@ -147,6 +150,19 @@ class SimpleGas extends React.Component<Props> {
       </div>
     );
   }
+
+  private setGasPrice = (speed: string) => {
+    if (speed === 'low') {
+      const gasGwei = 5;
+      this.props.inputGasPrice(gasGwei.toString());
+    } else if (speed === 'average') {
+      const gasGwei = 12;
+      this.props.inputGasPrice(gasGwei.toString());
+    } else if (speed === 'fast') {
+      const gasGwei = 20;
+      this.props.inputGasPrice(gasGwei.toString());
+    }
+  };
 
   private handleSlider = (gasGwei: number) => {
     this.props.inputGasPrice(gasGwei.toString());

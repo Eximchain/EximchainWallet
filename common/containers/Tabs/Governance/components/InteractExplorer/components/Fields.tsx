@@ -73,7 +73,6 @@ export class FieldsClass extends Component<Props> {
             <TXMetaDataPanel
               className="form-group"
               initialState="advanced"
-              disableToggle={true}
               advancedGasOptions={{ dataField: true }}
               shouldTransactionReset={false}
               autoGenGasLimit={false}

@@ -4,6 +4,37 @@
   margin-top: 0;
   margin-bottom: 0;
 
+  &-buttonRow {
+    margin: 1rem -.5rem;
+    display: flex;
+  }
+
+  &-button {
+    flex: 1;
+    background: color(n0);
+    border: 1px solid color(n40);
+    border-radius: 6px;
+    color: color(n600);
+    font-size: $font-size-small;
+    padding: .25rem 1rem;
+    margin: 0 .5rem;
+
+    &:first{
+      margin-left: 0;
+    }
+
+    p {
+      font-size: $font-size-xs;
+      margin-bottom: 0;
+    }
+
+    &:focus {
+      background: color(b0);
+      border-color: color(b50);
+      color: color(n800);
+    }
+  }
+
   .FeeSummary {
     // padding: 0 !important;
     // width: 100%;

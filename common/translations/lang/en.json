@@ -533,7 +533,7 @@
     "REGENERATE_MNEMONIC": "Regenerate Phrase",
     "CONFIRM_MNEMONIC": "Confirm Phrase",
     "REVEAL_NEXT_MNEMONIC": "Reveal Next Word",
-    "MNEMONIC_CHOOSE_ADDR": "Choose address",
+    "MNEMONIC_CHOOSE_ADDR": "Choose Address",
     "MNEMONIC_DESCRIPTION_1": "Click the words of your phrase in order. If you've forgotten the next word, click the 'Reveal Next Word' button below.",
     "MNEMONIC_DESCRIPTION_2": "Write these words down. Do not copy them to your clipboard, or save them anywhere online.",
     "MODAL_BACK": "Back",

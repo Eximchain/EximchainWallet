@@ -137,9 +137,20 @@ class SimpleGas extends React.Component<Props> {
               <span>{translate('TX_FEE_SCALE_LEFT')}</span>
               <span>{translate('TX_FEE_SCALE_RIGHT')}</span>
             </div>
-            <button onClick={() => this.setGasPrice('low')}>Slow</button>
-            <button onClick={() => this.setGasPrice('average')}>Average</button>
-            <button onClick={() => this.setGasPrice('fast')}>Fast</button>
+            <div className="SimpleGas-buttonRow">
+              <button className="SimpleGas-button" onClick={() => this.setGasPrice('low')}>
+                Slow
+                <p> 4 Gwei </p>
+              </button>
+              <button className="SimpleGas-button" onClick={() => this.setGasPrice('average')}>
+                Average
+                <p> 12 Gwei </p>
+              </button>
+              <button className="SimpleGas-button" onClick={() => this.setGasPrice('fast')}>
+                Fast
+                <p> 20 Gwei </p>
+              </button>
+            </div>
           </div>
           <FeeSummary
             gasPrice={gasPrice}

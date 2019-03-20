@@ -239,7 +239,7 @@
     "TOKEN_SHOW": "Show all tokens ",
     "TOKEN_HIDE": "Hide tokens ",
     "TRANS_ADVANCED": "Show Advanced",
-    "TRANS_SIMPLE": "Hide Advanced",
+    "TRANS_SIMPLE": "Show Simple",
     "TRANS_DATA": "Data ",
     "TRANS_GAS": "Gas limit ",
     "TRANS_AUTO_GAS_TOGGLE": "Automatically calculate gas limit",

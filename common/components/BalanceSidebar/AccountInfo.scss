@@ -10,6 +10,25 @@
   // box-shadow: 0 1px 16px 0px rgba(31,47,71,0.12), 0 2px 4px 0 rgba(31,47,71,0.06);
   // box-shadow: 0px 2px 28px rgba(43, 51, 63, 0.18);
 
+  &-address-hw-addr {
+    padding-left: 4.5rem;
+    font-size: 15px;
+
+  }
+
+  &-address-confirm {
+    padding-left: 4.5rem;
+    margin-top: -1.3rem;
+    font-size: 15px;
+    .Spinner {
+      margin-right: 8px !important;
+
+      circle {
+      stroke: color(b60);
+      }
+    }
+  }
+
   &-save {
     // position: absolute;
     opacity: 1 !important;
@@ -92,6 +111,10 @@
 
   &-section {
     margin: 0 0 $space 0;
+
+    &-address-hw-addr {
+      margin-bottom: 0;
+    }
 
     &:first-child {
       margin-top: 0;

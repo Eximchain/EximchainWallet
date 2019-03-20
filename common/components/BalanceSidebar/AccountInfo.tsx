@@ -83,7 +83,7 @@ class AccountInfo extends React.Component<Props, State> {
           <AccountAddress address={toChecksumAddress(address)} />
 
           {isHardwareWallet(wallet) && (
-            <div className="AccountInfo-section">
+            <div className="AccountInfo-section-hw-addr">
               <a
                 className="AccountInfo-address-hw-addr"
                 onClick={() => {

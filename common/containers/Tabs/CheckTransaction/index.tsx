@@ -57,17 +57,19 @@ class CheckTransaction extends React.Component<Props, State> {
               <h2 className="CheckTransaction-form-topsection-title">
                 {translate('CHECK_TX_STATUS_TITLE')}
               </h2>
+              {/*
               <p className="CheckTransaction-form-topsection-desc">
                 {translate('CHECK_TX_STATUS_DESCRIPTION_1')}
-                {/* {!network.isCustom &&
+                 {!network.isCustom &&
                 translate(CHECK_TX_KEY, {
                   $block_explorer: network.blockExplorer.name,
                   $block_explorer_link: network.blockExplorer.origin,
                   // On ETH networks, we also show Etherchain. Otherwise, these variables are ignored
                   $block_explorer_2: etherChainExplorerInst.name,
                   $block_explorer_link_2: etherChainExplorerInst.origin
-                })} */}
+                })}
               </p>
+              */}
             </div>
             <section className="CheckTransaction-form-input">
               <TxHashInput hash={hash} onSubmit={this.handleHashSubmit} />

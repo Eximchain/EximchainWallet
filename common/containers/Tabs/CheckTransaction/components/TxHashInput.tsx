@@ -77,14 +77,16 @@ class TxHashInput extends React.Component<Props, State> {
             <em className="TxHashInput-recent-separator">{translate('OR')}</em>
           </div>
         )}
-
-        <Input
-          value={hash}
-          isValid={hash ? isValidTxHash(hash) : true}
-          placeholder="0x16e521..."
-          className="TxHashInput-field"
-          onChange={this.handleChange}
-        />
+        <div class="input-group">
+          <p class="input-group-header">Transaction Hash</p>
+          <Input
+            value={hash}
+            isValid={hash ? isValidTxHash(hash) : true}
+            placeholder="0x16e521..."
+            className="TxHashInput-field"
+            onChange={this.handleChange}
+          />
+        </div>
 
         {isValidAddress(hash) && (
           <p className="TxHashInput-message help-block is-invalid">

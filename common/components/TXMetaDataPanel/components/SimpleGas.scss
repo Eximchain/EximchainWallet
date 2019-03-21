@@ -6,6 +6,23 @@
   margin-top: 0;
   margin-bottom: 0;
 
+  .fast {
+    .rc-slider-track  {
+    background: color(g70);
+    }
+  }
+  .average {
+    .rc-slider-track  {
+    background: color(y70);
+    }
+  }
+
+  .slow {
+    .rc-slider-track  {
+    background: color(r70);
+    }
+  }
+
 // #averageGas:checked + .label {
 //   background: color(y0);
 // }

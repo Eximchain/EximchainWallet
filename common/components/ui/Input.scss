@@ -5,11 +5,27 @@
   margin: auto;
 }
 
+
 .input-group {
   margin: auto;
   display: flex;
   flex-direction: column;
   // align-items: flex-start;
+
+  // &:active, &:focus {
+  //   .input-group-header {
+  //   color: color(b60);
+  //   }
+  // }
+
+  &:focus-within {
+    .input-group-header {
+      color: color(b60) !important;
+    }
+  }
+
+
+
 
 
   > .TogglablePassword {
@@ -63,14 +79,16 @@
     padding-right: 5px;
     flex-grow: 0;
     margin-bottom: -8px;
-    // overflow: hidden;
     font-weight: 400;
     border-radius: 4px;
-    // align-items: center;
-    // flex-wrap: wrap;
     color: color(gray);
     text-transform: capitalize;
     background: color(n0);
+    // align-items: center;
+    // flex-wrap: wrap;
+    // overflow: hidden;
+
+
 
 
     > *:first-child {
@@ -97,6 +115,8 @@
     color: color(control-color);
     transition: border-color 120ms;
     margin-bottom: 1rem;
+
+
 
 
     &[placeholder] {
@@ -133,9 +153,13 @@
       }
       &:focus {
         border-color: color(b50);
+
       }
       &:active {
         border-color: color(b50);
+        .input-group-header {
+        color: color(b60);
+        }
       }
     }
   }
@@ -150,3 +174,9 @@
 textarea.input-group-input {
   // height: initial;
 }
+
+
+//
+// .input-group-input:last-child {
+//     order: -1;
+// }

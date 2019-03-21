@@ -11,10 +11,13 @@
 
   }
   &-toggle {
-    display: block;
+    // display: block;
     margin-left: auto;
     position: relative;
     margin-top: 0;
+    width: max-content;
+    flex: 1;
+    text-align: right;
     // left: -14px;
     // margin-bottom: -14px !important;
 

@@ -44,15 +44,15 @@ export default class NetworkOption extends React.PureComponent<Props> {
               <small className="NetworkOption-label-name-badge">({translate('TESTNET')})</small>
             )}
           </div>
-          <button
+          {/* <button
             className={classnames('NetworkOption-label-expand', isExpanded && 'is-expanded')}
             onClick={this.handleToggleExpand}
             title={translateRaw('NETWORKS_EXPAND_NODES', { $network: network.name })}
           >
             <i className="fa fa-caret-down" />
-          </button>
+          </button> */}
         </div>
-        {isExpanded && (
+        {/* {isExpanded && (
           <div className="NetworkOption-nodes">
             {singleNodes.map(node => (
               <NodeOption
@@ -64,7 +64,18 @@ export default class NetworkOption extends React.PureComponent<Props> {
               />
             ))}
           </div>
-        )}
+        )} */}
+        <div className="NetworkOption-nodes">
+          {singleNodes.map(node => (
+            <NodeOption
+              key={node.id}
+              node={node}
+              isSelected={node.id === nodeSelection}
+              isAutoSelected={isAutoSelected}
+              select={this.props.selectNode}
+            />
+          ))}
+        </div>
       </div>
     );
   }

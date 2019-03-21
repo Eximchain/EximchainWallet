@@ -1,18 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
-import translate from 'translations';
+import translate, { translateRaw } from 'translations';
 import { navigationLinks } from 'config';
+import { NodeConfig } from 'types/node';
+
 import NavigationLink from 'components/NavigationLink';
 import NetworkSelect from './NetworkSelect';
 import LanguageSelect from './LanguageSelect';
 import NetworkStatus from './NetworkStatus';
-import { configMetaActions, configMetaSelectors } from 'features/config';
+import { configMetaActions, configMetaSelectors, configNodesSelectors } from 'features/config';
 import { AppState } from 'features/reducers';
 import './ElectronNav.scss';
 
 interface StateProps {
   theme: ReturnType<typeof configMetaSelectors.getTheme>;
+  node: NodeConfig;
 }
 
 interface ActionProps {
@@ -33,6 +36,7 @@ class ElectronNav extends React.Component<Props, State> {
   };
 
   public render() {
+    const { node } = this.props;
     const { panelContent, isPanelOpen } = this.state;
 
     return (
@@ -45,9 +49,10 @@ class ElectronNav extends React.Component<Props, State> {
         <div className="ElectronNav-branding" />
         <button className="ElectronNav-status ElectronNav-controls-btn" onClick={this.toggleSelect}>
           <NetworkStatus />
+
           <i className="ElectronNav-controls-btn-icon fa fa-caret-down" />
         </button>
-
+        <div>{translateRaw(node.isCustom ? node.name : node.service)}</div>
         <ul className="ElectronNav-links">
           {navigationLinks.map(link => (
             <NavigationLink
@@ -122,7 +127,8 @@ class ElectronNav extends React.Component<Props, State> {
 
 export default connect(
   (state: AppState) => ({
-    theme: configMetaSelectors.getTheme(state)
+    theme: configMetaSelectors.getTheme(state),
+    node: configNodesSelectors.getNodeConfig(state)
   }),
   {
     changeTheme: configMetaActions.changeTheme

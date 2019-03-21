@@ -38,6 +38,7 @@ const NetworkStatus: React.SFC<StateProps> = ({ isOffline, isChangingNode, netwo
     statusClass = 'is-online';
     statusText = NETWORK_STATUS.ONLINE;
   }
+  console.log(network);
 
   return (
     <div className="NetworkStatus">

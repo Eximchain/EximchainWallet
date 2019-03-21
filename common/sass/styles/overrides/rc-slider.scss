@@ -17,16 +17,20 @@ $speed: 70ms;
   &-rail {
     background: color(n30);
     // border-radius: 0;
+    height: 4px !important;
+
   }
 
   &-track {
-    height: 6px !important;
+    height: 4px !important;
     background: color(b60);
     visibility: visible !important;
+    transition: all 0.32s cubic-bezier(0.77, 0, 0.175, 1) 0s;
+
   }
 
   &-step {
-    height: 6px !important;
+    height: 4px !important;
   }
 
   &-handle {

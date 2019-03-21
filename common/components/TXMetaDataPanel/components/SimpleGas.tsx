@@ -133,23 +133,62 @@ class SimpleGas extends React.Component<Props> {
               tipFormatter={this.formatTooltip}
               disabled={isGasEstimating}
             />
-            <div className="SimpleGas-slider-labels">
-              <span>{translate('TX_FEE_SCALE_LEFT')}</span>
-              <span>{translate('TX_FEE_SCALE_RIGHT')}</span>
-            </div>
+            {
+              //   <div className="SimpleGas-slider-labels">
+              //   <span>{translate('TX_FEE_SCALE_LEFT')}</span>
+              //   <span>{translate('TX_FEE_SCALE_RIGHT')}</span>
+              // </div>
+            }
             <div className="SimpleGas-buttonRow">
-              <button className="SimpleGas-button" onClick={() => this.setGasPrice('low')}>
-                Slow
+              <input
+                id="slowGas"
+                type="radio"
+                name="gasPrice"
+                value="slowGas"
+                className="SimpleGas-button"
+                onClick={() => this.setGasPrice('low')}
+              />
+              <label for="slowGas" class="config-select">
+                <span>Slow</span>
                 <p> 4 Gwei </p>
-              </button>
-              <button className="SimpleGas-button" onClick={() => this.setGasPrice('average')}>
-                Average
+              </label>
+
+              <input
+                id="averageGas"
+                type="radio"
+                name="gasPrice"
+                value="averageGas"
+                className="SimpleGas-button"
+                onClick={() => this.setGasPrice('average')}
+              />
+              <label for="averageGas" class="config-select id-config-wrapper">
+                <span>Average</span>
                 <p> 12 Gwei </p>
-              </button>
-              <button className="SimpleGas-button" onClick={() => this.setGasPrice('fast')}>
-                Fast
+              </label>
+
+              <input
+                id="fastGas"
+                type="radio"
+                name="gasPrice"
+                value="fastGas"
+                className="SimpleGas-button"
+                onClick={() => this.setGasPrice('fast')}
+              />
+              <label for="fastGas" class="config-select id-config-wrapper">
+                <span>Fast</span>
                 <p> 20 Gwei </p>
-              </button>
+              </label>
+
+              {
+                //   <button className="SimpleGas-button" onClick={() => this.setGasPrice('average')}>
+                //   Average
+                //   <p> 12 Gwei </p>
+                // </button>
+                // <button className="SimpleGas-button" onClick={() => this.setGasPrice('fast')}>
+                //   Fast
+                //   <p> 20 Gwei </p>
+                // </button>
+              }
             </div>
           </div>
           <FeeSummary
@@ -175,9 +214,9 @@ class SimpleGas extends React.Component<Props> {
     }
   };
 
-  private handleSlider = (gasGwei: number) => {
-    this.props.inputGasPrice(gasGwei.toString());
-  };
+  // private handleSlider = (gasGwei: number) => {
+  //   this.props.inputGasPrice(gasGwei.toString());
+  // };
 
   private getGasPriceGwei(gasPriceValue: Wei) {
     return parseFloat(fromWei(gasPriceValue, 'gwei'));

@@ -137,12 +137,19 @@ class AddressInputFactoryClass extends Component<Props> {
                 <i className="fa fa-check" /> {sendingTo}
               </div>
             )}
+          {showIdenticon && (
+            <div className="AddressInput-identicon2">
+              <Identicon address={addr} />
+            </div>
+          )}
         </div>
-        {showIdenticon && (
-          <div className="AddressInput-identicon">
-            <Identicon address={addr} />
-          </div>
-        )}
+        {
+          //   showIdenticon && (
+          //   <div className="AddressInput-identicon">
+          //     <Identicon address={addr} />
+          //   </div>
+          // )
+        }
       </div>
     );
   }

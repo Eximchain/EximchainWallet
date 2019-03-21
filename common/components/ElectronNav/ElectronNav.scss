@@ -9,6 +9,13 @@ $back-spacing: 20px;
 .ElectronNav {
   // transition: transform 300ms ease;
 
+  &-activeNode {
+    color: color(gray);
+    padding: 0 0 18px 42px;
+    text-transform: capitalize;
+    font-size: $font-size-xs-bump;
+  }
+
 
   &.is-panel-open {
     // transform: translateX(-100%);
@@ -81,8 +88,8 @@ $back-spacing: 20px;
       width: 100%;
       color: color(gray);
       font-size: 12px;
-      padding: 0 0 18px 6px;
-      padding-left: 22px;
+      padding: 0 0 0 22px;
+      // padding-left: 22px;
       font-weight: 300;
 
       .fa-caret-down {

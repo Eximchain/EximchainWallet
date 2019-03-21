@@ -14,7 +14,7 @@ export function makeStateFromNodeConfigs(
     id: autoId,
     isAuto: true,
     isCustom: false,
-    service: 'AUTO'
+    service: 'Auto'
   };
 
   // Static networks

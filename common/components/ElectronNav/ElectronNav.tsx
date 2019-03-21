@@ -52,7 +52,9 @@ class ElectronNav extends React.Component<Props, State> {
 
           <i className="ElectronNav-controls-btn-icon fa fa-caret-down" />
         </button>
-        <div>{translateRaw(node.isCustom ? node.name : node.service)}</div>
+        <div className="ElectronNav-activeNode">
+          {translateRaw(node.isCustom ? node.name : node.service)}
+        </div>
         <ul className="ElectronNav-links">
           {navigationLinks.map(link => (
             <NavigationLink

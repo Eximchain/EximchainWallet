@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import translate from 'translations';
 import { NetworkConfig } from 'types/network';
 import { AppState } from 'features/reducers';
+
 import {
   configMetaSelectors,
   configSelectors,

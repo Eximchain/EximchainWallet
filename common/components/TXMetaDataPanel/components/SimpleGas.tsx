@@ -13,6 +13,7 @@ import { scheduleSelectors } from 'features/schedule';
 import { InlineSpinner } from 'components/ui/InlineSpinner';
 import FeeSummary from './FeeSummary';
 import './SimpleGas.scss';
+import { estimateGas } from 'features/transaction/network/sagas';
 
 const SliderWithTooltip = createSliderWithTooltip(Slider);
 
@@ -39,8 +40,15 @@ interface ActionProps {
 
 type Props = OwnProps & StateProps & ActionProps;
 
+enum SliderStates {
+  SLOW = 'slow',
+  AVERAGE = 'average',
+  FAST = 'fast'
+}
 interface State {
   hasSetRecommendedGasPrice: boolean;
+  defaultGasPriceOn: boolean;
+  sliderState: SliderStates;
 }
 
 interface GasTooltips {
@@ -49,7 +57,9 @@ interface GasTooltips {
 
 class SimpleGas extends React.Component<Props> {
   public state: State = {
-    hasSetRecommendedGasPrice: false
+    hasSetRecommendedGasPrice: false,
+    defaultGasPriceOn: true,
+    sliderState: SliderStates.AVERAGE
   };
 
   public componentDidMount() {
@@ -74,12 +84,12 @@ class SimpleGas extends React.Component<Props> {
       gasLimitPending,
       scheduleGasPrice
     } = this.props;
-
+    const { sliderState } = this.state;
     const bounds = {
       max: gasEstimates ? gasEstimates.fastest : gasPriceDefaults.max,
       min: gasEstimates ? gasEstimates.safeLow : gasPriceDefaults.min
     };
-
+    const average = (bounds.max + bounds.min) / 2;
     const gasNotches = this.makeGasNotches();
 
     /**
@@ -91,7 +101,11 @@ class SimpleGas extends React.Component<Props> {
      *  and it cannot happen again from that point forward.
      */
     const actualGasPrice = Math.max(this.getGasPriceGwei(gasPrice.value), bounds.min);
+    if (this.state.defaultGasPriceOn) {
+      this.setGasPrice('average');
+    }
 
+    console.log(actualGasPrice.toString(), bounds.max.toString(), bounds.min.toString());
     return (
       <div className="SimpleGas row form-group">
         {
@@ -119,12 +133,11 @@ class SimpleGas extends React.Component<Props> {
             </p>
           </div>
         )}
-
         <div className="SimpleGas-input-group">
           <div className="SimpleGas-slider">
             <SliderWithTooltip
-              onChange={this.handleSlider}
-              min={bounds.min}
+              // onChange={this.handleSlider}
+              min={bounds.min * 2 - (bounds.min + bounds.max) / 2}
               max={bounds.max}
               marks={gasNotches}
               included={false}
@@ -132,6 +145,7 @@ class SimpleGas extends React.Component<Props> {
               value={actualGasPrice}
               tipFormatter={this.formatTooltip}
               disabled={isGasEstimating}
+              className={sliderState}
             />
             {
               //   <div className="SimpleGas-slider-labels">
@@ -146,11 +160,12 @@ class SimpleGas extends React.Component<Props> {
                 name="gasPrice"
                 value="slowGas"
                 className="SimpleGas-button"
-                onClick={() => this.setGasPrice('low')}
+                onClick={() => this.setGasPrice(SliderStates.SLOW)}
+                checked={actualGasPrice.toString() === bounds.min.toString()}
               />
               <label for="slowGas" class="config-select">
                 <span>Slow</span>
-                <p> 4 Gwei </p>
+                <p> {bounds.min} Gwei </p>
               </label>
 
               <input
@@ -159,11 +174,12 @@ class SimpleGas extends React.Component<Props> {
                 name="gasPrice"
                 value="averageGas"
                 className="SimpleGas-button"
-                onClick={() => this.setGasPrice('average')}
+                onClick={() => this.setGasPrice(SliderStates.AVERAGE)}
+                checked={actualGasPrice.toString() === average.toString()}
               />
               <label for="averageGas" class="config-select id-config-wrapper">
                 <span>Average</span>
-                <p> 12 Gwei </p>
+                <p> {(bounds.min + bounds.max) / 2} Gwei </p>
               </label>
 
               <input
@@ -172,11 +188,12 @@ class SimpleGas extends React.Component<Props> {
                 name="gasPrice"
                 value="fastGas"
                 className="SimpleGas-button"
-                onClick={() => this.setGasPrice('fast')}
+                onClick={() => this.setGasPrice(SliderStates.FAST)}
+                checked={actualGasPrice.toString() === bounds.max.toString()}
               />
               <label for="fastGas" class="config-select id-config-wrapper">
                 <span>Fast</span>
-                <p> 20 Gwei </p>
+                <p> {bounds.max} Gwei </p>
               </label>
 
               {
@@ -201,22 +218,28 @@ class SimpleGas extends React.Component<Props> {
     );
   }
 
-  private setGasPrice = (speed: string) => {
-    if (speed === 'low') {
-      const gasGwei = 5;
-      this.props.inputGasPrice(gasGwei.toString());
-    } else if (speed === 'average') {
-      const gasGwei = 12;
-      this.props.inputGasPrice(gasGwei.toString());
-    } else if (speed === 'fast') {
-      const gasGwei = 20;
-      this.props.inputGasPrice(gasGwei.toString());
+  private setGasPrice = (speed: SliderStates) => {
+    this.setState({
+      defaultGasPriceOn: false,
+      sliderState: speed
+    });
+    const { gasEstimates } = this.props;
+    const bounds = {
+      max: gasEstimates ? gasEstimates.fastest : gasPriceDefaults.max,
+      min: gasEstimates ? gasEstimates.safeLow : gasPriceDefaults.min
+    };
+    if (speed === SliderStates.SLOW) {
+      this.props.inputGasPrice(bounds.min.toString());
+    } else if (speed === SliderStates.AVERAGE) {
+      this.props.inputGasPrice(((bounds.min + bounds.max) / 2).toString());
+    } else if (speed === SliderStates.FAST) {
+      this.props.inputGasPrice(bounds.max.toString());
     }
   };
 
-  // private handleSlider = (gasGwei: number) => {
-  //   this.props.inputGasPrice(gasGwei.toString());
-  // };
+  private handleSlider = (gasGwei: number) => {
+    this.props.inputGasPrice(gasGwei.toString());
+  };
 
   private getGasPriceGwei(gasPriceValue: Wei) {
     return parseFloat(fromWei(gasPriceValue, 'gwei'));

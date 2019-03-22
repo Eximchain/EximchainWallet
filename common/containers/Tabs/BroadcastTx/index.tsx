@@ -54,9 +54,11 @@ class BroadcastTx extends Component<Props> {
                       {translate('BROADCAST_TX_TITLE')}
                     </h2>
 
-                    <p className="BroadcastTx-topsection-help text-center">
-                      {translate('BROADCAST_TX_DESCRIPTION')}
-                    </p>
+                    {
+                      //   <p className="BroadcastTx-topsection-help text-center">
+                      //   {translate('BROADCAST_TX_DESCRIPTION')}
+                      // </p>
+                    }
                   </div>
                   <div className="BroadcastTx-input input-group-wrapper InteractForm-interface">
                     <label className="input-group">

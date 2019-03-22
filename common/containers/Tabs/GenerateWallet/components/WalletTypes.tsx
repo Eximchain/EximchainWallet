@@ -16,13 +16,13 @@ interface State {
 
 export default class WalletTypes extends React.Component<{}, State> {
   public state: State = {
-    isShowingGenerate: false
+    isShowingGenerate: true
   };
 
   public render() {
     const { isShowingGenerate } = this.state;
     return (
-      <Template hideBack={!isShowingGenerate} onBack={this.handleBack}>
+      <Template hideBack={isShowingGenerate} onBack={this.handleBack}>
         {isShowingGenerate ? (
           <GenerateOptions />
         ) : (
@@ -41,187 +41,6 @@ export default class WalletTypes extends React.Component<{}, State> {
     this.setState({ isShowingGenerate: false });
   };
 }
-
-interface WalletSuggestionsProps {
-  showGenerate(): void;
-}
-
-interface WalletSuggestion {
-  name: React.ReactElement<string>;
-  description?: string;
-  type: string;
-  icon: string;
-  bullets: React.ReactElement<string>[];
-  links: {
-    text: React.ReactElement<string>;
-    href?: string;
-    onClick?(): void;
-  }[];
-}
-
-const WalletSuggestions: React.SFC<WalletSuggestionsProps> = ({ showGenerate }) => {
-  const suggestions: WalletSuggestion[] = [
-    {
-      name: translate('TREZOR_REFERAL'),
-      description: translate('ADD_HARDWAREDESC'),
-      type: 'hardware',
-      // icon: HardwareWalletIcon,
-      bullets: [
-        // translate('WALLET_SUGGESTION_HARDWARE_1'),
-        // translate('WALLET_SUGGESTION_HARDWARE_2'),
-        // translate('WALLET_SUGGESTION_HARDWARE_3'),
-        // translate('WALLET_SUGGESTION_HARDWARE_4')
-      ],
-      links: [
-        {
-          text: translate('TREZOR_REFERAL'),
-          href: trezorReferralURL
-        }
-      ]
-    }
-    // {
-    //   name: translate('X_METAMASK'),
-    //   description: translate('X_METAMASKDESC'),
-    //   type: 'metamask',
-    //   icon: MetamaskIcon,
-    //   bullets: [
-    //     translate('WALLET_SUGGESTION_METAMASK_1'),
-    //     translate('WALLET_SUGGESTION_METAMASK_2'),
-    //     translate('WALLET_SUGGESTION_METAMASK_3'),
-    //     translate('WALLET_SUGGESTION_METAMASK_4'),
-    //     translate('WALLET_SUGGESTION_METAMASK_5')
-    //   ],
-    //   links: [
-    //     {
-    //       text: translate('ACTION_13', {
-    //         $thing: translateRaw('X_METAMASK')
-    //       }),
-    //       href: 'https://metamask.io/'
-    //     }
-    //   ]
-    // }
-    // {
-    //   name: translate('X_PARITYSIGNER'),
-    //   description: translate('ADD_PARITY_DESC'),
-    //   type: 'parity',
-    //   icon: ParitySignerIcon,
-    //   bullets: [
-    //     // translate('WALLET_SUGGESTION_PARITYSIGNER_1'),
-    //     translate('WALLET_SUGGESTION_PARITYSIGNER_2'),
-    //     translate('WALLET_SUGGESTION_PARITYSIGNER_3')
-    //     // translate('WALLET_SUGGESTION_PARITYSIGNER_4')
-    //   ],
-    //   links: [
-    //     {
-    //       text: translate('DOWNLOAD_PHONE_APP', { $os: 'iOS' }),
-    //       href: 'https://itunes.apple.com/us/app/parity-signer/id1218174838'
-    //     },
-    //     {
-    //       text: translate('DOWNLOAD_PHONE_APP', { $os: 'Android' }),
-    //       href: 'https://play.google.com/store/apps/details?id=com.nativesigner'
-    //     }
-    //   ]
-    // }
-  ];
-
-  if (process.env.BUILD_DOWNLOADABLE) {
-    suggestions[1] = {
-      name: translate('NAV_GENERATEWALLET'),
-      description: translate('NAV_GENERATEWALLETDESC'),
-      type: 'generate',
-      // icon: FileIcon,
-      bullets: [
-        // translate('WALLET_SUGGESTION_GENERATE_1'),
-        // translate('WALLET_SUGGESTION_GENERATE_2'),
-        // translate('WALLET_SUGGESTION_GENERATE_3'),
-        // translate('WALLET_SUGGESTION_GENERATE_4'),
-        // <span key="warning">
-        //   <i className="fa fa-exclamation-circle is-warning" />
-        //   {translate('WALLET_SUGGESTION_GENERATE_5')}
-        // </span>
-      ],
-      links: [
-        {
-          text: translate('Generate a Wallet'),
-          onClick: showGenerate
-        }
-      ]
-    };
-  }
-
-  return (
-    <React.Fragment>
-      <div className="WalletTypes-topsection">
-        <h2 className="WalletTypes-topsection-title">{translate('GENERATE_WALLET_TITLE')}</h2>
-      </div>
-      <div className="WalletTypes-suggestions">
-        <h2 className="WalletTypes-topsection-subtitle">
-          {translate('GENERATE_WALLET_SUGGESTIONS')}
-        </h2>
-        {suggestions.map(sug => (
-          <div className={`WalletSuggestion is-${sug.type}`}>
-            <h3 className="WalletSuggestion-name">
-              <img className="WalletSuggestion-name-icon" src={sug.icon} />
-              {sug.name}
-            </h3>
-            <p className="WalletSuggestion-description">{sug.description}</p>
-
-            <ul className="WalletSuggestion-features">
-              {sug.bullets.map((b, idx) => (
-                <li key={idx} className="WalletSuggestion-features-feature">
-                  {b}
-                </li>
-              ))}
-            </ul>
-
-            <div className="WalletSuggestion-buttons">
-              {sug.links.map(link => {
-                if (link.onClick) {
-                  return (
-                    <button
-                      onClick={link.onClick}
-                      className="WalletSuggestion-buttons-button btn btn-default"
-                    >
-                      {link.text}
-                    </button>
-                  );
-                }
-                if (link.href) {
-                  return (
-                    <NewTabLink
-                      href={link.href}
-                      className="WalletSuggestion-buttons-button btn btn-default"
-                    >
-                      {link.text}
-                    </NewTabLink>
-                  );
-                }
-              })}
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {!process.env.BUILD_DOWNLOADABLE && (
-        <React.Fragment>
-          <div className="WalletTypes-divider">{translate('OR')}</div>
-
-          <div className="WalletTypes-download">
-            <NewTabLink
-              href="https://github.com/Eximchain/EximchainWallet"
-              className="WalletTypes-download-button btn btn-default "
-            >
-              {translate('WALLET_SUGGESTION_DESKTOP_APP')}
-            </NewTabLink>
-            <p className="WalletTypes-download-desc">
-              {translate('WALLET_SUGGESTION_DESKTOP_APP_DESC')}
-            </p>
-          </div>
-        </React.Fragment>
-      )}
-    </React.Fragment>
-  );
-};
 
 const GenerateOptions: React.SFC<{}> = () => {
   const walletTypes = [

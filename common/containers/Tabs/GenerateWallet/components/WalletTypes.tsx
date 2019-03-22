@@ -209,7 +209,7 @@ const WalletSuggestions: React.SFC<WalletSuggestionsProps> = ({ showGenerate }) 
           <div className="WalletTypes-download">
             <NewTabLink
               href="https://github.com/Eximchain/EximchainWallet"
-              className="WalletTypes-download-button btn btn-primary "
+              className="WalletTypes-download-button btn btn-default "
             >
               {translate('WALLET_SUGGESTION_DESKTOP_APP')}
             </NewTabLink>
@@ -251,8 +251,12 @@ const GenerateOptions: React.SFC<{}> = () => {
 
   return (
     <React.Fragment>
-      <h1 className="WalletTypes-title">{translate('NAV_GENERATEWALLET')}</h1>
-
+      <div className="WalletTypes-topsection">
+        <h2 className="WalletTypes-topsection-title">{translate('GENERATE_WALLET_TITLE')}</h2>
+      </div>
+      {
+        // <h1 className="WalletTypes-title">{translate('NAV_GENERATEWALLET')}</h1>
+      }
       <div className="WalletTypes-types">
         {walletTypes.map(wallet => (
           <div key={wallet.type} className="WalletType">
@@ -266,7 +270,7 @@ const GenerateOptions: React.SFC<{}> = () => {
             </ul>
             <div className="WalletType-select">
               <Link
-                className="WalletType-select-btn btn btn-primary btn-block"
+                className="WalletType-select-btn btn btn-default btn-block"
                 to={`/generate/${wallet.type}`}
               >
                 {translate('GENERATE_THING', { $thing: wallet.name })}

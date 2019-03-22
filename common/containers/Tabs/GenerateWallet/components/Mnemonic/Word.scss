@@ -15,8 +15,8 @@ $number-margin: 6px;
 
 .MnemonicWord {
   display: flex;
-  width: $width;
-  margin-bottom: $space-xs;
+  // width: $width;
+  margin-bottom: $space-sm;
 
   &:last-child {
     margin-bottom: 0;

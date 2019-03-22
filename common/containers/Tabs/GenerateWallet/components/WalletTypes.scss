@@ -58,6 +58,7 @@ $divider-size: 60px;
     flex-wrap: wrap;
     justify-content: center;
     margin: $space * 2 0 $space;
+    padding-top: 30px;
   }
 
   &-divider {
@@ -238,20 +239,25 @@ $divider-size: 60px;
   padding: $space;
   text-align: left;
   margin: 0 $space $space * 2;
+  flex: 1;
 
   &-title {
     margin: 0 0 $space;
-    text-align: center;
+    text-align: left;
+    color: color(n800) !important;
+
   }
 
   &-features {
-    padding-left: 28px;
+    padding-left: 18px;
+    color: color(n600);
   }
 
   &-select {
     &-btn {
       padding-left: 0;
       padding-right: 0;
+      margin-bottom: 0;
     }
   }
 }

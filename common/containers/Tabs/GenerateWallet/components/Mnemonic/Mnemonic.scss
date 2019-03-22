@@ -20,6 +20,19 @@
     justify-content: center;
     flex-wrap: wrap;
 
+    .input-group-addon {
+      left: 2px;
+      top: 3px;
+      right: auto;
+      text-align: right;
+    }
+    .input-group-input {
+      padding-left: 36px;
+      padding-top: .5rem;
+      padding-bottom: .5rem;
+
+    }
+
     &-column {
       max-width: 320px;
       margin: 0 $space-md $space-md;
@@ -27,11 +40,16 @@
   }
 
   &-buttons {
+    display: flex;
+    margin: auto;
+    width: 60%;
+
     &-btn {
       margin: 0 5px;
       width: 100%;
-      max-width: 260px;
+      // max-width: 260px;
       float: none;
+      flex: 1;
     }
   }
 

@@ -113,8 +113,11 @@ $speed: 1ms;
     }
 
     &-generate {
-      text-align: center;
-      margin: $space 0;
+      text-align: left;
+      margin: $space auto;
+      width: 55%;
+      padding: 0 7px;
+
     }
   }
 

@@ -1,5 +1,7 @@
-@import 'common/sass/variables/spacing';
-@import 'common/sass/variables/colors';
+@import 'common/sass/variables';
+
+@import 'common/sass/mixins';
+
 
 .AddressBookTable {
   &-row {
@@ -37,6 +39,7 @@
       padding: 0;
       box-shadow: none;
       color: color(r70);
+      font-size: $font-size-small;
 
       &-temporary-input--non-mobile {
         flex: 1;

@@ -1,7 +1,7 @@
 {
   "name": "EximchainWallet",
   "author": "Eximchain",
-  "version": "0.1.3-beta",
+  "version": "0.1.5-beta",
   "main": "main.js",
   "description": "Eximchain Wallet web and electron app",
   "repository": "https://github.com/Eximchain/EximchainWallet",

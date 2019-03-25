@@ -37,6 +37,10 @@ export default class EnterPassword extends Component<Props, State> {
     const canSubmit = isPasswordValid && isConfirmValid && !isGenerating;
     return (
       <Template>
+        <br />
+        <br />
+        <br />
+
         <form className="EnterPw" onSubmit={canSubmit ? this.handleSubmit : undefined}>
           <h1 className="EnterPw-title" aria-live="polite">
             {translate('GENERATE_KEYSTORE_TITLE')}

@@ -32,20 +32,24 @@ export default class DownloadWallet extends Component<Props, State> {
 
           <a
             role="button"
-            className="DlWallet-download btn btn-primary "
+            className="DlWallet-download btn btn-default "
             aria-label="Download Keystore File (UTC / JSON · Recommended · Encrypted)"
             aria-describedby={translateRaw('X_KEYSTOREDESC')}
             download={filename}
             href={this.getBlob()}
             onClick={this.handleDownloadKeystore}
           >
+            <i className="ElectronNav-controls-btn-icon fa fa-download" />
+
             {translate('ACTION_13', { $thing: translateRaw('X_KEYSTORE2') })}
           </a>
 
           <div className="DlWallet-warning">
-            <p>{translate('DL_WALLET_WARNING_1')}</p>
-            <p>{translate('DL_WALLET_WARNING_2')}</p>
-            <p>{translate('DL_WALLET_WARNING_3')}</p>
+            <p>
+              {translate('DL_WALLET_WARNING_1')}&nbsp;
+              {translate('DL_WALLET_WARNING_2')}&nbsp;
+              {translate('DL_WALLET_WARNING_3')}
+            </p>
           </div>
 
           <button

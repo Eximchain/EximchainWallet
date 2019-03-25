@@ -49,7 +49,6 @@ export default class GenerateMnemonic extends React.Component<{}, State> {
     ) : (
       <div className="GenerateMnemonic">
         <h1 className="GenerateMnemonic-title">{translate('GENERATE_MNEMONIC_TITLE')}</h1>
-
         <p className="GenerateMnemonic-help">
           {isConfirming ? translate('MNEMONIC_DESCRIPTION_1') : translate('MNEMONIC_DESCRIPTION_2')}
         </p>

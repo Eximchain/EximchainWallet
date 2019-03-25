@@ -10,25 +10,26 @@
 
   h1 {
     text-align: left;
-    padding-left: 20px;
+    // padding-left: 20px;
     line-height: 1.4;
     // margin: $space 0 2rem;
     font-weight: normal;
-    font-size: 16px;
-    padding-bottom: 10px;
-    border-bottom: solid .5px color(n30);
+    font-size: 18px;
+    // padding-bottom: 10px;
+    border-bottom: solid .5px color(n20);
     margin-top: 0;
     text-transform: capitalize;
-
+    margin-bottom: 3px;
   }
 
   &-back {
-    position: absolute;
+    position: fixed;
     padding-left: 20px;
-    top: 0px;
-    left: 0px;
+    top: 23px;
+    left: $electron-sidebar-width;
     opacity: 0.3;
     color: color(text-color);
+    z-index: 1000;
 
     @media (max-width: $screen-sm) {
       display: none;

@@ -1,9 +1,31 @@
 @import "common/sass/variables";
 
 .DlWallet {
-  &-title {
-    margin: $space auto $space * 1.5;
+  margin-top: $space * 4;
+
+  .fa-download {
+    color: color(n800);
+    margin-right: 4px;
   }
+
+  &-title {
+    position: fixed;
+    top: 0;
+    left: $electron-sidebar-width;
+    width: 100%;
+    font-weight: 600 !important;
+    height: auto;
+    padding-top: 20px;
+    padding-left: 40px;
+    padding-right: 10px;
+    padding-bottom: 17px;
+    z-index: 1000;
+    background-color: color(n0);
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 18px;
+    }
 
   &-download {
     margin: 0 auto $space * 4;
@@ -11,5 +33,12 @@
 
   &-warning {
     margin: 0 auto $space * 3;
+    font-size: .9rem;
+    text-align: left;
+  }
+
+  &-continue {
+    float: none;
+    margin: auto;
   }
 }

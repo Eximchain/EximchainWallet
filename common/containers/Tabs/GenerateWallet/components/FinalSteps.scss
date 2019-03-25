@@ -4,6 +4,30 @@
 $step-number-size: 42px;
 
 .FinalSteps {
+  margin-top: $space * 4;
+
+
+  &-title {
+    position: fixed;
+    top: 0;
+    left: $electron-sidebar-width;
+    width: 100%;
+    font-weight: 600 !important;
+    font-size: 18px;
+    text-align: left;
+    height: auto;
+    line-height: 1.4;
+    padding-top: 20px;
+    padding-left: 40px;
+    padding-right: 10px;
+    padding-bottom: 17px;
+    z-index: 1000;
+    background-color: color(n0);
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 18px;
+  }
   &-help {
     margin-bottom: $space;
     margin-top: $space;

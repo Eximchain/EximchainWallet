@@ -39,7 +39,6 @@ export default class EnterPassword extends Component<Props, State> {
       <Template>
         <br />
         <br />
-        <br />
 
         <form className="EnterPw" onSubmit={canSubmit ? this.handleSubmit : undefined}>
           <h1 className="EnterPw-title" aria-live="polite">

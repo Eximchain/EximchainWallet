@@ -26,7 +26,7 @@ function OnboardingButton({ className = '', currentSlide, completeOnboarding, se
   const isOnFinalSlide = nextSlide > 1;
   const changeSlide = () => setSlide(nextSlide);
   const onClick = isOnFinalSlide ? completeOnboarding : changeSlide;
-  const text = isOnFinalSlide ? 'Get started' : 'Next';
+  const text = isOnFinalSlide ? 'Get Started' : 'Next';
 
   return (
     <button className={fullClassName} onClick={onClick}>

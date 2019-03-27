@@ -24,7 +24,7 @@ $number-margin: 6px;
 
   & .input-group-addon {
     margin-bottom: $space-md;
-    color: color(gray);
+    color: color(n200);
     font-weight: 300;
   }
 
@@ -36,13 +36,14 @@ $number-margin: 6px;
       animation-fill-mode: both;
       transition: border 0.2s ease-in;
       margin-bottom: 0;
+      font-weight: 400;
     }
   }
 
   &-button {
     position: relative;
     width: 300px;
-    margin-bottom: $space-sm;
+    margin-bottom: 0;
 
     &-index {
       position: absolute;

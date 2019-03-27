@@ -57,8 +57,8 @@ $divider-size: 60px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin: $space * 4 0 $space;
-    // padding-top: 30px;
+    margin: 0 0 $space;
+    padding-top: 30px;
   }
 
   &-divider {

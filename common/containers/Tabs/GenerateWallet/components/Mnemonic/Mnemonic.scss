@@ -5,7 +5,7 @@
 .GenerateMnemonic {
   position: relative;
   text-align: center;
-  margin-top: $space * 4;
+  padding-top: $space * 3;
 
 
   &-title {
@@ -29,6 +29,9 @@
 
   &-help {
     margin-bottom: $space * 2;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
 
   }
 
@@ -47,7 +50,7 @@
     .input-group-input {
       padding-left: 36px;
       padding-top: .5rem;
-      padding-bottom: .5rem;
+      padding-bottom: .6rem;
 
     }
 

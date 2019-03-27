@@ -40,7 +40,7 @@ export default class MnemonicWord extends React.Component<Props, State> {
     const btnClassName = classnames({
       btn: true,
       'btn-default': !(isBeingRevealed || flashingError),
-      'btn-success': isBeingRevealed,
+      'btn-primary': isBeingRevealed,
       'btn-danger': flashingError
     });
     const indexClassName = 'input-group-addon input-group-addon--transparent';

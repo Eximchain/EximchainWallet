@@ -55,10 +55,10 @@ class SendTransaction extends React.Component<Props> {
         path: 'info',
         name: translate('NAV_VIEWWALLET')
       },
-      // {
-      //   path: 'recent-txs',
-      //   name: translate('NAV_RECENT_TX')
-      // },
+      {
+        path: 'recent-txs',
+        name: translate('NAV_RECENT_TX')
+      },
       {
         path: 'address-book',
         name: translate('NAV_ADDRESS_BOOK')
@@ -110,11 +110,11 @@ class SendTransaction extends React.Component<Props> {
                     exact={true}
                     render={() => <RequestPayment wallet={wallet} />}
                   />
-                  {/* <Route
+                  <Route
                     path={`${currentPath}/recent-txs`}
                     exact={true}
                     render={() => <RecentTransactions wallet={wallet} />}
-                  /> */}
+                  />
                   <Route
                     path={`${currentPath}/address-book`}
                     exact={true}

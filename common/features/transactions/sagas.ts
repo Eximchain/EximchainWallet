@@ -48,14 +48,12 @@ export function* saveBroadcastedTx(
   action: transactionBroadcastTypes.BroadcastTransactionQueuedAction
 ) {
   const { serializedTransaction: txBuffer, indexingHash: txIdx } = action.payload;
-
   const res:
     | transactionBroadcastTypes.BroadcastTransactionSucceededAction
     | transactionBroadcastTypes.BroadcastTransactionFailedAction = yield take([
     transactionBroadcastTypes.TransactionBroadcastActions.TRANSACTION_SUCCEEDED,
     transactionBroadcastTypes.TransactionBroadcastActions.TRANSACTION_FAILED
   ]);
-
   // If our TX succeeded, save it and update the store.
   if (
     res.type === transactionBroadcastTypes.TransactionBroadcastActions.TRANSACTION_SUCCEEDED &&
@@ -76,7 +74,6 @@ export function* getSaveableTransaction(tx: EthTx, hash: string): SagaIterator {
   const fields = getTransactionFields(tx);
   let from: string = '';
   let chainId: number = 0;
-
   try {
     // Signed transactions have these fields
     from = hexEncodeData(tx.getSenderAddress());
@@ -110,7 +107,7 @@ export function* resetTxData() {
 export function* transactionsSaga(): SagaIterator {
   yield takeEvery(types.TransactionsActions.FETCH_TRANSACTION_DATA, fetchTxData);
   yield takeEvery(
-    transactionBroadcastTypes.TransactionBroadcastActions.TRANSACTION_SUCCEEDED,
+    transactionBroadcastTypes.TransactionBroadcastActions.TRANSACTION_QUEUED,
     saveBroadcastedTx
   );
   yield takeEvery(types.TransactionsActions.RESET_TRANSACTION_DATA, resetTxData);

@@ -17,6 +17,7 @@ interface OwnProps {
 
 interface StateProps {
   recentTransactions: AppState['transactions']['recent'];
+  toChecksumAddress: ReturnType<typeof configSelectors.getChecksumAddressFn>;
   network: NetworkConfig;
 }
 
@@ -58,7 +59,7 @@ class RecentTransactions extends React.Component<Props> {
       explorer = translateRaw('RECENT_TX_NETWORK_EXPLORER', { $network_name: network.name });
     } else {
       explorer = `[${network.blockExplorer.name}](${network.blockExplorer.addressUrl(
-        wallet.getAddressString()
+        this.props.toChecksumAddress(wallet.getAddressString())
       )})`;
     }
 
@@ -104,6 +105,7 @@ class RecentTransactions extends React.Component<Props> {
 }
 
 export default connect((state: AppState): StateProps => ({
+  toChecksumAddress: configSelectors.getChecksumAddressFn(state),
   recentTransactions: selectors.getRecentWalletTransactions(state),
   network: configSelectors.getNetworkConfig(state)
 }))(RecentTransactions);

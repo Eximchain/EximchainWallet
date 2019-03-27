@@ -238,7 +238,7 @@ export function getRecentNetworkTransactions(state: AppState): SavedTransaction[
 export function getRecentWalletTransactions(state: AppState): SavedTransaction[] {
   const networkTxs = getRecentNetworkTransactions(state);
   const wallet = walletSelectors.getWalletInst(state);
-
+  console.log(networkTxs);
   if (wallet) {
     const addr = wallet.getAddressString().toLowerCase();
     return networkTxs.filter(tx => tx.from.toLowerCase() === addr);

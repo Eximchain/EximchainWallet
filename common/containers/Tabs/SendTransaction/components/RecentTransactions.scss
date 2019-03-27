@@ -6,7 +6,9 @@
   .well {
     box-shadow: none;
     border-radius: 4px;
-    background-color: #F8F9FA;
+    background: color(n10);
+    border: 1px solid color(n30);
+
 
   }
 
@@ -59,15 +61,15 @@
     &-text {
       margin: 0;
       line-height: 1.4;
-      color: #6E7C90;
+      color: color(n100);
     }
   }
 
   &-help {
-    max-width: 540px;
+    // max-width: 540px;
     margin: $space * 2 auto 0;
     font-size: $font-size-small;
     text-align: center;
-    color: #5D6977;
+    color: color(gray);
   }
 }

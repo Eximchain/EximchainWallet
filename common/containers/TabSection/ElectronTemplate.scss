@@ -36,8 +36,12 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 16px;
+    height: 40px;
     -webkit-app-region: drag;
+    
+    button {
+      -webkit-app-region: no-drag;
+    }
 
     // Only needed on OSX, Linux and Windows have title bars
     .is-osx & {

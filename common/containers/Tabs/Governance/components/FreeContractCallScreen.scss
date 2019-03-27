@@ -4,6 +4,10 @@
 .ReadFunctionContent {
   min-height: 500px;
 
+  .btn {
+    margin-bottom: 0;
+  }
+
   .ElectronNav-controls-btn-icon {
     margin-left: 0;
     color: color(n800);
@@ -54,7 +58,7 @@
   border: solid 1px color(n40);
   border-radius: 6px;
   width: 100%;
-  min-height: 85%;
+  min-height: 87%;
 }
 
 .Output-container {
@@ -71,24 +75,25 @@
   background: color(n10);
   min-height: 100%;
 
+
   label {
     margin-bottom: 0;
   }
 
   .output-group {
-    flex-direction: row;
+    flex-direction: column;
     padding-bottom: 8px;
     padding-top: 8px;
-    // border-bottom: 1px solid color(n30);
+    border-bottom: 1px solid color(n30);
     width: 100%;
   }
 
   .input-group-header {
-    padding: 0 .5rem 0 0;
+    padding: 0;
     background: none;
     margin-left: 0;
-    width: max-content;
-    float: left;
+    width: 100%;
+    // float: left;
     font-size: 13px;
     vertical-align: center;
     text-align: left;
@@ -98,13 +103,13 @@
   .input-group-input {
     border: none;
     background: none;
-    padding: 0 0 0 .5rem;
-    text-align: right;
+    padding: 0;
+    // text-align: right;
     height: auto;
     margin-bottom: 0;
-    width: max-content;
+    // width: max-content;
     font-size: 13px;
-    float: right;
+    // float: right;
     font-weight: 600;
 
   }

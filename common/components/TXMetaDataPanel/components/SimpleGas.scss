@@ -76,7 +76,7 @@ input[type=radio]:checked + label {
     }
   }
 
-
+  
 
   .rc-slider-rail {
     width: 100% !important;
@@ -151,8 +151,6 @@ input[type=radio]:checked + label {
     &-labels {
       margin-top: 4px;
       display: flex;
-      // margin-left: -22px;
-      // margin-right: -22px;
 
       > span {
         flex: 1;

@@ -10,6 +10,14 @@
     }
   }
 
+  &-func-out {
+    &:last-child {
+      .output-group{
+      border-bottom: none;
+    }
+    }
+  }
+
   &-func {
     &-in,
     &-out {

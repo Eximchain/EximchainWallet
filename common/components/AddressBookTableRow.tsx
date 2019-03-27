@@ -67,7 +67,7 @@ class AddressBookTableRow extends React.Component<Props> {
               <Identicon address={address} />
             </div>
             <div className="AddressBookTable-row-identicon AddressBookTable-row-identicon-mobile">
-              <Identicon address={address} size="3rem" />
+              <Identicon address={address} size="2rem" />
             </div>
           </div>
           <div className="AddressBookTable-row-input">
@@ -92,10 +92,10 @@ class AddressBookTableRow extends React.Component<Props> {
             </div>
             <button
               title={translateRaw('REMOVE_LABEL')}
-              className="btn btn-sm btn-danger"
+              className="btn btn-sm btn-quiet-danger"
               onClick={onRemoveClick}
             >
-              <i className="fa fa-close" />
+              <i className="fa fa-trash" />
             </button>
           </div>
           {labelError && (

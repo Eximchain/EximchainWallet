@@ -23,21 +23,11 @@
     }
   }
 
-// #averageGas:checked + .label {
-//   background: color(y0);
-// }
-
 
   input[type=radio] {
   opacity: 0;
   position: absolute;
   }
-
-  // #averageGas:checked + label {
-  //   background: color(y0) !important;
-  //   border-color: color(y70) !important;
-  // }
-
 
 input[type=radio]:checked + label {
   background: color(b0);
@@ -46,25 +36,9 @@ input[type=radio]:checked + label {
 }
 
 
-
-
-
-// input[type=radio]:checked + label {
-//   background: color(b0);
-//   border-color: color(b50);
-//   color: color(n800);
-// }
-
-
-
   &-buttonRow {
     margin: 1rem -.5rem;
     display: flex;
-    // border-top: 1px solid color(n40);
-    // #averageGas:checked + label {
-    //   // background: color(y0) !important;
-    //   border-color: color(y70) !important;
-    // }
   }
 
   label {
@@ -77,6 +51,11 @@ input[type=radio]:checked + label {
     padding: .25rem 1rem;
     margin: 0 .5rem;
     text-align: center;
+
+    &:hover {
+      background: color(n10);
+      border-color: color(n50);
+    }
 
     p {
       font-size: $font-size-xs;
@@ -97,14 +76,9 @@ input[type=radio]:checked + label {
     }
   }
 
-  .FeeSummary {
-    // padding: 0 !important;
-    // width: 100%;
-    // margin-left: auto !important;
-  }
+  
 
   .rc-slider-rail {
-    // height: 6px !important;
     width: 100% !important;
   }
 
@@ -121,23 +95,13 @@ input[type=radio]:checked + label {
       }
 
       > .rc-slider > .rc-slider-step > .rc-slider-dot {
-        // height: 6px !important;
         width: 1px;
         bottom: 0px;
-        // margin-left: auto;
-        // margin-right: 0;
       }
 
 
       .rc-slider-dot {
         display: none;
-        // border: none;
-        // border-left: 1px solid color(n30);
-        // border-right: 1px solid color(n30);
-        // border-top: none;
-        // border-bottom: none;
-        // background: color(b40);
-        // width: 6px !important;
 
         &:first-child {
           margin-left: 0;
@@ -153,7 +117,6 @@ input[type=radio]:checked + label {
 
 
       .rc-slider-track {
-        // bottom: -2px;
         border-radius: 16px;
       }
     }
@@ -188,8 +151,6 @@ input[type=radio]:checked + label {
     &-labels {
       margin-top: 4px;
       display: flex;
-      // margin-left: -22px;
-      // margin-right: -22px;
 
       > span {
         flex: 1;

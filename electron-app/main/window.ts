@@ -20,7 +20,7 @@ export default function getWindow() {
     backgroundColor: '#fff',
     width: 1070,
     height: process.platform === 'darwin' ? 650 : 690,
-    minWidth: 1020,
+    minWidth: 1030,
     minHeight: 630,
     titleBarStyle: 'hiddenInset',
     webPreferences: {

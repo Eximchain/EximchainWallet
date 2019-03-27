@@ -7,7 +7,7 @@
 /* Mixins */
 /**********/
 
-@mixin button-variant($color, $background, $border, $background-hover, $border-hover, $background-active, $border-active) {
+@mixin button-variant($color, $background, $border, $color-hover, $background-hover, $border-hover, $color-active, $background-active, $border-active) {
   color: $color;
   background-color: $background;
   border-color: $border;
@@ -16,13 +16,13 @@
   &.focus,
   &:hover,
   &.hover {
-    color: $color;
+    color: $color-hover;
     background-color: $background-hover;
     border-color: $border-hover;
   }
   &:active,
   &.active {
-    color: $color;
+    color: $color-active;
     background-color: $background-active;
     border-color: $border-active;
   }
@@ -186,15 +186,17 @@
 /* Button Colors */
 /*****************/
 
-// $color, $background, $border, $background-hover, $border-hover, $background-active, $border-active
+// $color, $background, $border, $color-hover, $background-hover, $border-hover, $color-active, $background-active, $border-active
 
 .btn-default {
   @include button-variant(
     color(control-color),
     color(default-button-bg),
     color(default-button-bg),
+    color(control-color),
     color(default-button-bg-hover),
     color(default-button-bg-hover),
+    color(control-color),
     color(default-button-bg-active),
     color(default-button-bg-active),
   );
@@ -206,8 +208,10 @@
     color(n500),
     color(control-bg),
     none,
+    color(n700),
     color(n20),
     none,
+    color(n700),
     color(n30),
     none,
   );
@@ -218,8 +222,10 @@
     color(text-color-inverted),
     color(b60),
     color(b60),
+    color(text-color-inverted),
     color(b70),
     color(b70),
+    color(text-color-inverted),
     color(b80),
     color(b80),
 
@@ -231,8 +237,10 @@
     color(text-color-inverted),
     color(g70),
     color(g70),
+    color(text-color-inverted),
     color(g70-dark),
     color(g70-dark),
+    color(text-color-inverted),
     color(g70-darker),
     color(g70-darker),
   );
@@ -243,8 +251,10 @@
     color(text-color-inverted),
     color(p70),
     color(p70),
+    color(text-color-inverted),
     color(p70-dark),
     color(p70-dark),
+    color(text-color-inverted),
     color(p70-darker),
     color(p70-darker),
   );
@@ -255,8 +265,10 @@
     color(text-color-inverted),
     color(brand-warning),
     color(brand-warning),
+    color(text-color-inverted),
     color(brand-warning-dark),
     color(brand-warning-dark),
+    color(text-color-inverted),
     color(brand-warning-darker),
     color(brand-warning-darker),
   );
@@ -267,8 +279,26 @@
     color(text-color-inverted),
     color(r70),
     color(r70),
+    color(text-color-inverted),
     color(r70-dark),
     color(r70-dark),
+    color(text-color-inverted),
+    color(r70-darker),
+    color(r70-darker),
+  );
+}
+
+// $color, $background, $border, $color-hover, $background-hover, $border-hover, $color-active, $background-active, $border-active
+
+.btn-quiet-danger {
+  @include button-variant(
+    color(gray),
+    color(n20),
+    color(n20),
+    color(n0),
+    color(r70),
+    color(r70),
+    color(n0),
     color(r70-darker),
     color(r70-darker),
   );
@@ -279,8 +309,10 @@
     color(control-color),
     color(white-clear),
     color(white-clear),
+    color(control-color),
     color(white-clearer),
     color(white-clearer),
+    color(control-color),
     color(white-clearest),
     color(white-clearest),
   );

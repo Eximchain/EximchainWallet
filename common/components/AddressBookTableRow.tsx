@@ -92,10 +92,10 @@ class AddressBookTableRow extends React.Component<Props> {
             </div>
             <button
               title={translateRaw('REMOVE_LABEL')}
-              className="btn btn-sm btn-danger"
+              className="btn btn-sm btn-quiet-danger"
               onClick={onRemoveClick}
             >
-              <i className="fa fa-close" />
+              <i className="fa fa-trash" />
             </button>
           </div>
           {labelError && (

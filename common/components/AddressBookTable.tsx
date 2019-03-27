@@ -99,7 +99,7 @@ class AddressBookTable extends React.Component<Props, State> {
               </label>
               <Input
                 name="temporaryAddress"
-                placeholder={translateRaw('NEW_ADDRESS')}
+                placeholder={translateRaw('ADD_ADDRESS')}
                 value={temporaryAddress}
                 onChange={this.handleAddressChange}
                 onFocus={this.setAddressTouched}
@@ -127,7 +127,7 @@ class AddressBookTable extends React.Component<Props, State> {
               </label>
               <Input
                 name="temporaryLabel"
-                placeholder={translateRaw('NEW_LABEL')}
+                placeholder={translateRaw('ADD_LABEL')}
                 value={temporaryLabel}
                 onChange={this.handleLabelChange}
                 onFocus={this.setLabelTouched}

@@ -66,10 +66,20 @@ class SimpleGas extends React.Component<Props> {
     this.props.fetchGasEstimates();
   }
 
-  public UNSAFE_componentWillReceiveProps(nextProps: Props) {
-    if (!this.state.hasSetRecommendedGasPrice && nextProps.gasEstimates) {
-      this.setState({ hasSetRecommendedGasPrice: true });
-      this.props.setGasPrice(nextProps.gasEstimates.fast.toString());
+  // public UNSAFE_componentWillReceiveProps(nextProps: Props) {
+  //   if (!this.state.hasSetRecommendedGasPrice && nextProps.gasEstimates) {
+  //     this.setState({ hasSetRecommendedGasPrice: true });
+  //     this.props.setGasPrice(nextProps.gasEstimates.fast.toString());
+  //   }
+  // }
+
+  public componentDidUpdate(prevProps: Props, prevState: State) {
+    if (!prevState.hasSetRecommendedGasPrice && this.props.gasEstimates) {
+      this.setState({
+        hasSetRecommendedGasPrice: true,
+        defaultGasPriceOn: true
+      });
+      prevProps.setGasPrice(this.props.gasEstimates.fast.toString());
     }
   }
 
@@ -101,11 +111,11 @@ class SimpleGas extends React.Component<Props> {
      *  and it cannot happen again from that point forward.
      */
     const actualGasPrice = Math.max(this.getGasPriceGwei(gasPrice.value), bounds.min);
+    console.log(this.state.defaultGasPriceOn);
     if (this.state.defaultGasPriceOn) {
-      this.setGasPrice('average');
+      this.setGasPrice(SliderStates.AVERAGE);
     }
 
-    console.log(actualGasPrice.toString(), bounds.max.toString(), bounds.min.toString());
     return (
       <div className="SimpleGas row form-group">
         {
@@ -163,7 +173,7 @@ class SimpleGas extends React.Component<Props> {
                 onClick={() => this.setGasPrice(SliderStates.SLOW)}
                 checked={actualGasPrice.toString() === bounds.min.toString()}
               />
-              <label for="slowGas" class="config-select">
+              <label htmlFor="slowGas" className="config-select">
                 <span>Slow</span>
                 <p> {bounds.min} Gwei </p>
               </label>
@@ -177,7 +187,7 @@ class SimpleGas extends React.Component<Props> {
                 onClick={() => this.setGasPrice(SliderStates.AVERAGE)}
                 checked={actualGasPrice.toString() === average.toString()}
               />
-              <label for="averageGas" class="config-select id-config-wrapper">
+              <label htmlFor="averageGas" className="config-select id-config-wrapper">
                 <span>Average</span>
                 <p> {(bounds.min + bounds.max) / 2} Gwei </p>
               </label>
@@ -191,7 +201,7 @@ class SimpleGas extends React.Component<Props> {
                 onClick={() => this.setGasPrice(SliderStates.FAST)}
                 checked={actualGasPrice.toString() === bounds.max.toString()}
               />
-              <label for="fastGas" class="config-select id-config-wrapper">
+              <label htmlFor="fastGas" className="config-select id-config-wrapper">
                 <span>Fast</span>
                 <p> {bounds.max} Gwei </p>
               </label>

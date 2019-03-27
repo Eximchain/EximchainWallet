@@ -112,7 +112,7 @@ class AddressBookTable extends React.Component<Props, State> {
               <Identicon address={temporaryAddress} />
             </div>
             <div className="AddressBookTable-row-identicon AddressBookTable-row-identicon-mobile">
-              <Identicon address={temporaryAddress} size="3rem" />
+              <Identicon address={temporaryAddress} size="2rem" />
             </div>
           </div>
           <div className="AddressBookTable-row AddressBookTable-row-error AddressBookTable-row-error--mobile">
@@ -138,7 +138,7 @@ class AddressBookTable extends React.Component<Props, State> {
             </div>
             <button
               title={translateRaw('ADD_LABEL')}
-              className="btn btn-sm btn-primary"
+              className="btn btn-sm btn-quiet-primary"
               onClick={this.handleAddEntry}
             >
               <i className="fa fa-plus" />

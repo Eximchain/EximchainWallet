@@ -67,7 +67,7 @@ class AddressBookTableRow extends React.Component<Props> {
               <Identicon address={address} />
             </div>
             <div className="AddressBookTable-row-identicon AddressBookTable-row-identicon-mobile">
-              <Identicon address={address} size="3rem" />
+              <Identicon address={address} size="2rem" />
             </div>
           </div>
           <div className="AddressBookTable-row-input">

@@ -81,7 +81,7 @@
     "ADDRESSES": "Addresses",
     "LABEL": "Label",
     "LABELS": "Labels",
-    "INVALID_LABEL_LENGTH": "A label must be 2-50 characters long.",
+    "INVALID_LABEL_LENGTH": "Labels must be 2-50 characters long.",
     "LABEL_ALREADY_EXISTS": "An address is already associated with that label.",
     "ADDRESS_ALREADY_EXISTS": "That address is already associated with a label.",
     "INVALID_ADDRESS": "Please enter a valid ETH address.",

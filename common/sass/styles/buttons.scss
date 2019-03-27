@@ -293,14 +293,28 @@
 .btn-quiet-danger {
   @include button-variant(
     color(gray),
-    color(n20),
-    color(n20),
-    color(n0),
+    transparent,
+    transparent,
     color(r70),
-    color(r70),
-    color(n0),
-    color(r70-darker),
-    color(r70-darker),
+    transparent,
+    transparent,
+    color(r80),
+    transparent,
+    transparent,
+  );
+}
+
+.btn-quiet-primary {
+  @include button-variant(
+    color(gray),
+    transparent,
+    transparent,
+    color(b60),
+    transparent,
+    transparent,
+    color(b80),
+    transparent,
+    transparent,
   );
 }
 

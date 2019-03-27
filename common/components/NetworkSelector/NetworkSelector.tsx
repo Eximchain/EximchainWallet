@@ -49,7 +49,6 @@ class NetworkSelector extends React.Component<Props> {
 
   public componentDidMount() {
     const { node } = this.props;
-    console.log(node.id, 'asdfs');
     const newState = { ...this.state };
     // Expand alt networks by default if they're on one
     if (!CORE_NETWORKS.includes(node.network)) {

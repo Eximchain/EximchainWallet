@@ -12,9 +12,7 @@ $speed: 1ms;
   animation: decrypt-enter $speed ease 1;
 }
 
-.WalletDecrypt > div {
-
-}
+.WalletDecrypt>div {}
 
 // .Tab-content {
 //   display: flex;
@@ -80,21 +78,22 @@ $speed: 1ms;
       margin-bottom: 18px;
       border-bottom: solid .5px color(n20);
 
-    &-title {
-      @include decrypt-title;
-      padding-left: 20px;
-    }
+      &-title {
+        @include decrypt-title;
+        padding-left: 20px;
+      }
 
 
 
     }
+
     &-description {
       margin: 0 0 1rem;
       color: color(n800);
       text-align: left;
       font-size: 16px;
       padding-bottom: 10px;
-      }
+    }
 
     &-row {
       display: flex;
@@ -138,12 +137,20 @@ $speed: 1ms;
       margin-top: 0;
       margin-left: 0;
       padding-left: 0;
+      border: none;
+      background: transparent;
+      color: color(n90);
+      transition: ease 300ms;
+
+      &:hover {
+        color: color(n800);
+
+      }
     }
 
 
 
-    @media (max-width: $screen-md) {
-    }
+    @media (max-width: $screen-md) {}
 
     &-back {
       @include reset-button;

@@ -91,7 +91,7 @@ class RootClass extends Component<Props, State> {
           <Route path="/tx-status" component={CheckTransaction} exact={true} />
           <Route path="/pushTx" component={BroadcastTx} />
           <Route path="/support-us" component={SupportPage} exact={true} />
-          {/* <Route path="/governance" component={Governance} /> */}
+          <Route path="/governance" component={Governance} />
           {process.env.NODE_ENV !== 'production' && (
             <Route path="/dev/palette" component={PalettePage} exact={true} />
           )}
@@ -172,9 +172,9 @@ const LegacyRoutes = withRouter(props => {
       case '#contracts':
         history.push('/contracts');
         break;
-      // case '#governance':
-      //   history.push('/governance');
-      //   break;
+      case '#governance':
+        history.push('/governance');
+        break;
       case '#ens':
         history.push('/ens');
         break;

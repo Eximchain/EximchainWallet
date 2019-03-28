@@ -10,8 +10,7 @@ export interface NavigationLink {
 export const navigationLinks: NavigationLink[] = [
   {
     name: 'NAV_VIEW',
-    to: '/account',
-    icon: 'eye'
+    to: '/account'
   },
 
   {
@@ -24,10 +23,10 @@ export const navigationLinks: NavigationLink[] = [
     to: '/tx-status'
   },
 
-  {
-    name: 'NAV_GOVERNANCE',
-    to: '/governance'
-  },
+  // {
+  //   name: 'NAV_GOVERNANCE',
+  //   to: '/governance'
+  // },
 
   {
     name: 'NAV_CONTRACTS',

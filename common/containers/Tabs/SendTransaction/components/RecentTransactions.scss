@@ -16,7 +16,7 @@
     width: 100%;
 
     td {
-      text-align: center;
+      text-align: left;
       padding: $space-md;
       white-space: nowrap;
 
@@ -26,12 +26,15 @@
     }
 
     thead {
-      font-size: $font-size-bump-more;
-      border-bottom: 2px solid shade-dark(0.1);
+      font-size: $font-size-xs-bump;
+      text-transform: uppercase;
+      letter-spacing: .4px;
+      color: color(gray);
+      border-bottom: 1px solid color(n20);
 
       td {
         padding-top: $space-xs;
-        padding-bottom: $space-xs;
+        padding-bottom: $space-sm;
       }
     }
   }

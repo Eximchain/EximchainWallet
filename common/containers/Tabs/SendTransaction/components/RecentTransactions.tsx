@@ -71,7 +71,7 @@ class RecentTransactions extends React.Component<Props> {
               <tr>
                 <td>{translate('SEND_ADDR')}</td>
                 <td>{translate('SEND_AMOUNT_SHORT')}</td>
-                <td>{translate('SENT')}</td>
+                <td>{translate('TIME_SENT')}</td>
                 <td />
               </tr>
             </thead>

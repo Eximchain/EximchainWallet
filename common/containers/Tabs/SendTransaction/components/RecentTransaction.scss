@@ -9,27 +9,27 @@ $identicon-size-mobile: 24px;
   line-height: $identicon-size;
   cursor: pointer;
   transition: box-shadow $hover-speed ease;
-  box-shadow: 0 1px shade-dark(0.1),
-              1px 0 shade-dark(0.1),
-              -1px 0 shade-dark(0.1),
-              0 0 color(b60) inset;
+  // box-shadow: 0 1px shade-dark(0.1),
+  //             1px 0 shade-dark(0.1),
+  //             -1px 0 shade-dark(0.1),
+  //             0 0 color(b60) inset;
+  border-bottom: solid 1px color(n20);
 
   &-to {
     width: 100%;
     max-width: 0;
-    @include mono;
+    // @include mono;
     @include ellipsis;
+    padding-top: 10px !important;
+    font-feature-settings: 'ss02' 1;
 
     .Identicon {
       display: inline-block;
       width: $identicon-size !important;
       height: $identicon-size !important;
       margin-right: $space-md;
+      margin-bottom: -6px;
     }
-  }
-
-  &-time {
-    opacity: 0.88;
   }
 
   &-arrow {
@@ -42,10 +42,12 @@ $identicon-size-mobile: 24px;
   }
 
   &:hover {
-    box-shadow: 0 1px shade-dark(0.1),
-                1px 0 shade-dark(0.1),
-                -1px 0 shade-dark(0.1),
-                3px 0 color(b60) inset;
+    // box-shadow: 0 1px shade-dark(0.1),
+    //             1px 0 shade-dark(0.1),
+    //             -1px 0 shade-dark(0.1),
+    //             3px 0 color(b60) inset;
+
+    background: color(n10);
 
     .RecentTx-arrow {
       opacity: 1;
@@ -56,7 +58,7 @@ $identicon-size-mobile: 24px;
 
   // Responsive handling
   @media (max-width: $screen-md) {
-    font-size: $font-size-xs;
+    font-size: $font-size-xs-bump;
     line-height: $identicon-size-mobile;
 
     &-to .Identicon {

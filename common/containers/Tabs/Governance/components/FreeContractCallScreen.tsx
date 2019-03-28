@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import translate, { translateRaw } from 'translations';
 import { bufferToHex } from 'ethereumjs-util';
 import arrow from 'assets/images/output-arrow.svg';
+import moment from 'moment';
 
 import { INode } from 'libs/nodes';
 import { configNodesSelectors } from 'features/config';
@@ -22,6 +23,7 @@ import './FreeContractCallScreen.scss';
 import { ContractFuncNames } from '..';
 
 import '../index.scss';
+import { decode } from 'rlp';
 
 interface StateProps {
   nodeLib: INode;
@@ -189,6 +191,12 @@ export class FreeContractCallClass extends Component<Props, State> {
                             ? bufferToHex(rawFieldValue)
                             : rawFieldValue;
                           const newName = selectedFunction.name + 'Output' + parsedName;
+                          let isTimestamp;
+                          if (newName.includes('timestamp') && decodedFieldValue !== '0') {
+                            isTimestamp = true;
+                          } else {
+                            isTimestamp = false;
+                          }
                           return (
                             <div
                               key={parsedName}
@@ -199,7 +207,12 @@ export class FreeContractCallClass extends Component<Props, State> {
                                 <Input
                                   className="InteractExplorer-func-out-input"
                                   isValid={!!decodedFieldValue}
-                                  value={decodedFieldValue}
+                                  value={
+                                    decodedFieldValue &&
+                                    (isTimestamp
+                                      ? moment.unix(decodedFieldValue).format('l LT')
+                                      : decodedFieldValue)
+                                  }
                                   disabled={true}
                                 />
                               </label>

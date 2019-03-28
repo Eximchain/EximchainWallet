@@ -29,7 +29,7 @@ export const NODE_CONFIGS: { [key in StaticNetworkIds]: RawNodeConfig[] } = {
       name: makeNodeName('ETH', 'transactionexc3'),
       type: 'rpc',
       service: 'Singapore',
-      url: 'https://tx-executor-singapore.eximchain.com '
+      url: 'https://tx-executor-singapore.eximchain.com'
     },
     {
       name: makeNodeName('ETH', 'localhost'),

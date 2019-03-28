@@ -21,7 +21,7 @@ $identicon-size-mobile: 24px;
     // @include mono;
     @include ellipsis;
     padding-top: 10px !important;
-    font-feature-settings: 'ss02' 1;
+    font-feature-settings: 'ss02'1;
 
     .Identicon {
       display: inline-block;
@@ -29,6 +29,10 @@ $identicon-size-mobile: 24px;
       height: $identicon-size !important;
       margin-right: $space-md;
       margin-bottom: -6px;
+
+      &-shadow {
+        box-shadow: none;
+      }
     }
   }
 

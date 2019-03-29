@@ -226,7 +226,7 @@ class Governance extends Component<Props, State> {
     },
     [FreeContractCallName.BALLOT_RECORDS]: {
       name: FreeContractCallName.BALLOT_RECORDS,
-      contractcall: 'ballotHistory'
+      contractcall: 'ballotRecords'
     },
     [FreeContractCallName.GOVERNANCE_CYCLE_RECORDS]: {
       name: FreeContractCallName.GOVERNANCE_CYCLE_RECORDS,

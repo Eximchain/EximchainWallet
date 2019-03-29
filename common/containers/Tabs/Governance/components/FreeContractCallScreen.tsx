@@ -46,6 +46,8 @@ interface DispatchProps {
 interface OwnProps {
   selectedFunction: ContractOption;
   contractCall: ContractFuncNames;
+  chainedCall: null | ContractFuncNames;
+  chainedFunction: null | ContractOption;
   goBack: () => void;
 }
 
@@ -81,7 +83,6 @@ export class FreeContractCallClass extends Component<Props, State> {
   };
   public componentDidMount() {
     this.props.setAsContractInteraction();
-    //
   }
 
   public componentWillUnmount() {
@@ -91,6 +92,15 @@ export class FreeContractCallClass extends Component<Props, State> {
   render() {
     const { inputs, outputs } = this.state;
     const selectedFunction = this.props.selectedFunction;
+    const { chainedCall, chainedFunction } = this.props;
+    let outputFunction: ContractOption;
+    if (chainedFunction) {
+      outputFunction = chainedFunction;
+    } else {
+      outputFunction = selectedFunction;
+    }
+    // console.log(this.props.chainedCall)
+    // console.log(this.props.chainedFunction)
     return (
       <React.Fragment>
         <div className="GovernanceSection-topsection">
@@ -181,8 +191,7 @@ export class FreeContractCallClass extends Component<Props, State> {
                           <i className="ElectronNav-controls-btn-icon fa fa-sign-out" />
                           Outputs
                         </h4>
-
-                        {selectedFunction.contract.outputs.map((output: any, index: number) => {
+                        {outputFunction.contract.outputs.map((output: any, index: number) => {
                           const { type, name } = output;
                           const parsedName = name === '' ? index : name;
                           const o = outputs[parsedName];
@@ -190,7 +199,7 @@ export class FreeContractCallClass extends Component<Props, State> {
                           const decodedFieldValue = Buffer.isBuffer(rawFieldValue)
                             ? bufferToHex(rawFieldValue)
                             : rawFieldValue;
-                          const newName = selectedFunction.name + 'Output' + parsedName;
+                          const newName = outputFunction.name + 'Output' + parsedName;
                           let isTimestamp;
                           if (newName.includes('timestamp') && decodedFieldValue !== '0') {
                             isTimestamp = true;
@@ -255,14 +264,22 @@ export class FreeContractCallClass extends Component<Props, State> {
   private handleFunctionCall = async (_: React.FormEvent<HTMLButtonElement>) => {
     try {
       const data = this.encodeData();
-      const { nodeLib, to, selectedFunction } = this.props;
+      const { nodeLib, to, selectedFunction, chainedFunction } = this.props;
       if (!to.value) {
         throw Error();
       }
       const callData = { to: to.raw, data };
       const results = await nodeLib.sendCallRequest(callData);
       const parsedResult = selectedFunction!.contract.decodeOutput(results);
-      this.setState({ outputs: parsedResult });
+      if (chainedFunction) {
+        const data = chainedFunction!.contract.encodeInput(parsedResult);
+        const chainedCallData = { to: to.raw, data };
+        const chainedResults = await nodeLib.sendCallRequest(chainedCallData);
+        const chainedParsedResults = chainedFunction!.contract.decodeOutput(chainedResults);
+        this.setState({ outputs: chainedParsedResults });
+      } else {
+        this.setState({ outputs: parsedResult });
+      }
     } catch (e) {
       this.props.showNotification(
         'warning',
@@ -271,6 +288,7 @@ export class FreeContractCallClass extends Component<Props, State> {
       );
     }
   };
+
   private encodeData(): string {
     const { inputs } = this.state;
     const selectedFunction = this.props.selectedFunction;

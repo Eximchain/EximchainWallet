@@ -13,6 +13,7 @@ import { configSelectors } from 'features/config';
 import VoteOrNominateIcon from 'assets/images/vote-or-nominate.svg';
 import CollectTokensIcon from 'assets/images/collect-tokens.svg';
 import ClaimTokensIcon from 'assets/images/claim-tokens.svg';
+import { NetworkContract } from 'types/network';
 
 import { transactionFieldsActions } from 'features/transaction';
 import './index.scss';
@@ -30,15 +31,15 @@ export enum CostlyContractCallName {
 
 export enum FreeContractCallName {
   BALLOT_HISTORY = 'BALLOT_HISTORY',
-  CURRENT_GOVERNANCE_CYCLE = 'CURRENT_GOVERNANCE_CYCLE',
-  WITHDRAW_RECORDS = 'WITHDRAW_RECORDS',
   BALLOT_RECORDS = 'BALLOT_RECORDS',
+  WITHDRAW_HISTORY = 'WITHDRAW_HISTORY',
+  WITHDRAW_RECORDS = 'WITHDRAW_RECORDS',
+  CURRENT_GOVERNANCE_CYCLE = 'CURRENT_GOVERNANCE_CYCLE',
   GOVERNANCE_CYCLE_RECORDS = 'GOVERNANCE_CYCLE_RECORDS',
   NOMINEE_BALLOTS = 'NOMINEE_BALLOTS',
   CAN_GOVERN = 'CAN_GOVERN',
   IS_KYC_APPROVED = 'IS_KYC_APPROVED',
-  IS_KYC_DENIED = 'IS_KYC_DENIED',
-  WITHDRAW_HISTORY = 'WITHDRAW_HISTORY'
+  IS_KYC_DENIED = 'IS_KYC_DENIED'
 }
 
 export type ContractFuncNames = CostlyContractCallName | FreeContractCallName;
@@ -49,12 +50,6 @@ export interface ContractCallDesc {
   description: string;
   contractcall: string;
   example?: string;
-}
-
-interface NetworkContract {
-  name: StaticNetworkIds;
-  address?: string;
-  abi: string;
 }
 
 const COSTLYFUNCTIONCALLS: ContractFuncNames[] = Object.values(CostlyContractCallName);
@@ -109,6 +104,7 @@ class Governance extends Component<Props, State> {
     let i = 0;
     for (i; i < contractNumber; i++) {
       let currentInstance = this.props.contracts[i];
+      console.log(currentInstance);
       if (currentInstance.name === 'Weyl Governance') {
         if (currentInstance.address === '0x000000000000000000000000000000000000002a') {
           // this.props.setCurrentTo(currentInstance.address);
@@ -193,6 +189,11 @@ class Governance extends Component<Props, State> {
     return new Contract(parsedAbi);
   }
 
+  private chainedContractCalls = new Map([
+    ['ballotHistory', 'ballotRecords'],
+    ['withdrawHistory', 'withdrawRecords']
+  ]);
+
   private GOVERNANCECALLS: GovernanceCall = {
     [CostlyContractCallName.VOTE]: {
       name: CostlyContractCallName.VOTE,
@@ -216,17 +217,23 @@ class Governance extends Component<Props, State> {
       name: FreeContractCallName.BALLOT_HISTORY,
       contractcall: 'ballotHistory'
     },
+    [FreeContractCallName.BALLOT_RECORDS]: {
+      name: FreeContractCallName.BALLOT_RECORDS,
+      contractcall: 'ballotRecords',
+      chained: true
+    },
     [FreeContractCallName.CURRENT_GOVERNANCE_CYCLE]: {
       name: FreeContractCallName.CURRENT_GOVERNANCE_CYCLE,
       contractcall: 'currentGovernanceCycle'
     },
+    [FreeContractCallName.WITHDRAW_HISTORY]: {
+      name: FreeContractCallName.WITHDRAW_HISTORY,
+      contractcall: 'withdrawHistory'
+    },
     [FreeContractCallName.WITHDRAW_RECORDS]: {
       name: FreeContractCallName.WITHDRAW_RECORDS,
-      contractcall: 'withdrawRecords'
-    },
-    [FreeContractCallName.BALLOT_RECORDS]: {
-      name: FreeContractCallName.BALLOT_RECORDS,
-      contractcall: 'ballotRecords'
+      contractcall: 'withdrawRecords',
+      chained: true
     },
     [FreeContractCallName.GOVERNANCE_CYCLE_RECORDS]: {
       name: FreeContractCallName.GOVERNANCE_CYCLE_RECORDS,
@@ -247,10 +254,6 @@ class Governance extends Component<Props, State> {
     [FreeContractCallName.IS_KYC_DENIED]: {
       name: FreeContractCallName.IS_KYC_DENIED,
       contractcall: 'isKYCDenied'
-    },
-    [FreeContractCallName.WITHDRAW_HISTORY]: {
-      name: FreeContractCallName.WITHDRAW_HISTORY,
-      contractcall: 'withdrawHistory'
     }
   };
 
@@ -262,15 +265,17 @@ class Governance extends Component<Props, State> {
       <div className="GovernanceSection-row">
         {contractCallMap.map((contractCall: ContractFuncNames) => {
           const call = this.GOVERNANCECALLS[contractCall];
-          return (
-            <Button
-              key={contractCall}
-              name={translateRaw(call.name)}
-              icon={call.icon}
-              onClick={() => this.goTo(stateTransition, contractCall)}
-              description={translateRaw(call.description)}
-            />
-          );
+          if (!call.chained) {
+            return (
+              <Button
+                key={contractCall}
+                name={translateRaw(call.name)}
+                icon={call.icon}
+                onClick={() => this.goTo(stateTransition, contractCall)}
+                description={translateRaw(call.description)}
+              />
+            );
+          }
         })}
       </div>
     );
@@ -314,6 +319,7 @@ class Governance extends Component<Props, State> {
     const contractFunctions = Contract.getFunctions(currentContract);
     let stages = GovernanceFlowStages;
     let body;
+    // console.log(this.GOVERNANCECALLS[this.state.chosenCall])
     switch (this.state.stage) {
       case GovernanceFlowStages.START_PAGE:
         body = (
@@ -336,11 +342,17 @@ class Governance extends Component<Props, State> {
         );
         break;
       case GovernanceFlowStages.FREE_CALL_PAGE:
+        const chainedCall = this.chainedContractCalls.get(
+          this.GOVERNANCECALLS[this.state.chosenCall].contractcall
+        );
+        const chainedFunction = chainedCall ? this.contractOptionsMap()[chainedCall] : null;
         body = (
           <FreeContractCallScreen
             selectedFunction={this.state.currentCall}
             goBack={this.goBack}
             contractCall={this.state.chosenCall}
+            chainedCall={chainedCall}
+            chainedFunction={chainedFunction}
           />
         );
         break;

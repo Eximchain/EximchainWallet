@@ -29,6 +29,13 @@
     margin: auto;
     height: 100%;
 
+    a {
+      position: absolute;
+      left: 20px;
+      bottom: 20px;
+      font-size: $font-size-small;
+    }
+
     .WalletDecrypt-wallets {
       padding-top: 0;
     }

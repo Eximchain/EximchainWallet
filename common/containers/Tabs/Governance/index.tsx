@@ -336,6 +336,13 @@ class Governance extends Component<Props, State> {
                 </h2> */}
                 {this.buildFunctionOptions(COSTLYFUNCTIONCALLS, stages.COSTLY_CALL_PAGE)}
                 {this.buildFunctionOptions(FREEFUNCTIONCALLS, stages.FREE_CALL_PAGE)}
+                <a
+                  href="https://support.eximchain.com/hc/en-us/articles/360020960333-How-to-participate-in-Governance/"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  How to participate in Governance
+                </a>
               </div>
             </section>
           </React.Fragment>

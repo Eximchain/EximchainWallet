@@ -24,6 +24,7 @@ import { ContractFuncNames } from '..';
 
 import '../index.scss';
 import { decode } from 'rlp';
+import { selectedNodeActions } from 'features/config/nodes/selected/reducer.spec';
 
 interface StateProps {
   nodeLib: INode;
@@ -96,6 +97,9 @@ export class FreeContractCallClass extends Component<Props, State> {
     let outputFunction: ContractOption;
     if (chainedFunction) {
       outputFunction = chainedFunction;
+      outputFunction.contract.outputs = selectedFunction.contract.outputs.concat(
+        chainedFunction.contract.outputs
+      );
     } else {
       outputFunction = selectedFunction;
     }
@@ -200,8 +204,12 @@ export class FreeContractCallClass extends Component<Props, State> {
                             ? bufferToHex(rawFieldValue)
                             : rawFieldValue;
                           const newName = outputFunction.name + 'Output' + parsedName;
+                          console.log(newName);
                           let isTimestamp;
-                          if (newName.includes('timestamp') && decodedFieldValue !== '0') {
+                          if (
+                            (newName.includes('time') || newName.includes('start')) &&
+                            decodedFieldValue !== '0'
+                          ) {
                             isTimestamp = true;
                           } else {
                             isTimestamp = false;
@@ -276,7 +284,7 @@ export class FreeContractCallClass extends Component<Props, State> {
         const chainedCallData = { to: to.raw, data };
         const chainedResults = await nodeLib.sendCallRequest(chainedCallData);
         const chainedParsedResults = chainedFunction!.contract.decodeOutput(chainedResults);
-        this.setState({ outputs: chainedParsedResults });
+        this.setState({ outputs: { ...parsedResult, ...chainedParsedResults } });
       } else {
         this.setState({ outputs: parsedResult });
       }

@@ -191,7 +191,8 @@ class Governance extends Component<Props, State> {
 
   private chainedContractCalls = new Map([
     ['ballotHistory', 'ballotRecords'],
-    ['withdrawHistory', 'withdrawRecords']
+    ['withdrawHistory', 'withdrawRecords'],
+    ['currentGovernanceCycle', 'governanceCycleRecords']
   ]);
 
   private GOVERNANCECALLS: GovernanceCall = {

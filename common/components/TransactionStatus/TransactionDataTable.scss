@@ -1,49 +1,57 @@
 @import 'common/sass/variables';
 @import 'common/sass/mixins';
 
-.table > thead > tr > th, .table > thead > tr > td, .table > tbody > tr > th, .table > tbody > tr > td, .table > tfoot > tr > th, .table > tfoot > tr > td {
+.table>thead>tr>th,
+.table>thead>tr>td,
+.table>tbody>tr>th,
+.table>tbody>tr>td,
+.table>tfoot>tr>th,
+.table>tfoot>tr>td {
   border-top: none;
   vertical-align: middle;
 }
 
-td.TxData-row-label {
+td.TxData-row-label {}
 
-}
 .TxData {
   &-row {
     font-size: 0.9rem;
     border-bottom: solid 1px color(n20);
+    // max-width: 100%;
+    width: auto;
+
 
     &:last-child {
       border-bottom: none;
-
     }
 
 
-
-
-
-
-
     &-label {
-      // font-weight: bold;
-      // text-align: right;
       color: color(gray);
       text-transform: uppercase;
       letter-spacing: .4px;
       font-size: .8rem;
       padding-left: 0 !important;
-
+      width: 164px;
     }
 
     &-data {
-      // @include mono;
       padding-right: 0 !important;
+      width: auto;
+
+      .CodeBlock {
+        margin-bottom: 0;
+      }
+
+      .CodeBlock>code {
+        width: auto;
+        border-radius: 6px;
+
+      }
 
 
       a {
         vertical-align: middle;
-
       }
 
       &-more {
@@ -58,9 +66,11 @@ td.TxData-row-label {
         &.is-success {
           color: color(g70);
         }
+
         &.is-warning {
           color: color(brand-warning);
         }
+
         &.is-danger {
           color: color(r70);
         }

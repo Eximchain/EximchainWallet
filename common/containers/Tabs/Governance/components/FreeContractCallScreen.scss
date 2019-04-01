@@ -32,6 +32,7 @@
   border: none !important;
   box-shadow: none !important;
   color: color(n200);
+
   &-hover {
     cursor: pointer;
     color: color(gray);
@@ -52,6 +53,7 @@
   }
 
 }
+
 .Input-box {
   position: relative;
   padding: 1rem;
@@ -74,6 +76,7 @@
   border-radius: 6px;
   background: color(n10);
   min-height: 100%;
+
 
 
   label {
@@ -104,6 +107,8 @@
     border: none;
     background: none;
     padding: 0;
+    text-overflow: ellipsis;
+
     // text-align: right;
     height: auto;
     margin-bottom: 0;

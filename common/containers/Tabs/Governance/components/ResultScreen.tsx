@@ -72,7 +72,7 @@ class ResultScreen extends React.Component<Props, State> {
                     to={`/tx-status?txHash=${this.props.txHash}`}
                     className="resultScreenBtnLink btn btn-default resultScreenBtnLink-main"
                   >
-                    Check transaction status
+                    Check Transaction Status
                   </Link>
                 </div>
               </div>

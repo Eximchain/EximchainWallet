@@ -69,6 +69,10 @@
       // box-shadow: 0 1px 4px rgba(#000, 0.06), 0 2px 6px rgba(#000, 0.06);
       // transform: translateY(-2px);
 
+      .Button-description {
+        background: color(n30);
+      }
+
 
       .Button-title {
         // color: shade-dark(.8);
@@ -98,10 +102,10 @@
 
     &:active {
       background: color(n20);
-      // border-color: color(b50);
-      // background-color: #F0F6FD;
-      // transform: translateY(-1px);
-      // box-shadow: 0 1px 2px rgba(#000, 0.2), 0 3px 4px rgba(#000, 0.2);
+
+      .Button-description {
+        background: color(n40);
+      }
     }
   }
 

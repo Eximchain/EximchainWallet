@@ -4,7 +4,7 @@
     "ConfirmTransaction": "Signed Transaction",
     "ConfirmTransactionDescription": "Copy the info below if you wish to save the transaction data.",
     "VOTEName": "Ballot Entry",
-    "voteDescription": "Complete the form to nominate of vote for a member.",
+    "voteDescription": "Complete the form to nominate or vote for a member.To nominate a member, you must cast a minimum of 32 points for (+).",
     "CLAIMName": "Claim Tokens",
     "startWithdrawDescription": "Complete the form to start the withdrawal of your tokens.",
     "COLLECTName": "Collect Tokens",

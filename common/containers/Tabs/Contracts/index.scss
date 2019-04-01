@@ -1,5 +1,14 @@
 @import "common/sass/variables";
 
+
+.Contracts-content {
+  .AddressField {
+    input {
+      padding-right: 3.3rem;
+    }
+  }
+}
+
 .ContractSection {
   position: relative;
   text-align: center;
@@ -22,21 +31,21 @@
     border-bottom: solid .5px color(n20);
     text-transform: capitalize;
 
-  h2 {
-    text-align: left;
-    line-height: 1.4;
-    margin-bottom: 3px;
-    margin-top: 0;
-    font-size: 18px;
-    padding-left: 20px;
-  }
+    h2 {
+      text-align: left;
+      line-height: 1.4;
+      margin-bottom: 3px;
+      margin-top: 0;
+      font-size: 18px;
+      padding-left: 20px;
+    }
 
-  &-subtitle {
-    margin: 0 0 1rem;
-    color: color(gray);
-    text-align: left;
-    font-size: 13px;
-    padding-left: 20px;
+    &-subtitle {
+      margin: 0 0 1rem;
+      color: color(gray);
+      text-align: left;
+      font-size: 13px;
+      padding-left: 20px;
     }
   }
 

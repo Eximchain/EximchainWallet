@@ -331,9 +331,9 @@ class Governance extends Component<Props, State> {
             </div>
             <section className="Tab-content GovernanceSection-content">
               <div>
-                <h2 className="GovernanceSection-topsection-subtitle">
+                {/* <h2 className="GovernanceSection-topsection-subtitle">
                   {translate('GENERATE_GOVERNANCE_DESC')}
-                </h2>
+                </h2> */}
                 {this.buildFunctionOptions(COSTLYFUNCTIONCALLS, stages.COSTLY_CALL_PAGE)}
                 {this.buildFunctionOptions(FREEFUNCTIONCALLS, stages.FREE_CALL_PAGE)}
               </div>

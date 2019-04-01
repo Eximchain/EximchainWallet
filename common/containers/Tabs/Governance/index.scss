@@ -13,18 +13,19 @@
     //   width: auto;
     // }
 
-    .AdvancedGas-gas-price, .AdvancedGas-gas-limit, .AdvancedGas-nonce {
+    .AdvancedGas-gas-price,
+    .AdvancedGas-gas-limit,
+    .AdvancedGas-nonce {
       width: 40%;
     }
 
     .btn-primary {
       width: 100%;
     }
-
-
   }
+
   &-content {
-    padding-top: $electron-osx-control-spacing;
+    padding-top: 30px;
     margin: auto;
     height: 100%;
 
@@ -73,7 +74,7 @@
         }
       }
 
-      .CodeBlock > code {
+      .CodeBlock>code {
         max-height: none;
         // height: 171px;
         // margin: 1rem;
@@ -109,21 +110,21 @@
     border-bottom: solid .5px color(n20);
     text-transform: capitalize;
 
-  h2 {
-    text-align: left;
-    line-height: 1.4;
-    margin-bottom: 3px;
-    margin-top: 0;
-    font-size: 18px;
-    padding-left: 20px;
-  }
+    h2 {
+      text-align: left;
+      line-height: 1.4;
+      margin-bottom: 3px;
+      margin-top: 0;
+      font-size: 18px;
+      padding-left: 20px;
+    }
 
-  &-subtitle {
-    margin: 0 0 1rem;
-    color: color(n800);
-    text-align: left;
-    font-size: 16px;
-    padding-bottom: 10px;
+    &-subtitle {
+      margin: 0 0 1rem;
+      color: color(n800);
+      text-align: left;
+      font-size: 16px;
+      padding-bottom: 10px;
 
     }
 

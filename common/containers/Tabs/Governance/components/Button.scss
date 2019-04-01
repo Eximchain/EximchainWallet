@@ -20,17 +20,18 @@
 }
 
 .FormInput {
-    &-title {
-      font-size: 20px;
-      padding-bottom: 0px;
-      text-transform: capitalize;
-      margin-top: 0;
-    }
-    &-subtitle {
-      font-size: 14px;
-      padding-bottom: 28px;
-      color: color(gray);
-    }
+  &-title {
+    font-size: 20px;
+    padding-bottom: 0px;
+    text-transform: capitalize;
+    margin-top: 0;
+  }
+
+  &-subtitle {
+    font-size: 14px;
+    padding-bottom: 28px;
+    color: color(gray);
+  }
 }
 
 .Button {
@@ -38,7 +39,7 @@
   flex: 1;
   height: auto;
   min-width: 300px;
-  padding: 12px 12px;
+  padding: 12px;
   margin: 0 $space-sm $space;
   background: color(control-bg);
   border-style: solid;
@@ -48,12 +49,9 @@
   text-align: left;
   cursor: pointer;
 
-
-
-
   &-title {
-    text-transform: capitalize;
-
+    // text-transform: capitalize;
+    font-size: $font-size-small;
   }
 
   @for $i from 0 to 6 {
@@ -63,10 +61,11 @@
   }
 
   &:not(.is-disabled) {
-    &:hover,
-    &:focus {
+
+    &:hover {
       z-index: 2;
-      border-color: color(b50);
+      background: color(n10);
+      border-color: color(n50);
       // box-shadow: 0 1px 4px rgba(#000, 0.06), 0 2px 6px rgba(#000, 0.06);
       // transform: translateY(-2px);
 
@@ -80,7 +79,26 @@
       }
     }
 
+    &:focus {
+      // outline: solid 1px color(b50);
+      // outline-offset: 2px;
+      // background: color(n20);
+      // border-color: color(b50);
+      // background-color: #F0F6FD;
+      // transform: translateY(-1px);
+      // box-shadow: 0 1px 2px rgba(#000, 0.2), 0 3px 4px rgba(#000, 0.2);
+    }
+
+    &:focus-visible {
+      box-shadow: 0 0 0 1px color(b40);
+      border-color: color(b40);
+      outline: none;
+
+    }
+
     &:active {
+      background: color(n20);
+      // border-color: color(b50);
       // background-color: #F0F6FD;
       // transform: translateY(-1px);
       // box-shadow: 0 1px 2px rgba(#000, 0.2), 0 3px 4px rgba(#000, 0.2);
@@ -100,25 +118,24 @@
     transition: opacity 200ms ease;
     display: flex;
     flex-direction: row;
-
   }
 
 
-    &-icon {
-      margin-right: 8px;
-      max-height: 80px;
-      // opacity: 0.8;
+  &-icon {
+    margin-right: 8px;
+    max-height: 80px;
+    // opacity: 0.8;
 
-      @include theme(dark) {
-        opacity: 1;
-        filter: invert(1);
+    @include theme(dark) {
+      opacity: 1;
+      filter: invert(1);
 
-        // Kind of hacky, but we don't want to invert metamask
-        &[src*="metamask"] {
-          filter: none;
-        }
+      // Kind of hacky, but we don't want to invert metamask
+      &[src*="metamask"] {
+        filter: none;
       }
     }
+  }
 
   &-title {
     display: flex;
@@ -231,14 +248,17 @@
     min-width: 31.8%;
     max-width: 31.8%;
   }
+
   @media screen and (max-width: $screen-md) {
     min-width: 31.2%;
     max-width: 31.2%;
   }
+
   @media screen and (max-width: $screen-sm) {
     min-width: 31.2%;
     max-width: 31.2%;
   }
+
   @media screen and (max-width: $screen-xs) {
     padding: 14px;
     margin-bottom: 10px;

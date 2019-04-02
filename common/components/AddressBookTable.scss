@@ -8,6 +8,9 @@
     display: flex;
     align-items: center;
     border-bottom: 1px solid color(n20);
+    // font-feature-settings: 'tnum'1 !important;
+    font-feature-settings: 'ss02'1;
+    text-overflow: ellipsis;
 
     &-inputs {
       input:hover {
@@ -18,7 +21,7 @@
     &:first {
       border-bottom: none;
     }
-    
+
 
     @media (max-width: 650px) {
       flex-direction: column;
@@ -154,8 +157,15 @@
       flex: 1;
       margin-right: 0;
 
+      &:last-child {
+        input:hover {
+          background: color(n10);
+        }
+      }
+
       .input-group-input {
         height: 2rem;
+
       }
 
       &:first-child {

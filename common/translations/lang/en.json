@@ -84,7 +84,7 @@
     "TIME_SENT": "Time Sent",
     "INVALID_LABEL_LENGTH": "Labels must be 2-50 characters long.",
     "LABEL_ALREADY_EXISTS": "An address is already associated with that label.",
-    "ADDRESS_ALREADY_EXISTS": "That address is already associated with a label.",
+    "ADDRESS_ALREADY_EXISTS": "This address is already associated with a label.",
     "INVALID_ADDRESS": "Please enter a valid ETH address.",
     "NO_LABEL_FOUND_CONTAINING": "No labels found containing",
     "LABEL_CANNOT_BEGIN_WITH_0X": "Address labels may not begin with 0x.",

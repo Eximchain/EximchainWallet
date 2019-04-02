@@ -19,8 +19,8 @@ import {
 import { Input, Dropdown } from 'components/ui';
 import './InteractExplorer/InteractExplorer.scss';
 import './FreeContractCallScreen.scss';
-
-import { ContractFuncNames } from '..';
+import { GovernanceFlowStages } from '..';
+import { ContractFuncNames, CostlyContractCallName } from '..';
 
 import '../index.scss';
 
@@ -48,6 +48,7 @@ interface OwnProps {
   chainedCall: null | ContractFuncNames;
   chainedFunction: null | ContractOption;
   goBack: () => void;
+  goTo: (stage: GovernanceFlowStages, declaredCall: ContractFuncNames, inputs?: any) => void;
 }
 
 interface State {
@@ -79,14 +80,14 @@ export class FreeContractCallClass extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     const { chainedCall, chainedFunction, selectedFunction } = this.props;
-    let outputFunction: ContractOption;
-    if (chainedFunction) {
-      outputFunction = chainedFunction;
-      outputFunction.contract.outputs = selectedFunction.contract.outputs.concat(
+    let outputFunction = selectedFunction;
+    if (
+      chainedFunction &&
+      !outputFunction.contract.outputs.includes(chainedFunction.contract.outputs[0])
+    ) {
+      outputFunction.contract.outputs = outputFunction.contract.outputs.concat(
         chainedFunction.contract.outputs
       );
-    } else {
-      outputFunction = selectedFunction;
     }
     this.state = {
       inputs: {},
@@ -109,6 +110,31 @@ export class FreeContractCallClass extends Component<Props, State> {
     const outputFunction = outputOptions;
     // console.log(this.props.chainedCall)
     // console.log(this.props.chainedFunction)
+    let buttonNavigate;
+    if (selectedFunction.name === 'ballotHistory') {
+      buttonNavigate = (
+        <button
+          className="InteractExplorer-func-submit btn btn-primary FormReadButton"
+          onClick={() =>
+            this.props.goTo(GovernanceFlowStages.COSTLY_CALL_PAGE, CostlyContractCallName.CLAIM)
+          }
+        >
+          {translate('CONTRACT_ACCESS')}
+        </button>
+      );
+    } else if (selectedFunction.name === 'withdrawHistory') {
+      buttonNavigate = (
+        <button
+          className="InteractExplorer-func-submit btn btn-primary FormReadButton"
+          onClick={() =>
+            this.props.goTo(GovernanceFlowStages.COSTLY_CALL_PAGE, CostlyContractCallName.COLLECT)
+          }
+        >
+          {translate('CONTRACT_ACCESS')}
+        </button>
+      );
+    }
+
     return (
       <React.Fragment>
         <div className="GovernanceSection-topsection">
@@ -240,6 +266,7 @@ export class FreeContractCallClass extends Component<Props, State> {
                             </div>
                           );
                         })}
+                        {buttonNavigate}
                       </div>
                     </div>
                   </div>

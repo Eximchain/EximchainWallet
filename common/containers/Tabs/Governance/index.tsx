@@ -69,6 +69,7 @@ export interface State {
   chosenCall: ContractFuncNames | null;
   currentContract: Contract;
   currentCall: null | ContractOption;
+  inputs?: any;
 }
 
 interface ContractOption {
@@ -161,9 +162,13 @@ class Governance extends Component<Props, State> {
     this.setContract();
   }
 
-  goTo(stage: GovernanceFlowStages, declaredCall: ContractFuncNames) {
+  goTo(stage: GovernanceFlowStages, declaredCall: ContractFuncNames, inputs?: any) {
+    console.log(declaredCall);
     this.setState((state: State) => {
       let newState = Object.assign({}, state);
+      if (inputs) {
+        newState.inputs = inputs;
+      }
       newState.stage = stage;
       newState.chosenCall = declaredCall;
       newState.currentCall = this.contractOptionsMap()[
@@ -294,12 +299,8 @@ class Governance extends Component<Props, State> {
       return newState;
     });
   }
-  componentDidUpdate(prevProps, prevStates) {
-    if (prevStates.stage !== GovernanceFlowStages.START_PAGE) {
-      this.goBack();
-    }
-  }
-  componentWillUnmount() {
+
+  private componentWillUnmount() {
     this.props.resetTransactionRequested();
   }
   private contractOptions = (contractFunctions: any) => {
@@ -320,6 +321,8 @@ class Governance extends Component<Props, State> {
     const contractFunctions = Contract.getFunctions(currentContract);
     let stages = GovernanceFlowStages;
     let body;
+    console.log(this.state.stage);
+    console.log(this.state.chosenCall);
     // console.log(this.GOVERNANCECALLS[this.state.chosenCall])
     switch (this.state.stage) {
       case GovernanceFlowStages.START_PAGE:
@@ -361,6 +364,7 @@ class Governance extends Component<Props, State> {
             contractCall={this.state.chosenCall}
             chainedCall={chainedCall}
             chainedFunction={chainedFunction}
+            goTo={this.goTo}
           />
         );
         break;
@@ -370,6 +374,7 @@ class Governance extends Component<Props, State> {
             selectedFunction={this.state.currentCall}
             goBack={this.goBack}
             contractCall={this.state.chosenCall}
+            defaultInput={this.state.inputs}
           />
         );
         break;

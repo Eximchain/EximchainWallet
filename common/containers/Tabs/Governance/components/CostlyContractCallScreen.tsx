@@ -51,6 +51,7 @@ interface DispatchProps {
 interface OwnProps {
   selectedFunction: ContractOption;
   contractCall: ContractFuncNames;
+  defaultInput?: any;
   goBack: () => void;
 }
 

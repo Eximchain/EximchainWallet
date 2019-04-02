@@ -23,8 +23,6 @@ import './FreeContractCallScreen.scss';
 import { ContractFuncNames } from '..';
 
 import '../index.scss';
-import { decode } from 'rlp';
-import { selectedNodeActions } from 'features/config/nodes/selected/reducer.spec';
 
 interface StateProps {
   nodeLib: INode;

@@ -57,6 +57,7 @@ interface State {
     [key: string]: { rawData: string; parsedData: string[] | string };
   };
   outputs: any;
+  outputOptions?: ContractOption;
 }
 
 interface ContractFunction {
@@ -77,23 +78,9 @@ type Props = StateProps & DispatchProps & OwnProps;
 
 export class FreeContractCallClass extends Component<Props, State> {
   public static defaultProps: Partial<Props> = {};
-
-  public state: State = {
-    inputs: {},
-    outputs: {}
-  };
-  public componentDidMount() {
-    this.props.setAsContractInteraction();
-  }
-
-  public componentWillUnmount() {
-    this.props.setAsViewAndSend();
-  }
-
-  render() {
-    const { inputs, outputs } = this.state;
-    const selectedFunction = this.props.selectedFunction;
-    const { chainedCall, chainedFunction } = this.props;
+  constructor(props: Props) {
+    super(props);
+    const { chainedCall, chainedFunction, selectedFunction } = this.props;
     let outputFunction: ContractOption;
     if (chainedFunction) {
       outputFunction = chainedFunction;
@@ -103,6 +90,25 @@ export class FreeContractCallClass extends Component<Props, State> {
     } else {
       outputFunction = selectedFunction;
     }
+    this.state = {
+      inputs: {},
+      outputs: {},
+      outputOptions: outputFunction
+    };
+  }
+
+  public componentDidMount() {
+    this.props.setAsContractInteraction();
+  }
+
+  public componentWillUnmount() {
+    this.props.setAsViewAndSend();
+  }
+
+  render() {
+    const { inputs, outputs, outputOptions } = this.state;
+    const selectedFunction = this.props.selectedFunction;
+    const outputFunction = outputOptions;
     // console.log(this.props.chainedCall)
     // console.log(this.props.chainedFunction)
     return (

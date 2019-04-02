@@ -21,6 +21,7 @@ import { transactionSignSelectors } from 'features/transaction/sign';
 import { GenerateTransaction } from 'components/GenerateTransaction';
 import { Input, Dropdown } from 'components/ui';
 import { Fields } from './InteractExplorer/components';
+import { AddressField } from 'components';
 import './InteractExplorer/InteractExplorer.scss';
 
 import { ContractFuncNames } from '..';
@@ -191,8 +192,51 @@ export class ContractCallClass extends Component<Props, State> {
               {selectedFunction.contract.inputs.map((input, index) => {
                 const { type, name } = input;
                 const parsedName = name === '' ? index : name;
-                const inputState = this.state.inputs[parsedName];
-
+                const inputState = inputs[parsedName];
+                let inputField;
+                if (type === 'bool') {
+                  inputField = (
+                    <Dropdown
+                      options={[
+                        { value: false, label: translateRaw(parsedName + 'false') },
+                        { value: true, label: translateRaw(parsedName + 'true') }
+                      ]}
+                      value={
+                        inputState
+                          ? {
+                              value: inputState.parsedData as any,
+                              label: translateRaw(parsedName + inputState.rawData)
+                            }
+                          : undefined
+                      }
+                      clearable={false}
+                      onChange={({ value }: { value: boolean }) => {
+                        this.handleBooleanDropdownChange({ value, name: parsedName });
+                      }}
+                    />
+                  );
+                } else if (type === 'address') {
+                  inputField = (
+                    <AddressField
+                      name={parsedName}
+                      value={(inputs[parsedName] && inputs[parsedName].rawData) || ''}
+                      showLabelMatch={true}
+                      showInputLabel={false}
+                      onChangeOverride={this.handleSelectAddressFromBook}
+                      dropdownThreshold={1}
+                    />
+                  );
+                } else {
+                  inputField = (
+                    <Input
+                      className="InteractExplorer-func-in-input"
+                      isValid={!!(inputs[parsedName] && inputs[parsedName].rawData)}
+                      name={parsedName}
+                      value={(inputs[parsedName] && inputs[parsedName].rawData) || ''}
+                      onChange={this.handleInputChange}
+                    />
+                  );
+                }
                 return (
                   <div key={parsedName} className="input-group-wrapper">
                     <label className="input-group">
@@ -202,34 +246,8 @@ export class ContractCallClass extends Component<Props, State> {
                         }
                         {translate(parsedName)}
                       </div>
-                      {type === 'bool' ? (
-                        <Dropdown
-                          options={[
-                            { value: false, label: translateRaw(parsedName + 'false') },
-                            { value: true, label: translateRaw(parsedName + 'true') }
-                          ]}
-                          value={
-                            inputState
-                              ? {
-                                  value: inputState.parsedData as any,
-                                  label: translateRaw(parsedName + inputState.rawData)
-                                }
-                              : undefined
-                          }
-                          clearable={false}
-                          onChange={({ value }: { value: boolean }) => {
-                            this.handleBooleanDropdownChange({ value, name: parsedName });
-                          }}
-                        />
-                      ) : (
-                        <Input
-                          className="InteractExplorer-func-in-input"
-                          isValid={!!(inputs[parsedName] && inputs[parsedName].rawData)}
-                          name={parsedName}
-                          value={(inputs[parsedName] && inputs[parsedName].rawData) || ''}
-                          onChange={this.handleInputChange}
-                        />
-                      )}
+
+                      {inputField}
                     </label>
                   </div>
                 );
@@ -355,9 +373,15 @@ export class ContractCallClass extends Component<Props, State> {
       this.props.showNotification('danger', `All fields are required.`, 5000);
     }
   };
+  private handleSelectAddressFromBook = (ev: React.FormEvent<HTMLInputElement>) => {
+    const { currentTarget: { value: addressFromBook } } = ev;
+    ev.currentTarget.name = '_voted_for';
+    ev.currentTarget.value = addressFromBook;
+
+    this.handleInputChange(ev);
+  };
   private handleInputChange = (ev: React.FormEvent<HTMLInputElement>) => {
     const rawValue: string = ev.currentTarget.value;
-
     if (ev.currentTarget.name === '_votes') {
       this.autoSetAmountValue(rawValue);
     }

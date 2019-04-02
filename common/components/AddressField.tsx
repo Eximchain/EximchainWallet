@@ -17,6 +17,7 @@ interface OwnProps {
   showInputLabel?: boolean;
   placeholder?: string;
   value?: string;
+  name?: string;
   dropdownThreshold?: number;
   onChangeOverride?(ev: React.FormEvent<HTMLInputElement>): void;
 }
@@ -38,7 +39,8 @@ const AddressField: React.SFC<Props> = ({
   showInputLabel = true,
   onChangeOverride,
   value,
-  dropdownThreshold
+  dropdownThreshold,
+  name
 }) => (
   <AddressFieldFactory
     isSelfAddress={isSelfAddress}
@@ -59,6 +61,7 @@ const AddressField: React.SFC<Props> = ({
             className={`input-group-input ${!isValid && !isLabelEntry ? 'invalid' : ''}`}
             isValid={isValid}
             type="text"
+            name={name}
             value={
               value != null
                 ? value
@@ -67,7 +70,7 @@ const AddressField: React.SFC<Props> = ({
             placeholder={placeholder}
             readOnly={!!(isReadOnly || readOnly)}
             spellCheck={false}
-            onChange={onChangeOverride || onChange}
+            onChange={onChangeOverride ? onChangeOverride : onChange}
             onFocus={onFocus}
             onBlur={onBlur}
           />

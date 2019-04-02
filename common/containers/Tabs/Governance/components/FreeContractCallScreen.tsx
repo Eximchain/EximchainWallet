@@ -180,13 +180,13 @@ export class FreeContractCallClass extends Component<Props, State> {
                             </div>
                           );
                         })}
+                        <button
+                          className="InteractExplorer-func-submit btn btn-primary FormReadButton"
+                          onClick={this.handleFunctionCall}
+                        >
+                          {translate('CONTRACT_READ')}
+                        </button>
                       </div>
-                      <button
-                        className="InteractExplorer-func-submit btn btn-primary FormReadButton"
-                        onClick={this.handleFunctionCall}
-                      >
-                        {translate('CONTRACT_READ')}
-                      </button>
                     </div>
 
                     <div className="ReadFunctionContent-arrow">

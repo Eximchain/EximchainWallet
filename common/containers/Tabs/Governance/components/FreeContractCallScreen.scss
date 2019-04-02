@@ -46,10 +46,11 @@
   margin-right: 10px;
 
   .InteractExplorer-func-submit {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 100%;
+    float: right;
+    // position: absolute;
+    // bottom: 0;
+    // right: 0;
+    // width: 100%;
   }
 
 }
@@ -60,7 +61,7 @@
   border: solid 1px color(n40);
   border-radius: 6px;
   width: 100%;
-  min-height: 87%;
+  min-height: 100%;
 }
 
 .Output-container {

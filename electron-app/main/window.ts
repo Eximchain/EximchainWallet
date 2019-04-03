@@ -19,7 +19,7 @@ export default function getWindow() {
     title: APP_TITLE,
     backgroundColor: '#fff',
     width: 1070,
-    height: process.platform === 'darwin' ? 650 : 690,
+    height: process.platform === 'darwin' ? 750 : 790,
     minWidth: 1030,
     minHeight: 630,
     titleBarStyle: 'hiddenInset',

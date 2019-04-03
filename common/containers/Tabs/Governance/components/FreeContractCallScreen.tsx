@@ -49,6 +49,8 @@ interface OwnProps {
   chainedFunction: null | ContractOption;
   goBack: () => void;
   goTo: (stage: GovernanceFlowStages, declaredCall: ContractFuncNames, inputs?: any) => void;
+  cycleRecord: null | ContractOption;
+  withdrawRecord: null | ContractOption;
 }
 
 interface State {
@@ -57,6 +59,8 @@ interface State {
   };
   outputs: any;
   outputOptions?: ContractOption;
+  governanceCycleStatus?: number;
+  withdrawRecordStatus?: number;
 }
 
 interface ContractFunction {
@@ -105,36 +109,95 @@ export class FreeContractCallClass extends Component<Props, State> {
   }
 
   render() {
-    const { inputs, outputs, outputOptions } = this.state;
-    const selectedFunction = this.props.selectedFunction;
+    const {
+      inputs,
+      outputs,
+      outputOptions,
+      governanceCycleStatus,
+      withdrawRecordStatus
+    } = this.state;
+    const { selectedFunction, cycleRecord } = this.props;
     const outputFunction = outputOptions;
     // console.log(this.props.chainedCall)
     // console.log(this.props.chainedFunction)
+
     let buttonNavigate;
+    let buttonDisabled = true;
+    let buttonText = 'READ_CONTRACT_FIRST';
     if (selectedFunction.name === 'ballotHistory') {
+      if (!(Object.keys(outputs).length === 0)) {
+        console.log(governanceCycleStatus);
+        if (governanceCycleStatus == 2) {
+          if (withdrawRecordStatus == 0) {
+            buttonDisabled = false;
+            buttonText = 'CONTRACT_ACCESS_CLAIM';
+          } else {
+            buttonText = 'INVALID_WITHDRAW_RECORD_STATUS';
+          }
+        } else {
+          buttonText = 'INVALID_GOVERNANCE_CYCLE';
+        }
+      }
+
+      console.log(governanceCycleStatus);
+      // console.log(Object.keys(outputs))
+      const newInput = {
+        _governanceCycleId: {
+          rawData: outputs['governanceCycleId'],
+          parsedData: outputs['governanceCycleId']
+        },
+        _ballotId: {
+          rawData: outputs['0'],
+          parsedData: outputs['0']
+        }
+      };
       buttonNavigate = (
         <button
           className="InteractExplorer-func-submit btn btn-primary FormReadButton"
+          disabled={buttonDisabled}
           onClick={() =>
-            this.props.goTo(GovernanceFlowStages.COSTLY_CALL_PAGE, CostlyContractCallName.CLAIM)
+            this.props.goTo(
+              GovernanceFlowStages.COSTLY_CALL_PAGE,
+              CostlyContractCallName.CLAIM,
+              newInput
+            )
           }
         >
-          {translate('CONTRACT_ACCESS')}
+          {translate(buttonText)}
         </button>
       );
     } else if (selectedFunction.name === 'withdrawHistory') {
+      if (!(Object.keys(outputs).length === 0)) {
+        if (outputs['status'] === '1') {
+          buttonDisabled = false;
+          buttonText = 'CONTRACT_ACCESS_COLLECT';
+        } else {
+          buttonText = 'INVALID_WITHDRAW_RECORD_STATUS';
+        }
+      }
+      console.log(outputs);
+      const newInput = {
+        _withdrawIndex: {
+          rawData: outputs['0'],
+          parsedData: outputs['0']
+        }
+      };
       buttonNavigate = (
         <button
+          disabled={buttonDisabled}
           className="InteractExplorer-func-submit btn btn-primary FormReadButton"
           onClick={() =>
-            this.props.goTo(GovernanceFlowStages.COSTLY_CALL_PAGE, CostlyContractCallName.COLLECT)
+            this.props.goTo(
+              GovernanceFlowStages.COSTLY_CALL_PAGE,
+              CostlyContractCallName.COLLECT,
+              newInput
+            )
           }
         >
-          {translate('CONTRACT_ACCESS')}
+          {translate(buttonText)}
         </button>
       );
     }
-
     return (
       <React.Fragment>
         <div className="GovernanceSection-topsection">
@@ -234,7 +297,6 @@ export class FreeContractCallClass extends Component<Props, State> {
                             ? bufferToHex(rawFieldValue)
                             : rawFieldValue;
                           const newName = outputFunction.name + 'Output' + parsedName;
-                          console.log(newName);
                           let isTimestamp;
                           if (
                             (newName.includes('time') || newName.includes('start')) &&
@@ -300,10 +362,24 @@ export class FreeContractCallClass extends Component<Props, State> {
       return input;
     }
   }
+  private handleChainedCalls = async (input: any, contractOption: ContractOption) => {
+    const data = contractOption!.contract.encodeInput(input);
+    const { nodeLib, to } = this.props;
+    const callData = { to: to.raw, data };
+    const results = await nodeLib.sendCallRequest(callData);
+    return contractOption!.contract.decodeOutput(results);
+  };
   private handleFunctionCall = async (_: React.FormEvent<HTMLButtonElement>) => {
     try {
       const data = this.encodeData();
-      const { nodeLib, to, selectedFunction, chainedFunction } = this.props;
+      const {
+        nodeLib,
+        to,
+        selectedFunction,
+        chainedFunction,
+        cycleRecord,
+        withdrawRecord
+      } = this.props;
       if (!to.value) {
         throw Error();
       }
@@ -311,10 +387,20 @@ export class FreeContractCallClass extends Component<Props, State> {
       const results = await nodeLib.sendCallRequest(callData);
       const parsedResult = selectedFunction!.contract.decodeOutput(results);
       if (chainedFunction) {
-        const data = chainedFunction!.contract.encodeInput(parsedResult);
-        const chainedCallData = { to: to.raw, data };
-        const chainedResults = await nodeLib.sendCallRequest(chainedCallData);
-        const chainedParsedResults = chainedFunction!.contract.decodeOutput(chainedResults);
+        const chainedParsedResults = await this.handleChainedCalls(parsedResult, chainedFunction);
+        if (cycleRecord) {
+          const newInput = { 0: chainedParsedResults['governanceCycleId'] };
+          const cycleParsedResults = await this.handleChainedCalls(newInput, cycleRecord);
+          this.setState({ governanceCycleStatus: cycleParsedResults['status'] });
+        }
+        if (withdrawRecord) {
+          const newInput = { 0: chainedParsedResults['withdrawRecordId'] };
+          const withdrawParsedResults = await this.handleChainedCalls(newInput, withdrawRecord);
+          this.setState({ withdrawRecordStatus: withdrawParsedResults['status'] });
+        }
+        if (chainedParsedResults['timestamp'] == 0) {
+          this.setState({ governanceCycleStatus: undefined, withdrawRecordStatus: undefined });
+        }
         this.setState({ outputs: { ...parsedResult, ...chainedParsedResults } });
       } else {
         this.setState({ outputs: parsedResult });

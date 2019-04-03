@@ -97,6 +97,68 @@ const mapStateToProps = (state: AppState) => ({
   currentTo: selectors.getCurrentTo(state)
 });
 
+export const GOVERNANCECALLS: GovernanceCall = {
+  [CostlyContractCallName.VOTE]: {
+    name: CostlyContractCallName.VOTE,
+    description: 'Requires EXC',
+    icon: VoteOrNominateIcon,
+    contractcall: 'vote'
+  },
+  [CostlyContractCallName.CLAIM]: {
+    name: CostlyContractCallName.CLAIM,
+    description: 'Requires EXC',
+    icon: ClaimTokensIcon,
+    contractcall: 'startWithdraw'
+  },
+  [CostlyContractCallName.COLLECT]: {
+    name: CostlyContractCallName.COLLECT,
+    description: 'Requires EXC',
+    icon: CollectTokensIcon,
+    contractcall: 'finalizeWithdraw'
+  },
+  [FreeContractCallName.BALLOT_HISTORY]: {
+    name: FreeContractCallName.BALLOT_HISTORY,
+    contractcall: 'ballotHistory'
+  },
+  [FreeContractCallName.BALLOT_RECORDS]: {
+    name: FreeContractCallName.BALLOT_RECORDS,
+    contractcall: 'ballotRecords',
+    chained: true
+  },
+  [FreeContractCallName.CURRENT_GOVERNANCE_CYCLE]: {
+    name: FreeContractCallName.CURRENT_GOVERNANCE_CYCLE,
+    contractcall: 'currentGovernanceCycle'
+  },
+  [FreeContractCallName.WITHDRAW_HISTORY]: {
+    name: FreeContractCallName.WITHDRAW_HISTORY,
+    contractcall: 'withdrawHistory'
+  },
+  [FreeContractCallName.WITHDRAW_RECORDS]: {
+    name: FreeContractCallName.WITHDRAW_RECORDS,
+    contractcall: 'withdrawRecords',
+    chained: true
+  },
+  [FreeContractCallName.GOVERNANCE_CYCLE_RECORDS]: {
+    name: FreeContractCallName.GOVERNANCE_CYCLE_RECORDS,
+    contractcall: 'governanceCycleRecords'
+  },
+  [FreeContractCallName.NOMINEE_BALLOTS]: {
+    name: FreeContractCallName.NOMINEE_BALLOTS,
+    contractcall: 'nomineeBallots'
+  },
+  [FreeContractCallName.CAN_GOVERN]: {
+    name: FreeContractCallName.CAN_GOVERN,
+    contractcall: 'canGovern'
+  },
+  [FreeContractCallName.IS_KYC_APPROVED]: {
+    name: FreeContractCallName.IS_KYC_APPROVED,
+    contractcall: 'isKYCApproved'
+  },
+  [FreeContractCallName.IS_KYC_DENIED]: {
+    name: FreeContractCallName.IS_KYC_DENIED,
+    contractcall: 'isKYCDenied'
+  }
+};
 class Governance extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
@@ -171,9 +233,7 @@ class Governance extends Component<Props, State> {
       }
       newState.stage = stage;
       newState.chosenCall = declaredCall;
-      newState.currentCall = this.contractOptionsMap()[
-        this.GOVERNANCECALLS[declaredCall].contractcall
-      ];
+      newState.currentCall = this.contractOptionsMap()[GOVERNANCECALLS[declaredCall].contractcall];
       return newState;
     });
   }
@@ -200,69 +260,6 @@ class Governance extends Component<Props, State> {
     ['currentGovernanceCycle', 'governanceCycleRecords']
   ]);
 
-  private GOVERNANCECALLS: GovernanceCall = {
-    [CostlyContractCallName.VOTE]: {
-      name: CostlyContractCallName.VOTE,
-      description: 'Requires EXC',
-      icon: VoteOrNominateIcon,
-      contractcall: 'vote'
-    },
-    [CostlyContractCallName.CLAIM]: {
-      name: CostlyContractCallName.CLAIM,
-      description: 'Requires EXC',
-      icon: ClaimTokensIcon,
-      contractcall: 'startWithdraw'
-    },
-    [CostlyContractCallName.COLLECT]: {
-      name: CostlyContractCallName.COLLECT,
-      description: 'Requires EXC',
-      icon: CollectTokensIcon,
-      contractcall: 'finalizeWithdraw'
-    },
-    [FreeContractCallName.BALLOT_HISTORY]: {
-      name: FreeContractCallName.BALLOT_HISTORY,
-      contractcall: 'ballotHistory'
-    },
-    [FreeContractCallName.BALLOT_RECORDS]: {
-      name: FreeContractCallName.BALLOT_RECORDS,
-      contractcall: 'ballotRecords',
-      chained: true
-    },
-    [FreeContractCallName.CURRENT_GOVERNANCE_CYCLE]: {
-      name: FreeContractCallName.CURRENT_GOVERNANCE_CYCLE,
-      contractcall: 'currentGovernanceCycle'
-    },
-    [FreeContractCallName.WITHDRAW_HISTORY]: {
-      name: FreeContractCallName.WITHDRAW_HISTORY,
-      contractcall: 'withdrawHistory'
-    },
-    [FreeContractCallName.WITHDRAW_RECORDS]: {
-      name: FreeContractCallName.WITHDRAW_RECORDS,
-      contractcall: 'withdrawRecords',
-      chained: true
-    },
-    [FreeContractCallName.GOVERNANCE_CYCLE_RECORDS]: {
-      name: FreeContractCallName.GOVERNANCE_CYCLE_RECORDS,
-      contractcall: 'governanceCycleRecords'
-    },
-    [FreeContractCallName.NOMINEE_BALLOTS]: {
-      name: FreeContractCallName.NOMINEE_BALLOTS,
-      contractcall: 'nomineeBallots'
-    },
-    [FreeContractCallName.CAN_GOVERN]: {
-      name: FreeContractCallName.CAN_GOVERN,
-      contractcall: 'canGovern'
-    },
-    [FreeContractCallName.IS_KYC_APPROVED]: {
-      name: FreeContractCallName.IS_KYC_APPROVED,
-      contractcall: 'isKYCApproved'
-    },
-    [FreeContractCallName.IS_KYC_DENIED]: {
-      name: FreeContractCallName.IS_KYC_DENIED,
-      contractcall: 'isKYCDenied'
-    }
-  };
-
   private buildFunctionOptions(
     contractCallMap: ContractFuncNames[],
     stateTransition: GovernanceFlowStages
@@ -270,7 +267,7 @@ class Governance extends Component<Props, State> {
     return (
       <div className="GovernanceSection-row">
         {contractCallMap.map((contractCall: ContractFuncNames) => {
-          const call = this.GOVERNANCECALLS[contractCall];
+          const call = GOVERNANCECALLS[contractCall];
           if (!call.chained) {
             return (
               <Button
@@ -296,11 +293,12 @@ class Governance extends Component<Props, State> {
       let newState = Object.assign({}, state);
       newState.stage = stage;
       newState.chosenCall = null;
+      newState.inputs = null;
       return newState;
     });
   }
 
-  private componentWillUnmount() {
+  public componentWillUnmount() {
     this.props.resetTransactionRequested();
   }
   private contractOptions = (contractFunctions: any) => {
@@ -354,9 +352,15 @@ class Governance extends Component<Props, State> {
         break;
       case GovernanceFlowStages.FREE_CALL_PAGE:
         const chainedCall = this.chainedContractCalls.get(
-          this.GOVERNANCECALLS[this.state.chosenCall].contractcall
+          GOVERNANCECALLS[this.state.chosenCall].contractcall
         );
         const chainedFunction = chainedCall ? this.contractOptionsMap()[chainedCall] : null;
+        let cycleRecord;
+        let withdrawRecord;
+        if (this.state.chosenCall === FreeContractCallName.BALLOT_HISTORY) {
+          withdrawRecord = this.contractOptionsMap()['withdrawRecords'];
+          cycleRecord = this.contractOptionsMap()['governanceCycleRecords'];
+        }
         body = (
           <FreeContractCallScreen
             selectedFunction={this.state.currentCall}
@@ -365,6 +369,8 @@ class Governance extends Component<Props, State> {
             chainedCall={chainedCall}
             chainedFunction={chainedFunction}
             goTo={this.goTo}
+            cycleRecord={cycleRecord}
+            withdrawRecord={withdrawRecord}
           />
         );
         break;

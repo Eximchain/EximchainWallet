@@ -94,18 +94,22 @@ type Props = StateProps & DispatchProps & OwnProps;
 export class ContractCallClass extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
+    let initialInput = {};
+    if (this.props.defaultInput) {
+      initialInput = this.props.defaultInput;
+    }
+    this.state = {
+      stage: ContractFlowStages.CONSTRUCT_TRANSACTION_SCREEN,
+      stageHistory: [],
+      inputs: initialInput,
+      outputs: {},
+      confirmTransaction: false
+    };
     this.goTo = this.goTo.bind(this);
     this.back = this.back.bind(this);
   }
   public static defaultProps: Partial<Props> = {};
 
-  public state: State = {
-    stage: ContractFlowStages.CONSTRUCT_TRANSACTION_SCREEN,
-    stageHistory: [],
-    inputs: {},
-    outputs: {},
-    confirmTransaction: false
-  };
   public componentDidMount() {
     this.props.setAsContractInteraction();
   }
@@ -169,7 +173,7 @@ export class ContractCallClass extends Component<Props, State> {
 
   render() {
     const { inputs, outputs } = this.state;
-    const selectedFunction = this.props.selectedFunction;
+    const { selectedFunction, defaultInput } = this.props;
     const generateOrWriteButton = this.props.dataExists ? (
       <GenerateTransaction isGovernanceTransaction={true} onClick={this.onClick} />
     ) : (
@@ -181,6 +185,7 @@ export class ContractCallClass extends Component<Props, State> {
       </button>
     );
     let body;
+
     switch (this.state.stage) {
       case ContractFlowStages.CONSTRUCT_TRANSACTION_SCREEN:
         body = (

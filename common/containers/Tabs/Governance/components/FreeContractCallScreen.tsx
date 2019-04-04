@@ -45,12 +45,10 @@ interface DispatchProps {
 interface OwnProps {
   selectedFunction: ContractOption;
   contractCall: ContractFuncNames;
-  chainedCall: null | ContractFuncNames;
-  chainedFunction: null | ContractOption;
+  chainedCalls: null | ContractFuncNames[];
+  chainedFunctions: null | ContractOption[];
   goBack: () => void;
   goTo: (stage: GovernanceFlowStages, declaredCall: ContractFuncNames, inputs?: any) => void;
-  cycleRecord: null | ContractOption;
-  withdrawRecord: null | ContractOption;
 }
 
 interface State {
@@ -83,14 +81,14 @@ export class FreeContractCallClass extends Component<Props, State> {
   public static defaultProps: Partial<Props> = {};
   constructor(props: Props) {
     super(props);
-    const { chainedCall, chainedFunction, selectedFunction } = this.props;
+    const { chainedCalls, chainedFunctions, selectedFunction } = this.props;
     let outputFunction = selectedFunction;
     if (
-      chainedFunction &&
-      !outputFunction.contract.outputs.includes(chainedFunction.contract.outputs[0])
+      chainedFunctions &&
+      !outputFunction.contract.outputs.includes(chainedFunctions[0].contract.outputs[0])
     ) {
       outputFunction.contract.outputs = outputFunction.contract.outputs.concat(
-        chainedFunction.contract.outputs
+        chainedFunctions[0].contract.outputs
       );
     }
     this.state = {
@@ -116,7 +114,7 @@ export class FreeContractCallClass extends Component<Props, State> {
       governanceCycleStatus,
       withdrawRecordStatus
     } = this.state;
-    const { selectedFunction, cycleRecord } = this.props;
+    const { selectedFunction } = this.props;
     const outputFunction = outputOptions;
     // console.log(this.props.chainedCall)
     // console.log(this.props.chainedFunction)
@@ -126,7 +124,6 @@ export class FreeContractCallClass extends Component<Props, State> {
     let buttonText = 'READ_CONTRACT_FIRST';
     if (selectedFunction.name === 'ballotHistory') {
       if (!(Object.keys(outputs).length === 0)) {
-        console.log(governanceCycleStatus);
         if (governanceCycleStatus == 2) {
           if (withdrawRecordStatus == 0) {
             buttonDisabled = false;
@@ -138,8 +135,6 @@ export class FreeContractCallClass extends Component<Props, State> {
           buttonText = 'INVALID_GOVERNANCE_CYCLE';
         }
       }
-
-      console.log(governanceCycleStatus);
       // console.log(Object.keys(outputs))
       const newInput = {
         _governanceCycleId: {
@@ -175,7 +170,6 @@ export class FreeContractCallClass extends Component<Props, State> {
           buttonText = 'INVALID_WITHDRAW_RECORD_STATUS';
         }
       }
-      console.log(outputs);
       const newInput = {
         _withdrawIndex: {
           rawData: outputs['0'],
@@ -291,6 +285,7 @@ export class FreeContractCallClass extends Component<Props, State> {
                         {outputFunction.contract.outputs.map((output: any, index: number) => {
                           const { type, name } = output;
                           const parsedName = name === '' ? index : name;
+                          console.log(parsedName);
                           const o = outputs[parsedName];
                           const rawFieldValue = o === null || o === undefined ? '' : o;
                           const decodedFieldValue = Buffer.isBuffer(rawFieldValue)
@@ -369,33 +364,57 @@ export class FreeContractCallClass extends Component<Props, State> {
     const results = await nodeLib.sendCallRequest(callData);
     return contractOption!.contract.decodeOutput(results);
   };
+
+  //goes through chained functions and returns either null or the contractOptions
+  //it will also return null if the first chainedFunction is equal to nameOfFunction since that is
+  //already handled by default
+  private functionFilter = (nameOfFunction: string) => {
+    const chainedFunctions = this.props.chainedFunctions;
+    if (!chainedFunctions) {
+      return null;
+    }
+    const value = chainedFunctions.filter(e => e.name === nameOfFunction);
+    if (value.length > 0 && chainedFunctions[0].name !== nameOfFunction) {
+      return value[0];
+    }
+    return null;
+  };
   private handleFunctionCall = async (_: React.FormEvent<HTMLButtonElement>) => {
     try {
       const data = this.encodeData();
-      const {
-        nodeLib,
-        to,
-        selectedFunction,
-        chainedFunction,
-        cycleRecord,
-        withdrawRecord
-      } = this.props;
+      const { nodeLib, to, selectedFunction, chainedFunctions } = this.props;
       if (!to.value) {
         throw Error();
       }
       const callData = { to: to.raw, data };
       const results = await nodeLib.sendCallRequest(callData);
-      const parsedResult = selectedFunction!.contract.decodeOutput(results);
-      if (chainedFunction) {
-        const chainedParsedResults = await this.handleChainedCalls(parsedResult, chainedFunction);
-        if (cycleRecord) {
+      let parsedResult = selectedFunction!.contract.decodeOutput(results);
+
+      if (chainedFunctions) {
+        //withdrawHistory is a special case where we have swapped withdrawHistory for ballotHistory/ballotRecords
+        let chainedParsedResults;
+        if (selectedFunction.name === 'withdrawHistory') {
+          const ballotRecord = this.functionFilter('ballotRecords');
+          if (ballotRecord) {
+            const ballotRecordResults = await this.handleChainedCalls(parsedResult, ballotRecord);
+            parsedResult = { 0: ballotRecordResults['withdrawRecordId'] };
+            chainedParsedResults = await this.handleChainedCalls(parsedResult, chainedFunctions[0]);
+          }
+        } else {
+          chainedParsedResults = await this.handleChainedCalls(parsedResult, chainedFunctions[0]);
+        }
+        //All of the additional chainedFunctions after the first one are only called when we need more
+        //information about the claiming token and collect token state.
+        const cycleFunction = this.functionFilter('governanceCycleRecords');
+        if (cycleFunction) {
           const newInput = { 0: chainedParsedResults['governanceCycleId'] };
-          const cycleParsedResults = await this.handleChainedCalls(newInput, cycleRecord);
+          const cycleParsedResults = await this.handleChainedCalls(newInput, cycleFunction);
           this.setState({ governanceCycleStatus: cycleParsedResults['status'] });
         }
-        if (withdrawRecord) {
+        const withdrawFunction = this.functionFilter('withdrawRecords');
+        if (withdrawFunction) {
           const newInput = { 0: chainedParsedResults['withdrawRecordId'] };
-          const withdrawParsedResults = await this.handleChainedCalls(newInput, withdrawRecord);
+          const withdrawParsedResults = await this.handleChainedCalls(newInput, withdrawFunction);
           this.setState({ withdrawRecordStatus: withdrawParsedResults['status'] });
         }
         if (chainedParsedResults['timestamp'] == 0) {

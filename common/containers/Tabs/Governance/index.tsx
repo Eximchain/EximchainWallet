@@ -253,11 +253,12 @@ class Governance extends Component<Props, State> {
     const parsedAbi = JSON.parse(contractAbi);
     return new Contract(parsedAbi);
   }
-
+  //Remember that the first chained contract call will also have it's outputs displayed
+  //So the order somewhat matters in this situation.
   private chainedContractCalls = new Map([
-    ['ballotHistory', 'ballotRecords'],
-    ['withdrawHistory', 'withdrawRecords'],
-    ['currentGovernanceCycle', 'governanceCycleRecords']
+    ['ballotHistory', ['ballotRecords', 'governanceCycleRecords', 'withdrawRecords']],
+    ['withdrawHistory', ['withdrawRecords', 'ballotRecords']],
+    ['currentGovernanceCycle', ['governanceCycleRecords']]
   ]);
 
   private buildFunctionOptions(
@@ -351,26 +352,40 @@ class Governance extends Component<Props, State> {
         );
         break;
       case GovernanceFlowStages.FREE_CALL_PAGE:
-        const chainedCall = this.chainedContractCalls.get(
+        const chainedCalls = this.chainedContractCalls.get(
           GOVERNANCECALLS[this.state.chosenCall].contractcall
         );
-        const chainedFunction = chainedCall ? this.contractOptionsMap()[chainedCall] : null;
+        const contractOptionsMap = this.contractOptionsMap();
+
+        const chainedFunctions = chainedCalls
+          ? chainedCalls.map(function(value, index, array) {
+              return contractOptionsMap[value];
+            })
+          : null;
+        let selectedFunction = this.state.currentCall;
+        console.log(chainedFunctions);
         let cycleRecord;
         let withdrawRecord;
+        //Remapping withdrawhistory to ballotHistory function because we can derive the withdrawrecordid
+        //throught ballotrecord, and this way people only need to remember the ballot history number not
+        //the withdraw history number and ballot history number
+        if (this.state.chosenCall === FreeContractCallName.WITHDRAW_HISTORY) {
+          selectedFunction = contractOptionsMap['ballotHistory'];
+          selectedFunction.name = 'withdrawHistory';
+        }
         if (this.state.chosenCall === FreeContractCallName.BALLOT_HISTORY) {
           withdrawRecord = this.contractOptionsMap()['withdrawRecords'];
           cycleRecord = this.contractOptionsMap()['governanceCycleRecords'];
         }
+
         body = (
           <FreeContractCallScreen
-            selectedFunction={this.state.currentCall}
+            selectedFunction={selectedFunction}
             goBack={this.goBack}
             contractCall={this.state.chosenCall}
-            chainedCall={chainedCall}
-            chainedFunction={chainedFunction}
+            chainedCalls={chainedCalls}
+            chainedFunctions={chainedFunctions}
             goTo={this.goTo}
-            cycleRecord={cycleRecord}
-            withdrawRecord={withdrawRecord}
           />
         );
         break;

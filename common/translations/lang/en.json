@@ -52,7 +52,7 @@
     "isKYCDeniedInputregistrant": "Public Address",
     "isKYCDeniedOutput0": "Is KYC Denied?",
     "withdrawHistoryInput0": "Public Address",
-    "withdrawHistoryInput1": "Withdrawal Number",
+    "withdrawHistoryInput1": "Ballot Entry Number",
     "withdrawHistoryOutput0": "Withdraw Record ID",
 
     "ballotRecordsOutput0": "Ballot Record ID",

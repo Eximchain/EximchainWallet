@@ -82,7 +82,8 @@ export class FreeContractCallClass extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     const { chainedCalls, chainedFunctions, selectedFunction } = this.props;
-    let outputFunction = selectedFunction;
+    let outputFunction = JSON.parse(JSON.stringify(selectedFunction));
+    console.log(outputFunction.contract.outputs);
     if (
       chainedFunctions &&
       !outputFunction.contract.outputs.includes(chainedFunctions[0].contract.outputs[0])
@@ -221,6 +222,7 @@ export class FreeContractCallClass extends Component<Props, State> {
                           // if it is undefined
                           const parsedName = name === '' ? index : name;
                           const newName = selectedFunction.name + 'Input' + parsedName;
+                          console.log('parsedName:', parsedName);
                           const inputState = this.state.inputs[parsedName];
                           return (
                             <div
@@ -285,7 +287,7 @@ export class FreeContractCallClass extends Component<Props, State> {
                         {outputFunction.contract.outputs.map((output: any, index: number) => {
                           const { type, name } = output;
                           const parsedName = name === '' ? index : name;
-                          console.log(parsedName);
+                          // console.log(parsedName);
                           const o = outputs[parsedName];
                           const rawFieldValue = o === null || o === undefined ? '' : o;
                           const decodedFieldValue = Buffer.isBuffer(rawFieldValue)

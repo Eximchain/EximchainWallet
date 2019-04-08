@@ -33,10 +33,13 @@
     // position: absolute;
     opacity: 1 !important;
     right: 0;
+    padding-left: 6px;
     // bottom: 2px;
   }
   &-add {
     opacity: 1 !important;
+    margin-bottom: 0 !important;
+    padding: 2px 6px !important;
   }
 
 
@@ -64,8 +67,6 @@
     font-weight: 400;
     opacity: 0;
 
-
-
     &:hover {
       opacity: 1;
     }
@@ -80,16 +81,14 @@
       margin-left: 0.1rem;
       font-size: 14px;
       padding-left: 8px;
-
     }
   }
 
   &-label {
-    display: inline-block;
     cursor: pointer;
     color: color(b60);
     font-size: $font-size-xs;
-    float: right;
+    // float: right;
     margin-top: 3px;
 
     &:hover {
@@ -98,19 +97,13 @@
       }
     }
 
-
-
-
-
-
-
     .fa {
       margin: 0 $space-xs 0 $space-sm;
     }
   }
 
   &-section {
-    margin: 0 0 $space 0;
+    margin: 0 0 0 0;
 
     &-address-hw-addr {
       margin-bottom: 0;
@@ -122,19 +115,20 @@
 
     &-label {
       position: absolute;
-      bottom: .8rem;
+      bottom: 1rem;
       left: 1rem;
+      display: flex;
+
       .input-group-input {
         margin-bottom: .25rem;
         padding: 4px;
         height: auto;
         text-transform: uppercase;
         letter-spacing: .4px;
+        border: none !important;
         font-size: $font-size-xs;
         font-weight: 400;
-        // position: absolute;
-        // left: 0;
-        // bottom: 0;
+        background: color(b0);
       }
 
       &:hover {
@@ -246,6 +240,7 @@
         // margin-top: -6px;
         padding-top: 0;
         margin-bottom: 0;
+        padding-left: 6px;
 
       }
     }
@@ -322,12 +317,12 @@
   }
 
   &-list {
+    margin-bottom: 0;
     &-item {
-      margin-bottom: 0;
+      margin-bottom: 2.5rem;
       list-style-type: none;
       word-break: break-all;
       padding-left: 4.5rem;
-      margin-bottom: 3rem;
       padding-right: 1rem;
       padding-top: .2rem;
       font-size: 15px;

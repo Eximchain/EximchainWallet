@@ -61,6 +61,7 @@ class AddressBookTableRow extends React.Component<Props> {
                 value={address}
                 readOnly={true}
                 isValid={true}
+                className="AddressBookTable-address-field"
               />
             </div>
             <div className="AddressBookTable-row-identicon AddressBookTable-row-identicon-non-mobile">

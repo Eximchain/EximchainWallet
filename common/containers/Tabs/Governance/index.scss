@@ -5,6 +5,7 @@
   text-align: center;
   margin: 0 -$space-md 0 0;
 
+
   &-transaction-screen {
     max-width: 55%;
     margin: auto;
@@ -61,6 +62,9 @@
     &-write {
       max-width: 55%;
       margin: auto;
+      .AddressInput-identicon2 {
+        top: 7px !important;
+      }
 
       label {
         width: 100%;

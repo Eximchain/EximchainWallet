@@ -23,7 +23,7 @@ import { Input, Dropdown } from 'components/ui';
 import { Fields } from './InteractExplorer/components';
 import { AddressField } from 'components';
 import './InteractExplorer/InteractExplorer.scss';
-
+import { FreeContractCallScreen } from './FreeContractCallScreen';
 import { ContractFuncNames } from '..';
 
 import '../index.scss';
@@ -56,6 +56,7 @@ interface OwnProps {
 }
 
 enum ContractFlowStages {
+  PRE_CONSTRUCT_SCREEN = 'pre construct transaction screen',
   CONSTRUCT_TRANSACTION_SCREEN = 'construct transaction screen',
   SUBMIT_TRANSACTION_SCREEN = 'submit transaction screen',
   RESULT_SCREEN = 'result screen',
@@ -73,6 +74,7 @@ interface State {
   broadcastHash?: any;
   promoDemoBool?: any;
   confirmTransaction: boolean;
+  renderScreen: any;
 }
 
 interface ContractFunction {

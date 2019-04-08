@@ -14,7 +14,7 @@ import VoteOrNominateIcon from 'assets/images/vote-or-nominate.svg';
 import CollectTokensIcon from 'assets/images/collect-tokens.svg';
 import ClaimTokensIcon from 'assets/images/claim-tokens.svg';
 import { NetworkContract } from 'types/network';
-
+import { Link } from 'react-router-dom';
 import { transactionFieldsActions } from 'features/transaction';
 import './index.scss';
 import { Button } from './components/Button';
@@ -159,7 +159,7 @@ export const GOVERNANCECALLS: GovernanceCall = {
     contractcall: 'isKYCDenied'
   }
 };
-class Governance extends Component<Props, State> {
+class GovernanceClass extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
@@ -265,12 +265,35 @@ class Governance extends Component<Props, State> {
     contractCallMap: ContractFuncNames[],
     stateTransition: GovernanceFlowStages
   ) {
+    let link: String;
+    if (stateTransition === GovernanceFlowStages.FREE_CALL_PAGE) {
+      link = 'freeinteract';
+    } else if (stateTransition === GovernanceFlowStages.COSTLY_CALL_PAGE) {
+      link = 'costlyinteract';
+    } else {
+      link = 'landingpage';
+    }
+
     return (
       <div className="GovernanceSection-row">
         {contractCallMap.map((contractCall: ContractFuncNames) => {
           const call = GOVERNANCECALLS[contractCall];
           if (!call.chained) {
             return (
+              // <Link to={{
+              //   pathname:`/${link}`,
+              //   state: {
+
+              //   }
+              // }}>
+              //   <Button
+              //     key={contractCall}
+              //     name={translateRaw(call.name)}
+              //     icon={call.icon}
+              //     onClick={() => this.goTo(stateTransition, contractCall)}
+              //     description={translateRaw(call.description)}
+              //   />
+              // </Link>
               <Button
                 key={contractCall}
                 name={translateRaw(call.name)}
@@ -314,7 +337,31 @@ class Governance extends Component<Props, State> {
     );
     return transformedContractFunction;
   };
+  private makePropsForFreeContractCall(chosenCall: ContractFuncNames) {
+    const chainedCalls = this.chainedContractCalls.get(GOVERNANCECALLS[chosenCall].contractcall);
+    const contractOptionsMap = this.contractOptionsMap();
 
+    const chainedFunctions = chainedCalls
+      ? chainedCalls.map(function(value, index, array) {
+          return contractOptionsMap[value];
+        })
+      : null;
+    let selectedFunction = contractOptionsMap[GOVERNANCECALLS[chosenCall].contractcall];
+    console.log(selectedFunction.contract.outputs, 'selected');
+    //Remapping withdrawhistory to ballotHistory function because we can derive the withdrawrecordid
+    //throught ballotrecord, and this way people only need to remember the ballot history number not
+    //the withdraw history number and ballot history number
+    if (chosenCall === FreeContractCallName.WITHDRAW_HISTORY) {
+      selectedFunction = contractOptionsMap['ballotHistory'];
+      selectedFunction.name = 'withdrawHistory';
+    }
+    return {
+      selectedFunction,
+      chosenCall,
+      chainedCalls,
+      chainedFunctions
+    };
+  }
   public render() {
     const currentContract = this.state.currentContract;
     const contractFunctions = Contract.getFunctions(currentContract);
@@ -352,39 +399,15 @@ class Governance extends Component<Props, State> {
         );
         break;
       case GovernanceFlowStages.FREE_CALL_PAGE:
-        const chainedCalls = this.chainedContractCalls.get(
-          GOVERNANCECALLS[this.state.chosenCall].contractcall
-        );
-        const contractOptionsMap = this.contractOptionsMap();
-
-        const chainedFunctions = chainedCalls
-          ? chainedCalls.map(function(value, index, array) {
-              return contractOptionsMap[value];
-            })
-          : null;
-        let selectedFunction = this.state.currentCall;
-        console.log(chainedFunctions);
-        let cycleRecord;
-        let withdrawRecord;
-        //Remapping withdrawhistory to ballotHistory function because we can derive the withdrawrecordid
-        //throught ballotrecord, and this way people only need to remember the ballot history number not
-        //the withdraw history number and ballot history number
-        if (this.state.chosenCall === FreeContractCallName.WITHDRAW_HISTORY) {
-          selectedFunction = contractOptionsMap['ballotHistory'];
-          selectedFunction.name = 'withdrawHistory';
-        }
-        if (this.state.chosenCall === FreeContractCallName.BALLOT_HISTORY) {
-          withdrawRecord = this.contractOptionsMap()['withdrawRecords'];
-          cycleRecord = this.contractOptionsMap()['governanceCycleRecords'];
-        }
-
+        let freeProps = this.makePropsForFreeContractCall(this.state.chosenCall);
+        // console.log(freeProps)
         body = (
           <FreeContractCallScreen
-            selectedFunction={selectedFunction}
+            selectedFunction={freeProps.selectedFunction}
+            contractCall={freeProps.chosenCall}
+            chainedCalls={freeProps.chainedCalls}
+            chainedFunctions={freeProps.chainedFunctions}
             goBack={this.goBack}
-            contractCall={this.state.chosenCall}
-            chainedCalls={chainedCalls}
-            chainedFunctions={chainedFunctions}
             goTo={this.goTo}
           />
         );
@@ -411,4 +434,4 @@ class Governance extends Component<Props, State> {
 export default connect(mapStateToProps, {
   setCurrentTo,
   resetTransactionRequested: transactionFieldsActions.resetTransactionRequested
-})(Governance);
+})(GovernanceClass);

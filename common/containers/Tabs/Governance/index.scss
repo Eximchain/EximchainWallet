@@ -30,10 +30,17 @@
     margin: auto;
     height: 100%;
 
+    .help-block {
+      .Gas-toggle {
+        right: 0px;
+        top: 28px;
+      }
+    }
+
     a {
       position: absolute;
-      left: 20px;
-      bottom: 20px;
+      // left: 20px;
+      // bottom: 20px;
       font-size: $font-size-small;
     }
 
@@ -64,6 +71,19 @@
       margin: auto;
       .AddressInput-identicon2 {
         top: 7px !important;
+      }
+
+      .Nonce-label {
+        .input-group-header {
+          padding-right: 26px;
+        }
+      }
+
+      .Help {
+        left: 59px;
+        bottom: 56px;
+        // background: white;
+        // padding-right: 2px;
       }
 
       label {

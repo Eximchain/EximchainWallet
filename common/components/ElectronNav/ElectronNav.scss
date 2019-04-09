@@ -93,10 +93,25 @@ $back-spacing: 20px;
       // padding-left: 22px;
       font-weight: 300;
 
+      &:focus-within {
+        .fa-caret-down {
+        color: color(n100);
+      }  
+      }
+    
+
       .fa-caret-down {
         position: absolute !important;
         right: 22px;
+
+        &:hover {
+          color: color(n80);    
+        }
       }
+
+      // .fa-caret-down:hover {
+      //   color: color(n80);
+      // }
 
       &-icon {
         font-size: 16px;

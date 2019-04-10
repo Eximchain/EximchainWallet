@@ -37,16 +37,6 @@ class Governance extends Component<RouteComponentProps<{}>> {
           render={() => <Redirect from={`${currentPath}`} to={`${currentPath}`} />}
         />
         <Route exact={true} path={`${currentPath}`} component={GovernanceClass} />
-        <Route
-          exact={true}
-          path={`${currentPath}/freeinteract`}
-          component={FreeContractCallScreen}
-        />
-        <Route
-          exact={true}
-          path={`${currentPath}/costlyinteract`}
-          component={CostlyContractCallScreen}
-        />
       </Switch>
     );
   }

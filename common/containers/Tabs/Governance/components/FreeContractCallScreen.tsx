@@ -48,7 +48,6 @@ interface OwnProps {
   chainedCalls: null | ContractFuncNames[];
   chainedFunctions: null | ContractOption[];
   goBack: () => void;
-  goTo: (stage: GovernanceFlowStages, declaredCall: ContractFuncNames, inputs?: any) => void;
 }
 
 interface State {
@@ -120,79 +119,6 @@ export class FreeContractCallClass extends Component<Props, State> {
     // console.log(this.props.chainedCall)
     // console.log(this.props.chainedFunction)
 
-    let buttonNavigate;
-    let buttonDisabled = true;
-    let buttonText = 'READ_CONTRACT_FIRST';
-    if (selectedFunction.name === 'ballotHistory') {
-      if (!(Object.keys(outputs).length === 0)) {
-        if (governanceCycleStatus == 2) {
-          if (withdrawRecordStatus == 0) {
-            buttonDisabled = false;
-            buttonText = 'CONTRACT_ACCESS_CLAIM';
-          } else {
-            buttonText = 'INVALID_WITHDRAW_RECORD_STATUS';
-          }
-        } else {
-          buttonText = 'INVALID_GOVERNANCE_CYCLE';
-        }
-      }
-      // console.log(Object.keys(outputs))
-      const newInput = {
-        _governanceCycleId: {
-          rawData: outputs['governanceCycleId'],
-          parsedData: outputs['governanceCycleId']
-        },
-        _ballotId: {
-          rawData: outputs['0'],
-          parsedData: outputs['0']
-        }
-      };
-      buttonNavigate = (
-        <button
-          className="InteractExplorer-func-submit btn btn-primary FormReadButton"
-          disabled={buttonDisabled}
-          onClick={() =>
-            this.props.goTo(
-              GovernanceFlowStages.COSTLY_CALL_PAGE,
-              CostlyContractCallName.CLAIM,
-              newInput
-            )
-          }
-        >
-          {translate(buttonText)}
-        </button>
-      );
-    } else if (selectedFunction.name === 'withdrawHistory') {
-      if (!(Object.keys(outputs).length === 0)) {
-        if (outputs['status'] === '1') {
-          buttonDisabled = false;
-          buttonText = 'CONTRACT_ACCESS_COLLECT';
-        } else {
-          buttonText = 'INVALID_WITHDRAW_RECORD_STATUS';
-        }
-      }
-      const newInput = {
-        _withdrawIndex: {
-          rawData: outputs['0'],
-          parsedData: outputs['0']
-        }
-      };
-      buttonNavigate = (
-        <button
-          disabled={buttonDisabled}
-          className="InteractExplorer-func-submit btn btn-primary FormReadButton"
-          onClick={() =>
-            this.props.goTo(
-              GovernanceFlowStages.COSTLY_CALL_PAGE,
-              CostlyContractCallName.COLLECT,
-              newInput
-            )
-          }
-        >
-          {translate(buttonText)}
-        </button>
-      );
-    }
     return (
       <React.Fragment>
         <div className="GovernanceSection-topsection">
@@ -325,7 +251,6 @@ export class FreeContractCallClass extends Component<Props, State> {
                             </div>
                           );
                         })}
-                        {buttonNavigate}
                       </div>
                     </div>
                   </div>
@@ -405,20 +330,20 @@ export class FreeContractCallClass extends Component<Props, State> {
         } else {
           chainedParsedResults = await this.handleChainedCalls(parsedResult, chainedFunctions[0]);
         }
-        //All of the additional chainedFunctions after the first one are only called when we need more
-        //information about the claiming token and collect token state.
-        const cycleFunction = this.functionFilter('governanceCycleRecords');
-        if (cycleFunction) {
-          const newInput = { 0: chainedParsedResults['governanceCycleId'] };
-          const cycleParsedResults = await this.handleChainedCalls(newInput, cycleFunction);
-          this.setState({ governanceCycleStatus: cycleParsedResults['status'] });
-        }
-        const withdrawFunction = this.functionFilter('withdrawRecords');
-        if (withdrawFunction) {
-          const newInput = { 0: chainedParsedResults['withdrawRecordId'] };
-          const withdrawParsedResults = await this.handleChainedCalls(newInput, withdrawFunction);
-          this.setState({ withdrawRecordStatus: withdrawParsedResults['status'] });
-        }
+        // //All of the additional chainedFunctions after the first one are only called when we need more
+        // //information about the claiming token and collect token state.
+        // const cycleFunction = this.functionFilter('governanceCycleRecords');
+        // if (cycleFunction) {
+        //   const newInput = { 0: chainedParsedResults['governanceCycleId'] };
+        //   const cycleParsedResults = await this.handleChainedCalls(newInput, cycleFunction);
+        //   this.setState({ governanceCycleStatus: cycleParsedResults['status'] });
+        // }
+        // const withdrawFunction = this.functionFilter('withdrawRecords');
+        // if (withdrawFunction) {
+        //   const newInput = { 0: chainedParsedResults['withdrawRecordId'] };
+        //   const withdrawParsedResults = await this.handleChainedCalls(newInput, withdrawFunction);
+        //   this.setState({ withdrawRecordStatus: withdrawParsedResults['status'] });
+        // }
         if (chainedParsedResults['timestamp'] == 0) {
           this.setState({ governanceCycleStatus: undefined, withdrawRecordStatus: undefined });
         }

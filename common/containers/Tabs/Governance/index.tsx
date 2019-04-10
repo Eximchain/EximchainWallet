@@ -66,10 +66,10 @@ export enum GovernanceFlowStages {
 
 export interface State {
   stage: GovernanceFlowStages;
+  stageHistory: GovernanceFlowStages[];
   chosenCall: ContractFuncNames | null;
   currentContract: Contract;
   currentCall: null | ContractOption;
-  inputs?: any;
 }
 
 interface ContractOption {
@@ -224,13 +224,10 @@ class GovernanceClass extends Component<Props, State> {
     this.setContract();
   }
 
-  goTo(stage: GovernanceFlowStages, declaredCall: ContractFuncNames, inputs?: any) {
+  goTo(stage: GovernanceFlowStages, declaredCall: ContractFuncNames) {
     console.log(declaredCall);
     this.setState((state: State) => {
       let newState = Object.assign({}, state);
-      if (inputs) {
-        newState.inputs = inputs;
-      }
       newState.stage = stage;
       newState.chosenCall = declaredCall;
       newState.currentCall = this.contractOptionsMap()[GOVERNANCECALLS[declaredCall].contractcall];
@@ -256,6 +253,11 @@ class GovernanceClass extends Component<Props, State> {
   //Remember that the first chained contract call will also have it's outputs displayed
   //So the order somewhat matters in this situation.
   private chainedContractCalls = new Map([
+    [
+      'startWithdraw',
+      ['ballotHistory', 'ballotRecords', 'governanceCycleRecords', 'withdrawRecords']
+    ],
+    ['finalizeWithdraw', ['ballotHistory', 'withdrawRecords', 'ballotRecords']],
     ['ballotHistory', ['ballotRecords', 'governanceCycleRecords', 'withdrawRecords']],
     ['withdrawHistory', ['withdrawRecords', 'ballotRecords']],
     ['currentGovernanceCycle', ['governanceCycleRecords']]
@@ -337,7 +339,7 @@ class GovernanceClass extends Component<Props, State> {
     );
     return transformedContractFunction;
   };
-  private makePropsForFreeContractCall(chosenCall: ContractFuncNames) {
+  private makePropsForContractCall(chosenCall: ContractFuncNames) {
     const chainedCalls = this.chainedContractCalls.get(GOVERNANCECALLS[chosenCall].contractcall);
     const contractOptionsMap = this.contractOptionsMap();
 
@@ -347,7 +349,6 @@ class GovernanceClass extends Component<Props, State> {
         })
       : null;
     let selectedFunction = contractOptionsMap[GOVERNANCECALLS[chosenCall].contractcall];
-    console.log(selectedFunction.contract.outputs, 'selected');
     //Remapping withdrawhistory to ballotHistory function because we can derive the withdrawrecordid
     //throught ballotrecord, and this way people only need to remember the ballot history number not
     //the withdraw history number and ballot history number
@@ -399,26 +400,28 @@ class GovernanceClass extends Component<Props, State> {
         );
         break;
       case GovernanceFlowStages.FREE_CALL_PAGE:
-        let freeProps = this.makePropsForFreeContractCall(this.state.chosenCall);
         // console.log(freeProps)
+        const contractPropsFree = this.makePropsForContractCall(this.state.chosenCall);
         body = (
           <FreeContractCallScreen
-            selectedFunction={freeProps.selectedFunction}
-            contractCall={freeProps.chosenCall}
-            chainedCalls={freeProps.chainedCalls}
-            chainedFunctions={freeProps.chainedFunctions}
+            selectedFunction={contractPropsFree.selectedFunction}
+            contractCall={contractPropsFree.chosenCall}
+            chainedCalls={contractPropsFree.chainedCalls}
+            chainedFunctions={contractPropsFree.chainedFunctions}
             goBack={this.goBack}
-            goTo={this.goTo}
           />
         );
         break;
       case GovernanceFlowStages.COSTLY_CALL_PAGE:
+        const contractPropsNFree = this.makePropsForContractCall(this.state.chosenCall);
+        console.log(contractPropsNFree.chainedFunctions);
         body = (
           <CostlyContractCallScreen
-            selectedFunction={this.state.currentCall}
+            selectedFunction={contractPropsNFree.selectedFunction}
+            contractCall={contractPropsNFree.chosenCall}
+            chainedCalls={contractPropsNFree.chainedCalls}
+            chainedFunctions={contractPropsNFree.chainedFunctions}
             goBack={this.goBack}
-            contractCall={this.state.chosenCall}
-            defaultInput={this.state.inputs}
           />
         );
         break;

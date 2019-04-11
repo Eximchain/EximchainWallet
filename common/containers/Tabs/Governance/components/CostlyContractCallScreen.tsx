@@ -87,6 +87,7 @@ interface State {
     errorType: ErrorType;
     error: string;
   };
+  maximumPossibleBallots?: number;
 }
 
 interface ContractFunction {
@@ -115,6 +116,7 @@ export class ContractCallClass extends Component<Props, State> {
       inputOptions = JSON.parse(JSON.stringify(selectedFunction));
       inputOptions.contract.inputs = chainedFunctions[0].contract.inputs;
     }
+
     this.state = {
       stage: ContractFlowStages.CONSTRUCT_TRANSACTION_SCREEN,
       stageHistory: [],
@@ -130,10 +132,23 @@ export class ContractCallClass extends Component<Props, State> {
     this.goTo = this.goTo.bind(this);
     this.back = this.back.bind(this);
   }
+
   public static defaultProps: Partial<Props> = {};
 
-  public componentDidMount() {
+  public async componentDidMount() {
     this.props.setAsContractInteraction();
+    const { selectedFunction } = this.props;
+    if (selectedFunction.name !== 'VOTE') {
+      const currentGovernanceCycle = this.functionFilter('currentGovernanceCycle');
+      const currentGovernanceCycleResult = await this.handleChainedCalls(
+        '',
+        currentGovernanceCycle
+      );
+      console.log(currentGovernanceCycleResult);
+      this.setState({
+        maximumPossibleBallots: currentGovernanceCycleResult[0]
+      });
+    }
   }
 
   public componentWillUnmount() {
@@ -194,7 +209,7 @@ export class ContractCallClass extends Component<Props, State> {
   };
 
   render() {
-    const { inputs, outputs, inputOption, errorState } = this.state;
+    const { inputs, outputs, inputOption, errorState, maximumPossibleBallots } = this.state;
     const { selectedFunction, chainedFunctions, chainedCalls } = this.props;
     const generateOrWriteButton = this.props.dataExists ? (
       <GenerateTransaction isGovernanceTransaction={true} onClick={this.onClick} />
@@ -206,6 +221,9 @@ export class ContractCallClass extends Component<Props, State> {
         {translate('CONTRACT_WRITE')}
       </button>
     );
+    if (maximumPossibleBallots) {
+      console.log(maximumPossibleBallots);
+    }
     let body;
     let inputFunction;
     if (inputOption) {
@@ -255,6 +273,31 @@ export class ContractCallClass extends Component<Props, State> {
                       showInputLabel={false}
                       onChangeOverride={this.handleSelectAddressFromBook}
                       dropdownThreshold={1}
+                    />
+                  );
+                } else if (maximumPossibleBallots && parsedName === '_ballot_number') {
+                  let options: any[] = [];
+
+                  for (const x of Array.apply(null, { length: maximumPossibleBallots })
+                    .map(Number.call, Number)
+                    .keys()) {
+                    options = options.concat({ value: x, label: x });
+                  }
+                  inputField = (
+                    <Dropdown
+                      options={options}
+                      value={
+                        inputState
+                          ? {
+                              value: inputState.parsedData as any,
+                              label: inputState.rawData
+                            }
+                          : undefined
+                      }
+                      clearable={false}
+                      onChange={({ value }: { value: number }) => {
+                        this.handleIntegerDropdownChange({ value, name: parsedName });
+                      }}
                     />
                   );
                 } else {
@@ -380,7 +423,6 @@ export class ContractCallClass extends Component<Props, State> {
       return null;
     }
     const value = chainedFunctions.filter(e => e.name === nameOfFunction);
-    console.log(value);
     if (value.length > 0) {
       return value[0];
     }
@@ -457,6 +499,7 @@ export class ContractCallClass extends Component<Props, State> {
 
     this.handleInputChange(ev);
   };
+
   private handleClaimInputs = async () => {
     try {
       const { inputs } = this.state;
@@ -473,6 +516,8 @@ export class ContractCallClass extends Component<Props, State> {
           ...inputs
         }
       });
+
+      //Set state here for testing purposes
       // await this.setState({
       //   inputs: {
       //     ...this.state.inputs,
@@ -654,10 +699,13 @@ export class ContractCallClass extends Component<Props, State> {
   private handleInputChange = async (ev: React.FormEvent<HTMLInputElement>) => {
     const { selectedFunction } = this.props;
     const rawValue: string = ev.currentTarget.value;
+    console.log(ev.currentTarget.name);
     if (ev.currentTarget.name === '_votes') {
       this.autoSetAmountValue(rawValue);
     }
-
+    if (ev.currentTarget.name === '_ballot_address') {
+      //TODO: filter ballot number goes here?
+    }
     const isArr = rawValue.startsWith('[') && rawValue.endsWith(']');
 
     if (rawValue === '') {
@@ -706,7 +754,30 @@ export class ContractCallClass extends Component<Props, State> {
     );
     return selectedFunction!.contract.encodeInput(parsedInputs);
   }
-
+  private handleIntegerDropdownChange = async ({
+    value,
+    name
+  }: {
+    value: number;
+    name: string;
+  }) => {
+    const { selectedFunction } = this.props;
+    await this.setState({
+      inputs: {
+        ...this.state.inputs,
+        [name as any]: {
+          rawData: value.toString(),
+          parsedData: value
+        }
+      }
+    });
+    if (selectedFunction.name === 'startWithdraw') {
+      this.handleClaimInputs();
+    }
+    if (selectedFunction.name === 'finalizeWithdraw') {
+      this.handleCollectInputs();
+    }
+  };
   private handleBooleanDropdownChange = ({ value, name }: { value: boolean; name: string }) => {
     if (name === '_election') {
       this.setState({

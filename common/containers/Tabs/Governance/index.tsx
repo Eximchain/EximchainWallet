@@ -15,6 +15,9 @@ import CollectTokensIcon from 'assets/images/collect-tokens.svg';
 import ClaimTokensIcon from 'assets/images/claim-tokens.svg';
 import { NetworkContract } from 'types/network';
 import { Link } from 'react-router-dom';
+import WalletDecrypt, { DISABLE_WALLETS } from 'components/WalletDecrypt';
+import { FullWalletOnly } from 'components/renderCbs';
+
 import { transactionFieldsActions } from 'features/transaction';
 import './index.scss';
 import { Button } from './components/Button';
@@ -255,9 +258,18 @@ class GovernanceClass extends Component<Props, State> {
   private chainedContractCalls = new Map([
     [
       'startWithdraw',
-      ['ballotHistory', 'ballotRecords', 'governanceCycleRecords', 'withdrawRecords']
+      [
+        'ballotHistory',
+        'ballotRecords',
+        'governanceCycleRecords',
+        'withdrawRecords',
+        'currentGovernanceCycle'
+      ]
     ],
-    ['finalizeWithdraw', ['ballotHistory', 'withdrawRecords', 'ballotRecords']],
+    [
+      'finalizeWithdraw',
+      ['ballotHistory', 'withdrawRecords', 'ballotRecords', 'currentGovernanceCycle']
+    ],
     ['ballotHistory', ['ballotRecords', 'governanceCycleRecords', 'withdrawRecords']],
     ['withdrawHistory', ['withdrawRecords', 'ballotRecords']],
     ['currentGovernanceCycle', ['governanceCycleRecords']]
@@ -426,9 +438,13 @@ class GovernanceClass extends Component<Props, State> {
         );
         break;
     }
+    const makeDecrypt = () => <WalletDecrypt disabledWallets={DISABLE_WALLETS.READ_ONLY} />;
+    const makeContent = () => <React.Fragment>{body}</React.Fragment>;
     return (
       <TabSection isUnavailableOffline={true}>
-        <React.Fragment>{body}</React.Fragment>
+        <React.Fragment>
+          <FullWalletOnly withFullWallet={makeContent} withoutFullWallet={makeDecrypt} />
+        </React.Fragment>
       </TabSection>
     );
   }

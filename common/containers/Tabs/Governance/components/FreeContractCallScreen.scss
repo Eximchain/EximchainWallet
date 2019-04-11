@@ -27,11 +27,14 @@
 
   &-arrow {
     margin-top: -30px !important;
+    // margin-bottom: -30px !important;
     position: sticky;
     // left: 400px;
-    height: 100vh;
-    margin: auto;
+    // height: 100vh;
+    // margin: -30px 0 !important;
     border-right: solid 1px color(n40);
+    margin-bottom: -45px;
+
   }
 }
 
@@ -68,7 +71,7 @@
   padding: 2rem 20px 0 0;
   // border-radius: 6px;
   margin-top: -30px;
-  margin-bottom:-40px;
+  margin-bottom: -45px;
   width: 100%;
 }
 
@@ -76,18 +79,19 @@
   position: relative;
   // margin-left: 10px;
   width: 50%;
+  margin-bottom:-45px;
 }
 
 .Output-box {
   position: relative;
-  padding: 2rem 0 0 1rem;
+  padding: 2rem 0 0 20px;
   // border: solid 1px color(n40);
   // border-radius: 6px;
   margin-top: -30px;
   // margin-bottom:-40px;
   margin-right: -20px;
   background: color(n10);
-  min-height: 100vh;
+  min-height: 110vh;
 
 
 

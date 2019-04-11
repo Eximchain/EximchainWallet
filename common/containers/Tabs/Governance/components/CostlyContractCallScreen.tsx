@@ -24,6 +24,8 @@ import { Fields } from './InteractExplorer/components';
 import { AddressField } from 'components';
 import './InteractExplorer/InteractExplorer.scss';
 import { ContractFuncNames } from '..';
+import WalletDecrypt, { DISABLE_WALLETS } from 'components/WalletDecrypt';
+import { FullWalletOnly } from 'components/renderCbs';
 
 import '../index.scss';
 import ErrorScreen from './ErrorScreen';
@@ -387,13 +389,18 @@ export class ContractCallClass extends Component<Props, State> {
       case ContractFlowStages.ERROR_SCREEN:
         body = <ErrorScreen backToGovernance={this.props.goBack} />;
     }
+    const makeDecrypt = () => <WalletDecrypt disabledWallets={DISABLE_WALLETS.READ_ONLY} />;
+    const makeContent = () => <React.Fragment>{body}</React.Fragment>;
+
     return (
       <React.Fragment>
         <div className="GovernanceSection-topsection">
           <button className="FormBackButton fa fa-chevron-left" onClick={this.back} />
           <h2 className="ContractSection-topsection-title">{translate(this.props.contractCall)}</h2>
         </div>
-        <section className="Tab-content GovernanceSection-content">{body}</section>
+        <section className="Tab-content GovernanceSection-content">
+          <FullWalletOnly withFullWallet={makeContent} withoutFullWallet={makeDecrypt} />;
+        </section>
       </React.Fragment>
     );
   }

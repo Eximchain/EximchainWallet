@@ -438,13 +438,9 @@ class GovernanceClass extends Component<Props, State> {
         );
         break;
     }
-    const makeDecrypt = () => <WalletDecrypt disabledWallets={DISABLE_WALLETS.READ_ONLY} />;
-    const makeContent = () => <React.Fragment>{body}</React.Fragment>;
     return (
       <TabSection isUnavailableOffline={true}>
-        <React.Fragment>
-          <FullWalletOnly withFullWallet={makeContent} withoutFullWallet={makeDecrypt} />
-        </React.Fragment>
+        <React.Fragment>{body}</React.Fragment>
       </TabSection>
     );
   }

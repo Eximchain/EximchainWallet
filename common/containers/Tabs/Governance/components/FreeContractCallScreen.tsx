@@ -199,7 +199,7 @@ export class FreeContractCallClass extends Component<Props, State> {
                     </div>
 
                     <div className="ReadFunctionContent-arrow">
-                      <img src={arrow} alt="arrow" />
+                      {/* <img src={arrow} alt="arrow" /> */}
                     </div>
                     {
                       // These are the outputs

@@ -33,6 +33,8 @@ body {
   color: color(text-color);
   background-color: color(body-bg);
   height: 100%;
+  font-feature-settings: 'calt' 0 !important;
+
 }
 
 #app {

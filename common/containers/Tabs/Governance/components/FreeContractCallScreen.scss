@@ -2,7 +2,10 @@
 @import 'common/sass/mixins';
 
 .ReadFunctionContent {
-  min-height: 500px;
+  // position: fixed;
+  min-height: 100vh;
+  padding-bottom: 0 !important;
+
 
   .btn {
     margin-bottom: 0;
@@ -23,7 +26,15 @@
   }
 
   &-arrow {
-    margin: auto;
+    margin-top: -30px !important;
+    // margin-bottom: -30px !important;
+    position: sticky;
+    // left: 400px;
+    // height: 100vh;
+    // margin: -30px 0 !important;
+    border-right: solid 1px color(n40);
+    margin-bottom: -45px;
+
   }
 }
 
@@ -43,7 +54,7 @@
   position: relative;
   border-radius: 6px;
   width: 50%;
-  margin-right: 10px;
+  // margin-right: 10px;
 
   .InteractExplorer-func-submit {
     float: right;
@@ -57,26 +68,30 @@
 
 .Input-box {
   position: relative;
-  padding: 1rem;
-  border: solid 1px color(n40);
-  border-radius: 6px;
+  padding: 2rem 20px 0 0;
+  // border-radius: 6px;
+  margin-top: -30px;
+  margin-bottom: -45px;
   width: 100%;
-  min-height: 100%;
 }
 
 .Output-container {
   position: relative;
-  margin-left: 10px;
+  // margin-left: 10px;
   width: 50%;
+  margin-bottom:-45px;
 }
 
 .Output-box {
   position: relative;
-  padding: 1rem;
-  border: solid 1px color(n40);
-  border-radius: 6px;
+  padding: 2rem 0 0 20px;
+  // border: solid 1px color(n40);
+  // border-radius: 6px;
+  margin-top: -30px;
+  // margin-bottom:-40px;
+  margin-right: -20px;
   background: color(n10);
-  min-height: 100%;
+  min-height: 110vh;
 
 
 

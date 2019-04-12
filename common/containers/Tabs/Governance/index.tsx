@@ -256,6 +256,7 @@ class GovernanceClass extends Component<Props, State> {
   //Remember that the first chained contract call will also have it's outputs displayed
   //So the order somewhat matters in this situation.
   private chainedContractCalls = new Map([
+    ['vote', ['nomineeBallots', 'currentGovernanceCycle', 'canGovern']],
     [
       'startWithdraw',
       [

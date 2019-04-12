@@ -5,9 +5,10 @@ import { connect } from 'react-redux';
 import translate, { translateRaw } from 'translations';
 import ResultScreen from './ResultScreen';
 import { configSelectors } from 'features/config';
-
+import { walletSelectors } from 'features/wallet';
+import ClientBuilder from '@eximchain/weyl-web3-client';
 import { Data } from 'libs/units';
-import { INode } from 'libs/nodes';
+import { INode, NODE_CONFIGS } from 'libs/nodes';
 import { configNodesSelectors } from 'features/config';
 import {
   transactionActions,
@@ -26,13 +27,16 @@ import './InteractExplorer/InteractExplorer.scss';
 import { ContractFuncNames } from '..';
 import WalletDecrypt, { DISABLE_WALLETS } from 'components/WalletDecrypt';
 import { FullWalletOnly } from 'components/renderCbs';
+import * as selectors from 'features/selectors';
 
 import '../index.scss';
 import ErrorScreen from './ErrorScreen';
 
 interface StateProps {
   nodeLib: INode;
+  wallet: AppState['wallet']['inst'];
   to: AppState['transaction']['fields']['to'];
+  from: ReturnType<typeof selectors.getFrom>;
   dataExists: boolean;
   txBroadcasted: boolean;
   currentTransactionFailed: boolean;
@@ -90,6 +94,7 @@ interface State {
     error: string;
   };
   maximumPossibleBallots?: number;
+  isBlockMaker?: boolean;
 }
 
 interface ContractFunction {
@@ -113,12 +118,10 @@ export class ContractCallClass extends Component<Props, State> {
     super(props);
     const { chainedFunctions, selectedFunction } = this.props;
     let inputOptions;
-
-    if (chainedFunctions) {
+    if (chainedFunctions && selectedFunction.name !== 'vote') {
       inputOptions = JSON.parse(JSON.stringify(selectedFunction));
       inputOptions.contract.inputs = chainedFunctions[0].contract.inputs;
     }
-
     this.state = {
       stage: ContractFlowStages.CONSTRUCT_TRANSACTION_SCREEN,
       stageHistory: [],
@@ -140,24 +143,18 @@ export class ContractCallClass extends Component<Props, State> {
   public async componentDidMount() {
     this.props.setAsContractInteraction();
     const { selectedFunction } = this.props;
-    if (selectedFunction.name !== 'VOTE') {
-      const currentGovernanceCycle = this.functionFilter('currentGovernanceCycle');
-      const currentGovernanceCycleResult = await this.handleChainedCalls(
-        '',
-        currentGovernanceCycle
-      );
-      console.log(currentGovernanceCycleResult);
-      this.setState({
-        maximumPossibleBallots: currentGovernanceCycleResult[0]
-      });
-    }
+    const currentGovernanceCycle = this.functionFilter('currentGovernanceCycle');
+    const currentGovernanceCycleResult = await this.handleChainedCalls('', currentGovernanceCycle);
+    this.setState({
+      maximumPossibleBallots: currentGovernanceCycleResult[0]
+    });
   }
 
   public componentWillUnmount() {
     this.props.setAsViewAndSend();
   }
 
-  public componentDidUpdate(prevProps: Props) {
+  public async componentDidUpdate(prevProps: Props, prevState: State) {
     if (prevProps.txBroadcasted == false && this.props.txBroadcasted) {
       if (this.props.currentTransactionFailed) {
         this.goTo(ContractFlowStages.ERROR_SCREEN);
@@ -167,6 +164,14 @@ export class ContractCallClass extends Component<Props, State> {
         ].broadcastedHash;
         this.setState({ broadcastHash: broadcastedHash });
         this.goTo(ContractFlowStages.RESULT_SCREEN);
+      }
+    }
+    if (this.props.wallet) {
+      if (this.props.selectedFunction.name === 'VOTE') {
+        const walletAddress = this.props.wallet.getAddressString();
+        const WeylClient = ClientBuilder(NODE_CONFIGS['ETH'][0].url);
+        const isBlockMaker = await WeylClient.isBlockMaker(walletAddress);
+        this.setState({ isBlockMaker: isBlockMaker });
       }
     }
   }
@@ -211,8 +216,15 @@ export class ContractCallClass extends Component<Props, State> {
   };
 
   render() {
-    const { inputs, outputs, inputOption, errorState, maximumPossibleBallots } = this.state;
-    const { selectedFunction, chainedFunctions, chainedCalls } = this.props;
+    const { inputs, inputOption, errorState, maximumPossibleBallots } = this.state;
+    const { selectedFunction } = this.props;
+
+    let inputFunction;
+    if (inputOption) {
+      inputFunction = inputOption;
+    } else {
+      inputFunction = selectedFunction;
+    }
     const generateOrWriteButton = this.props.dataExists ? (
       <GenerateTransaction isGovernanceTransaction={true} onClick={this.onClick} />
     ) : (
@@ -223,16 +235,7 @@ export class ContractCallClass extends Component<Props, State> {
         {translate('CONTRACT_WRITE')}
       </button>
     );
-    if (maximumPossibleBallots) {
-      console.log(maximumPossibleBallots);
-    }
     let body;
-    let inputFunction;
-    if (inputOption) {
-      inputFunction = inputOption;
-    } else {
-      inputFunction = selectedFunction;
-    }
     switch (this.state.stage) {
       case ContractFlowStages.CONSTRUCT_TRANSACTION_SCREEN:
         body = (
@@ -261,6 +264,7 @@ export class ContractCallClass extends Component<Props, State> {
                           : undefined
                       }
                       clearable={false}
+                      onBlur={this.handleOnBlur}
                       onChange={({ value }: { value: boolean }) => {
                         this.handleBooleanDropdownChange({ value, name: parsedName });
                       }}
@@ -273,6 +277,7 @@ export class ContractCallClass extends Component<Props, State> {
                       value={(inputs[parsedName] && inputs[parsedName].rawData) || ''}
                       showLabelMatch={true}
                       showInputLabel={false}
+                      onBlur={this.handleOnBlur}
                       onChangeOverride={this.handleSelectAddressFromBook}
                       dropdownThreshold={1}
                     />
@@ -296,6 +301,7 @@ export class ContractCallClass extends Component<Props, State> {
                             }
                           : undefined
                       }
+                      onBlur={this.handleOnBlur}
                       clearable={false}
                       onChange={({ value }: { value: number }) => {
                         this.handleIntegerDropdownChange({ value, name: parsedName });
@@ -310,6 +316,8 @@ export class ContractCallClass extends Component<Props, State> {
                       name={parsedName}
                       value={(inputs[parsedName] && inputs[parsedName].rawData) || ''}
                       onChange={this.handleInputChange}
+                      onBlur={this.handleOnBlur}
+                      onFocus={this.handleOnBlur}
                     />
                   );
                 }
@@ -354,9 +362,7 @@ export class ContractCallClass extends Component<Props, State> {
                 <button
                   className="InteractExplorer-func-submit NextButton btn btn-primary"
                   onClick={this.handleFunctionSend}
-                  disabled={
-                    errorState.errorType !== ErrorType.NO_ERROR && inputFunction.name !== 'vote'
-                  }
+                  disabled={errorState.errorType !== ErrorType.NO_ERROR}
                 >
                   {translate('Next')}
                 </button>
@@ -399,7 +405,7 @@ export class ContractCallClass extends Component<Props, State> {
           <h2 className="ContractSection-topsection-title">{translate(this.props.contractCall)}</h2>
         </div>
         <section className="Tab-content GovernanceSection-content">
-          <FullWalletOnly withFullWallet={makeContent} withoutFullWallet={makeDecrypt} />;
+          <FullWalletOnly withFullWallet={makeContent} withoutFullWallet={makeDecrypt} />
         </section>
       </React.Fragment>
     );
@@ -475,14 +481,13 @@ export class ContractCallClass extends Component<Props, State> {
 
   private handleFunctionSend = async (input: React.FormEvent<HTMLButtonElement>) => {
     try {
-      const { chainedFunctions } = this.props;
+      const { selectedFunction } = this.props;
       let data;
-      if (chainedFunctions) {
+      if (selectedFunction.name !== 'VOTE') {
         data = this.handleChainedFunctionInput(input);
       } else {
         data = this.encodeData();
       }
-
       // this.props.resetTransactionRequested();
       this.props.setDataField({ raw: data, value: Data(data) });
       if (this.state.setValue) {
@@ -518,9 +523,6 @@ export class ContractCallClass extends Component<Props, State> {
         errorState: {
           errorType: ErrorType.NO_ERROR,
           error: 'no error'
-        },
-        inputs: {
-          ...inputs
         }
       });
 
@@ -588,7 +590,7 @@ export class ContractCallClass extends Component<Props, State> {
                   ['_ballotId']: { rawData: ballotId, parsedData: ballotId }
                 }
               });
-              console.log('CanClaim');
+              // console.log('CanClaim');
             }
           }
         }
@@ -596,7 +598,7 @@ export class ContractCallClass extends Component<Props, State> {
       // this.setState({ outputs: parsedResult });
     } catch (e) {
       //Handle the errors here.
-      if (e.type === String && e.includes('NO CLAIM')) {
+      if (e.toString().includes('NO CLAIM')) {
         this.setState({
           errorState: {
             errorType: ErrorType.INVALID_INPUTS,
@@ -623,9 +625,6 @@ export class ContractCallClass extends Component<Props, State> {
         errorState: {
           errorType: ErrorType.NO_ERROR,
           error: 'no error'
-        },
-        inputs: {
-          ...inputs
         }
       });
       // await this.setState({
@@ -659,7 +658,7 @@ export class ContractCallClass extends Component<Props, State> {
             ballotHistoryResult,
             ballotRecords
           );
-          console.log(ballotRecordsResult, 'ballotRecordResult');
+          // console.log(ballotRecordsResult, 'ballotRecordResult');
           if (!ballotRecordsResult.withdrawRecord) {
             throw Error('NO COLLECT: Need to CLAIM the ballot first');
           }
@@ -667,7 +666,7 @@ export class ContractCallClass extends Component<Props, State> {
           if (withdrawRecords) {
             const newInput = { 0: ballotRecordsResult.withdrawRecordId };
             const withdrawRecordsResult = await this.handleChainedCalls(newInput, withdrawRecords);
-            console.log(withdrawRecordsResult, 'withdrawRecordResult');
+            // console.log(withdrawRecordsResult, 'withdrawRecordResult');
             if (withdrawRecordsResult.status === '2') {
               throw Error('NO COLLECT: Already Withdrawn');
             }
@@ -679,14 +678,14 @@ export class ContractCallClass extends Component<Props, State> {
                   ['_withdrawIndex']: { rawData: withdrawRecordId, parsedData: withdrawRecordId }
                 }
               });
-              console.log('Can Collect!');
+              // console.log('Can Collect!');
             }
           }
         }
       }
     } catch (e) {
       //Handle the errors here.
-      if (e.type === String && e.includes('NO COLLECT')) {
+      if (e.toString().includes('NO COLLECT')) {
         this.setState({
           errorState: {
             errorType: ErrorType.INVALID_INPUTS,
@@ -703,39 +702,174 @@ export class ContractCallClass extends Component<Props, State> {
       }
     }
   };
+  private handleVoteInputs = async () => {
+    try {
+      const { inputs, isBlockMaker, maximumPossibleBallots } = this.state;
+      this.setState({
+        errorState: {
+          errorType: ErrorType.NO_ERROR,
+          error: 'no error'
+        }
+      });
+      const parsedInputs = Object.keys(inputs).reduce(
+        (accu, key) => ({ ...accu, [key]: inputs[key].parsedData }),
+        {}
+      );
+      // console.log(parsedInputs)
+      // console.log('CurrentState VOTE values',parsedInputs['_votes'])
+      const voteValue = await parsedInputs['_votes'];
+      // console.log('what', voteValue)
+      const numberOfVotes = await parseInt(voteValue);
+      // console.log(numberOfVotes,'helo')
+      const mandatoryInputs = ['_voted_for', '_election', '_inSupport', '_votes'];
+      for (var key in mandatoryInputs) {
+        // console.log(parsedInputs[mandatoryInputs[key]]==undefined, mandatoryInputs[key])
+        if ((await parsedInputs[mandatoryInputs[key]]) == undefined) {
+          throw Error();
+        }
+      }
+      if (!this.props.isValidAddress(parsedInputs['_voted_for'])) {
+        throw Error('invalid address');
+      }
+
+      const nomineeBallot = this.functionFilter('nomineeBallots');
+      const currentGovernanceCycle = this.functionFilter('currentGovernanceCycle');
+      let currentGovernanceCycleId = maximumPossibleBallots;
+      let ballotGovCycleId;
+      const WeylClient = await ClientBuilder(NODE_CONFIGS['ETH'][0].url);
+      const votedForIsBlockMaker = await WeylClient.isBlockMaker(parsedInputs['_voted_for']);
+      const electionBool = await parsedInputs['_election'];
+      if (votedForIsBlockMaker) {
+        if (electionBool) {
+          throw Error('NO VOTE: You cannot promote a blockmaker address');
+        }
+      } else {
+        if (!electionBool) {
+          throw Error('NO VOTE: You cannot demote a non-blockmaker address');
+        }
+      }
+      var electionType;
+      if (nomineeBallot) {
+        const newInput = {
+          0: parsedInputs['_voted_for']
+        };
+        const nomineeBallotResult = await this.handleChainedCalls(newInput, nomineeBallot);
+        electionType = nomineeBallotResult['election'];
+
+        ballotGovCycleId = nomineeBallotResult['governanceCycleId'];
+      }
+
+      //Check that you are not a blockmaker
+      if (!isBlockMaker) {
+        //If you are not a blockmaker and the ballot exists make sure you can only vote for a demotion ballot
+        if (ballotGovCycleId == currentGovernanceCycleId) {
+          if (!electionType) {
+            throw Error('NO VOTE: There is already a promotion ballot for this address');
+          }
+        } else {
+          //if you are not a blockmaker and the ballot doesn't exist make sure your vote still needs to be a nomination ballot
+          if (numberOfVotes < 32) {
+            throw Error('NO VOTE: You must cast a minimum of 32 votes to start the ballot');
+          } else {
+            await this.setState({
+              errorState: {
+                errorType: ErrorType.NO_ERROR,
+                error: 'no error'
+              }
+            });
+          }
+        }
+      } else {
+        // Ensure that even as a block maker you must still cast a minimum of 32 votes to start a ballot
+        if (!(ballotGovCycleId == currentGovernanceCycle)) {
+          if (numberOfVotes < 32) {
+            throw Error('NO VOTE: You must cast a minimum of 32 votes to start the ballot');
+          } else {
+            await this.setState({
+              errorState: {
+                errorType: ErrorType.NO_ERROR,
+                error: 'no error'
+              }
+            });
+          }
+        }
+      }
+    } catch (e) {
+      if (e.toString() == 'Error') {
+        this.setState({
+          errorState: {
+            errorType: ErrorType.INCOMPLETE_INPUTS,
+            error: ''
+          }
+        });
+      } else if (e.toString().includes('NO VOTE')) {
+        this.setState({
+          errorState: {
+            errorType: ErrorType.INVALID_INPUTS,
+            error: `${e}`
+          }
+        });
+      } else {
+        this.setState({
+          errorState: {
+            errorType: ErrorType.INCOMPLETE_INPUTS,
+            error: `${e}`
+          }
+        });
+      }
+    }
+  };
+  private handleOnBlur = (ev: React.FormEvent<HTMLInputElement>) => {
+    const { selectedFunction } = this.props;
+    if (selectedFunction.name === 'vote') {
+      this.handleVoteInputs();
+    } else if (selectedFunction.name === 'startWithdraw') {
+      this.handleClaimInputs();
+    } else if (selectedFunction.name === 'finalizeWithdraw') {
+      this.handleCollectInputs();
+    }
+  };
   private handleInputChange = async (ev: React.FormEvent<HTMLInputElement>) => {
     const { selectedFunction } = this.props;
     const rawValue: string = ev.currentTarget.value;
-    console.log(ev.currentTarget.name);
+    // console.log(ev.currentTarget.name);
     if (ev.currentTarget.name === '_votes') {
       this.autoSetAmountValue(rawValue);
     }
     if (ev.currentTarget.name === '_ballot_address') {
       //TODO: filter ballot number goes here?
     }
+    const name = ev.currentTarget.name;
     const isArr = rawValue.startsWith('[') && rawValue.endsWith(']');
-
     if (rawValue === '') {
-      if (this.state.inputs[ev.currentTarget.name] !== undefined) {
-        let inputs = this.state.inputs;
-        delete inputs[ev.currentTarget.name];
-        await this.setState({
+      await this.setState((state, props) => {
+        let inputs = Object.assign({}, state.inputs);
+        if (inputs[name] !== undefined) {
+          delete inputs[name];
+        }
+        return {
           inputs: {
             ...inputs
           }
-        });
-      }
+        };
+      });
     } else {
       const value = {
         rawData: rawValue,
         parsedData: isArr ? this.tryParseJSON(rawValue) : rawValue
       };
-      await this.setState({
-        inputs: {
-          ...this.state.inputs,
-          [ev.currentTarget.name]: value
-        }
+      await this.setState((state, props) => {
+        let inputs = Object.assign({}, state.inputs);
+        return {
+          inputs: {
+            ...inputs,
+            [name]: value
+          }
+        };
       });
+    }
+    if (selectedFunction.name === 'vote') {
+      this.handleVoteInputs();
     }
     if (selectedFunction.name === 'startWithdraw') {
       this.handleClaimInputs();
@@ -785,13 +919,20 @@ export class ContractCallClass extends Component<Props, State> {
       this.handleCollectInputs();
     }
   };
-  private handleBooleanDropdownChange = ({ value, name }: { value: boolean; name: string }) => {
+  private handleBooleanDropdownChange = async ({
+    value,
+    name
+  }: {
+    value: boolean;
+    name: string;
+  }) => {
+    const { selectedFunction } = this.props;
     if (name === '_election') {
-      this.setState({
+      await this.setState({
         promoDemoBool: value.toString()
       });
     }
-    this.setState({
+    await this.setState({
       inputs: {
         ...this.state.inputs,
         [name as any]: {
@@ -800,11 +941,21 @@ export class ContractCallClass extends Component<Props, State> {
         }
       }
     });
+    if (selectedFunction.name === 'vote') {
+      this.handleVoteInputs();
+    }
+    if (selectedFunction.name === 'startWithdraw') {
+      this.handleClaimInputs();
+    }
+    if (selectedFunction.name === 'finalizeWithdraw') {
+      this.handleCollectInputs();
+    }
   };
 }
 
 export const CostlyContractCallScreen = connect(
   (state: AppState) => ({
+    wallet: walletSelectors.getWalletInst(state),
     nodeLib: configNodesSelectors.getNodeLib(state),
     to: transactionFieldsSelectors.getTo(state),
     dataExists: transactionSelectors.getDataExists(state),

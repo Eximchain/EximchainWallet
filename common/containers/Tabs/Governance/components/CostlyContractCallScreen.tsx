@@ -418,7 +418,6 @@ export class ContractCallClass extends Component<Props, State> {
   private autoSetAmountValue = (rawValue: any) => {
     const value = rawValue * rawValue;
     this.setState({ setValue: value });
-    this.props.setCurrentValue(value.toString());
   };
   private handleChainedCalls = async (input: any, contractOption: ContractOption) => {
     const data = contractOption!.contract.encodeInput(input);
@@ -845,7 +844,7 @@ export class ContractCallClass extends Component<Props, State> {
       this.handleCollectInputs(this.state);
     }
   };
-  private handleInputChange = async (ev: React.FormEvent<HTMLInputElement>) => {
+  private handleInputChange = (ev: React.FormEvent<HTMLInputElement>) => {
     const { selectedFunction } = this.props;
     const rawValue: string = ev.currentTarget.value;
     // console.log(ev.currentTarget.name);
@@ -858,17 +857,30 @@ export class ContractCallClass extends Component<Props, State> {
     const name = ev.currentTarget.name;
     const isArr = rawValue.startsWith('[') && rawValue.endsWith(']');
     if (rawValue === '') {
-      this.setState((state, _) => {
-        let inputs = Object.assign({}, state.inputs);
-        if (inputs[name] !== undefined) {
-          delete inputs[name];
-        }
-        return {
-          inputs: {
-            ...inputs
+      this.setState(
+        (state, _) => {
+          let inputs = Object.assign({}, state.inputs);
+          if (inputs[name] !== undefined) {
+            delete inputs[name];
           }
-        };
-      });
+          return {
+            inputs: {
+              ...inputs
+            }
+          };
+        },
+        () => {
+          if (this.props.selectedFunction.name === 'vote') {
+            this.handleVoteInputs(this.state);
+          }
+          if (this.props.selectedFunction.name === 'startWithdraw') {
+            this.handleClaimInputs(this.state);
+          }
+          if (this.props.selectedFunction.name === 'finalizeWithdraw') {
+            this.handleCollectInputs(this.state);
+          }
+        }
+      );
     } else {
       const value = {
         rawData: rawValue,

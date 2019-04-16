@@ -512,9 +512,9 @@ export class ContractCallClass extends Component<Props, State> {
     this.handleInputChange(ev);
   };
 
-  private handleClaimInputs = async () => {
+  private handleClaimInputs = async (state: State) => {
     try {
-      const { inputs } = this.state;
+      const { inputs } = state;
 
       //Just insuring that the states are reset properly.
       delete inputs['_governanceCycleId'];
@@ -616,9 +616,9 @@ export class ContractCallClass extends Component<Props, State> {
       }
     }
   };
-  private handleCollectInputs = async () => {
+  private handleCollectInputs = async (state: State) => {
     try {
-      const { inputs } = this.state;
+      const { inputs } = state;
 
       //Just insuring that the states are reset properly.
       delete inputs['_withdrawIndex'];
@@ -703,9 +703,9 @@ export class ContractCallClass extends Component<Props, State> {
       }
     }
   };
-  private handleVoteInputs = async () => {
+  private handleVoteInputs = async (state: State) => {
     try {
-      const { inputs, isBlockMaker, maximumPossibleBallots } = this.state;
+      const { inputs, isBlockMaker, maximumPossibleBallots } = state;
       this.setState({
         errorState: {
           errorType: ErrorType.NO_ERROR,
@@ -771,13 +771,6 @@ export class ContractCallClass extends Component<Props, State> {
           //if you are not a blockmaker and the ballot doesn't exist make sure your vote still needs to be a nomination ballot
           if (numberOfVotes < 32) {
             throw Error('You must cast a minimum of 32 votes to nominate an address.');
-          } else {
-            await this.setState({
-              errorState: {
-                errorType: ErrorType.NO_ERROR,
-                error: 'no error'
-              }
-            });
           }
         }
       } else {
@@ -785,13 +778,6 @@ export class ContractCallClass extends Component<Props, State> {
         if (!(ballotGovCycleId == currentGovernanceCycle)) {
           if (numberOfVotes < 32) {
             throw Error('You must cast a minimum of 32 votes to start the ballot');
-          } else {
-            await this.setState({
-              errorState: {
-                errorType: ErrorType.NO_ERROR,
-                error: 'no error'
-              }
-            });
           }
         }
       }
@@ -823,11 +809,11 @@ export class ContractCallClass extends Component<Props, State> {
   private handleOnBlur = (ev: React.FormEvent<HTMLInputElement>) => {
     const { selectedFunction } = this.props;
     if (selectedFunction.name === 'vote') {
-      this.handleVoteInputs();
+      this.handleVoteInputs(this.state);
     } else if (selectedFunction.name === 'startWithdraw') {
-      this.handleClaimInputs();
+      this.handleClaimInputs(this.state);
     } else if (selectedFunction.name === 'finalizeWithdraw') {
-      this.handleCollectInputs();
+      this.handleCollectInputs(this.state);
     }
   };
   private handleInputChange = async (ev: React.FormEvent<HTMLInputElement>) => {
@@ -843,40 +829,55 @@ export class ContractCallClass extends Component<Props, State> {
     const name = ev.currentTarget.name;
     const isArr = rawValue.startsWith('[') && rawValue.endsWith(']');
     if (rawValue === '') {
-      await this.setState((state, props) => {
-        let inputs = Object.assign({}, state.inputs);
-        if (inputs[name] !== undefined) {
-          delete inputs[name];
-        }
-        return {
+      let inputs = Object.assign({}, this.state.inputs);
+      if (inputs[name] !== undefined) {
+        delete inputs[name];
+      }
+      this.setState(
+        {
           inputs: {
             ...inputs
           }
-        };
-      });
+        },
+        () => {
+          if (this.props.selectedFunction.name === 'vote') {
+            this.handleVoteInputs(this.state);
+          }
+          if (this.props.selectedFunction.name === 'startWithdraw') {
+            this.handleClaimInputs(this.state);
+          }
+          if (this.props.selectedFunction.name === 'finalizeWithdraw') {
+            this.handleCollectInputs(this.state);
+          }
+        }
+      );
     } else {
       const value = {
         rawData: rawValue,
         parsedData: isArr ? this.tryParseJSON(rawValue) : rawValue
       };
-      await this.setState((state, props) => {
-        let inputs = Object.assign({}, state.inputs);
-        return {
-          inputs: {
-            ...inputs,
-            [name]: value
+      this.setState(
+        (state, props) => {
+          let inputs = Object.assign({}, state.inputs);
+          return {
+            inputs: {
+              ...inputs,
+              [name]: value
+            }
+          };
+        },
+        () => {
+          if (this.props.selectedFunction.name === 'vote') {
+            this.handleVoteInputs(this.state);
           }
-        };
-      });
-    }
-    if (selectedFunction.name === 'vote') {
-      this.handleVoteInputs();
-    }
-    if (selectedFunction.name === 'startWithdraw') {
-      this.handleClaimInputs();
-    }
-    if (selectedFunction.name === 'finalizeWithdraw') {
-      this.handleCollectInputs();
+          if (this.props.selectedFunction.name === 'startWithdraw') {
+            this.handleClaimInputs(this.state);
+          }
+          if (this.props.selectedFunction.name === 'finalizeWithdraw') {
+            this.handleCollectInputs(this.state);
+          }
+        }
+      );
     }
   };
   private tryParseJSON(input: string) {
@@ -896,61 +897,62 @@ export class ContractCallClass extends Component<Props, State> {
     );
     return selectedFunction!.contract.encodeInput(parsedInputs);
   }
-  private handleIntegerDropdownChange = async ({
-    value,
-    name
-  }: {
-    value: number;
-    name: string;
-  }) => {
-    const { selectedFunction } = this.props;
-    await this.setState({
-      inputs: {
-        ...this.state.inputs,
-        [name as any]: {
-          rawData: value.toString(),
-          parsedData: value
+  private handleIntegerDropdownChange = ({ value, name }: { value: number; name: string }) => {
+    this.setState(
+      (state, props) => {
+        let inputs = Object.assign({}, state.inputs);
+        return {
+          inputs: {
+            ...inputs,
+            [name as any]: {
+              rawData: value.toString(),
+              parsedData: value
+            }
+          }
+        };
+      },
+      () => {
+        if (this.props.selectedFunction.name === 'vote') {
+          this.handleVoteInputs(this.state);
+        }
+        if (this.props.selectedFunction.name === 'startWithdraw') {
+          this.handleClaimInputs(this.state);
+        }
+        if (this.props.selectedFunction.name === 'finalizeWithdraw') {
+          this.handleCollectInputs(this.state);
         }
       }
-    });
-    if (selectedFunction.name === 'startWithdraw') {
-      this.handleClaimInputs();
-    }
-    if (selectedFunction.name === 'finalizeWithdraw') {
-      this.handleCollectInputs();
-    }
+    );
   };
-  private handleBooleanDropdownChange = async ({
-    value,
-    name
-  }: {
-    value: boolean;
-    name: string;
-  }) => {
-    const { selectedFunction } = this.props;
+  private handleBooleanDropdownChange = ({ value, name }: { value: boolean; name: string }) => {
     if (name === '_election') {
-      await this.setState({
+      this.setState({
         promoDemoBool: value.toString()
       });
     }
-    await this.setState({
-      inputs: {
-        ...this.state.inputs,
-        [name as any]: {
-          rawData: value.toString(),
-          parsedData: value
+    this.setState((state, props) => {
+      let inputs = Object.assign({}, state.inputs);
+      return {
+        inputs: {
+          ...inputs,
+          [name as any]: {
+            rawData: value.toString(),
+            parsedData: value
+          }
         }
-      }
-    });
-    if (selectedFunction.name === 'vote') {
-      this.handleVoteInputs();
-    }
-    if (selectedFunction.name === 'startWithdraw') {
-      this.handleClaimInputs();
-    }
-    if (selectedFunction.name === 'finalizeWithdraw') {
-      this.handleCollectInputs();
-    }
+      };
+    }),
+      () => {
+        if (this.props.selectedFunction.name === 'vote') {
+          this.handleVoteInputs(this.state);
+        }
+        if (this.props.selectedFunction.name === 'startWithdraw') {
+          this.handleClaimInputs(this.state);
+        }
+        if (this.props.selectedFunction.name === 'finalizeWithdraw') {
+          this.handleCollectInputs(this.state);
+        }
+      };
   };
 }
 

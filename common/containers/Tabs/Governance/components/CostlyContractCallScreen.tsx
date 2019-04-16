@@ -130,7 +130,7 @@ export class ContractCallClass extends Component<Props, State> {
       inputOption: inputOptions,
       confirmTransaction: false,
       errorState: {
-        error: ' ',
+        error: '',
         errorType: ErrorType.INCOMPLETE_INPUTS
       }
     };
@@ -347,7 +347,7 @@ export class ContractCallClass extends Component<Props, State> {
                   />
                 </label>
               )}
-              <div className={'errorMsg'}>
+              <div className={'errorMsg costlyContractError'}>
                 {errorState.errorType !== ErrorType.NO_ERROR && errorState.error}
               </div>
 
@@ -741,11 +741,11 @@ export class ContractCallClass extends Component<Props, State> {
       const electionBool = await parsedInputs['_election'];
       if (votedForIsBlockMaker) {
         if (electionBool) {
-          throw Error('NO VOTE: You cannot promote a blockmaker address');
+          throw Error('Your address cannot promote a blockmaker address.');
         }
       } else {
         if (!electionBool) {
-          throw Error('NO VOTE: You cannot demote a non-blockmaker address');
+          throw Error('You cannot demote a non-blockmaker address.');
         }
       }
       var electionType;
@@ -764,12 +764,12 @@ export class ContractCallClass extends Component<Props, State> {
         //If you are not a blockmaker and the ballot exists make sure you can only vote for a demotion ballot
         if (ballotGovCycleId == currentGovernanceCycleId) {
           if (!electionType) {
-            throw Error('NO VOTE: There is already a promotion ballot for this address');
+            throw Error('A promotion ballot has already been cast for this address.');
           }
         } else {
           //if you are not a blockmaker and the ballot doesn't exist make sure your vote still needs to be a nomination ballot
           if (numberOfVotes < 32) {
-            throw Error('NO VOTE: You must cast a minimum of 32 votes to start the ballot');
+            throw Error('You must cast a minimum of 32 votes to nominate an address.');
           } else {
             await this.setState({
               errorState: {
@@ -783,7 +783,7 @@ export class ContractCallClass extends Component<Props, State> {
         // Ensure that even as a block maker you must still cast a minimum of 32 votes to start a ballot
         if (!(ballotGovCycleId == currentGovernanceCycle)) {
           if (numberOfVotes < 32) {
-            throw Error('NO VOTE: You must cast a minimum of 32 votes to start the ballot');
+            throw Error('You must cast a minimum of 32 votes to start the ballot');
           } else {
             await this.setState({
               errorState: {

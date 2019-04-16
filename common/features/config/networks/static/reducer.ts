@@ -41,7 +41,7 @@ export const STATIC_NETWORKS_INITIAL_STATE: types.ConfigStaticNetworksState = {
       [InsecureWalletName.MNEMONIC_PHRASE]: ETH_DEFAULT
     },
     gasPriceSettings: gasPriceDefaults,
-    shouldEstimateGasPrice: true
+    shouldEstimateGasPrice: false
   }
 };
 

@@ -21,7 +21,7 @@ export const makeProviderConfig = (options: DeepPartial<IProviderConfig> = {}): 
       sendCallRequest: true,
       sendCallRequests: true,
       getBalance: true,
-      estimateGas: true,
+      estimateGas: false,
       getTransactionCount: true,
       getCurrentBlock: true,
       sendRawTx: true,

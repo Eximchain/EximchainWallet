@@ -779,13 +779,13 @@ export class ContractCallClass extends Component<Props, State> {
         };
         const nomineeBallotResult = await this.handleChainedCalls(newInput, nomineeBallot);
         electionType = nomineeBallotResult['election'];
-
+        console.log(electionType);
         ballotGovCycleId = nomineeBallotResult['governanceCycleId'];
         //Check that you are not a blockmaker
         if (!isBlockMaker) {
           //If you are not a blockmaker and the ballot exists make sure you can only vote for a demotion ballot
           if (ballotGovCycleId == currentGovernanceCycleId) {
-            if (!electionType) {
+            if (electionType) {
               throw Error('A promotion ballot has already been cast for this address.');
             }
           } else {

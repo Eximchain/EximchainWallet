@@ -514,17 +514,11 @@ export class ContractCallClass extends Component<Props, State> {
 
   private handleClaimInputs = async (state: State) => {
     try {
-      const { inputs } = state;
+      const inputs = Object.assign({}, state.inputs);
 
       //Just insuring that the states are reset properly.
       delete inputs['_governanceCycleId'];
       delete inputs['_ballotId'];
-      await this.setState({
-        errorState: {
-          errorType: ErrorType.NO_ERROR,
-          error: 'no error'
-        }
-      });
 
       //Set state here for testing purposes
       // await this.setState({
@@ -539,6 +533,13 @@ export class ContractCallClass extends Component<Props, State> {
         (accu, key) => ({ ...accu, [key]: inputs[key].parsedData }),
         {}
       );
+      const mandatoryInputs = ['_ballot_address', '_ballot_number'];
+      for (var key in mandatoryInputs) {
+        // console.log(parsedInputs[mandatoryInputs[key]]==undefined, mandatoryInputs[key])
+        if (parsedInputs[mandatoryInputs[key]] == undefined) {
+          throw Error();
+        }
+      }
       if (!this.props.isValidAddress(parsedInputs['_ballot_address'])) {
         throw Error('invalid address');
       }
@@ -580,7 +581,7 @@ export class ContractCallClass extends Component<Props, State> {
             if (governanceCycleRecordResult.status === '2' && !ballotRecordsResult.withdrawRecord) {
               const governanceCycleId = ballotRecordsResult.governanceCycleId;
               const ballotId = ballotHistoryResult[0];
-              await this.setState({
+              this.setState({
                 inputs: {
                   ...this.state.inputs,
                   ['_governanceCycleId']: {
@@ -596,9 +597,22 @@ export class ContractCallClass extends Component<Props, State> {
         }
       }
       // this.setState({ outputs: parsedResult });
+      this.setState({
+        errorState: {
+          errorType: ErrorType.NO_ERROR,
+          error: 'no error'
+        }
+      });
     } catch (e) {
       //Handle the errors here.
-      if (e.toString().includes('NO CLAIM')) {
+      if (e.toString() == 'Error') {
+        this.setState({
+          errorState: {
+            errorType: ErrorType.INCOMPLETE_INPUTS,
+            error: ''
+          }
+        });
+      } else if (e.toString().includes('NO CLAIM')) {
         this.setState({
           errorState: {
             errorType: ErrorType.INVALID_INPUTS,
@@ -617,16 +631,10 @@ export class ContractCallClass extends Component<Props, State> {
   };
   private handleCollectInputs = async (state: State) => {
     try {
-      const { inputs } = state;
+      const inputs = Object.assign({}, state.inputs);
 
       //Just insuring that the states are reset properly.
       delete inputs['_withdrawIndex'];
-      await this.setState({
-        errorState: {
-          errorType: ErrorType.NO_ERROR,
-          error: 'no error'
-        }
-      });
       // await this.setState({
       //   inputs: {
       //     ...this.state.inputs,
@@ -638,6 +646,13 @@ export class ContractCallClass extends Component<Props, State> {
         (accu, key) => ({ ...accu, [key]: inputs[key].parsedData }),
         {}
       );
+      const mandatoryInputs = ['_ballot_address', '_ballot_number'];
+      for (var key in mandatoryInputs) {
+        // console.log(parsedInputs[mandatoryInputs[key]]==undefined, mandatoryInputs[key])
+        if (parsedInputs[mandatoryInputs[key]] == undefined) {
+          throw Error();
+        }
+      }
       if (!this.props.isValidAddress(parsedInputs['_ballot_address'])) {
         throw Error('invalid address');
       }
@@ -672,7 +687,7 @@ export class ContractCallClass extends Component<Props, State> {
             }
             if (withdrawRecordsResult.status === '1') {
               const withdrawRecordId = ballotRecordsResult.withdrawRecordId;
-              await this.setState({
+              this.setState({
                 inputs: {
                   ...this.state.inputs,
                   ['_withdrawIndex']: { rawData: withdrawRecordId, parsedData: withdrawRecordId }
@@ -683,9 +698,22 @@ export class ContractCallClass extends Component<Props, State> {
           }
         }
       }
+      this.setState({
+        errorState: {
+          errorType: ErrorType.NO_ERROR,
+          error: 'no error'
+        }
+      });
     } catch (e) {
       //Handle the errors here.
-      if (e.toString().includes('NO COLLECT')) {
+      if (e.toString() == 'Error') {
+        this.setState({
+          errorState: {
+            errorType: ErrorType.INCOMPLETE_INPUTS,
+            error: ''
+          }
+        });
+      } else if (e.toString().includes('NO COLLECT')) {
         this.setState({
           errorState: {
             errorType: ErrorType.INVALID_INPUTS,
@@ -704,34 +732,30 @@ export class ContractCallClass extends Component<Props, State> {
   };
   private handleVoteInputs = async (state: State) => {
     try {
-      const { inputs, isBlockMaker, maximumPossibleBallots } = state;
-      this.setState({
-        errorState: {
-          errorType: ErrorType.NO_ERROR,
-          error: 'no error'
-        }
-      });
+      const inputs = Object.assign({}, state.inputs);
+      const { isBlockMaker, maximumPossibleBallots } = state;
       const parsedInputs = Object.keys(inputs).reduce(
         (accu, key) => ({ ...accu, [key]: inputs[key].parsedData }),
         {}
       );
       // console.log(parsedInputs)
       // console.log('CurrentState VOTE values',parsedInputs['_votes'])
-      const voteValue = await parsedInputs['_votes'];
+      const voteValue = parsedInputs['_votes'];
       // console.log('what', voteValue)
-      const numberOfVotes = await parseInt(voteValue);
-      // console.log(numberOfVotes,'helo')
+      const numberOfVotes = parseInt(voteValue);
       const mandatoryInputs = ['_voted_for', '_election', '_inSupport', '_votes'];
       for (var key in mandatoryInputs) {
         // console.log(parsedInputs[mandatoryInputs[key]]==undefined, mandatoryInputs[key])
-        if ((await parsedInputs[mandatoryInputs[key]]) == undefined) {
+        if (parsedInputs[mandatoryInputs[key]] == undefined) {
           throw Error();
         }
       }
       if (!this.props.isValidAddress(parsedInputs['_voted_for'])) {
         throw Error('invalid address');
       }
-
+      if (!parseInt(parsedInputs['_votes'])) {
+        throw Error('invalid input');
+      }
       const nomineeBallot = this.functionFilter('nomineeBallots');
       const currentGovernanceCycle = this.functionFilter('currentGovernanceCycle');
       let currentGovernanceCycleId = maximumPossibleBallots;
@@ -757,29 +781,34 @@ export class ContractCallClass extends Component<Props, State> {
         electionType = nomineeBallotResult['election'];
 
         ballotGovCycleId = nomineeBallotResult['governanceCycleId'];
-      }
-
-      //Check that you are not a blockmaker
-      if (!isBlockMaker) {
-        //If you are not a blockmaker and the ballot exists make sure you can only vote for a demotion ballot
-        if (ballotGovCycleId == currentGovernanceCycleId) {
-          if (!electionType) {
-            throw Error('A promotion ballot has already been cast for this address.');
+        //Check that you are not a blockmaker
+        if (!isBlockMaker) {
+          //If you are not a blockmaker and the ballot exists make sure you can only vote for a demotion ballot
+          if (ballotGovCycleId == currentGovernanceCycleId) {
+            if (!electionType) {
+              throw Error('A promotion ballot has already been cast for this address.');
+            }
+          } else {
+            //if you are not a blockmaker and the ballot doesn't exist make sure your vote still needs to be a nomination ballot
+            if (numberOfVotes < 32) {
+              throw Error('You must cast a minimum of 32 votes to nominate an address.');
+            }
           }
         } else {
-          //if you are not a blockmaker and the ballot doesn't exist make sure your vote still needs to be a nomination ballot
-          if (numberOfVotes < 32) {
-            throw Error('You must cast a minimum of 32 votes to nominate an address.');
-          }
-        }
-      } else {
-        // Ensure that even as a block maker you must still cast a minimum of 32 votes to start a ballot
-        if (!(ballotGovCycleId == currentGovernanceCycle)) {
-          if (numberOfVotes < 32) {
-            throw Error('You must cast a minimum of 32 votes to start the ballot');
+          // Ensure that even as a block maker you must still cast a minimum of 32 votes to start a ballot
+          if (!(ballotGovCycleId == currentGovernanceCycle)) {
+            if (numberOfVotes < 32) {
+              throw Error('You must cast a minimum of 32 votes to start the ballot');
+            }
           }
         }
       }
+      this.setState({
+        errorState: {
+          errorType: ErrorType.NO_ERROR,
+          error: 'no error'
+        }
+      });
     } catch (e) {
       if (e.toString() == 'Error') {
         this.setState({
@@ -828,28 +857,17 @@ export class ContractCallClass extends Component<Props, State> {
     const name = ev.currentTarget.name;
     const isArr = rawValue.startsWith('[') && rawValue.endsWith(']');
     if (rawValue === '') {
-      let inputs = Object.assign({}, this.state.inputs);
-      if (inputs[name] !== undefined) {
-        delete inputs[name];
-      }
-      this.setState(
-        {
+      this.setState((state, _) => {
+        let inputs = Object.assign({}, state.inputs);
+        if (inputs[name] !== undefined) {
+          delete inputs[name];
+        }
+        return {
           inputs: {
             ...inputs
           }
-        },
-        () => {
-          if (this.props.selectedFunction.name === 'vote') {
-            this.handleVoteInputs(this.state);
-          }
-          if (this.props.selectedFunction.name === 'startWithdraw') {
-            this.handleClaimInputs(this.state);
-          }
-          if (this.props.selectedFunction.name === 'finalizeWithdraw') {
-            this.handleCollectInputs(this.state);
-          }
-        }
-      );
+        };
+      });
     } else {
       const value = {
         rawData: rawValue,
@@ -925,9 +943,22 @@ export class ContractCallClass extends Component<Props, State> {
   };
   private handleBooleanDropdownChange = ({ value, name }: { value: boolean; name: string }) => {
     if (name === '_election') {
-      this.setState({
-        promoDemoBool: value.toString()
-      });
+      this.setState(
+        {
+          promoDemoBool: value.toString()
+        },
+        () => {
+          if (this.props.selectedFunction.name === 'vote') {
+            this.handleVoteInputs(this.state);
+          }
+          if (this.props.selectedFunction.name === 'startWithdraw') {
+            this.handleClaimInputs(this.state);
+          }
+          if (this.props.selectedFunction.name === 'finalizeWithdraw') {
+            this.handleCollectInputs(this.state);
+          }
+        }
+      );
     }
     this.setState((state, props) => {
       let inputs = Object.assign({}, state.inputs);

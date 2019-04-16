@@ -541,7 +541,7 @@ export class ContractCallClass extends Component<Props, State> {
         }
       }
       if (!this.props.isValidAddress(parsedInputs['_ballot_address'])) {
-        throw Error('invalid address');
+        throw Error('Invalid address');
       }
       const { to } = this.props;
       if (!to.value) {
@@ -553,7 +553,8 @@ export class ContractCallClass extends Component<Props, State> {
         // console.log('what', parsedInputs)
         const ballotHistoryResult = await this.handleChainedCalls(parsedInputs, ballotHistory);
         // console.log(ballotHistoryResult, 'ballotHistoryResult')
-        if (ballotHistoryResult[0] === '0') throw Error('NO CLAIM: INVALID BALLOT');
+        if (ballotHistoryResult[0] === '0')
+          throw Error('You have not cast that number of ballot entries with this address.');
         const ballotRecords = this.functionFilter('ballotRecords');
         if (ballotRecords) {
           const ballotRecordsResult = await this.handleChainedCalls(
@@ -562,7 +563,7 @@ export class ContractCallClass extends Component<Props, State> {
           );
           // console.log(ballotRecordsResult, 'recordResult')
           if (ballotRecordsResult.withdrawRecord) {
-            throw Error('NO CLAIM: Already Claimed');
+            throw Error('This address has already claimed tokens for that ballot entry.');
           }
           const governanceCycleRecord = this.functionFilter('governanceCycleRecords');
           if (governanceCycleRecord) {
@@ -573,10 +574,10 @@ export class ContractCallClass extends Component<Props, State> {
             );
             // console.log(governanceCycleRecordResult.status, 'governanceCycle for ballotHistory')
             if (governanceCycleRecordResult.status === '1')
-              throw Error('NO CLAIM: Governance Not Closed');
+              throw Error('Tokens cannot be claimed if the governance cycle has not been closed');
             if (governanceCycleRecordResult.status === '0')
               throw Error(
-                'NO CLAIM: IF YOU SEE THIS MSG THERE IS SOMETHING REALLY WRONG, please email support'
+                'If you are seeing this message you have hit a snag, please email support@eximchain.com'
               );
             if (governanceCycleRecordResult.status === '2' && !ballotRecordsResult.withdrawRecord) {
               const governanceCycleId = ballotRecordsResult.governanceCycleId;
@@ -654,7 +655,7 @@ export class ContractCallClass extends Component<Props, State> {
         }
       }
       if (!this.props.isValidAddress(parsedInputs['_ballot_address'])) {
-        throw Error('invalid address');
+        throw Error('Invalid address');
       }
       const { to } = this.props;
       if (!to.value) {
@@ -751,7 +752,7 @@ export class ContractCallClass extends Component<Props, State> {
         }
       }
       if (!this.props.isValidAddress(parsedInputs['_voted_for'])) {
-        throw Error('invalid address');
+        throw Error('Invalid address');
       }
       if (!parseInt(parsedInputs['_votes'])) {
         throw Error('invalid input');

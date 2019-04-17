@@ -14,14 +14,14 @@ export const makeProviderConfig = (options: DeepPartial<IProviderConfig> = {}): 
   const defaultConfig: IProviderConfig = {
     concurrency: 2,
     network: 'ETH',
-    requestFailureThreshold: 10,
+    requestFailureThreshold: 30,
     supportedMethods: {
       getNetVersion: true,
       ping: true,
       sendCallRequest: true,
       sendCallRequests: true,
       getBalance: true,
-      estimateGas: false,
+      estimateGas: true,
       getTransactionCount: true,
       getCurrentBlock: true,
       sendRawTx: true,

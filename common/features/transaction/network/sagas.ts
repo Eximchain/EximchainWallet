@@ -142,10 +142,13 @@ export function* estimateGas(): SagaIterator {
       const from: string = yield apply(walletInst, walletInst.getAddressString);
       const txObj = { ...payload, from };
 
-      const { gasLimit } = yield race({
-        gasLimit: apply(node, node.estimateGas, [txObj]),
-        timeout: call(delay, 10000)
-      });
+      // const { gasLimit } = yield race({
+      //   gasLimit: apply(node, node.estimateGas, [txObj]),
+      //   timeout: call(delay, 10000)
+      // });
+      // console.log(gasLimit)
+      //Hard coding gasLimit calculation to be a million
+      const gasLimit = new BN(1000000);
       if (gasLimit) {
         const gasSetOptions = {
           raw: gasLimit.toString(),

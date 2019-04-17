@@ -779,7 +779,6 @@ export class ContractCallClass extends Component<Props, State> {
         };
         const nomineeBallotResult = await this.handleChainedCalls(newInput, nomineeBallot);
         electionType = nomineeBallotResult['election'];
-        console.log(electionType);
         ballotGovCycleId = nomineeBallotResult['governanceCycleId'];
         //Check that you are not a blockmaker
         if (!isBlockMaker) {

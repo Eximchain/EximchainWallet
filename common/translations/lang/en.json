@@ -7,8 +7,8 @@
     "ballotHistoryInput_ballot_number":"Ballot Entry Number",
     "withdrawHistoryInput_ballot_address":"Sender Address",
     "withdrawHistoryInput_ballot_number":"Ballot Entry Number",
-
-
+    "WALLET_DECRYPT":"Sign into a wallet",
+    "WALLET_DECRYPTDescription":"Choose a wallet type below.",
     "ConfirmTransaction": "Signed Transaction",
     "ConfirmTransactionDescription": "Copy the info below if you wish to save the transaction data.",
     "VOTEName": "Ballot Entry",

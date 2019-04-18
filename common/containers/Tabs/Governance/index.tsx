@@ -14,6 +14,11 @@ import VoteOrNominateIcon from 'assets/images/vote-or-nominate.svg';
 import CollectTokensIcon from 'assets/images/collect-tokens.svg';
 import ClaimTokensIcon from 'assets/images/claim-tokens.svg';
 import { NetworkContract } from 'types/network';
+import { walletActions, walletSelectors } from 'features/wallet';
+import AccountAddress from './components/AccountAddress';
+
+import { IFullWallet } from 'libs/wallet';
+
 import { Link } from 'react-router-dom';
 import WalletDecrypt, { DISABLE_WALLETS } from 'components/WalletDecrypt';
 import { FullWalletOnly } from 'components/renderCbs';
@@ -69,7 +74,6 @@ export enum GovernanceFlowStages {
 
 export interface State {
   stage: GovernanceFlowStages;
-  stageHistory: GovernanceFlowStages[];
   chosenCall: ContractFuncNames | null;
   currentContract: Contract;
   currentCall: null | ContractOption;
@@ -82,11 +86,14 @@ interface ContractOption {
 }
 
 interface DispatchProps {
+  resetWallet: walletActions.TResetWallet;
   setCurrentTo: TSetCurrentTo;
   showNotification: notificationsActions.TShowNotification;
   resetTransactionRequested: transactionFieldsActions.TResetTransactionRequested;
 }
 interface StateProps {
+  toChecksumAddress: ReturnType<typeof configSelectors.getChecksumAddressFn>;
+  wallet: AppState['wallet']['inst'];
   currentTo: ReturnType<typeof selectors.getCurrentTo>;
   contracts: NetworkContract[];
   isValidAddress: ReturnType<typeof configSelectors.getIsValidAddressFn>;
@@ -97,7 +104,9 @@ type Props = DispatchProps & StateProps;
 const mapStateToProps = (state: AppState) => ({
   contracts: configSelectors.getNetworkContracts(state) || [],
   isValidAddress: configSelectors.getIsValidAddressFn(state),
-  currentTo: selectors.getCurrentTo(state)
+  currentTo: selectors.getCurrentTo(state),
+  wallet: walletSelectors.getWalletInst(state),
+  toChecksumAddress: configSelectors.getChecksumAddressFn(state)
 });
 
 export const GOVERNANCECALLS: GovernanceCall = {
@@ -376,13 +385,34 @@ class GovernanceClass extends Component<Props, State> {
       chainedFunctions
     };
   }
+  private changeWallet = () => {
+    this.props.resetWallet();
+  };
   public render() {
     const currentContract = this.state.currentContract;
     const contractFunctions = Contract.getFunctions(currentContract);
     let stages = GovernanceFlowStages;
     let body;
-    console.log(this.state.stage);
-    console.log(this.state.chosenCall);
+
+    const walletChangeComponent = (
+      <React.Fragment>
+        {this.props.wallet && (
+          <React.Fragment>
+            <button
+              className="SignMessage-reset btn btn-default btn-sm"
+              onClick={this.changeWallet}
+            >
+              <AccountAddress
+                address={this.props.toChecksumAddress(this.props.wallet.getAddressString())}
+              />
+
+              <i className="fa fa-refresh" />
+              {translate('CHANGE_WALLET')}
+            </button>
+          </React.Fragment>
+        )}
+      </React.Fragment>
+    );
     // console.log(this.GOVERNANCECALLS[this.state.chosenCall])
     switch (this.state.stage) {
       case GovernanceFlowStages.START_PAGE:
@@ -392,6 +422,7 @@ class GovernanceClass extends Component<Props, State> {
               <h2 className="ContractSection-topsection-title">
                 {translate('GENERATE_GOVERNANCE_TITLE')}
               </h2>
+              {walletChangeComponent}
             </div>
             <section className="Tab-content GovernanceSection-content">
               <div>
@@ -430,6 +461,7 @@ class GovernanceClass extends Component<Props, State> {
         console.log(contractPropsNFree.chainedFunctions);
         body = (
           <CostlyContractCallScreen
+            walletChangeComponent={walletChangeComponent}
             selectedFunction={contractPropsNFree.selectedFunction}
             contractCall={contractPropsNFree.chosenCall}
             chainedCalls={contractPropsNFree.chainedCalls}
@@ -448,6 +480,7 @@ class GovernanceClass extends Component<Props, State> {
 }
 
 export default connect(mapStateToProps, {
+  resetWallet: walletActions.resetWallet,
   setCurrentTo,
   resetTransactionRequested: transactionFieldsActions.resetTransactionRequested
 })(GovernanceClass);

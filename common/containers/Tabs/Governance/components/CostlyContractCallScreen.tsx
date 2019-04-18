@@ -55,6 +55,7 @@ interface DispatchProps {
 }
 
 interface OwnProps {
+  walletChangeComponent: any;
   selectedFunction: ContractOption;
   contractCall: ContractFuncNames;
   chainedCalls: null | ContractFuncNames[];
@@ -395,7 +396,15 @@ export class ContractCallClass extends Component<Props, State> {
       case ContractFlowStages.ERROR_SCREEN:
         body = <ErrorScreen backToGovernance={this.props.goBack} />;
     }
-    const makeDecrypt = () => <WalletDecrypt disabledWallets={DISABLE_WALLETS.READ_ONLY} />;
+    const makeDecrypt = () => (
+      <React.Fragment>
+        <div className="GovernanceSection-form-write">
+          <h2 className="FormInput-title">{translate('WALLET_DECRYPT')}</h2>
+          <p className="FormInput-subtitle">{translate('WALLET_DECRYPT' + 'Description')}</p>
+          <WalletDecrypt disabledWallets={DISABLE_WALLETS.READ_ONLY} />
+        </div>
+      </React.Fragment>
+    );
     const makeContent = () => <React.Fragment>{body}</React.Fragment>;
 
     return (
@@ -403,6 +412,7 @@ export class ContractCallClass extends Component<Props, State> {
         <div className="GovernanceSection-topsection">
           <button className="FormBackButton fa fa-chevron-left" onClick={this.back} />
           <h2 className="ContractSection-topsection-title">{translate(this.props.contractCall)}</h2>
+          {this.props.walletChangeComponent}
         </div>
         <section className="Tab-content GovernanceSection-content">
           <FullWalletOnly withFullWallet={makeContent} withoutFullWallet={makeDecrypt} />

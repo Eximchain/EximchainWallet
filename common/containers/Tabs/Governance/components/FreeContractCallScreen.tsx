@@ -6,6 +6,7 @@ import translate, { translateRaw } from 'translations';
 import { bufferToHex } from 'ethereumjs-util';
 import arrow from 'assets/images/output-arrow.svg';
 import moment from 'moment';
+import { AddressField } from 'components';
 
 import { INode } from 'libs/nodes';
 import { configNodesSelectors } from 'features/config';
@@ -150,6 +151,48 @@ export class FreeContractCallClass extends Component<Props, State> {
                           const newName = selectedFunction.name + 'Input' + parsedName;
                           console.log('parsedName:', parsedName);
                           const inputState = this.state.inputs[parsedName];
+                          let inputField;
+                          if (type == 'bool') {
+                            <Dropdown
+                              options={[
+                                { value: false, label: 'false' },
+                                { value: true, label: 'true' }
+                              ]}
+                              value={
+                                inputState
+                                  ? {
+                                      label: inputState.rawData,
+                                      value: inputState.parsedData as any
+                                    }
+                                  : undefined
+                              }
+                              clearable={false}
+                              onChange={({ value }: { value: boolean }) => {
+                                this.handleBooleanDropdownChange({ value, name: parsedName });
+                              }}
+                            />;
+                          } else if (type === 'address') {
+                            inputField = (
+                              <AddressField
+                                name={parsedName}
+                                value={(inputs[parsedName] && inputs[parsedName].rawData) || ''}
+                                showLabelMatch={true}
+                                showInputLabel={false}
+                                onChangeOverride={this.handleSelectAddressFromBook}
+                                dropdownThreshold={1}
+                              />
+                            );
+                          } else {
+                            inputField = (
+                              <Input
+                                className="InteractExplorer-func-in-input"
+                                isValid={!!(inputs[parsedName] && inputs[parsedName].rawData)}
+                                name={parsedName}
+                                value={(inputs[parsedName] && inputs[parsedName].rawData) || ''}
+                                onChange={this.handleInputChange}
+                              />
+                            );
+                          }
                           return (
                             <div
                               key={parsedName}
@@ -157,34 +200,7 @@ export class FreeContractCallClass extends Component<Props, State> {
                             >
                               <label className="input-group">
                                 <div className="input-group-header">{translateRaw(newName)}</div>
-                                {type === 'bool' ? (
-                                  <Dropdown
-                                    options={[
-                                      { value: false, label: 'false' },
-                                      { value: true, label: 'true' }
-                                    ]}
-                                    value={
-                                      inputState
-                                        ? {
-                                            label: inputState.rawData,
-                                            value: inputState.parsedData as any
-                                          }
-                                        : undefined
-                                    }
-                                    clearable={false}
-                                    onChange={({ value }: { value: boolean }) => {
-                                      this.handleBooleanDropdownChange({ value, name: parsedName });
-                                    }}
-                                  />
-                                ) : (
-                                  <Input
-                                    className="InteractExplorer-func-in-input"
-                                    isValid={!!(inputs[parsedName] && inputs[parsedName].rawData)}
-                                    name={parsedName}
-                                    value={(inputs[parsedName] && inputs[parsedName].rawData) || ''}
-                                    onChange={this.handleInputChange}
-                                  />
-                                )}
+                                {inputField}
                               </label>
                             </div>
                           );
@@ -262,7 +278,14 @@ export class FreeContractCallClass extends Component<Props, State> {
       </React.Fragment>
     );
   }
+  private handleSelectAddressFromBook = (ev: React.FormEvent<HTMLInputElement>) => {
+    const { selectedFunction } = this.props;
+    const { currentTarget: { value: addressFromBook } } = ev;
+    ev.currentTarget.name = selectedFunction.contract.inputs[0].name;
+    ev.currentTarget.value = addressFromBook;
 
+    this.handleInputChange(ev);
+  };
   private handleInputChange = (ev: React.FormEvent<HTMLInputElement>) => {
     const rawValue: string = ev.currentTarget.value;
     const isArr = rawValue.startsWith('[') && rawValue.endsWith(']');

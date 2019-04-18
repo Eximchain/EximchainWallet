@@ -179,7 +179,6 @@ class GovernanceClass extends Component<Props, State> {
     let i = 0;
     for (i; i < contractNumber; i++) {
       let currentInstance = this.props.contracts[i];
-      console.log(currentInstance);
       if (currentInstance.name === 'Weyl Governance') {
         if (currentInstance.address === '0x000000000000000000000000000000000000002a') {
           // this.props.setCurrentTo(currentInstance.address);
@@ -237,7 +236,6 @@ class GovernanceClass extends Component<Props, State> {
   }
 
   goTo(stage: GovernanceFlowStages, declaredCall: ContractFuncNames) {
-    console.log(declaredCall);
     this.setState((state: State) => {
       let newState = Object.assign({}, state);
       newState.stage = stage;
@@ -398,17 +396,18 @@ class GovernanceClass extends Component<Props, State> {
       <React.Fragment>
         {this.props.wallet && (
           <React.Fragment>
-            <button
-              className="SignMessage-reset btn btn-default btn-sm"
-              onClick={this.changeWallet}
-            >
+            <div className="chris-change-this">
               <AccountAddress
                 address={this.props.toChecksumAddress(this.props.wallet.getAddressString())}
               />
-
-              <i className="fa fa-refresh" />
-              {translate('CHANGE_WALLET')}
-            </button>
+              <button
+                className="SignMessage-reset btn btn-default btn-sm"
+                onClick={this.changeWallet}
+              >
+                <i className="fa fa-refresh" />
+                {translate('CHANGE_WALLET')}
+              </button>
+            </div>
           </React.Fragment>
         )}
       </React.Fragment>
@@ -458,7 +457,6 @@ class GovernanceClass extends Component<Props, State> {
         break;
       case GovernanceFlowStages.COSTLY_CALL_PAGE:
         const contractPropsNFree = this.makePropsForContractCall(this.state.chosenCall);
-        console.log(contractPropsNFree.chainedFunctions);
         body = (
           <CostlyContractCallScreen
             walletChangeComponent={walletChangeComponent}

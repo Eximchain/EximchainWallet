@@ -24,6 +24,8 @@ import { GovernanceFlowStages } from '..';
 import { ContractFuncNames, CostlyContractCallName } from '..';
 
 import '../index.scss';
+import { decode } from 'punycode';
+import { isValidAbiJson } from 'libs/validators';
 
 interface StateProps {
   nodeLib: INode;
@@ -83,7 +85,6 @@ export class FreeContractCallClass extends Component<Props, State> {
     super(props);
     const { chainedCalls, chainedFunctions, selectedFunction } = this.props;
     let outputFunction = JSON.parse(JSON.stringify(selectedFunction));
-    console.log(outputFunction.contract.outputs);
     if (
       chainedFunctions &&
       !outputFunction.contract.outputs.includes(chainedFunctions[0].contract.outputs[0])
@@ -149,7 +150,6 @@ export class FreeContractCallClass extends Component<Props, State> {
                           // if it is undefined
                           const parsedName = name === '' ? index : name;
                           const newName = selectedFunction.name + 'Input' + parsedName;
-                          console.log('parsedName:', parsedName);
                           const inputState = this.state.inputs[parsedName];
                           let inputField;
                           if (type == 'bool') {
@@ -232,7 +232,7 @@ export class FreeContractCallClass extends Component<Props, State> {
                           // console.log(parsedName);
                           const o = outputs[parsedName];
                           const rawFieldValue = o === null || o === undefined ? '' : o;
-                          const decodedFieldValue = Buffer.isBuffer(rawFieldValue)
+                          let decodedFieldValue = Buffer.isBuffer(rawFieldValue)
                             ? bufferToHex(rawFieldValue)
                             : rawFieldValue;
                           const newName = outputFunction.name + 'Output' + parsedName;
@@ -245,6 +245,31 @@ export class FreeContractCallClass extends Component<Props, State> {
                           } else {
                             isTimestamp = false;
                           }
+                          if (o !== null || o !== undefined) {
+                            if (parsedName === 'status') {
+                              if (decodedFieldValue === '0')
+                                decodedFieldValue = translateRaw(`NOT_STARTED`);
+                              else if (decodedFieldValue === '1')
+                                decodedFieldValue = translateRaw(`STARTED`);
+                              else if (decodedFieldValue === '2')
+                                decodedFieldValue = translateRaw(`CLOSED`);
+                            }
+                            if (parsedName === 'election') {
+                              if (decodedFieldValue === true) {
+                                decodedFieldValue = translateRaw('FOR_PROMOTION');
+                              } else if (decodedFieldValue === false) {
+                                decodedFieldValue = translateRaw('FOR_DEMOTION');
+                              }
+                            }
+                            if (parsedName === 'inSupport') {
+                              if (decodedFieldValue === true) {
+                                decodedFieldValue = translateRaw('IN_SUPPORT_FOR');
+                              } else if (decodedFieldValue === false) {
+                                decodedFieldValue = translateRaw('IN_SUPPORT_AGAINST');
+                              }
+                            }
+                          }
+
                           return (
                             <div
                               key={parsedName}
@@ -375,11 +400,7 @@ export class FreeContractCallClass extends Component<Props, State> {
         this.setState({ outputs: parsedResult });
       }
     } catch (e) {
-      this.props.showNotification(
-        'warning',
-        `Function call error: ${(e as Error).message}` || 'Invalid input parameters',
-        5000
-      );
+      this.props.showNotification('warning', 'Invalid input parameters', 5000);
     }
   };
 

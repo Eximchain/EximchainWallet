@@ -1,6 +1,13 @@
 {
   "code": "en",
   "data": {
+    "NOT_STARTED":"Not Started",
+    "STARTED": "Started",
+    "CLOSED": "Closed",
+    "FOR_PROMOTION":"For Promotion",
+    "FOR_DEMOTION":"For Demotion",
+    "IN_SUPPORT_FOR":"For",
+    "IN_SUPPORT_AGAINST":"Against",
     "_ballot_address":"Sender Address",
     "_ballot_number":"Ballot Entry Number",
     "ballotHistoryInput_ballot_address":"Sender Address",

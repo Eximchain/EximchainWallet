@@ -67,6 +67,13 @@
     padding-bottom: $electron-osx-control-spacing;
 
     &-write {
+      .WalletDecrypt-wallets-row {
+        width: 100%;
+      }
+      .WalletDecrypt-decrypt {
+        width: 100%;
+        max-width: 100%;
+      }
       max-width: 60%;
       margin: auto;
       .AddressInput-identicon2 {

@@ -53,7 +53,7 @@ export const gasPriceDefaults: GasPriceSetting = {
 export const MINIMUM_PASSWORD_LENGTH = 12;
 
 export const knowledgeBaseURL = 'https://eximchain.zendesk.com/hc/en-us';
-// export const ledgerReferralURL = 'https://www.ledger.com/';
+export const ledgerReferralURL = 'https://www.ledger.com/';
 export const trezorReferralURL = 'https://shop.trezor.io';
 // TODO - Update url
 // export const bitboxReferralURL = 'https://digitalbitbox.com/';
@@ -68,12 +68,12 @@ export const trezorReferralURL = 'https://shop.trezor.io';
 
 export enum SecureWalletName {
   WEB3 = 'web3',
-  // LEDGER_NANO_S = 'ledgerNanoS',
+  LEDGER_NANO_S = 'ledgerNanoS',
   TREZOR = 'trezor'
 }
 
 export enum HardwareWalletName {
-  // LEDGER_NANO_S = 'ledgerNanoS',
+  LEDGER_NANO_S = 'ledgerNanoS',
   TREZOR = 'trezor'
 }
 

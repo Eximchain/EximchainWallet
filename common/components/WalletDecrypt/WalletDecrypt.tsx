@@ -20,7 +20,7 @@ import * as derivedSelectors from 'features/selectors';
 import { walletActions } from 'features/wallet';
 import { transactionFieldsActions } from 'features/transaction';
 import { notificationsActions } from 'features/notifications';
-// import LedgerIcon from 'assets/images/wallets/ledger.svg';
+import LedgerIcon from 'assets/images/wallets/ledger.svg';
 import TrezorIcon from 'assets/images/wallets/trezor.svg';
 import SeedPhraseIcon from 'assets/images/wallets/seed-phrase.svg';
 import Web3Icon from 'assets/images/wallets/web3.svg';
@@ -32,7 +32,7 @@ import { DisabledWallets } from './disables';
 import { getWeb3ProviderInfo } from 'utils/web3';
 import {
   KeystoreDecrypt,
-  // LedgerNanoSDecrypt,
+  LedgerNanoSDecrypt,
   MnemonicDecrypt,
   PrivateKeyDecrypt,
   PrivateKeyValue,
@@ -133,15 +133,15 @@ const WalletDecrypt = withRouter<Props>(
         attemptUnlock: true,
         helpLink: `${knowledgeBaseURL}/migration/moving-from-private-key-to-metamask`
       },
-      // [SecureWalletName.LEDGER_NANO_S]: {
-      //   lid: 'X_LEDGER',
-      //   icon: LedgerIcon,
-      //   description: 'ADD_LEDGERDESC',
-      //   component: LedgerNanoSDecrypt,
-      //   initialParams: {},
-      //   unlock: this.props.setWallet,
-      //   helpLink: 'https://support.eximchain.com/'
-      // },
+      [SecureWalletName.LEDGER_NANO_S]: {
+        lid: 'X_LEDGER',
+        icon: LedgerIcon,
+        description: 'ADD_LEDGERDESC',
+        component: LedgerNanoSDecrypt,
+        initialParams: {},
+        unlock: this.props.setWallet,
+        helpLink: 'https://support.eximchain.com/'
+      },
       [SecureWalletName.TREZOR]: {
         lid: 'X_TREZOR',
         icon: TrezorIcon,

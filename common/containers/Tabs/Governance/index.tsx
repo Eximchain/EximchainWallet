@@ -396,17 +396,16 @@ class GovernanceClass extends Component<Props, State> {
       <React.Fragment>
         {this.props.wallet && (
           <React.Fragment>
-            <div className="chris-change-this">
-              <AccountAddress
-                address={this.props.toChecksumAddress(this.props.wallet.getAddressString())}
-              />
-              <button
-                className="SignMessage-reset btn btn-default btn-sm"
-                onClick={this.changeWallet}
-              >
-                <i className="fa fa-refresh" />
-                {translate('CHANGE_WALLET')}
-              </button>
+            <div className="chris-change-this SignMessage-reset">
+              <div className="flex-wrapper">
+                <AccountAddress
+                  address={this.props.toChecksumAddress(this.props.wallet.getAddressString())}
+                />
+                <button className="btn btn-default btn-sm" onClick={this.changeWallet}>
+                  <i className="fa fa-caret-down" onClick={this.changeWallet} />
+                  {/* {translate('CHANGE_WALLET')} */}
+                </button>
+              </div>
             </div>
           </React.Fragment>
         )}

@@ -94,11 +94,11 @@ class LedgerNanoSDecryptClass extends PureComponent<Props, State> {
 
         <div className={`LedgerDecrypt-error alert alert-danger ${showErr}`}>{error || '-'}</div>
 
-        <div>
+        {/* <div>
           <NewTabLink className="LedgerDecrypt-buy btn btn-sm btn-default" href={ledgerReferralURL}>
             {translate('LEDGER_REFERRAL_2')}
           </NewTabLink>
-        </div>
+        </div> */}
 
         <div className="LedgerDecrypt-help">
           <HelpLink article={HELP_ARTICLE.HOW_TO_USE_LEDGER}>

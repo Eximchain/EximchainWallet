@@ -136,7 +136,7 @@ const WalletDecrypt = withRouter<Props>(
       [SecureWalletName.LEDGER_NANO_S]: {
         lid: 'X_LEDGER',
         icon: LedgerIcon,
-        description: 'ADD_LEDGERDESC',
+        // description: 'ADD_LEDGERDESC',
         component: LedgerNanoSDecrypt,
         initialParams: {},
         unlock: this.props.setWallet,

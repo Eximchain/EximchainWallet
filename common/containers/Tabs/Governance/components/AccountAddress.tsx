@@ -165,14 +165,14 @@ class AccountAddress extends React.Component<Props, State> {
       </React.Fragment>
     ) : (
       <React.Fragment>
-        <span
+        {/* <span
           role="button"
           title={addressLabel ? translateRaw('EDIT_LABEL') : translateRaw('ADD_LABEL_9')}
           onClick={this.startEditingLabel}
           className={addressLabel ? 'AccountInfo-edit' : 'AccountInfo-add'}
         >
           {addressLabel ? translate('EDIT_LABEL') : translate('ADD_LABEL_9')}
-        </span>
+        </span> */}
       </React.Fragment>
     );
 

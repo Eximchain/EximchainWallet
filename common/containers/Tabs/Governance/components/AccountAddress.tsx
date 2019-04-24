@@ -73,7 +73,7 @@ class AccountAddress extends React.Component<Props, State> {
         <div className="flex-wrapper">
           <div className="AccountInfo-section-top-header">
             <Address address={address} shorten={true} />
-            <CopyToClipboard onCopy={this.handleCopy} text={address}>
+            {/* <CopyToClipboard onCopy={this.handleCopy} text={address}>
               <div
                 className={`AccountInfo-copy ${copied ? 'is-copied' : ''}`}
                 title={translateRaw('COPY_TO_CLIPBOARD')}
@@ -81,7 +81,7 @@ class AccountAddress extends React.Component<Props, State> {
                 <i className="fa fa-clone" />
                 <span>{translateRaw(copied ? 'COPIED' : '')}</span>
               </div>
-            </CopyToClipboard>
+            </CopyToClipboard> */}
           </div>
         </div>
 

@@ -10,6 +10,8 @@ import ClientBuilder from '@eximchain/weyl-web3-client';
 import { Data } from 'libs/units';
 import { INode, NODE_CONFIGS } from 'libs/nodes';
 import { configNodesSelectors } from 'features/config';
+import { Wei } from 'libs/units';
+
 import {
   transactionActions,
   transactionFieldsActions,
@@ -17,6 +19,7 @@ import {
   transactionMetaActions,
   transactionSelectors
 } from 'features/transaction';
+import { scheduleActions } from 'features/schedule';
 import { transactionBroadcastSelectors } from 'features/transaction/broadcast';
 import { transactionSignSelectors } from 'features/transaction/sign';
 import { GenerateTransaction } from 'components/GenerateTransaction';
@@ -52,6 +55,7 @@ interface DispatchProps {
   setAsViewAndSend: transactionMetaActions.TSetAsViewAndSend;
   setCurrentValue: transactionActions.TSetCurrentValue;
   resetTransactionRequested: transactionFieldsActions.TResetTransactionRequested;
+  setScheduleGasLimitField: scheduleActions.TSetScheduleGasLimitField;
 }
 
 interface OwnProps {
@@ -422,6 +426,10 @@ export class ContractCallClass extends Component<Props, State> {
   }
 
   private handleStageChange = () => {
+    this.props.setScheduleGasLimitField({
+      raw: '1000000',
+      value: Wei('1000000')
+    });
     this.goTo(ContractFlowStages.SUBMIT_TRANSACTION_SCREEN);
   };
 
@@ -1026,6 +1034,7 @@ export const CostlyContractCallScreen = connect(
     resetTransactionRequested: transactionFieldsActions.resetTransactionRequested,
     setAsContractInteraction: transactionMetaActions.setAsContractInteraction,
     setAsViewAndSend: transactionMetaActions.setAsViewAndSend,
-    setCurrentValue: transactionActions.setCurrentValue
+    setCurrentValue: transactionActions.setCurrentValue,
+    setScheduleGasLimitField: scheduleActions.setScheduleGasLimitField
   }
 )(ContractCallClass);

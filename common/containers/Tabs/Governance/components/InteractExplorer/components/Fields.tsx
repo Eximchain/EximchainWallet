@@ -72,7 +72,7 @@ export class FieldsClass extends Component<Props> {
             <p className="FormInput-subtitle">{translate('GovernanceTransactionFeeDescription')}</p>
             <TXMetaDataPanel
               className="form-group"
-              initialState="advanced"
+              initialState="simple"
               advancedGasOptions={{ dataField: true }}
               shouldTransactionReset={false}
               autoGenGasLimit={false}

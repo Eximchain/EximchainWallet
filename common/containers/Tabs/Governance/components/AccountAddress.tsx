@@ -72,7 +72,7 @@ class AccountAddress extends React.Component<Props, State> {
       <div>
         <div className="flex-wrapper">
           <div className="AccountInfo-section-top-header">
-            <Address address={address} />
+            <Address address={address} shorten={true} />
             <CopyToClipboard onCopy={this.handleCopy} text={address}>
               <div
                 className={`AccountInfo-copy ${copied ? 'is-copied' : ''}`}

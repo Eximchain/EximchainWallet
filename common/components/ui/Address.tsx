@@ -11,6 +11,7 @@ interface BaseProps {
   explorer?: BlockExplorerConfig | null;
   address?: string | null;
   wallet?: IWallet | null;
+  shorten?: boolean;
 }
 
 interface StateProps {
@@ -21,7 +22,7 @@ type Props = BaseProps & StateProps;
 
 export class Address extends React.PureComponent<Props> {
   public render() {
-    const { wallet, address, explorer, toChecksumAddress } = this.props;
+    const { wallet, address, explorer, toChecksumAddress, shorten } = this.props;
     let renderAddress = '';
     if (address !== null && address !== undefined) {
       renderAddress = address;
@@ -33,6 +34,15 @@ export class Address extends React.PureComponent<Props> {
     if (explorer) {
       return <NewTabLink href={explorer.addressUrl(renderAddress)}>{renderAddress}</NewTabLink>;
     } else {
+      if (shorten) {
+        return (
+          <React.Fragment>
+            {renderAddress.substring(0, 6) +
+              '...' +
+              renderAddress.substring(renderAddress.length - 4, renderAddress.length)}
+          </React.Fragment>
+        );
+      }
       return <React.Fragment>{renderAddress}</React.Fragment>;
     }
   }

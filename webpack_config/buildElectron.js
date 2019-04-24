@@ -4,7 +4,7 @@ const fs = require('fs');
 const rimraf = require('rimraf');
 const builder = require('electron-builder');
 const config = require('./config');
-
+const packageJSON = require('../package.json')
 function shouldBuildOs(os) {
   const { ELECTRON_OS } = process.env;
 
@@ -48,15 +48,18 @@ async function build() {
           output: electronBuildsDir
         },
         mac: {
+          artifactName: "mac_${version}_EximchainWallet.${ext}",
           category: 'public.app-category.finance',
           icon: path.join(config.path.electron, 'icons/icon.icns'),
           compression
         },
         win: {
+          artifactName: "windows_${version}_EximchainWallet.${ext}",
           icon: path.join(config.path.electron, 'icons/icon.ico'),
           compression
         },
         linux: {
+          artifactName: "linux-${arch}_${version}_EximchainWallet.${ext}",
           category: 'Finance',
           icon: path.join(config.path.electron, 'icons/icon.png'),
           compression

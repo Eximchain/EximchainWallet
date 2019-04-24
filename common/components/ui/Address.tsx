@@ -18,9 +18,30 @@ interface StateProps {
   toChecksumAddress: ReturnType<typeof configSelectors.getChecksumAddressFn>;
 }
 
+interface State {
+  expanded: boolean;
+}
+
 type Props = BaseProps & StateProps;
 
-export class Address extends React.PureComponent<Props> {
+export class Address extends React.PureComponent<Props, State> {
+  public state = {
+    expanded: false
+  };
+  private expand = () => {
+    if (!this.state.expanded) {
+      this.setState({
+        expanded: true
+      });
+    }
+  };
+  private shorten = () => {
+    if (this.state.expanded) {
+      this.setState({
+        expanded: false
+      });
+    }
+  };
   public render() {
     const { wallet, address, explorer, toChecksumAddress, shorten } = this.props;
     let renderAddress = '';
@@ -36,13 +57,20 @@ export class Address extends React.PureComponent<Props> {
     } else {
       if (shorten) {
         return (
-          <React.Fragment>
-            {renderAddress.substring(0, 6) +
-              '...' +
-              renderAddress.substring(renderAddress.length - 4, renderAddress.length)}
-          </React.Fragment>
+          <div onMouseEnter={this.expand} onMouseLeave={this.shorten}>
+            {!this.state.expanded ? (
+              <React.Fragment>
+                {renderAddress.substring(0, 6) +
+                  '...' +
+                  renderAddress.substring(renderAddress.length - 4, renderAddress.length)}
+              </React.Fragment>
+            ) : (
+              <React.Fragment>{renderAddress}</React.Fragment>
+            )}
+          </div>
         );
       }
+
       return <React.Fragment>{renderAddress}</React.Fragment>;
     }
   }

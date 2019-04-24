@@ -14,7 +14,7 @@ import {
   knowledgeBaseURL
 } from 'config';
 import translate, { translateRaw } from 'translations';
-import { isWeb3NodeAvailable } from 'libs/nodes/web3';
+// import { isWeb3NodeAvailable } from 'libs/nodes/web3';
 import { AppState } from 'features/reducers';
 import * as derivedSelectors from 'features/selectors';
 import { walletActions } from 'features/wallet';
@@ -23,13 +23,13 @@ import { notificationsActions } from 'features/notifications';
 import LedgerIcon from 'assets/images/wallets/ledger.svg';
 import TrezorIcon from 'assets/images/wallets/trezor.svg';
 import SeedPhraseIcon from 'assets/images/wallets/seed-phrase.svg';
-import Web3Icon from 'assets/images/wallets/web3.svg';
+// import Web3Icon from 'assets/images/wallets/web3.svg';
 import PrivateKeyIcon from 'assets/images/wallets/private-key.svg';
 import KeystoreIcon from 'assets/images/wallets/keystore.svg';
 import AddressIcon from 'assets/images/wallets/address.svg';
 import { Errorable } from 'components';
 import { DisabledWallets } from './disables';
-import { getWeb3ProviderInfo } from 'utils/web3';
+// import { getWeb3ProviderInfo } from 'utils/web3';
 import {
   KeystoreDecrypt,
   LedgerNanoSDecrypt,
@@ -38,7 +38,7 @@ import {
   PrivateKeyValue,
   TrezorDecrypt,
   ViewOnlyDecrypt,
-  Web3Decrypt,
+  // Web3Decrypt,
   WalletButton,
   InsecureWalletWarning
 } from './components';
@@ -56,7 +56,7 @@ interface DispatchProps {
   unlockKeystore: walletActions.TUnlockKeystore;
   unlockMnemonic: walletActions.TUnlockMnemonic;
   unlockPrivateKey: walletActions.TUnlockPrivateKey;
-  unlockWeb3: walletActions.TUnlockWeb3;
+  // unlockWeb3: walletActions.TUnlockWeb3;
   setWallet: walletActions.TSetWallet;
   resetTransactionRequested: transactionFieldsActions.TResetTransactionRequested;
   showNotification: notificationsActions.TShowNotification;
@@ -116,23 +116,23 @@ const SECURE_WALLETS = Object.values(SecureWalletName).filter(
 const INSECURE_WALLETS = Object.values(InsecureWalletName);
 const MISC_WALLETS = Object.values(MiscWalletName);
 
-const web3info = getWeb3ProviderInfo();
+// const web3info = getWeb3ProviderInfo();
 
 const WalletDecrypt = withRouter<Props>(
   class WalletDecryptClass extends Component<RouteComponentProps<{}> & Props, State> {
     // https://github.com/Microsoft/TypeScript/issues/13042
     // index signature should become [key: Wallets] (from config) once typescript bug is fixed
     public WALLETS: Wallets = {
-      [SecureWalletName.WEB3]: {
-        lid: web3info.lid,
-        icon: Web3Icon,
-        // description: 'ADD_WEB3DESC',
-        component: Web3Decrypt,
-        initialParams: {},
-        unlock: this.props.unlockWeb3,
-        attemptUnlock: true,
-        helpLink: `${knowledgeBaseURL}/migration/moving-from-private-key-to-metamask`
-      },
+      // [SecureWalletName.WEB3]: {
+      //   // lid: web3info.lid,
+      //   // icon: Web3Icon,
+      //   // description: 'ADD_WEB3DESC',
+      //   // component: Web3Decrypt,
+      //   // initialParams: {},
+      //   // unlock: this.props.unlockWeb3,
+      //   // attemptUnlock: true,
+      //   // helpLink: `${knowledgeBaseURL}/migration/moving-from-private-key-to-metamask`
+      // },
       [SecureWalletName.LEDGER_NANO_S]: {
         lid: 'X_LEDGER',
         icon: LedgerIcon,
@@ -470,13 +470,13 @@ const WalletDecrypt = withRouter<Props>(
 
       let timeout = 0;
       if (wallet.attemptUnlock) {
-        const web3Available = await isWeb3NodeAvailable();
-        if (web3Available) {
-          // timeout is only the maximum wait time before secondary view is shown
-          // send view will be shown immediately on web3 resolve
-          timeout = 1500;
-          wallet.unlock();
-        }
+        // const web3Available = await isWeb3NodeAvailable();
+        // if (web3Available) {
+        //   // timeout is only the maximum wait time before secondary view is shown
+        //   // send view will be shown immediately on web3 resolve
+        //   timeout = 1500;
+        //   wallet.unlock();
+        // }
       }
 
       window.setTimeout(() => {
@@ -578,7 +578,7 @@ export default connect(mapStateToProps, {
   unlockKeystore: walletActions.unlockKeystore,
   unlockMnemonic: walletActions.unlockMnemonic,
   unlockPrivateKey: walletActions.unlockPrivateKey,
-  unlockWeb3: walletActions.unlockWeb3,
+  // unlockWeb3: walletActions.unlockWeb3,
   setWallet: walletActions.setWallet,
   resetTransactionRequested: transactionFieldsActions.resetTransactionRequested,
   showNotification: notificationsActions.showNotification

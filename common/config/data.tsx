@@ -67,7 +67,7 @@ export const trezorReferralURL = 'https://shop.trezor.io';
 // export const steelyReferralURL = 'https://stee.ly/2Hcl4RE';
 
 export enum SecureWalletName {
-  WEB3 = 'web3',
+  // WEB3 = 'web3',
   LEDGER_NANO_S = 'ledgerNanoS',
   TREZOR = 'trezor'
 }

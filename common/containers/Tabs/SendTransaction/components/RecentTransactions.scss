@@ -31,6 +31,7 @@
       letter-spacing: .4px;
       color: color(gray);
       border-bottom: 1px solid color(n20);
+      font-feature-settings: 'cpsp' 1;
 
       td {
         padding-top: $space-xs;

@@ -53,7 +53,7 @@
     "governanceCycleRecordsOutputelected": "Promoted address",
     "governanceCycleRecordsOutputevicted": "Demoted address",
     "governanceCycleRecordsOutputstart": "Cycle opened at",
-    "nomineeBallotsInput0": "Nominee Address",
+    "nomineeBallotsInputnominee": "Nominee Address",
     "nomineeBallotsOutputgovernanceCycleId": "Cycle Number",
     "nomineeBallotsOutputelection": "Ballot Type",
     "nomineeBallotsOutputvotes": "Net Points",

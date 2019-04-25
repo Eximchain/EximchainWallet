@@ -163,6 +163,7 @@ export class FreeContractCallClass extends Component<Props, State> {
                             const newName = selectedFunction.name + 'Input' + parsedName;
                             const inputState = this.state.inputs[parsedName];
                             let inputField;
+                            console.log(newName);
                             if (type == 'bool') {
                               <Dropdown
                                 options={[
@@ -325,6 +326,7 @@ export class FreeContractCallClass extends Component<Props, State> {
   private handleSelectAddressFromBook = (ev: React.FormEvent<HTMLInputElement>) => {
     const { selectedFunction } = this.props;
     const { currentTarget: { value: addressFromBook } } = ev;
+    console.log(ev.currentTarget.name);
     ev.currentTarget.name = selectedFunction.contract.inputs[0].name;
     ev.currentTarget.value = addressFromBook;
 

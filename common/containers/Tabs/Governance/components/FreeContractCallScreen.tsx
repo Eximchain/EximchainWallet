@@ -280,6 +280,13 @@ export class FreeContractCallClass extends Component<Props, State> {
                                 decodedFieldValue = translateRaw('IN_SUPPORT_AGAINST');
                               }
                             }
+                            if (parsedName === 'elected' || parsedName === 'evicted') {
+                              if (
+                                decodedFieldValue === '0x0000000000000000000000000000000000000000'
+                              ) {
+                                decodedFieldValue = translateRaw('NONE');
+                              }
+                            }
                           }
 
                           return (

@@ -93,6 +93,9 @@ export class FreeContractCallClass extends Component<Props, State> {
         chainedFunctions[0].contract.outputs
       );
     }
+    if (selectedFunction.name === 'isKYCApproved') {
+      outputFunction.contract.outputs = [{ name: 'kycStatus', type: 'string' }];
+    }
     this.state = {
       inputs: {},
       outputs: {},
@@ -357,6 +360,7 @@ export class FreeContractCallClass extends Component<Props, State> {
     if (value.length > 0 && chainedFunctions[0].name !== nameOfFunction) {
       return value[0];
     }
+
     return null;
   };
   private handleFunctionCall = async (_: React.FormEvent<HTMLButtonElement>) => {
@@ -369,8 +373,34 @@ export class FreeContractCallClass extends Component<Props, State> {
       const callData = { to: to.raw, data };
       const results = await nodeLib.sendCallRequest(callData);
       let parsedResult = selectedFunction!.contract.decodeOutput(results);
-
-      if (chainedFunctions) {
+      if (selectedFunction.name === 'isKYCApproved' && chainedFunctions) {
+        const inputs = this.state.inputs;
+        const parsedInputs = Object.keys(inputs).reduce(
+          (accu, key) => ({ ...accu, [key]: inputs[key].parsedData }),
+          {}
+        );
+        const kycDenied = chainedFunctions.filter(e => e.name === 'isKYCDenied')[0];
+        const kycPending = chainedFunctions.filter(e => e.name === 'isKYCPending')[0];
+        const kycDeniedResults = await this.handleChainedCalls(parsedInputs, kycDenied);
+        const kycPendingResults = await this.handleChainedCalls(parsedInputs, kycPending);
+        if (parsedResult[0]) {
+          this.setState({
+            outputs: { kycStatus: 'Approved' }
+          });
+        } else if (kycDeniedResults[0]) {
+          this.setState({
+            outputs: { kycStatus: 'Denied' }
+          });
+        } else if (kycPendingResults[0]) {
+          this.setState({
+            outputs: { kycStatus: 'Pending' }
+          });
+        } else {
+          this.setState({
+            outputs: { kycStatus: 'Not Started' }
+          });
+        }
+      } else if (chainedFunctions) {
         //withdrawHistory is a special case where we have swapped withdrawHistory for ballotHistory/ballotRecords
         let chainedParsedResults;
         if (selectedFunction.name === 'withdrawHistory') {
@@ -405,6 +435,7 @@ export class FreeContractCallClass extends Component<Props, State> {
         this.setState({ outputs: parsedResult });
       }
     } catch (e) {
+      console.log(e);
       this.props.showNotification('warning', 'Invalid input parameters', 5000);
     }
   };

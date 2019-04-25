@@ -47,7 +47,8 @@ export enum FreeContractCallName {
   NOMINEE_BALLOTS = 'NOMINEE_BALLOTS',
   CAN_GOVERN = 'CAN_GOVERN',
   IS_KYC_APPROVED = 'IS_KYC_APPROVED',
-  IS_KYC_DENIED = 'IS_KYC_DENIED'
+  IS_KYC_DENIED = 'IS_KYC_DENIED',
+  IS_KYC_PENDING = 'IS_KYC_PENDING'
 }
 
 export type ContractFuncNames = CostlyContractCallName | FreeContractCallName;
@@ -168,7 +169,13 @@ export const GOVERNANCECALLS: GovernanceCall = {
   },
   [FreeContractCallName.IS_KYC_DENIED]: {
     name: FreeContractCallName.IS_KYC_DENIED,
-    contractcall: 'isKYCDenied'
+    contractcall: 'isKYCDenied',
+    chained: true
+  },
+  [FreeContractCallName.IS_KYC_PENDING]: {
+    name: FreeContractCallName.IS_KYC_PENDING,
+    contractcall: 'isKYCPending',
+    chained: true
   }
 };
 class GovernanceClass extends Component<Props, State> {
@@ -280,7 +287,8 @@ class GovernanceClass extends Component<Props, State> {
     ],
     ['ballotHistory', ['ballotRecords', 'governanceCycleRecords', 'withdrawRecords']],
     ['withdrawHistory', ['withdrawRecords', 'ballotRecords']],
-    ['currentGovernanceCycle', ['governanceCycleRecords']]
+    ['currentGovernanceCycle', ['governanceCycleRecords']],
+    ['isKYCApproved', ['isKYCPending', 'isKYCDenied']]
   ]);
 
   private buildFunctionOptions(
@@ -359,6 +367,7 @@ class GovernanceClass extends Component<Props, State> {
     );
     return transformedContractFunction;
   };
+  //Special function for creating chainedcalls and handling specialized cases for certain contract calls.
   private makePropsForContractCall(chosenCall: ContractFuncNames) {
     const chainedCalls = this.chainedContractCalls.get(GOVERNANCECALLS[chosenCall].contractcall);
     const contractOptionsMap = this.contractOptionsMap();

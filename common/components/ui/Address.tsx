@@ -51,7 +51,10 @@ export class Address extends React.PureComponent<Props, State> {
       renderAddress = wallet !== null && wallet !== undefined ? wallet.getAddressString() : '';
     }
     renderAddress = toChecksumAddress(renderAddress);
-
+    const shortenedAddress =
+      renderAddress.substring(0, 6) +
+      `...` +
+      renderAddress.substring(renderAddress.length - 4, renderAddress.length);
     if (explorer) {
       return <NewTabLink href={explorer.addressUrl(renderAddress)}>{renderAddress}</NewTabLink>;
     } else {
@@ -59,11 +62,7 @@ export class Address extends React.PureComponent<Props, State> {
         return (
           <div onMouseEnter={this.expand} onMouseLeave={this.shorten}>
             {!this.state.expanded ? (
-              <React.Fragment>
-                {renderAddress.substring(0, 6) +
-                  '...' +
-                  renderAddress.substring(renderAddress.length - 4, renderAddress.length)}
-              </React.Fragment>
+              <React.Fragment>{shortenedAddress}</React.Fragment>
             ) : (
               <React.Fragment>{renderAddress}</React.Fragment>
             )}

@@ -414,7 +414,10 @@ export class ContractCallClass extends Component<Props, State> {
     return (
       <React.Fragment>
         <div className="GovernanceSection-topsection">
-          <button className="FormBackButton fa fa-chevron-left" onClick={this.back} />
+          {(this.state.stage == ContractFlowStages.SUBMIT_TRANSACTION_SCREEN ||
+            this.state.stage == ContractFlowStages.CONSTRUCT_TRANSACTION_SCREEN) && (
+            <button className="FormBackButton fa fa-chevron-left" onClick={this.back} />
+          )}
           <h2 className="ContractSection-topsection-title">{translate(this.props.contractCall)}</h2>
           {this.props.walletChangeComponent}
         </div>

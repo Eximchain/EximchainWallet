@@ -389,19 +389,19 @@ export class FreeContractCallClass extends Component<Props, State> {
         const kycPendingResults = await this.handleChainedCalls(parsedInputs, kycPending);
         if (parsedResult[0]) {
           this.setState({
-            outputs: { kycStatus: 'Approved' }
+            outputs: { kycStatus: translateRaw('APPROVED') }
           });
         } else if (kycDeniedResults[0]) {
           this.setState({
-            outputs: { kycStatus: 'Denied' }
+            outputs: { kycStatus: translateRaw('DENIED') }
           });
         } else if (kycPendingResults[0]) {
           this.setState({
-            outputs: { kycStatus: 'Pending' }
+            outputs: { kycStatus: translateRaw('PENDING') }
           });
         } else {
           this.setState({
-            outputs: { kycStatus: 'Not Started' }
+            outputs: { kycStatus: translateRaw('NOT_STARTED') }
           });
         }
       } else if (chainedFunctions) {

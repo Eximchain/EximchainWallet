@@ -123,6 +123,10 @@ export class FreeContractCallClass extends Component<Props, State> {
     const outputFunction = outputOptions;
     // console.log(this.props.chainedCall)
     // console.log(this.props.chainedFunction)
+    const OutputBoxOutput = 'Output-box Output-box-' + selectedFunction.name;
+    const OutputContainerOutput = 'Output-container Output-container-' + selectedFunction.name;
+    const ReadFunctionContentArrowOutput =
+      'ReadFunctionContent-arrow ReadFunctionContent-arrow-' + selectedFunction.name;
 
     return (
       <React.Fragment>
@@ -219,14 +223,14 @@ export class FreeContractCallClass extends Component<Props, State> {
                       </div>
                     )}
 
-                    <div className="ReadFunctionContent-arrow">
+                    <div className={ReadFunctionContentArrowOutput}>
                       {/* <img src={arrow} alt="arrow" /> */}
                     </div>
                     {
                       // These are the outputs
                     }
-                    <div className="Output-container">
-                      <div className="Output-box">
+                    <div className={OutputContainerOutput}>
+                      <div className={OutputBoxOutput}>
                         <h4 className="ReadFunctionContent-header">
                           <i className="ElectronNav-controls-btn-icon fa fa-sign-out" />
                           Outputs

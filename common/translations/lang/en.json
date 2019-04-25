@@ -1,8 +1,8 @@
 {
   "code": "en",
   "data": {
-    "NOT_STARTED":"Not Started",
-    "STARTED": "Started",
+    "NOT_STARTED":"Not Yet Opened",
+    "STARTED": "Opened",
     "CLOSED": "Closed",
     "FOR_PROMOTION":"For Promotion",
     "FOR_DEMOTION":"For Demotion",
@@ -35,7 +35,7 @@
     "ballotHistoryInput0": "Public Address",
     "ballotHistoryInput1": "Ballot Entry Number",
     "ballotHistoryOutput0": "Ballot Record ID",
-    "currentGovernanceCycleOutput0": "Current Cycle",
+    "currentGovernanceCycleOutput0": "Current Cycle Number",
     "withdrawRecordsOutput0": "Withdraw Record ID",
     "withdrawRecordsInput0": "Withdraw Record ID",
     "withdrawHistoryOutputamount": "EXC Amount",
@@ -88,7 +88,7 @@
     "currentGovernanceCycleOutputtotalVoters": "Total Voters",
     "currentGovernanceCycleOutputelected": "Promoted Address",
     "currentGovernanceCycleOutputevicted": "Demoted Address",
-    "currentGovernanceCycleOutputstart": "Cycle Start Date",
+    "currentGovernanceCycleOutputstart": "Cycle Opened On",
 
 
 

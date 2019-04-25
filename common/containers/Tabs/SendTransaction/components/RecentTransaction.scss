@@ -15,12 +15,19 @@ $identicon-size-mobile: 24px;
   //             0 0 color(b60) inset;
   border-bottom: solid 1px color(n20);
 
+  &-value {
+    text-align: right !important;
+    font-feature-settings: 'tnum' 1;
+  }
+
   &-to {
     width: 100%;
     max-width: 0;
     // @include mono;
     @include ellipsis;
     padding-top: 10px !important;
+    font-feature-settings: 'calt' 0, 'ss02' 1;
+
 
     .Identicon {
       display: inline-block;

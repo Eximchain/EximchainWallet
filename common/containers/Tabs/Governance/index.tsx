@@ -406,12 +406,12 @@ class GovernanceClass extends Component<Props, State> {
         {this.props.wallet && (
           <React.Fragment>
             <div className="chris-change-this SignMessage-reset">
-              <div className="flex-wrapper">
+              <div className="flex-wrapper height-100">
                 <AccountAddress
                   address={this.props.toChecksumAddress(this.props.wallet.getAddressString())}
                 />
                 <button className="btn btn-default btn-sm" onClick={this.changeWallet}>
-                  <i className="fa fa-caret-down" onClick={this.changeWallet} />
+                  <i className="fa fa-sign-out" onClick={this.changeWallet} />
                   {/* {translate('CHANGE_WALLET')} */}
                 </button>
               </div>

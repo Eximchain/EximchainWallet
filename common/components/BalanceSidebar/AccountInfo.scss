@@ -177,6 +177,7 @@
       flex: 1;
       padding-top: 6px;
       padding-right: 1rem;
+      font-feature-settings: 'calt' 0, 'ss02' 1;
 
       &:hover {
         .AccountInfo-copy {

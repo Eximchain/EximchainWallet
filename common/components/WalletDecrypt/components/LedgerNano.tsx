@@ -100,11 +100,11 @@ class LedgerNanoSDecryptClass extends PureComponent<Props, State> {
           </NewTabLink>
         </div> */}
 
-        <div className="LedgerDecrypt-help">
+        {/* <div className="LedgerDecrypt-help">
           <HelpLink article={HELP_ARTICLE.HOW_TO_USE_LEDGER}>
             {translate('HELP_ARTICLE_1')}
           </HelpLink>
-        </div>
+        </div> */}
 
         <DeterministicWalletsModal
           isOpen={!!publicKey && !!chainCode}

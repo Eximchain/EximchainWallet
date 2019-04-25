@@ -65,7 +65,7 @@ class BroadcastTx extends Component<Props> {
                       <div className="input-group-header">{translate('SEND_SIGNED')}</div>
                       <Input
                         type="text"
-                        placeholder="0xf86b...f474"
+                        placeholder="Enter a signed transaction"
                         isValid={!!stateTransaction}
                         value={userInput}
                         onChange={this.handleChange}

@@ -23,10 +23,10 @@ export const navigationLinks: NavigationLink[] = [
     to: '/tx-status'
   },
 
-  {
-    name: 'NAV_GOVERNANCE',
-    to: '/governance'
-  },
+  // {
+  //   name: 'NAV_GOVERNANCE',
+  //   to: '/governance'
+  // },
 
   {
     name: 'NAV_CONTRACTS',

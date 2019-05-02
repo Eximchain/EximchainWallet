@@ -58,7 +58,7 @@ $divider-size: 60px;
     flex-wrap: wrap;
     justify-content: center;
     margin: 0 0 $space;
-    padding-top: 30px;
+    padding-top: 42px;
   }
 
   &-divider {
@@ -240,6 +240,13 @@ $divider-size: 60px;
   text-align: left;
   margin: 0 $space $space * 2;
   flex: 1;
+
+  &:first-child {
+    margin-left: 0 !important;
+  }
+  &:last-child {
+    margin-right: 0 !important;
+  }
 
   &-title {
     margin: 0 0 $space;

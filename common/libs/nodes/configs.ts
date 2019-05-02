@@ -30,12 +30,6 @@ export const NODE_CONFIGS: { [key in StaticNetworkIds]: RawNodeConfig[] } = {
       type: 'rpc',
       service: 'Singapore',
       url: 'https://tx-executor-singapore.eximchain.com'
-    },
-    {
-      name: makeNodeName('ETH', 'localhost'),
-      type: 'rpc',
-      service: 'Local',
-      url: 'http://localhost:22000'
     }
   ]
 };

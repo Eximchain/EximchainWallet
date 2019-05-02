@@ -3,6 +3,10 @@
 .LedgerDecrypt {
   text-align: center;
 
+  .btn {
+    margin-right: auto;
+  }
+
   &-tip {
     text-align: center;
     font-size: $font-size-xs-bump;

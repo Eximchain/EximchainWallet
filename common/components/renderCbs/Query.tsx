@@ -43,7 +43,6 @@ export const Query = withRouter<Props>(
       const { withQuery, params, location } = this.props;
       const query = parse(location);
       const res = params.reduce((obj, param) => ({ ...obj, [param]: getParam(query, param) }), {});
-
       return withQuery(res);
     }
   }

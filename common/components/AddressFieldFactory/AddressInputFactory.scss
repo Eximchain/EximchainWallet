@@ -10,7 +10,10 @@
   &-input {
     position: relative;
     flex-grow: 1;
-    font-feature-settings: 'ss02' 1;
+
+    .input-group-input {
+      padding-right: 3rem;
+    }
 
     &-with-label {
       margin-bottom: $space-lg;

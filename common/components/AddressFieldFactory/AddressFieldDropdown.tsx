@@ -80,9 +80,9 @@ class AddressFieldDropdownClass extends React.Component<Props, State> {
               <Identicon address={address} />
             </div>
             <strong className="AddressFieldDropdown-dropdown-item-label">{label}</strong>
-            <em className="AddressFieldDropdown-dropdown-item-address">
+            <div className="AddressFieldDropdown-dropdown-item-address">
               <Address address={address} />
-            </em>
+            </div>
           </li>
         );
       }

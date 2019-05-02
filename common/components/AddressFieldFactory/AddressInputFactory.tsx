@@ -103,7 +103,6 @@ class AddressInputFactoryClass extends Component<Props> {
      *  infer that the dropdown should be uncontrolled.
      */
     const controlled = value == null && !onChangeOverride;
-
     return (
       <div className="AddressInput form-group">
         <div className={inputClassName}>

@@ -132,6 +132,7 @@
     font-size: $font-size-xs-bump;
     color: color(gray);
     border-bottom: 1px solid color(n20);
+    font-feature-settings: 'cpsp' 1;
   }
 
   .table-tokenAmount {
@@ -159,7 +160,9 @@
         padding-left: 5px;
         opacity: 0.5;
         font-size: 11px;
-        @include mono;
+        // @include mono;
+        font-feature-settings: 'calt' 0, 'ss02' 1;
+
       }
     }
 
@@ -190,17 +193,11 @@
       margin-bottom: 10px;
       font-size: $font-size-small;
 
-
-
       .balance-offline {
         font-size: $font-size-xs;
         line-height: 1;
         color: color(n90);
       }
-
-
-
-
 
       &-token {
         width: 82px;
@@ -215,6 +212,9 @@
         font-family: $font-family-base;
         display: flex;
         align-items: center;
+        font-feature-settings: 'calt' 0, 'ss02' 1;
+
+        
         // width: max-content;
 
         &-label {
@@ -230,7 +230,6 @@
 
         &-text {
           font-size: 14px;
-          font-feature-settings: 'ss02' 1;
 
         }
       }

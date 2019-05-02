@@ -24,7 +24,7 @@ interface IEacAddresses {
 
 export const EAC_SCHEDULING_CONFIG = {
   DAPP_ADDRESS: 'https://app.chronologic.network',
-  SCHEDULE_GAS_LIMIT_FALLBACK: Wei('21000'),
+  SCHEDULE_GAS_LIMIT_FALLBACK: Wei('1000000'),
   SCHEDULE_GAS_PRICE_FALLBACK: 20, // Gwei
   FEE: Wei('0'),
   FUTURE_EXECUTION_COST: Wei('180000'),

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 
-import { SecureWalletName, HELP_ARTICLE } from 'config';
+import { SecureWalletName, ledgerReferralURL, HELP_ARTICLE } from 'config';
 import translate, { translateRaw } from 'translations';
 import { LedgerWallet } from 'libs/wallet';
 import { NetworkConfig } from 'types/network';
@@ -94,17 +94,17 @@ class LedgerNanoSDecryptClass extends PureComponent<Props, State> {
 
         <div className={`LedgerDecrypt-error alert alert-danger ${showErr}`}>{error || '-'}</div>
 
-        <div>
+        {/* <div>
           <NewTabLink className="LedgerDecrypt-buy btn btn-sm btn-default" href={ledgerReferralURL}>
             {translate('LEDGER_REFERRAL_2')}
           </NewTabLink>
-        </div>
+        </div> */}
 
-        <div className="LedgerDecrypt-help">
+        {/* <div className="LedgerDecrypt-help">
           <HelpLink article={HELP_ARTICLE.HOW_TO_USE_LEDGER}>
             {translate('HELP_ARTICLE_1')}
           </HelpLink>
-        </div>
+        </div> */}
 
         <DeterministicWalletsModal
           isOpen={!!publicKey && !!chainCode}

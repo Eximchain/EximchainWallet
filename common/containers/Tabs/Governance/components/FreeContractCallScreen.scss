@@ -2,7 +2,10 @@
 @import 'common/sass/mixins';
 
 .ReadFunctionContent {
-  min-height: 500px;
+  // position: fixed;
+  min-height: 100vh;
+  padding-bottom: 0 !important;
+
 
   .btn {
     margin-bottom: 0;
@@ -23,7 +26,15 @@
   }
 
   &-arrow {
-    margin: auto;
+    margin-top: -30px !important;
+    // margin-bottom: -30px !important;
+    position: sticky;
+    // left: 400px;
+    // height: 100vh;
+    // margin: -30px 0 !important;
+    border-right: solid 1px color(n40);
+    margin-bottom: -45px;
+
   }
 }
 
@@ -32,6 +43,7 @@
   border: none !important;
   box-shadow: none !important;
   color: color(n200);
+
   &-hover {
     cursor: pointer;
     color: color(gray);
@@ -42,38 +54,45 @@
   position: relative;
   border-radius: 6px;
   width: 50%;
-  margin-right: 10px;
+  // margin-right: 10px;
 
   .InteractExplorer-func-submit {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 100%;
+    float: right;
+    // position: absolute;
+    // bottom: 0;
+    // right: 0;
+    // width: 100%;
   }
 
 }
+
 .Input-box {
   position: relative;
-  padding: 1rem;
-  border: solid 1px color(n40);
-  border-radius: 6px;
+  padding: 2rem 20px 0 0;
+  // border-radius: 6px;
+  margin-top: -30px;
+  margin-bottom: -45px;
   width: 100%;
-  min-height: 87%;
 }
 
 .Output-container {
   position: relative;
-  margin-left: 10px;
+  // margin-left: 10px;
   width: 50%;
+  margin-bottom:-45px;
 }
 
 .Output-box {
   position: relative;
-  padding: 1rem;
-  border: solid 1px color(n40);
-  border-radius: 6px;
+  padding: 2rem 0 0 20px;
+  // border: solid 1px color(n40);
+  // border-radius: 6px;
+  margin-top: -30px;
+  // margin-bottom:-40px;
+  margin-right: -20px;
   background: color(n10);
-  min-height: 100%;
+  min-height: 110vh;
+
 
 
   label {
@@ -104,6 +123,8 @@
     border: none;
     background: none;
     padding: 0;
+    text-overflow: ellipsis;
+
     // text-align: right;
     height: auto;
     margin-bottom: 0;
@@ -114,4 +135,36 @@
 
   }
 
+}
+.ReadFunctionContent-arrow-currentGovernanceCycle {
+  // border-right-color: color(n20);
+  // margin-left: -20px;
+    border-right: none;
+
+
+}
+.Output-box-currentGovernanceCycle {
+  border-left: solid 1px color(n20);
+  width: 105%;
+}
+
+.Output-container-currentGovernanceCycle {
+  width: 100%;
+  margin-left: -20px;
+}
+
+@media (min-width: 1421px) {
+  .Output-container-currentGovernanceCycle {
+    margin-left: -30px;
+  }
+  .Output-box {
+    width: 105%;
+  }
+  // .Output-box-currentGovernanceCycle {
+  //   width: 105%;
+  // }
+}
+
+.AddressInput-identicon2 {
+  top: 7px !important;
 }

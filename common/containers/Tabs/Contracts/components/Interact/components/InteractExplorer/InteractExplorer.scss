@@ -1,7 +1,24 @@
 @import 'common/sass/variables';
 
+.costlyContractError {
+background: color(r0);
+padding: 10px;
+border-left: 4px solid color(r60);
+font-size: 14px;
+margin-bottom: 10px;
+color: color(n600);
+// border-radius: 4px;
+
+&:empty {
+  display: none;
+  visibility: hidden;
+  padding: 0;
+}
+}
+
 .InteractExplorer {
   padding-top: 20px;
+
   &-title {
     &-address {
       margin-left: 6px;
@@ -12,13 +29,15 @@
 
   &-func-out {
     &:last-child {
-      .output-group{
-      border-bottom: none;
-    }
+      .output-group {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
     }
   }
 
   &-func {
+
     &-in,
     &-out {
       &-label {

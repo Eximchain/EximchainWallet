@@ -9,12 +9,16 @@
   border: 1px solid color(n20);
   border-top: none;
   background: color(component-active-color);
-  z-index: 1;
+  z-index: 3;
   list-style-type: none;
   margin: 0;
   padding: 0;
   box-shadow: $tab-box-shadow;
   text-align: center;
+
+  .Identicon-shadow {
+    box-shadow: none;
+  }
 
   &-dropdown-item {
     margin: 0;
@@ -50,8 +54,15 @@
 
     &-label {
       flex: 1 0 0;
-      padding-left: 0.2rem;
+      padding: 0.2rem;
       text-align: left;
+      color: color(gray);
+      text-transform: uppercase;
+      // background: color(n20);
+      letter-spacing: .4px;
+      font-size: 13px;
+      border-radius: 6px;
+      width: max-content !important;
     }
 
     &-address {

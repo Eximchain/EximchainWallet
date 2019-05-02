@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import sample from 'lodash/sample';
 import times from 'lodash/times';
 
-import { bityReferralURL } from 'config';
+// import { bityReferralURL } from 'config';
 import translate from 'translations';
 import { SHAPESHIFT_WHITELIST } from 'api/shapeshift';
 import { AppState } from 'features/reducers';

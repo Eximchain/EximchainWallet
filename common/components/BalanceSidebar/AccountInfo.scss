@@ -7,8 +7,12 @@
   background-color: color(n0);
   border: solid 1px color(n40);
   border-radius: 6px;
-  // box-shadow: 0 1px 16px 0px rgba(31,47,71,0.12), 0 2px 4px 0 rgba(31,47,71,0.06);
-  // box-shadow: 0px 2px 28px rgba(43, 51, 63, 0.18);
+  // for putting in sidebar, in future
+  // position: fixed;
+  // padding: 10px 0;
+  // bottom: 20px;
+  // left: 20px;
+  // border-top: solid 1px color(n40);
 
   &-address-hw-addr {
     padding-left: 4.5rem;
@@ -33,10 +37,13 @@
     // position: absolute;
     opacity: 1 !important;
     right: 0;
+    padding-left: 6px;
     // bottom: 2px;
   }
   &-add {
     opacity: 1 !important;
+    margin-bottom: 0 !important;
+    padding: 2px 6px !important;
   }
 
 
@@ -64,8 +71,6 @@
     font-weight: 400;
     opacity: 0;
 
-
-
     &:hover {
       opacity: 1;
     }
@@ -80,16 +85,14 @@
       margin-left: 0.1rem;
       font-size: 14px;
       padding-left: 8px;
-
     }
   }
 
   &-label {
-    display: inline-block;
     cursor: pointer;
     color: color(b60);
     font-size: $font-size-xs;
-    float: right;
+    // float: right;
     margin-top: 3px;
 
     &:hover {
@@ -98,19 +101,13 @@
       }
     }
 
-
-
-
-
-
-
     .fa {
       margin: 0 $space-xs 0 $space-sm;
     }
   }
 
   &-section {
-    margin: 0 0 $space 0;
+    margin: 0 0 0 0;
 
     &-address-hw-addr {
       margin-bottom: 0;
@@ -122,19 +119,20 @@
 
     &-label {
       position: absolute;
-      bottom: .8rem;
+      bottom: 1rem;
       left: 1rem;
+      display: flex;
+
       .input-group-input {
         margin-bottom: .25rem;
         padding: 4px;
         height: auto;
         text-transform: uppercase;
         letter-spacing: .4px;
+        border: none !important;
         font-size: $font-size-xs;
         font-weight: 400;
-        // position: absolute;
-        // left: 0;
-        // bottom: 0;
+        background: color(b0);
       }
 
       &:hover {
@@ -179,6 +177,7 @@
       flex: 1;
       padding-top: 6px;
       padding-right: 1rem;
+      font-feature-settings: 'calt' 0, 'ss02' 1;
 
       &:hover {
         .AccountInfo-copy {
@@ -246,6 +245,7 @@
         // margin-top: -6px;
         padding-top: 0;
         margin-bottom: 0;
+        padding-left: 6px;
 
       }
     }
@@ -269,7 +269,6 @@
     &-addr {
       margin-top: -$space-xs;
       word-wrap: break-word;
-      font-feature-settings: 'ss02' 1;
       @include mono;
 
       &--small {
@@ -322,12 +321,12 @@
   }
 
   &-list {
+    margin-bottom: 0;
     &-item {
-      margin-bottom: 0;
+      margin-bottom: 2.5rem;
       list-style-type: none;
       word-break: break-all;
       padding-left: 4.5rem;
-      margin-bottom: 3rem;
       padding-right: 1rem;
       padding-top: .2rem;
       font-size: 15px;

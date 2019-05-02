@@ -111,7 +111,6 @@ class SimpleGas extends React.Component<Props> {
      *  and it cannot happen again from that point forward.
      */
     const actualGasPrice = Math.max(this.getGasPriceGwei(gasPrice.value), bounds.min);
-    console.log(this.state.defaultGasPriceOn);
     if (this.state.defaultGasPriceOn) {
       this.setGasPrice(SliderStates.AVERAGE);
     }

@@ -54,10 +54,10 @@ class TxHashInput extends React.Component<Props, State> {
       selectOptions = recentTxs.map(tx => ({
         label: `
           ${moment(tx.time).format('lll')}
-          -
-          ${tx.from.substr(0, 8)}...
+          - from
+          ${tx.from.substr(0, 6)}...${tx.from.substr(38, 42)}
           to
-          ${tx.to.substr(0, 8)}...
+          ${tx.to.substr(0, 6)}...${tx.to.substr(38, 42)}
         `,
         value: tx.hash
       }));
@@ -66,7 +66,8 @@ class TxHashInput extends React.Component<Props, State> {
     return (
       <form className="TxHashInput" onSubmit={this.handleSubmit}>
         {!!selectOptions.length && (
-          <div className="TxHashInput-recent">
+          <div className="TxHashInput-recent input-group">
+            <p class="input-group-header">Recent Transaction</p>
             <Select
               value={hash}
               onChange={this.handleSelectTx}
@@ -82,7 +83,7 @@ class TxHashInput extends React.Component<Props, State> {
           <Input
             value={hash}
             isValid={hash ? isValidTxHash(hash) : true}
-            placeholder="0x16e521..."
+            placeholder="0x0000...0000"
             className="TxHashInput-field"
             onChange={this.handleChange}
           />

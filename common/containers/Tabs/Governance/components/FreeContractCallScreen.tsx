@@ -6,6 +6,7 @@ import translate, { translateRaw } from 'translations';
 import { bufferToHex } from 'ethereumjs-util';
 import arrow from 'assets/images/output-arrow.svg';
 import moment from 'moment';
+import { AddressField } from 'components';
 
 import { INode } from 'libs/nodes';
 import { configNodesSelectors } from 'features/config';
@@ -19,11 +20,12 @@ import {
 import { Input, Dropdown } from 'components/ui';
 import './InteractExplorer/InteractExplorer.scss';
 import './FreeContractCallScreen.scss';
-
-import { ContractFuncNames } from '..';
+import { GovernanceFlowStages } from '..';
+import { ContractFuncNames, CostlyContractCallName } from '..';
 
 import '../index.scss';
-import { decode } from 'rlp';
+import { decode } from 'punycode';
+import { isValidAbiJson } from 'libs/validators';
 
 interface StateProps {
   nodeLib: INode;
@@ -46,6 +48,8 @@ interface DispatchProps {
 interface OwnProps {
   selectedFunction: ContractOption;
   contractCall: ContractFuncNames;
+  chainedCalls: null | ContractFuncNames[];
+  chainedFunctions: null | ContractOption[];
   goBack: () => void;
 }
 
@@ -54,6 +58,9 @@ interface State {
     [key: string]: { rawData: string; parsedData: string[] | string };
   };
   outputs: any;
+  outputOptions?: ContractOption;
+  governanceCycleStatus?: number;
+  withdrawRecordStatus?: number;
 }
 
 interface ContractFunction {
@@ -74,14 +81,33 @@ type Props = StateProps & DispatchProps & OwnProps;
 
 export class FreeContractCallClass extends Component<Props, State> {
   public static defaultProps: Partial<Props> = {};
+  constructor(props: Props) {
+    super(props);
+    const { chainedCalls, chainedFunctions, selectedFunction } = this.props;
+    let outputFunction = JSON.parse(JSON.stringify(selectedFunction));
+    if (
+      chainedFunctions &&
+      !outputFunction.contract.outputs.includes(chainedFunctions[0].contract.outputs[0])
+    ) {
+      outputFunction.contract.outputs = outputFunction.contract.outputs.concat(
+        chainedFunctions[0].contract.outputs
+      );
+    }
+    if (selectedFunction.name === 'isKYCApproved') {
+      outputFunction.contract.outputs = [{ name: 'kycStatus', type: 'string' }];
+    }
+    this.state = {
+      inputs: {},
+      outputs: {},
+      outputOptions: outputFunction
+    };
+    if (selectedFunction.name === 'currentGovernanceCycle') {
+      this.handleFunctionCall('');
+    }
+  }
 
-  public state: State = {
-    inputs: {},
-    outputs: {}
-  };
   public componentDidMount() {
     this.props.setAsContractInteraction();
-    //
   }
 
   public componentWillUnmount() {
@@ -89,8 +115,22 @@ export class FreeContractCallClass extends Component<Props, State> {
   }
 
   render() {
-    const { inputs, outputs } = this.state;
-    const selectedFunction = this.props.selectedFunction;
+    const {
+      inputs,
+      outputs,
+      outputOptions,
+      governanceCycleStatus,
+      withdrawRecordStatus
+    } = this.state;
+    const { selectedFunction } = this.props;
+    const outputFunction = outputOptions;
+    // console.log(this.props.chainedCall)
+    // console.log(this.props.chainedFunction)
+    const OutputBoxOutput = 'Output-box Output-box-' + selectedFunction.name;
+    const OutputContainerOutput = 'Output-container Output-container-' + selectedFunction.name;
+    const ReadFunctionContentArrowOutput =
+      'ReadFunctionContent-arrow ReadFunctionContent-arrow-' + selectedFunction.name;
+
     return (
       <React.Fragment>
         <div className="GovernanceSection-topsection">
@@ -106,97 +146,150 @@ export class FreeContractCallClass extends Component<Props, State> {
                     // These are the inputs
                   }
                   <div className="ReadFunctionContent flex-wrapper">
-                    <div className="Input-container">
-                      <div className="Input-box">
-                        <h4 className="ReadFunctionContent-header">
-                          <i className="ElectronNav-controls-btn-icon fa fa-sign-in" />
-                          Inputs
-                        </h4>
+                    {selectedFunction.name !== 'currentGovernanceCycle' && (
+                      <div className="Input-container">
+                        <div className="Input-box">
+                          <h4 className="ReadFunctionContent-header">
+                            <i className="ElectronNav-controls-btn-icon fa fa-sign-in" />
+                            Inputs
+                          </h4>
 
-                        {selectedFunction.contract.inputs.map((input, index) => {
-                          const { type, name } = input;
-                          // if name is not supplied to arg, use the index instead
-                          // since that's what the contract ABI function factory subsitutes for the name
-                          // if it is undefined
-                          const parsedName = name === '' ? index : name;
-                          const newName = selectedFunction.name + 'Input' + parsedName;
-                          const inputState = this.state.inputs[parsedName];
-                          return (
-                            <div
-                              key={parsedName}
-                              className="input-group-wrapper InteractExplorer-func-in"
-                            >
-                              <label className="input-group">
-                                <div className="input-group-header">{translateRaw(newName)}</div>
-                                {type === 'bool' ? (
-                                  <Dropdown
-                                    options={[
-                                      { value: false, label: 'false' },
-                                      { value: true, label: 'true' }
-                                    ]}
-                                    value={
-                                      inputState
-                                        ? {
-                                            label: inputState.rawData,
-                                            value: inputState.parsedData as any
-                                          }
-                                        : undefined
-                                    }
-                                    clearable={false}
-                                    onChange={({ value }: { value: boolean }) => {
-                                      this.handleBooleanDropdownChange({ value, name: parsedName });
-                                    }}
-                                  />
-                                ) : (
-                                  <Input
-                                    className="InteractExplorer-func-in-input"
-                                    isValid={!!(inputs[parsedName] && inputs[parsedName].rawData)}
-                                    name={parsedName}
-                                    value={(inputs[parsedName] && inputs[parsedName].rawData) || ''}
-                                    onChange={this.handleInputChange}
-                                  />
-                                )}
-                              </label>
-                            </div>
-                          );
-                        })}
+                          {selectedFunction.contract.inputs.map((input, index) => {
+                            const { type, name } = input;
+                            // if name is not supplied to arg, use the index instead
+                            // since that's what the contract ABI function factory subsitutes for the name
+                            // if it is undefined
+                            const parsedName = name === '' ? index : name;
+                            const newName = selectedFunction.name + 'Input' + parsedName;
+                            const inputState = this.state.inputs[parsedName];
+                            let inputField;
+                            console.log(newName);
+                            if (type == 'bool') {
+                              <Dropdown
+                                options={[
+                                  { value: false, label: 'false' },
+                                  { value: true, label: 'true' }
+                                ]}
+                                value={
+                                  inputState
+                                    ? {
+                                        label: inputState.rawData,
+                                        value: inputState.parsedData as any
+                                      }
+                                    : undefined
+                                }
+                                clearable={false}
+                                onChange={({ value }: { value: boolean }) => {
+                                  this.handleBooleanDropdownChange({ value, name: parsedName });
+                                }}
+                              />;
+                            } else if (type === 'address') {
+                              inputField = (
+                                <AddressField
+                                  name={parsedName}
+                                  value={(inputs[parsedName] && inputs[parsedName].rawData) || ''}
+                                  showLabelMatch={true}
+                                  showInputLabel={false}
+                                  onChangeOverride={this.handleSelectAddressFromBook}
+                                  dropdownThreshold={1}
+                                />
+                              );
+                            } else {
+                              inputField = (
+                                <Input
+                                  className="InteractExplorer-func-in-input"
+                                  isValid={!!(inputs[parsedName] && inputs[parsedName].rawData)}
+                                  name={parsedName}
+                                  value={(inputs[parsedName] && inputs[parsedName].rawData) || ''}
+                                  onChange={this.handleInputChange}
+                                />
+                              );
+                            }
+                            return (
+                              <div
+                                key={parsedName}
+                                className="input-group-wrapper InteractExplorer-func-in"
+                              >
+                                <label className="input-group">
+                                  <div className="input-group-header">{translateRaw(newName)}</div>
+                                  {inputField}
+                                </label>
+                              </div>
+                            );
+                          })}
+                          <button
+                            className="InteractExplorer-func-submit btn btn-primary FormReadButton"
+                            onClick={this.handleFunctionCall}
+                          >
+                            {translate('CONTRACT_READ')}
+                          </button>
+                        </div>
                       </div>
-                      <button
-                        className="InteractExplorer-func-submit btn btn-primary FormReadButton"
-                        onClick={this.handleFunctionCall}
-                      >
-                        {translate('CONTRACT_READ')}
-                      </button>
-                    </div>
+                    )}
 
-                    <div className="ReadFunctionContent-arrow">
-                      <img src={arrow} alt="arrow" />
+                    <div className={ReadFunctionContentArrowOutput}>
+                      {/* <img src={arrow} alt="arrow" /> */}
                     </div>
                     {
                       // These are the outputs
                     }
-                    <div className="Output-container">
-                      <div className="Output-box">
+                    <div className={OutputContainerOutput}>
+                      <div className={OutputBoxOutput}>
                         <h4 className="ReadFunctionContent-header">
                           <i className="ElectronNav-controls-btn-icon fa fa-sign-out" />
                           Outputs
                         </h4>
-
-                        {selectedFunction.contract.outputs.map((output: any, index: number) => {
+                        {outputFunction.contract.outputs.map((output: any, index: number) => {
                           const { type, name } = output;
                           const parsedName = name === '' ? index : name;
+                          // console.log(parsedName);
                           const o = outputs[parsedName];
                           const rawFieldValue = o === null || o === undefined ? '' : o;
-                          const decodedFieldValue = Buffer.isBuffer(rawFieldValue)
+                          let decodedFieldValue = Buffer.isBuffer(rawFieldValue)
                             ? bufferToHex(rawFieldValue)
                             : rawFieldValue;
-                          const newName = selectedFunction.name + 'Output' + parsedName;
+                          const newName = outputFunction.name + 'Output' + parsedName;
                           let isTimestamp;
-                          if (newName.includes('timestamp') && decodedFieldValue !== '0') {
+                          if (
+                            (newName.includes('time') || newName.includes('start')) &&
+                            decodedFieldValue !== '0'
+                          ) {
                             isTimestamp = true;
                           } else {
                             isTimestamp = false;
                           }
+                          if (o !== null || o !== undefined) {
+                            if (parsedName === 'status') {
+                              if (decodedFieldValue === '0')
+                                decodedFieldValue = translateRaw(`NOT_STARTED`);
+                              else if (decodedFieldValue === '1')
+                                decodedFieldValue = translateRaw(`STARTED`);
+                              else if (decodedFieldValue === '2')
+                                decodedFieldValue = translateRaw(`CLOSED`);
+                            }
+                            if (parsedName === 'election') {
+                              if (decodedFieldValue === true) {
+                                decodedFieldValue = translateRaw('FOR_PROMOTION');
+                              } else if (decodedFieldValue === false) {
+                                decodedFieldValue = translateRaw('FOR_DEMOTION');
+                              }
+                            }
+                            if (parsedName === 'inSupport') {
+                              if (decodedFieldValue === true) {
+                                decodedFieldValue = translateRaw('IN_SUPPORT_FOR');
+                              } else if (decodedFieldValue === false) {
+                                decodedFieldValue = translateRaw('IN_SUPPORT_AGAINST');
+                              }
+                            }
+                            if (parsedName === 'elected' || parsedName === 'evicted') {
+                              if (
+                                decodedFieldValue === '0x0000000000000000000000000000000000000000'
+                              ) {
+                                decodedFieldValue = translateRaw('NONE');
+                              }
+                            }
+                          }
+
                           return (
                             <div
                               key={parsedName}
@@ -230,7 +323,15 @@ export class FreeContractCallClass extends Component<Props, State> {
       </React.Fragment>
     );
   }
+  private handleSelectAddressFromBook = (ev: React.FormEvent<HTMLInputElement>) => {
+    const { selectedFunction } = this.props;
+    const { currentTarget: { value: addressFromBook } } = ev;
+    console.log(ev.currentTarget.name);
+    ev.currentTarget.name = selectedFunction.contract.inputs[0].name;
+    ev.currentTarget.value = addressFromBook;
 
+    this.handleInputChange(ev);
+  };
   private handleInputChange = (ev: React.FormEvent<HTMLInputElement>) => {
     const rawValue: string = ev.currentTarget.value;
     const isArr = rawValue.startsWith('[') && rawValue.endsWith(']');
@@ -252,25 +353,106 @@ export class FreeContractCallClass extends Component<Props, State> {
       return input;
     }
   }
+  private handleChainedCalls = async (input: any, contractOption: ContractOption) => {
+    const data = contractOption!.contract.encodeInput(input);
+    const { nodeLib, to } = this.props;
+    const callData = { to: to.raw, data };
+    const results = await nodeLib.sendCallRequest(callData);
+    return contractOption!.contract.decodeOutput(results);
+  };
+
+  //goes through chained functions and returns either null or the contractOptions
+  //it will also return null if the first chainedFunction is equal to nameOfFunction since that is
+  //already handled by default
+  private functionFilter = (nameOfFunction: string) => {
+    const chainedFunctions = this.props.chainedFunctions;
+    if (!chainedFunctions) {
+      return null;
+    }
+    const value = chainedFunctions.filter(e => e.name === nameOfFunction);
+    if (value.length > 0 && chainedFunctions[0].name !== nameOfFunction) {
+      return value[0];
+    }
+
+    return null;
+  };
   private handleFunctionCall = async (_: React.FormEvent<HTMLButtonElement>) => {
     try {
       const data = this.encodeData();
-      const { nodeLib, to, selectedFunction } = this.props;
+      const { nodeLib, to, selectedFunction, chainedFunctions } = this.props;
       if (!to.value) {
         throw Error();
       }
       const callData = { to: to.raw, data };
       const results = await nodeLib.sendCallRequest(callData);
-      const parsedResult = selectedFunction!.contract.decodeOutput(results);
-      this.setState({ outputs: parsedResult });
+      let parsedResult = selectedFunction!.contract.decodeOutput(results);
+      if (selectedFunction.name === 'isKYCApproved' && chainedFunctions) {
+        const inputs = this.state.inputs;
+        const parsedInputs = Object.keys(inputs).reduce(
+          (accu, key) => ({ ...accu, [key]: inputs[key].parsedData }),
+          {}
+        );
+        const kycDenied = chainedFunctions.filter(e => e.name === 'isKYCDenied')[0];
+        const kycPending = chainedFunctions.filter(e => e.name === 'isKYCPending')[0];
+        const kycDeniedResults = await this.handleChainedCalls(parsedInputs, kycDenied);
+        const kycPendingResults = await this.handleChainedCalls(parsedInputs, kycPending);
+        if (parsedResult[0]) {
+          this.setState({
+            outputs: { kycStatus: translateRaw('APPROVED') }
+          });
+        } else if (kycDeniedResults[0]) {
+          this.setState({
+            outputs: { kycStatus: translateRaw('DENIED') }
+          });
+        } else if (kycPendingResults[0]) {
+          this.setState({
+            outputs: { kycStatus: translateRaw('PENDING') }
+          });
+        } else {
+          this.setState({
+            outputs: { kycStatus: translateRaw('NOT_STARTED') }
+          });
+        }
+      } else if (chainedFunctions) {
+        //withdrawHistory is a special case where we have swapped withdrawHistory for ballotHistory/ballotRecords
+        let chainedParsedResults;
+        if (selectedFunction.name === 'withdrawHistory') {
+          const ballotRecord = this.functionFilter('ballotRecords');
+          if (ballotRecord) {
+            const ballotRecordResults = await this.handleChainedCalls(parsedResult, ballotRecord);
+            parsedResult = { 0: ballotRecordResults['withdrawRecordId'] };
+            chainedParsedResults = await this.handleChainedCalls(parsedResult, chainedFunctions[0]);
+          }
+        } else {
+          chainedParsedResults = await this.handleChainedCalls(parsedResult, chainedFunctions[0]);
+        }
+        // //All of the additional chainedFunctions after the first one are only called when we need more
+        // //information about the claiming token and collect token state.
+        // const cycleFunction = this.functionFilter('governanceCycleRecords');
+        // if (cycleFunction) {
+        //   const newInput = { 0: chainedParsedResults['governanceCycleId'] };
+        //   const cycleParsedResults = await this.handleChainedCalls(newInput, cycleFunction);
+        //   this.setState({ governanceCycleStatus: cycleParsedResults['status'] });
+        // }
+        // const withdrawFunction = this.functionFilter('withdrawRecords');
+        // if (withdrawFunction) {
+        //   const newInput = { 0: chainedParsedResults['withdrawRecordId'] };
+        //   const withdrawParsedResults = await this.handleChainedCalls(newInput, withdrawFunction);
+        //   this.setState({ withdrawRecordStatus: withdrawParsedResults['status'] });
+        // }
+        if (chainedParsedResults['timestamp'] == 0) {
+          this.setState({ governanceCycleStatus: undefined, withdrawRecordStatus: undefined });
+        }
+        this.setState({ outputs: { ...parsedResult, ...chainedParsedResults } });
+      } else {
+        this.setState({ outputs: parsedResult });
+      }
     } catch (e) {
-      this.props.showNotification(
-        'warning',
-        `Function call error: ${(e as Error).message}` || 'Invalid input parameters',
-        5000
-      );
+      console.log(e);
+      this.props.showNotification('warning', 'Invalid input parameters', 5000);
     }
   };
+
   private encodeData(): string {
     const { inputs } = this.state;
     const selectedFunction = this.props.selectedFunction;

@@ -9,9 +9,13 @@
 
     &-separator {
       display: block;
-      margin: $space-sm 0;
+      font-size: 13px;
+      margin: 0 0 $space-sm 0;
       text-align: center;
-      color: shade-dark(0.3);
+      text-transform: uppercase;
+      font-style: normal;
+      letter-spacing: .4px;
+      // color: shade-dark(0.3);
     }
   }
 }

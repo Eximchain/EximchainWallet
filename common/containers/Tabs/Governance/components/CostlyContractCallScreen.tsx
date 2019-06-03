@@ -796,7 +796,7 @@ export class ContractCallClass extends Component<Props, State> {
       var electionType;
       if (nomineeBallot) {
         const newInput = {
-          0: parsedInputs['_voted_for']
+          nominee: parsedInputs['_voted_for']
         };
         const nomineeBallotResult = await this.handleChainedCalls(newInput, nomineeBallot);
         electionType = nomineeBallotResult['election'];

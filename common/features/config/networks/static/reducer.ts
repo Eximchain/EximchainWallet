@@ -26,7 +26,7 @@ export const STATIC_NETWORKS_INITIAL_STATE: types.ConfigStaticNetworksState = {
     color: '#267EDC',
     blockExplorer: makeExplorer({
       name: 'blk.io',
-      origin: 'https://eximchain.explorer.epirus.blk.io'
+      origin: 'https://eximchain.explorer.epirus.web3labs.com'
     }),
     tokenExplorer: {
       name: ethPlorer,

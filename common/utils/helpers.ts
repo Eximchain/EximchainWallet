@@ -81,14 +81,16 @@ interface ExplorerConfig {
   txPath?: string;
   addressPath?: string;
   blockPath?: string;
+  contractPath?: string;
 }
 
 export function makeExplorer(expConfig: ExplorerConfig): BlockExplorerConfig {
   const config: ExplorerConfig = {
     // Defaults
-    txPath: 'transaction',
-    addressPath: 'account',
-    blockPath: 'block',
+    txPath: 'transactions',
+    addressPath: 'accounts',
+    blockPath: 'blocks',
+    contractPath: 'contracts',
     ...expConfig
   };
 
@@ -97,6 +99,7 @@ export function makeExplorer(expConfig: ExplorerConfig): BlockExplorerConfig {
     origin: config.origin,
     txUrl: hash => `${config.origin}/${config.txPath}/${hash}`,
     addressUrl: address => `${config.origin}/${config.addressPath}/${address}`,
-    blockUrl: blockNum => `${config.origin}/${config.blockPath}/${blockNum}`
+    blockUrl: blockNum => `${config.origin}/${config.blockPath}/${blockNum}`,
+    contractUrl: contractAddress => `${config.origin}/${config.contractPath}/${contractAddress}`
   };
 }

@@ -62,7 +62,7 @@ class ResultScreen extends React.Component<Props, State> {
                   <a
                     className="resultScreenBtnLink btn btn-default resultScreenBtnLink-main"
                     target={'_blank'}
-                    href={`https://eximchain.explorer.epirus.blk.io/transaction/${
+                    href={`https://eximchain.explorer.epirus.web3labs.com/transaction/${
                       this.props.txHash
                     }`}
                   >

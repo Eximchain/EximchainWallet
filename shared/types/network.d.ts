@@ -8,6 +8,7 @@ export interface BlockExplorerConfig {
   txUrl(txHash: string): string;
   addressUrl(address: string): string;
   blockUrl(blockNum: string | number): string;
+  contractUrl(contractAddress: string): string;
 }
 
 interface Token {

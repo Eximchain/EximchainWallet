@@ -35,14 +35,20 @@ TODO: Validation on inputs before sending
 
 ### UI/Functionality Changes
 TODO: Go over Chris's changes to match our design language various css style changes
+
 TODO: Explain how we have changed gas limit/gas pricing functionality to be simpler, and the ui changes to reflect it.
+
 TODO: Network changer overhaul
+
 TODO: View and Send tab flow/layout changes
 
 ### Bug Patches/Fixes
 TODO: Talk about the pr that andreweximchain made to MyCryptoWallet that fixed issues regarding ledger. 
+
 TODO: Talk about fixing the recent transactions history
+
 TODO: Updated packages to keep in line with some of the npm packages that suffered security vulnerablities
+
 
 ### Signing Releases
 TODO: Issues regarding signing software with electron-builder

@@ -2,6 +2,47 @@
 
 Eximchain wallet is a desktop wallet client that connects to the Eximchain network. We are currently still in beta, so if you see any issues, please report them to [support@eximchain.com](mailto:support@eximchain.com)
 
+
+## Major Changes From MyCryptoWallet
+This forked MyCryptoWallet contains some notable changes consisting of the following:
+
+- Eximchain Governance Tab
+- UI
+- Functionality Changes
+- Bug Patches/Fixes
+- Signing Releases
+
+### Eximchain Governance Tab
+
+The Governance Tab was originally a modified version of the Contracts tab, and still utilizes a lot of the same components to do the render the individual components. To maintain some more levels of consistency across the app it is within containers/tabs section of the folder.
+
+Furthermore it can be broken down in to its file which consists of three primary components.
+
+- The index.tsx/index.scss (which is the entry point of the tab)
+- components/FreeContractCallScreen.tsx (handles any free reads from the governance smart contract)
+- components/CostlyContractCallScreen.tsx (handles any writes/transactions to the governance smart contract)
+
+The rest of the components are there to support the two contract call screens. Realstically, any of the calls made through this tab can also been done through the Contracts tab, but the governance tabs have further built in further checks to prevent users from submitting "bad" transactions that will later be rejected by the blockchain. That being said if there is a situation in which a "bad" transaction goes through our ui, rest assured, the governance smart contract will still not accept the transaction as it is not supported by the given state of the contract.
+
+TODO: Explain how the index.tsx works
+TODO: Explain how FreeContractCallScreen works
+TODO: Explain how CostlyContractCallScreen works
+
+### UI
+TODO: Go over Chris's changes and the major overhaul we did to MyCrypto's original code
+
+### Functionality Changes
+TODO: Explain how we have changed gas limits and some of the other components that had to under go changes to support Eximchain's network
+
+### Bug Patches/Fixes
+TODO: Talk about the pr that andreweximchain made to MyCryptoWallet that fixed issues regarding ledger. 
+TODO: Talk about fixing the transaction history
+TODO: Updated packages to keep in line with some of the npm packages that suffered security vulnerablities
+
+### Signing Releases
+TODO: Issues regarding signing software with electron-builder
+
+
 ### [**⬇︎ Download the latest release**](https://github.com/Eximchain/EximchainWallet/releases)
 
 ## Requirements
@@ -125,44 +166,5 @@ yarn test:int
 
 ### More information is available on the [Help Desk](https://eximchain.zendesk.com/hc/en-us)
 
-
-## Major Changes From MyCryptoWallet
-This forked MyCryptoWallet contains some notable changes consisting of the following:
-
-- Eximchain Governance Tab
-- UI
-- Functionality Changes
-- Bug Patches/Fixes
-- Signing Releases
-
-### Eximchain Governance Tab
-
-The Governance Tab was originally a modified version of the Contracts tab, and still utilizes a lot of the same components to do the render the individual components. To maintain some more levels of consistency across the app it is within containers/tabs section of the folder.
-
-Furthermore it can be broken down in to its file which consists of three primary components.
-
-- The index.tsx/index.scss (which is the entry point of the tab)
-- components/FreeContractCallScreen.tsx (handles any free reads from the governance smart contract)
-- components/CostlyContractCallScreen.tsx (handles any writes/transactions to the governance smart contract)
-
-The rest of the components are there to support the two contract call screens. Realstically, any of the calls made through this tab can also been done through the Contracts tab, but the governance tabs have further built in further checks to prevent users from submitting "bad" transactions that will later be rejected by the blockchain. That being said if there is a situation in which a "bad" transaction goes through our ui, rest assured, the governance smart contract will still not accept the transaction as it is not supported by the given state of the contract.
-
-TODO: Explain how the index.tsx works
-TODO: Explain how FreeContractCallScreen works
-TODO: Explain how CostlyContractCallScreen works
-
-### UI
-TODO: Go over Chris's changes and the major overhaul we did to MyCrypto's original code
-
-### Functionality Changes
-TODO: Explain how we have changed gas limits and some of the other components that had to under go changes to support Eximchain's network
-
-### Bug Patches/Fixes
-TODO: Talk about the pr that andreweximchain made to MyCryptoWallet that fixed issues regarding ledger. 
-TODO: Talk about fixing the transaction history
-TODO: Updated packages to keep in line with some of the npm packages that suffered security vulnerablities
-
-### Signing Releases
-TODO: Issues regarding signing software with electron-builder
 
 

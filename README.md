@@ -23,15 +23,20 @@ Furthermore it can be broken down in to its file which consists of three primary
 
 The rest of the components are there to support the two contract call screens. Realstically, any of the calls made through this tab can also been done through the Contracts tab, but the governance tabs have further built in further checks to prevent users from submitting "bad" transactions that will later be rejected by the blockchain. That being said if there is a situation in which a "bad" transaction goes through our ui, rest assured, the governance smart contract will still not accept the transaction as it is not supported by the given state of the contract.
 
-TODO: Dataflow from redux
+TODO: Dataflow from redux to the governance tab
 - What pieces of the data is needed from the state in redux
+- How the contract abi is stored
+- How signing and submitting transaction works in costlycontractcall
+- How reads happen in freecontractcall
+- Where the web3 provider comes from
 
 TODO: Component structure within the governance tab
 - Explain what props are passed in to FreeContractCall/CostlyContractCall components
-- How they are used
+- How the props are used
+- What components are reused from Contracts
 - How the components are then rendered
 
-TODO: Validation on inputs before sending
+TODO: Validation on inputs before sending them to the blockchain.
 
 ### UI/Functionality Changes
 TODO: Go over Chris's changes to match our design language various css style changes

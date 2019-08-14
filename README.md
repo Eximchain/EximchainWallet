@@ -25,10 +25,12 @@ The rest of the components are there to support the two contract call screens. R
 
 TODO: Dataflow from redux
 - What pieces of the data is needed from the state in redux
+
 TODO: Component structure within the governance tab
 - Explain what props are passed in to FreeContractCall/CostlyContractCall components
 - How they are used
 - How the components are then rendered
+
 TODO: Validation on inputs before sending
 
 ### UI/Functionality Changes

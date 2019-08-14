@@ -7,8 +7,7 @@ Eximchain wallet is a desktop wallet client that connects to the Eximchain netwo
 This forked MyCryptoWallet contains some notable changes consisting of the following:
 
 - Eximchain Governance Tab
-- UI
-- Functionality Changes
+- UI/Functionality Changes
 - Bug Patches/Fixes
 - Signing Releases
 
@@ -24,19 +23,23 @@ Furthermore it can be broken down in to its file which consists of three primary
 
 The rest of the components are there to support the two contract call screens. Realstically, any of the calls made through this tab can also been done through the Contracts tab, but the governance tabs have further built in further checks to prevent users from submitting "bad" transactions that will later be rejected by the blockchain. That being said if there is a situation in which a "bad" transaction goes through our ui, rest assured, the governance smart contract will still not accept the transaction as it is not supported by the given state of the contract.
 
-TODO: Explain how the index.tsx works
-TODO: Explain how FreeContractCallScreen works
-TODO: Explain how CostlyContractCallScreen works
+TODO: Dataflow from redux
+- What pieces of the data is needed from the state in redux
+TODO: Component structure within the governance tab
+- Explain what props are passed in to FreeContractCall/CostlyContractCall components
+- How they are used
+- How the components are then rendered
+TODO: Validation on inputs before sending
 
-### UI
-TODO: Go over Chris's changes and the major overhaul we did to MyCrypto's original code
-
-### Functionality Changes
-TODO: Explain how we have changed gas limits and some of the other components that had to under go changes to support Eximchain's network
+### UI/Functionality Changes
+TODO: Go over Chris's changes to match our design language various css style changes
+TODO: Explain how we have changed gas limit/gas pricing functionality to be simpler, and the ui changes to reflect it.
+TODO: Network changer overhaul
+TODO: View and Send tab flow/layout changes
 
 ### Bug Patches/Fixes
 TODO: Talk about the pr that andreweximchain made to MyCryptoWallet that fixed issues regarding ledger. 
-TODO: Talk about fixing the transaction history
+TODO: Talk about fixing the recent transactions history
 TODO: Updated packages to keep in line with some of the npm packages that suffered security vulnerablities
 
 ### Signing Releases
@@ -144,7 +147,14 @@ yarn test:int
 │   ├── assets - Images, fonts, etc.
 │   ├── components - Components according to "Redux philosophy"
 │   ├── config - Various config data and hard-coded json
-│   ├── containers - Containers according to "Redux philosophy"
+│   ├── containers - Containers according to "Redux philosophy" any major views will be inside containers
+│   │   ├── OnboardingModal
+│   │   ├── Tabs - breaks down the major pieces that the entire app is divided in to
+│   │   │   ├── ... - These tabs also include their own components folder which consists of
+│   │   │   ├── ... - the pieces that aren't being shared across the app.
+│   │   │   ├── Governance
+│   │   │   └── ... (BroadcastTx, CheckTransaction)
+│   │   └─ TabSection
 │   ├── libs - Framework-agnostic libraries and business logic
 │   ├── reducers - Redux reducers
 │   ├── sagas - Redux sagas

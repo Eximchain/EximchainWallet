@@ -17,7 +17,7 @@ The Governance Tab was originally a modified version of the Contracts tab, and s
 
 Furthermore it can be broken down in to its file which consists of three primary components.
 
-- The index.tsx/index.scss (which is the entry point of the tab)
+- The index.tsx (which is the entry point of the tab)
 - components/FreeContractCallScreen.tsx (handles any free reads from the governance smart contract)
 - components/CostlyContractCallScreen.tsx (handles any writes/transactions to the governance smart contract)
 

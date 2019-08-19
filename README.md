@@ -13,7 +13,7 @@ This forked MyCryptoWallet contains some notable changes consisting of the follo
 
 ### Eximchain Governance Tab
 
-The Governance Tab was originally a modified version of the Contracts tab, and still utilizes a lot of the same components to do the render the individual components. To maintain some more levels of consistency across the app it is within containers/tabs section of the folder.
+The Governance Tab was originally a modified version of the Contracts tab, and still utilizes a lot of the same components to do the render of the individual components. To maintain some more levels of consistency across the app it is within containers/tabs section of the folder just like the other tab entries.
 
 Furthermore it can be broken down in to its file which consists of three primary components.
 

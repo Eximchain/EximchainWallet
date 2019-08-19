@@ -21,7 +21,7 @@ Furthermore it can be broken down in to its file which consists of three primary
 - components/FreeContractCallScreen.tsx (handles any free reads from the governance smart contract)
 - components/CostlyContractCallScreen.tsx (handles any writes/transactions to the governance smart contract)
 
-The rest of the components are there to support the two contract call screens. Realstically, any of the calls made through this tab can also been done through the Contracts tab, but the governance tabs have further built in further checks to prevent users from submitting "bad" transactions that will later be rejected by the blockchain. That being said if there is a situation in which a "bad" transaction goes through our ui, rest assured, the governance smart contract will still not accept the transaction as it is not supported by the given state of the contract.
+The rest of the components are there to support the two contract call screens. Realstically, any of the calls made through this tab can also been done through the Contracts tab, but the governance tabs have built in further checks to prevent users from submitting "bad" transactions that will later be rejected by the blockchain. That being said if there is a situation in which a "bad" transaction goes through our ui, rest assured, the governance smart contract will still not accept the transaction as it is not supported by the given state of the contract.
 
 TODO: Dataflow from redux to the governance tab
 

@@ -25,10 +25,39 @@ The rest of the components are there to support the two contract call screens. R
 
 TODO: Dataflow from redux to the governance tab
 - What pieces of the data is needed from the state in redux
+  - The app state contains:
+    - config
+    - notifications
+    - onboarding
+    - ens
+    - wallet
+    - customTokens
+    - rates
+    - deterministicWallets
+    - swap
+    - transaction
+    - transactions
+    - message
+    - addressBook
+    - gas
+    - schedule
+    - routing
 - How the contract abi is stored
+  - Grabbing the contract abi
+  - Passing the functions through to the costlycontractcall component
+  - Passing the functions through to the freecontract call component
 - How signing and submitting transaction works in costlycontractcall
+  - Grabbing the input values for the transaction
+  - How input validation works
+  - How setting the gas price/ gas limit works
+  - How the transaction to be sent is signed
+  - How the the transaction is sent the web3 provider
 - How reads happen in freecontractcall
-- Where the web3 provider comes from
+  - Grabbing the input values for the read
+  - Chaining contract calls
+  - How input validation works
+  - How the request is made through the web3 provider
+
 
 TODO: Component structure within the governance tab
 - Explain what props are passed in to FreeContractCall/CostlyContractCall components

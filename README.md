@@ -65,9 +65,25 @@ As far as the app is concerned, any state data that needs to be reset or carried
 
 - How signing and submitting transaction works in costlycontractcall
   - Grabbing the input values for the transaction
+    - Render the input fields based on the contract function call instance
+    - The inputs are then set as inputs are entered by a designated setter based on input type.
+      - handleInputChange(for the basic input)
+      - handleIntegerDropdownChange(for specific integer values)
+      - handleSelectAddressFromBook(for inputs that are addresses)
+      - handleBooleanDropdownChange(for inputs that are booleans)
   - How input validation works
-  - How setting the gas price/ gas limit works
+    - For each of the 3 different costlycontractcall functions we have 3 different validator functions and they work by checking the inputs as they are entered, and are surrounded by a try catch block that will throw if requirements of the function aren't met.
+    - handleClaimInputs(handles the validation requirements for a claim function instance)
+    - handleCollectInputs(handles the validation requirements for a collect function instance
+    - handleVoteInputs(handles the validation requirements for a vote function instance)
+    - For some of the validation the inputs are parsed into a chained function call by handleChainedCalls, which has the functionality of the most basic form of the freecontractcall. Then we use those values, for example, check if a particular address has been validated through our governance contract. 
+    - The validation while not necessary prevents a good chunk of "bad" transactions from going through that will just eventually enter a failure state. 
+  - How setting the gas limit/ gas price works
+    - Gas limits on our ethereum based chain has been set 8 million, such that our contract will simply not run in to bottlenecks with how far the chain can process state. Likewise, we had to modify mycryptowallet's default gas limits to reflect our changes because it was using the gas limits set by the ethereum chain.
+    - Gas Pricing for the sake of our users who might not be apt in the intricansies of gas pricing we made a simpler ui to switch from a high gas price for faster transactions and lower gas price for slower transactions.
   - How the transaction to be sent is signed
+    - After the validation step and the input values for the transaction are deteremined to be valid. We encode the input values based on the spec of the input values that are required by the abi of the smart contract that was passed through from the AppState
+    - Set the datafield to the encoded input of the AppState by utilizing the setDataField redux function
   - How the the transaction is sent the web3 provider
 - How reads happen in freecontractcall
   - Grabbing the input values for the read

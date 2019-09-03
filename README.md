@@ -69,6 +69,13 @@ As far as the app is concerned, any state data that needs to be reset or carried
   - `resetWallet: walletActions.resetWallet` (resets the wallet currently in use)
   - `setCurrentTo` (sets the address a transaction is to be sent to)
   - `resetTransactionRequested: transactionFieldsActions.resetTransactionRequested` (resets all transaction datafields)
+- ***What the index.tsx does***
+  - The index file for the governance tab is the entry point for all things related to the governance tab. Here we render the intial view of buttons that refer to the various contract function calls we want to make.
+  - When one of the contract call buttons are clicked depending on whether name of the buttons `GovernanceCall` is of the type `FreeContractCallName` or `CostlyContractCallName` the index will render the screen of `FreeContractCallScreen` or `CostlyContractCallScreen`
+  - Furthermore, a lot of the code is based of the contracts tabs, and we try to utilize some of the generative component elements, and taking a look at the `buildFunctionOptions` function will give you a clue as to how the buttons are rendered.
+  - When clicking on to the governance tab the `setCurrentTo` function will be set to the governance contract call screen.
+  - Another feature that is utilized throughout the app is that when clicking to other tabs the wallet state is reset through `resetWallet`. Likewise when clicking on to the governance tab the wallet is reset to ensure that the wallet in use is capable of sending transactions.
+  - Furthermore, when we return to the main button screen from any of the other contract call screens we make sure to `resetTransactionRequested` to sanitize the inputs when clicking another contract call button. 
 #### CostlyContractCallScreen
 - **Actions** that are utilized by this component to set various props within the AppState:
   - `showNotification: notificationsActions.showNotification`

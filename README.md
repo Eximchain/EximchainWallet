@@ -61,7 +61,14 @@ As far as the app is concerned, any state data that needs to be reset or carried
     - Within the index file of the governance tab the functions that need be made available to the costlycontractcall or freecontractcall are defined. 
     - Filter through costlycontractcall defined functions and we create buttons based on the functions, we do the same for the freecontractcall defined functions. We do this by using the buildFunctionOptions which returns the button components that needs to be rendered.
     - When a button is clicked the instance of the function is passed through either to the costlycontractcall or freecontractcall component alongside additional props that is specific to each component.
-
+#### Governance/Index.tsx
+- Main child components/
+  - CostlyContractCallScreen
+  - FreeContractCallScreen
+- **Actions** that are utilized by this component
+  - `resetWallet: walletActions.resetWallet` (resets the wallet currently in use)
+  - `setCurrentTo` (sets the address a transaction is to be sent to)
+  - `resetTransactionRequested: transactionFieldsActions.resetTransactionRequested` (resets all transaction datafields)
 #### CostlyContractCallScreen
 - **Actions** that are utilized by this component to set various props within the AppState:
   - `showNotification: notificationsActions.showNotification`
@@ -82,7 +89,7 @@ As far as the app is concerned, any state data that needs to be reset or carried
   - `broadcastState: transactionBroadcastSelectors.getBroadcastState(state)`
   - `isValidAddress: configSelectors.getIsValidAddressFn(state)`
 - ***How signing and submitting transaction works in `CostlyContractCallScreen.tsx`***
-  - Grabbing the input values for the transaction
+  - ***Grabbing the input values for the transaction***
     - Render the input fields based on the contract function call instance
     - The inputs are then set as inputs are entered by a designated setter based on input type.
       - `handleInputChange`(for the basic input)
@@ -111,11 +118,26 @@ As far as the app is concerned, any state data that needs to be reset or carried
     - The wallet comoponent then handles what sort of wallet we are using be it hardware(trezor and ledger) or software(private key, seed phrase, etc..), and signs the transaction based on the ethereum specifications.
     - We then get the signed transaction output which is passed in to a transaction reducer through a transaction broadcast action.
     - The reducer takes values defined in the App State, which have already defined the web3/geth node url we want to use.
-- How reads happen in freecontractcall
-  - Grabbing the input values for the read
-  - Chaining contract calls
-  - How input validation works
-  - How the request is made through the web3 provider
+    
+### FreeContractCallScreen
+
+- ***Actions*** used by this component
+  - `showNotification: notificationsActions.showNotification`
+  - `setDataField: transactionFieldsActions.setDataField`
+  - `resetTransactionRequested: transactionFieldsActions.resetTransactionRequested`
+  - `setAsContractInteraction: transactionMetaActions.setAsContractInteraction`
+  - `setAsViewAndSend: transactionMetaActions.setAsViewAndSend`
+  - `setCurrentValue: transactionActions.setCurrentValue`
+- ***Selectors*** used by this component
+  - `nodeLib: configNodesSelectors.getNodeLib(state)`
+  - `to: transactionFieldsSelectors.getTo(state)`
+  - `dataExists: transactionSelectors.getDataExists(state)`
+    
+- How reads happen in `FreeContractCallScreen.tsx`
+  - ***Grabbing the input values for the read***
+  - ***Chaining contract calls***
+  - ***How input validation works***
+  - ***How the request is made through the web3 provider***
 
 
 TODO: Component structure within the governance tab
@@ -123,8 +145,6 @@ TODO: Component structure within the governance tab
 - How the props are used
 - What components are reused from Contracts
 - How the components are then rendered
-
-TODO: Validation on inputs before sending them to the blockchain.
 
 ### UI/Functionality Changes
 TODO: Go over Chris's changes to match our design language various css style changes

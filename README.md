@@ -63,6 +63,24 @@ As far as the app is concerned, any state data that needs to be reset or carried
     - When a button is clicked the instance of the function is passed through either to the costlycontractcall or freecontractcall component alongside additional props that is specific to each component.
 
 #### CostlyContractCallScreen
+- **Actions** that are utilized by this component to set various props within the AppState:
+  - `showNotification: notificationsActions.showNotification`
+  - `setDataField: transactionFieldsActions.setDataField`
+  - `resetTransactionRequested: transactionFieldsActions.resetTransactionRequested`
+  - `setAsContractInteraction: transactionMetaActions.setAsContractInteraction`
+  - `setAsViewAndSend: transactionMetaActions.setAsViewAndSend`
+  - `setCurrentValue: transactionActions.setCurrentValue`
+  - `setScheduleGasLimitField: scheduleActions.setScheduleGasLimitField`
+- **Selectors** that are utilized by this component to grab values from AppState:
+  - `wallet: walletSelectors.getWalletInst(state)`
+  - `nodeLib: configNodesSelectors.getNodeLib(state)`
+  - `to: transactionFieldsSelectors.getTo(state)`
+  - `dataExists: transactionSelectors.getDataExists(state)`
+  - `txBroadcasted: transactionSelectors.currentTransactionBroadcasted(state)`
+  - `currentTransactionFailed: transactionSelectors.currentTransactionFailed(state)`
+  - `currentTransactionIndex: transactionSignSelectors.getSignState(state)`
+  - `broadcastState: transactionBroadcastSelectors.getBroadcastState(state)`
+  - `isValidAddress: configSelectors.getIsValidAddressFn(state)`
 - How signing and submitting transaction works in `CostlyContractCallScreen.tsx`
   - Grabbing the input values for the transaction
     - Render the input fields based on the contract function call instance
@@ -71,24 +89,7 @@ As far as the app is concerned, any state data that needs to be reset or carried
       - `handleIntegerDropdownChange`(for specific integer values)
       - `handleSelectAddressFromBook`(for inputs that are addresses)
       - `handleBooleanDropdownChange`(for inputs that are booleans)
-    - **Actions** that are utilized by this component to set various props within the AppState:
-      - `showNotification: notificationsActions.showNotification`
-      - `setDataField: transactionFieldsActions.setDataField`
-      - `resetTransactionRequested: transactionFieldsActions.resetTransactionRequested`
-      - `setAsContractInteraction: transactionMetaActions.setAsContractInteraction`
-      - `setAsViewAndSend: transactionMetaActions.setAsViewAndSend`
-      - `setCurrentValue: transactionActions.setCurrentValue`
-      - `setScheduleGasLimitField: scheduleActions.setScheduleGasLimitField`
-    - **Selectors** that are utilized by this component to grab values from AppState:
-      - `wallet: walletSelectors.getWalletInst(state)`
-      - `nodeLib: configNodesSelectors.getNodeLib(state)`
-      - `to: transactionFieldsSelectors.getTo(state)`
-      - `dataExists: transactionSelectors.getDataExists(state)`
-      - `txBroadcasted: transactionSelectors.currentTransactionBroadcasted(state)`
-      - `currentTransactionFailed: transactionSelectors.currentTransactionFailed(state)`
-      - `currentTransactionIndex: transactionSignSelectors.getSignState(state)`
-      - `broadcastState: transactionBroadcastSelectors.getBroadcastState(state)`
-      - `isValidAddress: configSelectors.getIsValidAddressFn(state)`
+    
   - How input validation works
     - For each of the 3 different costlycontractcall functions we have 3 different validator functions and they work by checking the inputs as they are entered, and are surrounded by a try catch block that will throw if requirements of the function aren't met.
     - `handleClaimInputs`(handles the validation requirements for a claim function instance)

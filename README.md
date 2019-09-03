@@ -23,8 +23,7 @@ Furthermore it can be broken down in to its file which consists of three primary
 
 The rest of the components are there to support the two contract call screens. Realstically, any of the calls made through this tab can also been done through the Contracts tab, but the governance tabs have built in further checks to prevent users from submitting "bad" transactions that will later be rejected by the blockchain. That being said if there is a situation in which a "bad" transaction goes through our ui, rest assured, the governance smart contract will still not accept the transaction as it is not supported by the given state of the contract.
 
-TODO: Dataflow from redux to the governance tab
-
+### AppState
 As far as the app is concerned, any state data that needs to be reset or carried over from the various tabs is stored through redux on master component state called the AppState. Defined inside the AppState are the core pieces of code that makes the rest of the application function. Listed below are some of the AppState attributes and what they control
 - The AppState contains:
   - `config` (chain config aka. the variables defining which network you are connected to as well as the block explorer you want to link to when viewing transactions through an external source)
@@ -63,30 +62,49 @@ As far as the app is concerned, any state data that needs to be reset or carried
     - Filter through costlycontractcall defined functions and we create buttons based on the functions, we do the same for the freecontractcall defined functions. We do this by using the buildFunctionOptions which returns the button components that needs to be rendered.
     - When a button is clicked the instance of the function is passed through either to the costlycontractcall or freecontractcall component alongside additional props that is specific to each component.
 
-- How signing and submitting transaction works in costlycontractcall
+#### CostlyContractCallScreen
+- How signing and submitting transaction works in `CostlyContractCallScreen.tsx`
   - Grabbing the input values for the transaction
     - Render the input fields based on the contract function call instance
     - The inputs are then set as inputs are entered by a designated setter based on input type.
-      - handleInputChange(for the basic input)
-      - handleIntegerDropdownChange(for specific integer values)
-      - handleSelectAddressFromBook(for inputs that are addresses)
-      - handleBooleanDropdownChange(for inputs that are booleans)
+      - `handleInputChange`(for the basic input)
+      - `handleIntegerDropdownChange`(for specific integer values)
+      - `handleSelectAddressFromBook`(for inputs that are addresses)
+      - `handleBooleanDropdownChange`(for inputs that are booleans)
+    - **Actions** that are utilized by this component to set various props within the AppState:
+      - `showNotification: notificationsActions.showNotification`
+      - `setDataField: transactionFieldsActions.setDataField`
+      - `resetTransactionRequested: transactionFieldsActions.resetTransactionRequested`
+      - `setAsContractInteraction: transactionMetaActions.setAsContractInteraction`
+      - `setAsViewAndSend: transactionMetaActions.setAsViewAndSend`
+      - `setCurrentValue: transactionActions.setCurrentValue`
+      - `setScheduleGasLimitField: scheduleActions.setScheduleGasLimitField`
+    - **Selectors** that are utilized by this component to grab values from AppState:
+      - `wallet: walletSelectors.getWalletInst(state)`
+      - `nodeLib: configNodesSelectors.getNodeLib(state)`
+      - `to: transactionFieldsSelectors.getTo(state)`
+      - `dataExists: transactionSelectors.getDataExists(state)`
+      - `txBroadcasted: transactionSelectors.currentTransactionBroadcasted(state)`
+      - `currentTransactionFailed: transactionSelectors.currentTransactionFailed(state)`
+      - `currentTransactionIndex: transactionSignSelectors.getSignState(state)`
+      - `broadcastState: transactionBroadcastSelectors.getBroadcastState(state)`
+      - `isValidAddress: configSelectors.getIsValidAddressFn(state)`
   - How input validation works
     - For each of the 3 different costlycontractcall functions we have 3 different validator functions and they work by checking the inputs as they are entered, and are surrounded by a try catch block that will throw if requirements of the function aren't met.
-    - handleClaimInputs(handles the validation requirements for a claim function instance)
-    - handleCollectInputs(handles the validation requirements for a collect function instance
-    - handleVoteInputs(handles the validation requirements for a vote function instance)
+    - `handleClaimInputs`(handles the validation requirements for a claim function instance)
+    - `handleCollectInputs`(handles the validation requirements for a collect function instance
+    - `handleVoteInputs`(handles the validation requirements for a vote function instance)
     - For some of the validation the inputs are parsed into a chained function call by handleChainedCalls, which has the functionality of the most basic form of the freecontractcall. Then we use those values, for example, check if a particular address has been validated through our governance contract. 
     - The validation, while not necessary for a valid transaction, prevents a good chunk of "bad" transactions from going through that will just eventually enter a failure state.
     - Ideally in the future we should better generalize how the validation works for each transaction.
-  - How setting the gas limit/ gas price works
-    - Gas limits on our ethereum based chain has been set 8 million, such that our contract will simply not run in to bottlenecks with how far the chain can process state. Likewise, we had to modify mycryptowallet's default gas limits to reflect our changes because it was using the gas limits set by the ethereum chain.
+  - How setting the gas limit/ gas price works(TODO: name which reducer I used)
+    - Gas limits on our ethereum based chain has been set at 8 million, so that our contract will simply not run in to bottlenecks with how far the chain can process state. Likewise, we had to modify mycryptowallet's default gas limits to reflect our changes because it was using the gas limits set by the ethereum chain.
     - Gas Pricing for the sake of our users who might not be apt in the intricansies of gas pricing we made a simpler ui to switch from a high gas price for faster transactions and lower gas price for slower transactions.
     - The gas pricing is set in the App State through redux actions and reducers, but for our particular case we have modified the action call order manually to set pricing instead of calling the average gas pricing from the geth node.
     - There is currently an issue with retrieving the amount of gas required for a transaction from the geth node. This is probably an artifact with setting the gas limit to 8 million on top of geth having some hard coded values that returns invalid gas limits for anything above the original ethereum defaults.
   - How the transaction to be sent is signed
     - After the validation step and the input values for the transaction are deteremined to be valid. We encode the input values based on the spec of the input values that are required by the abi of the smart contract that was passed through from the AppState
-    - Set the datafield to the encoded input of the AppState by utilizing the setDataField redux function
+    - Set the datafield to the encoded input of the AppState by utilizing the `setDataField` redux function
   - How the the transaction is sent the web3 provider
     - Once the datafield and rest of the transaction values(gas limit, gas price, value of transaction) are set, it passes those values in to the wallet component as a raw transaction.
     - The wallet comoponent then handles what sort of wallet we are using be it hardware(trezor and ledger) or software(private key, seed phrase, etc..), and signs the transaction based on the ethereum specifications.
@@ -128,6 +146,10 @@ TODO: Updated packages to keep in line with some of the npm packages that suffer
 
 ### Signing Releases
 TODO: Issues regarding signing software with electron-builder
+- There are some issues still withstanding with trying to utilize electron-builder's signing. 
+  - Name the env variables that need to be set.
+  - Ideally we mimic the set up that MyCrypto already uses with jenkins to handle the signed releases
+  - More research needs to be done as to how to set it up correctly.
 
 
 ### [**⬇︎ Download the latest release**](https://github.com/Eximchain/EximchainWallet/releases)

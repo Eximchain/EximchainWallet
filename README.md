@@ -126,7 +126,7 @@ As far as the app is concerned, any state data that needs to be reset or carried
     - We then get the signed transaction output which is passed in to a transaction reducer through a transaction broadcast action.
     - The reducer takes values defined in the App State, which have already defined the web3/geth node url we want to use.
     
-### FreeContractCallScreen
+#### FreeContractCallScreen
 
 - ***Actions*** used by this component
   - `showNotification: notificationsActions.showNotification`
@@ -142,16 +142,16 @@ As far as the app is concerned, any state data that needs to be reset or carried
     
 - How reads happen in `FreeContractCallScreen.tsx`
   - ***Grabbing the input values for the read***
+    - Input values are defined by the contract call instance, and depending on the contract call an additional chained contract call instance. 
+    - Some of the calls such as withdraw history input interface is that of the ballot history because the original input value is the output value from the ballot history, and the inputs for ballot history are easier to keep track of. 
   - ***Chaining contract calls***
+    - Calling contract calls in FreeContractCallScreen are absolutely free and does not require any value or exc to fund the call. Therefore, we can chain the output of one call in to another to provide the end user with the most relevant information on the ui.
+      - For example: TODO
   - ***How input validation works***
+    - TODO: name the functions that validate inputs
   - ***How the request is made through the web3 provider***
+    - TODO: nodeLib usage
 
-
-TODO: Component structure within the governance tab
-- Explain what props are passed in to FreeContractCall/CostlyContractCall components
-- How the props are used
-- What components are reused from Contracts
-- How the components are then rendered
 
 ### UI/Functionality Changes
 TODO: Go over Chris's changes to match our design language various css style changes

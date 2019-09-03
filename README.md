@@ -81,7 +81,7 @@ As far as the app is concerned, any state data that needs to be reset or carried
   - `currentTransactionIndex: transactionSignSelectors.getSignState(state)`
   - `broadcastState: transactionBroadcastSelectors.getBroadcastState(state)`
   - `isValidAddress: configSelectors.getIsValidAddressFn(state)`
-- How signing and submitting transaction works in `CostlyContractCallScreen.tsx`
+- ***How signing and submitting transaction works in `CostlyContractCallScreen.tsx`***
   - Grabbing the input values for the transaction
     - Render the input fields based on the contract function call instance
     - The inputs are then set as inputs are entered by a designated setter based on input type.
@@ -90,7 +90,7 @@ As far as the app is concerned, any state data that needs to be reset or carried
       - `handleSelectAddressFromBook`(for inputs that are addresses)
       - `handleBooleanDropdownChange`(for inputs that are booleans)
     
-  - How input validation works
+  - ***How input validation works***
     - For each of the 3 different costlycontractcall functions we have 3 different validator functions and they work by checking the inputs as they are entered, and are surrounded by a try catch block that will throw if requirements of the function aren't met.
     - `handleClaimInputs`(handles the validation requirements for a claim function instance)
     - `handleCollectInputs`(handles the validation requirements for a collect function instance
@@ -98,15 +98,15 @@ As far as the app is concerned, any state data that needs to be reset or carried
     - For some of the validation the inputs are parsed into a chained function call by handleChainedCalls, which has the functionality of the most basic form of the freecontractcall. Then we use those values, for example, check if a particular address has been validated through our governance contract. 
     - The validation, while not necessary for a valid transaction, prevents a good chunk of "bad" transactions from going through that will just eventually enter a failure state.
     - Ideally in the future we should better generalize how the validation works for each transaction.
-  - How setting the gas limit/ gas price works(TODO: name which reducer I used)
+  - ***How setting the gas limit/ gas price works***
     - Gas limits on our ethereum based chain has been set at 8 million, so that our contract will simply not run in to bottlenecks with how far the chain can process state. Likewise, we had to modify mycryptowallet's default gas limits to reflect our changes because it was using the gas limits set by the ethereum chain.
     - Gas Pricing for the sake of our users who might not be apt in the intricansies of gas pricing we made a simpler ui to switch from a high gas price for faster transactions and lower gas price for slower transactions.
     - The gas pricing is set in the App State through redux actions and reducers, but for our particular case we have modified the action call order manually to set pricing instead of calling the average gas pricing from the geth node.
     - There is currently an issue with retrieving the amount of gas required for a transaction from the geth node. This is probably an artifact with setting the gas limit to 8 million on top of geth having some hard coded values that returns invalid gas limits for anything above the original ethereum defaults.
-  - How the transaction to be sent is signed
+  - ***How the transaction to be sent is signed***
     - After the validation step and the input values for the transaction are deteremined to be valid. We encode the input values based on the spec of the input values that are required by the abi of the smart contract that was passed through from the AppState
     - Set the datafield to the encoded input of the AppState by utilizing the `setDataField` redux function
-  - How the the transaction is sent the web3 provider
+  - ***How the the transaction is sent the web3 provider***
     - Once the datafield and rest of the transaction values(gas limit, gas price, value of transaction) are set, it passes those values in to the wallet component as a raw transaction.
     - The wallet comoponent then handles what sort of wallet we are using be it hardware(trezor and ledger) or software(private key, seed phrase, etc..), and signs the transaction based on the ethereum specifications.
     - We then get the signed transaction output which is passed in to a transaction reducer through a transaction broadcast action.

@@ -458,14 +458,19 @@ As far as the app is concerned, any state data that needs to be reset or carried
 #### Refreshed UI/UX
   - View and Send tab
     - It is now required to first enter in a wallet to access the functions of this tab.
+    ![](screenshot_01.jpg)
   - Network changer
     - Has been vastly simplified to only include Eximchain's networks by default
     - Some work needs to be done in terms of adding back in network grouping in case you want to add nodes not part of the official Eximchain network
+    ![](screenshot_02.jpg)
   - gas limit/gas pricing
     - The simple version of gas pricing is now super simple with a slow, medium, fast button options to determine the pricing rather than a slider.
+    ![](screenshot_03.jpg)
     - The advanced version has some nicer css to keep in line with the look of the rest of the app
+    ![](screenshot_04.jpg)
   - Governance Tab
     - Everything here is new.
+    ![](screenshot_05.jpg)
 #### Bug Patches/Fixes
   - One major bug that arrose, while working on this version of the wallet, was that ledger actually broke compatibility with MyCrypto with their firmware update. This would not be fixed by MyCrypto themselves, and I had to introduce my very own fix that is documented in this issue(https://github.com/MyCryptoHQ/MyCrypto/issues/2439) on MyCryptoWallet's repository.
   - Transaction history had been broken with the version of MyCryptoWallet we forked off of because the most up to date version at the time in the repo of MyCrypto is technically a development version. This is now fixed

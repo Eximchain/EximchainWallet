@@ -306,15 +306,7 @@ The main way any of the data within the app is interacted with is through the ap
   - getIsEstimating
 
 ### routing(uses react-router-redux)
-
-
-
-
-
-
-
-
-
+This is the main mechanism with which the App navigates around the various pages with the exception of within the governance tab where we have adopted the easier to use single page app with state changes model.
 
 ### Eximchain Governance Tab
 
@@ -449,40 +441,44 @@ As far as the app is concerned, any state data that needs to be reset or carried
   - ***Grabbing the input values for the read***
     - Input values are defined by the contract call instance, and depending on the contract call an additional chained contract call instance. 
     - Some of the calls such as withdraw history input interface is that of the ballot history because the original input value is the output value from the ballot history, and the inputs for ballot history are easier to keep track of. 
+  - ***How input validation works***
+    - Input validation in FreeContractCallScreen works a little differently from CostlyContractCallScreen because it handles quite a bit more of the contract functions as a whole. 
+    - Furthermore, some of the rendered inputs are from a chained contract call and the output is the output of the contract call currently active. This was done to make it easier on the user, and avoid inputing the wrong values for inputs that look very much a like, namely ballotRecordId and withdrawRecordId. Otherwise, the inputs are validated by the type of the input it is much like in the CostlyContractCallScreen portion of the code.
+    - In the future it would be best to separate these input validation in to it's own component and define them separately on a case by case basis.
+  - ***How the request is made through the web3 provider***
+    - nodeLib returns the current node component, and the node component should be already configured to which ever node/network you set as your web3 provider through the beauty of redux and sagas. 
+    - Because nodeLib is already configured and stored within the redux state of the app all that is required to make a call to the web3 provider is simply use the sendCallRequest function defined within the nodeLib component.
   - ***Chaining contract calls***
     - Calling contract calls in FreeContractCallScreen are absolutely free and does not require any value or exc to fund the call. Therefore, we can chain the output of one call in to another to provide the end user with the most relevant information on the ui.
-      - For example: TODO
-  - ***How input validation works***
-    - TODO: name the functions that validate inputs
-  - ***How the request is made through the web3 provider***
-    - TODO: nodeLib usage
+    - There is a supplementary function called handleChainedCalls which will run a sendCallRequest given an input and contractOption and return the decoded output. With which we can use as inputs in to the next contract call. 
 
 
-### UI/Functionality Changes
-TODO: Go over Chris's changes to match our design language various css style changes
-(show the screenshots of before and after)
 
-TODO: Explain how we have changed gas limit/gas pricing functionality to be simpler, and the ui changes to reflect it.(screenshots from before and after)
-
-TODO: Network changer overhaul (screenshots from before and after)
-
-TODO: View and Send tab flow/layout changes (screenshots from before and after)
-
-### Bug Patches/Fixes
-TODO: Talk about the pr that andreweximchain made to MyCryptoWallet that fixed issues regarding ledger. (add a link to the issue)
-
-
-TODO: Talk about fixing the recent transactions history (add a link to the commit)
-
-TODO: Updated packages to keep in line with some of the npm packages that suffered security vulnerablities (go over the list of package.json changes)
+### Changelog
+#### Refreshed UI/UX
+  - View and Send tab
+    - It is now required to first enter in a wallet to access the functions of this tab.
+  - Network changer
+    - Has been vastly simplified to only include Eximchain's networks by default
+    - Some work needs to be done in terms of adding back in network grouping in case you want to add nodes not part of the official Eximchain network
+  - gas limit/gas pricing
+    - The simple version of gas pricing is now super simple with a slow, medium, fast button options to determine the pricing rather than a slider.
+    - The advanced version has some nicer css to keep in line with the look of the rest of the app
+  - Governance Tab
+    - Everything here is new.
+#### Bug Patches/Fixes
+  - One major bug that arrose, while working on this version of the wallet, was that ledger actually broke compatibility with MyCrypto with their firmware update. This would not be fixed by MyCrypto themselves, and I had to introduce my very own fix that is documented in this issue(https://github.com/MyCryptoHQ/MyCrypto/issues/2439) on MyCryptoWallet's repository.
+  - Transaction history had been broken with the version of MyCryptoWallet we forked off of because the most up to date version at the time in the repo of MyCrypto is technically a development version. This is now fixed
+  - Updated packages to keep in line with some of the npm packages that suffered security vulnerablities in line with github's suggestions
 
 
 ### Signing Releases
-TODO: Issues regarding signing software with electron-builder
-- There are some issues still withstanding with trying to utilize electron-builder's signing. 
-  - Name the env variables that need to be set.
+There are some issues still withstanding with trying to utilize electron-builder's signing. 
+  - You can follow the steps outlined here(https://www.electron.build/code-signing).
+  - However, after one successfuly run I have been unable to once again get code-signing to work. 
+  - Windows signing is still not resolved.
   - Ideally we mimic the set up that MyCrypto already uses with jenkins to handle the signed releases
-  - More research needs to be done as to how to set it up correctly.
+  - In the mean time I should work on getting something like a md5 checksum and update the hash in this readme so people can check they have the correct version. 
 
 
 ### [**⬇︎ Download the latest release**](https://github.com/Eximchain/EximchainWallet/releases)

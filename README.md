@@ -563,20 +563,20 @@ ContractFuncNames is simply a defined name that we utilize throughout the Govern
 
   - Once in the view CostlyContractCallScreen the component's views are controlled in stages which are:
     1. CONSTRUCT_TRANSACTION_SCREEN
-      1. The start screen for the costlyContractScreen
-      2. Handles grabbing the input
-      3. Handles input validation
-      4. Handles chained contract calls
-      5. Sets the data params in the AppState based on the inputs accordingly 
+      - The start screen for the costlyContractScreen
+      - Handles grabbing the input
+      - Handles input validation
+      - Handles chained contract calls
+      - Sets the data params in the AppState based on the inputs accordingly 
     2. SUBMIT_TRANSACTION_SCREEN
-      1. Handles logging in to the wallet(if you haven't logged in already)
-      2. Handles Gas Pricing/Gas Limits 
-      3. Handles signing the transaction
-      4. Handles submitting the transaction
+      - Handles logging in to the wallet(if you haven't logged in already)
+      - Handles Gas Pricing/Gas Limits 
+      - Handles signing the transaction
+      - Handles submitting the transaction
     3. RESULT_SCREEN
-      1. Handles the successful return value of the submitted transaction
+      - Handles the successful return value of the submitted transaction
     3. ERROR_SCREEN
-      1. Handles the unsuccessful return value of a the submitted transaction
+      - Handles the unsuccessful return value of a the submitted transaction
 
   
   - ***Grabbing the input values for the transaction***

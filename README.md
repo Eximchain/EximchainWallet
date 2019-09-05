@@ -3,13 +3,318 @@
 Eximchain wallet is a desktop wallet client that connects to the Eximchain network. We are currently still in beta, so if you see any issues, please report them to [support@eximchain.com](mailto:support@eximchain.com)
 
 
-## Major Changes From MyCryptoWallet
-This forked MyCryptoWallet contains some notable changes consisting of the following:
+## Overview
+This wallet is a forked version of MyCryptoWallet with some modifications specific to our very own Eximchain Network. Notably, we have added a governance tab that is used for interacting with the governance smart contract of our network, aesthetic changes to be on brand, and some ui/ux modifications for easier usage.
 
-- Eximchain Governance Tab
-- UI/Functionality Changes
-- Bug Patches/Fixes
-- Signing Releases
+
+
+## Data Mangement
+The main way any of the data within the app is interacted with is through the aptly named `AppState`, which describes the wallet app's state. The wallet utilizes the redux model of actions to signify a change that needs to happen, a reducer that will take the action and resolve it into a function that can modify the state, and selectors to get useful data from the state. Below are the relevant pieces of AppState that have been used in our changes or modified.
+
+### App State(Data Structure)
+  - `config` defines the chain config of the network you are connecting to,the blockexplorer url, and the web3/geth node url. Also, any other app related settings.
+  - `notifications` multipurpose notifications that can be utilized throughout the app to notify a successful/failed transaction or any other important information we see fit.
+  - `onboarding` modals that show how to use the app for the first time
+  - `wallet` the current actual wallet that is active
+  - `deterministicWallets` related to wallet but it can be used to describe a different dpath for a particular private key
+  - `transaction` the current transaction being constructed
+  - `transactions` a record of transaction history
+  - `addressBook` a local storage of mapping of human readable names to ethereum addresses
+  - `gas` keeps track of gas pricing and gas limits for a transaction
+  - `routing` routing across the app
+### config
+#### reducer
+  - `meta`
+    - changeLanguage(not in use)
+    - setOnline
+    - setOffline
+    - toggleAutoGasLimitEstimation(always turned off)
+    - setLatestBlock
+    - setTheme(not in use)
+  - `networks` combines the reducer for custom and static Networks
+    - customNetworks 
+      - addCustomNetwork
+      - removeCustomNetwork
+    - staticNetworks(Currently modified to just return back the current state, so it doesn't do anything)
+  - `nodes` combines the reducer of customNodes, staticNodes, and selectedNodes
+    - `customNodes`
+      - addCustomNode
+      - removeCustomNode
+    - `staticNodes`
+    - `selectedNodes`
+      - changeNodeSucceeded
+      - changeNodeRequested
+      - changeNodeFailed
+#### actions
+  - CHANGE_REQUESTED = 'CONFIG_NODES_SELECTED_CHANGE_REQUESTED',
+  - CHANGE_SUCCEEDED = 'CONFIG_NODES_SELECTED_CHANGE_SUCCEEDED',
+  - CHANGE_FAILED = 'CONFIG_NODES_SELECTED_CHANGE_FAILED',
+  - CHANGE_REQUESTED_ONETIME = 'CONFIG_NODES_SELECTED_CHANGE_REQUESTED_ONETIME',
+  - CHANGE_FORCE = 'CONFIG_NODES_SELECTED_CHANGE_FORCE'
+#### selectors
+  - getNodes
+  - getSelectedNodes
+  - getPreviouslySelectedNode
+  - isNodeChanging
+  - getNodeId
+  
+### notifications
+#### reducers
+  - showNotification
+  - closeNotification
+#### actions
+  - SHOW = 'SHOW_NOTIFICATION',
+  - CLOSE = 'CLOSE_NOTIFICATION'
+#### selectors
+  NONE
+
+### onboarding
+#### reducers
+  - returns a state with onboardingState false
+  - returns the action.payload of a slide
+#### actions
+  - COMPLETE = 'ONBOARDING_COMPLETE',
+  - SET_SLIDE = 'ONBOARDING_SET_SLIDE'
+#### selectors
+  - getOnboarding
+  - getActive
+  - getSlide
+
+### wallet
+#### reducers
+  - setWallet
+  - resetWallet
+  - setBalancePending
+  - setBalanceFullfilled
+  - setBalanceRejected
+  - setWalletPending
+  - setTokenBalancesPending
+  - setTokenBalancesFulfilled
+  - setTokenBalancesRejected
+  - setTokenBalancePending
+  - setTokenBalanceFulfilled
+  - setTokenBalanceRejected
+  - scanWalletForTokens
+  - setWalletTokens
+  - setWalletConfig
+  - setPasswordPending
+#### actions
+  - UNLOCK_PRIVATE_KEY = 'WALLET_UNLOCK_PRIVATE_KEY',
+  - UNLOCK_KEYSTORE = 'WALLET_UNLOCK_KEYSTORE',
+  - UNLOCK_MNEMONIC = 'WALLET_UNLOCK_MNEMONIC',
+  - UNLOCK_WEB3 = 'WALLET_UNLOCK_WEB3',
+  - SET = 'WALLET_SET',
+  - SET_BALANCE_PENDING = 'WALLET_SET_BALANCE_PENDING',
+  - SET_BALANCE_FULFILLED = 'WALLET_SET_BALANCE_FULFILLED',
+  - SET_BALANCE_REJECTED = 'WALLET_SET_BALANCE_REJECTED',
+  - SET_TOKEN_BALANCES_PENDING = 'WALLET_SET_TOKEN_BALANCES_PENDING',
+  - SET_TOKEN_BALANCES_FULFILLED = 'WALLET_SET_TOKEN_BALANCES_FULFILLED',
+  - SET_TOKEN_BALANCES_REJECTED = 'WALLET_SET_TOKEN_BALANCES_REJECTED',
+  - SET_PENDING = 'WALLET_SET_PENDING',
+  - SET_NOT_PENDING = 'WALLET_SET_NOT_PENDING',
+  - SET_TOKEN_BALANCE_PENDING = 'WALLET_SET_TOKEN_BALANCE_PENDING',
+  - SET_TOKEN_BALANCE_FULFILLED = 'WALLET_SET_TOKEN_BALANCE_FULFILLED',
+  - SET_TOKEN_BALANCE_REJECTED = 'WALLET_SET_TOKEN_BALANCE_REJECTED',
+  - SCAN_WALLET_FOR_TOKENS = 'WALLET_SCAN_WALLET_FOR_TOKENS',
+  - SET_WALLET_TOKENS = 'WALLET_SET_WALLET_TOKENS',
+  - SET_CONFIG = 'WALLET_SET_CONFIG',
+  - RESET = 'WALLET_RESET',
+  - SET_PASSWORD_PENDING = 'WALLET_SET_PASSWORD_PENDING',
+  - REFRESH_ACCOUNT_BALANCE = 'WALLET_REFRESH_ACCOUNT_BALANCE',
+  - REFRESH_TOKEN_BALANCES = 'WALLET_REFRESH_TOKEN_BALANCES'
+#### selectors
+  - getWalletInst
+  - getWalletConfig
+  - isWalletFullyUnlocked
+  - getWallet
+  - getWalletTYpe
+  - isUnlocked
+  - isEtherBalancePending
+  - getEtherBalance
+  - getRecentAddresses
+  
+### deterministicWallets
+#### reducers
+  - returns state with modified wallets with a value from the action payload
+  - returns state with modified desiredToken with a value from the action payload
+  - returns state with modified wallets set by updateWalletValues
+#### actions
+  - GET = 'DETERMINISTIC_WALLETS_GET_WALLETS'
+  - SET = 'DETERMINISTIC_WALLETS_SET_WALLETS',
+  - SET_DESIRED_TOKEN = 'DETERMINISTIC_WALLETS_SET_DESIRED_TOKEN',
+  - UPDATE_WALLET = 'DETERMINISTIC_WALLETS_UPDATE_WALLET'
+#### selectors
+  - getWallets
+  - getDesiredToken
+
+### transaction
+#### reducers(combined reducers)
+  - transactionBroadcastReducer
+    - handleQueue
+    - handleSuccess
+    - handleFailure
+  - transactionFieldsReducer
+    - updateField('to')
+    - updateField('value')
+    - updateField('data')
+    - updateField('gasLimit')
+    - updateField('nonce')
+    - updateField('gasPrice')
+    - tokenToEther
+    - etherToToken
+    - tokenToToken
+    - reset
+  - transactionMetaReducer
+    - unitMeta
+    - updateMetaField('tokenValue')
+    - updateMetaField('tokenTo')
+    - updateMetaField('from')
+    - tokenToEtherMeta
+    - etherToTokenMeta
+    - tokenToTokenMeta
+    - returns the state with the isContractInteraction value to false
+    - returns the state with the isContractInteraction value is true
+  - transactionNetworkReducer
+    - getNextState(FIELD) where FIELD can be: gasEstimationStatus, getFromStatus, getNonceStatus
+  - transactionSignReducer
+    - signTransactionRequested
+    - signLocalTransactionSucceeded
+    - signWeb3TransactionSucceeded
+    - signTransactionFailed
+    - resetSign
+#### actions(separated by each of the reducer that was combined)
+  - broadcast
+    - WEB3_TRANSACTION_REQUESTED = 'BROADCAST_WEB3_TRANSACTION_REQUESTED',
+    - TRANSACTION_SUCCEEDED = 'BROADCAST_TRANSACTION_SUCCEEDED',
+    - LOCAL_TRANSACTION_REQUESTED = 'BROADCAST_LOCAL_TRANSACTION_REQUESTED',
+    - TRANSACTION_QUEUED = 'BROADCAST_TRANSACTION_QUEUED',
+    - TRANSACTION_FAILED = 'BROADCAST_TRANSACTION_FAILED'
+  - fields
+    - GAS_LIMIT_INPUT = 'GAS_LIMIT_INPUT',
+    - GAS_PRICE_INPUT = 'GAS_PRICE_INPUT',
+    - GAS_PRICE_INPUT_INTENT = 'GAS_PRICE_INPUT_INTENT',
+    - DATA_FIELD_INPUT = 'DATA_FIELD_INPUT',
+    - NONCE_INPUT = 'NONCE_INPUT',
+    - GAS_LIMIT_FIELD_SET = 'GAS_LIMIT_FIELD_SET',
+    - DATA_FIELD_SET = 'DATA_FIELD_SET',
+    - TO_FIELD_SET = 'TO_FIELD_SET',
+    - VALUE_FIELD_SET = 'VALUE_FIELD_SET',
+    - NONCE_FIELD_SET = 'NONCE_FIELD_SET',
+    - GAS_PRICE_FIELD_SET = 'GAS_PRICE_FIELD_SET'
+  - meta
+    - TOKEN_TO_META_SET = 'TOKEN_TO_META_SET',
+    - UNIT_META_SET = 'UNIT_META_SET',
+    - TOKEN_VALUE_META_SET = 'TOKEN_VALUE_META_SET',
+    - IS_CONTRACT_INTERACTION = 'IS_CONTRACT_INTERACTION',
+    - IS_VIEW_AND_SEND = 'IS_VIEW_AND_SEND'
+  - network
+    - ESTIMATE_GAS_REQUESTED = 'ESTIMATE_GAS_REQUESTED',
+    - ESTIMATE_GAS_SUCCEEDED = 'ESTIMATE_GAS_SUCCEEDED',
+    - ESTIMATE_GAS_FAILED = 'ESTIMATE_GAS_FAILED',
+    - ESTIMATE_GAS_TIMEDOUT = 'ESTIMATE_GAS_TIMEDOUT',
+    - GET_FROM_REQUESTED = 'GET_FROM_REQUESTED',
+    - GET_FROM_SUCCEEDED = 'GET_FROM_SUCCEEDED',
+    - GET_FROM_FAILED = 'GET_FROM_FAILED',
+    - GET_NONCE_REQUESTED = 'GET_NONCE_REQUESTED',
+    - GET_NONCE_SUCCEEDED = 'GET_NONCE_SUCCEEDED',
+    - GET_NONCE_FAILED = 'GET_NONCE_FAILED'
+  - sign
+    - SIGN_TRANSACTION_REQUESTED = 'SIGN_TRANSACTION_REQUESTED',
+    - SIGN_WEB3_TRANSACTION_SUCCEEDED = 'SIGN_WEB3_TRANSACTION_SUCCEEDED',
+    - SIGN_LOCAL_TRANSACTION_SUCCEEDED = 'SIGN_LOCAL_TRANSACTION_SUCCEEDED',
+    - SIGN_TRANSACTION_FAILED = 'SIGN_TRANSACTION_FAILED'
+#### selectors(separated by each of the reducer that was combined)
+  - broadcast
+    - getBroacastState
+    - getTransactionStatus
+  - fields
+    - getFields
+    - getTo
+    - getData
+    - getGasLimit
+    - getGasPrice
+    - getValue
+    - getNonce
+  - meta
+    - getMetaState
+    - getDecimal
+    - getTokenTo
+    - getTokenValue
+    - isContractInteraction
+  - network
+    - getNetworkStatus
+    - nonceRequestPending
+    - nonceRequestFailed
+    - isNetworkRequestPending
+    - getGasEstimationPending
+    - getGasLimitEstimationTimedOut
+  - sign
+    - getSignState
+    - getSignedTx
+    - getWeb3Tx
+
+### transactions
+#### reducers
+  - fetchTxData
+  - setTxData
+  - resetTxData
+  - addRecentTx
+#### actions
+  - FETCH_TRANSACTION_DATA = 'TransactionsActions_FETCH_TRANSACTION_DATA',
+  - SET_TRANSACTION_DATA = 'TransactionsActions_SET_TRANSACTION_DATA',
+  - SET_TRANSACTION_ERROR = 'TransactionsActions_SET_TRANSACTION_ERROR',
+  - RESET_TRANSACTION_DATA = 'TransactionsActions_RESET_TRANSACTION_DATA',
+  - ADD_RECENT_TRANSACTION = 'TransactionsActions_ADD_RECENT_TRANSACTION'
+#### selectors
+  - getTransactionDatas
+  - getRecentTransactions
+
+### addressBook
+#### reducers
+  - returns the state with addresses and labels updated by the action's payload
+  - returns the state with addresses and labels updated with an action's payload entry deleted
+  - returns the state with entries updated by the action's payload
+  - returns the state with a particular entry in entries deleted
+#### actions
+  - SET_LABEL = 'ADDRESS_BOOK_SET_LABEL',
+  - CLEAR_LABEL = 'ADDRESS_BOOK_CLEAR_LABEL',
+  - SET_LABEL_ENTRY = 'ADDRESS_BOOK_SET_LABEL_ENTRY',
+  - CHANGE_LABEL_ENTRY = 'ADDRESS_BOOK_CHANGE_LABEL_ENTRY',
+  - SAVE_LABEL_ENTRY = 'ADDRESS_BOOK_SAVE_LABEL_ENTRY',
+  - CLEAR_LABEL_ENTRY = 'ADDRESS_BOOK_CLEAR_LABEL_ENTRY',
+  - REMOVE_LABEL_ENTRY = 'ADDRESS_BOOK_REMOVE_LABEL_ENTRY'
+#### selectors
+  - getAddressLabels
+  - getLabelAddresses
+  - getAddressLabelEntry
+  - getAddressLabelEtnries
+  - getAddressBookTableEntry
+  - getAccountAddressEntry
+  - getAddressLabelEntryFromAddress
+  - getAddressLabelRows
+  - getNextAddressLabelId
+
+### gas
+#### reducers
+  - fetchGasEstimates
+  - setGasEstimates
+#### actions
+  - FETCH_ESTIMATES = 'GAS_FETCH_ESTIMATES',
+  - SET_ESTIMATES = 'GAS_SET_ESTIMATES'
+#### selectors
+  - getEstimates
+  - getIsEstimating
+
+### routing(uses react-router-redux)
+
+
+
+
+
+
+
+
+
 
 ### Eximchain Governance Tab
 
@@ -69,6 +374,13 @@ As far as the app is concerned, any state data that needs to be reset or carried
   - `resetWallet: walletActions.resetWallet` (resets the wallet currently in use)
   - `setCurrentTo` (sets the address a transaction is to be sent to)
   - `resetTransactionRequested: transactionFieldsActions.resetTransactionRequested` (resets all transaction datafields)
+- ***What the index.tsx does***
+  - The index file for the governance tab is the entry point for all things related to the governance tab. Here we render the intial view of buttons that refer to the various contract function calls we want to make.
+  - When one of the contract call buttons are clicked depending on whether name of the buttons `GovernanceCall` is of the type `FreeContractCallName` or `CostlyContractCallName` the index will render the screen of `FreeContractCallScreen` or `CostlyContractCallScreen`
+  - Furthermore, a lot of the code is based of the contracts tabs, and we try to utilize some of the generative component elements, and taking a look at the `buildFunctionOptions` function will give you a clue as to how the buttons are rendered.
+  - When clicking on to the governance tab the `setCurrentTo` function will be set to the governance contract call screen.
+  - Another feature that is utilized throughout the app is that when clicking to other tabs the wallet state is reset through `resetWallet`. Likewise when clicking on to the governance tab the wallet is reset to ensure that the wallet in use is capable of sending transactions.
+  - Furthermore, when we return to the main button screen from any of the other contract call screens we make sure to `resetTransactionRequested` to sanitize the inputs when clicking another contract call button. 
 #### CostlyContractCallScreen
 - **Actions** that are utilized by this component to set various props within the AppState:
   - `showNotification: notificationsActions.showNotification`
@@ -119,7 +431,7 @@ As far as the app is concerned, any state data that needs to be reset or carried
     - We then get the signed transaction output which is passed in to a transaction reducer through a transaction broadcast action.
     - The reducer takes values defined in the App State, which have already defined the web3/geth node url we want to use.
     
-### FreeContractCallScreen
+#### FreeContractCallScreen
 
 - ***Actions*** used by this component
   - `showNotification: notificationsActions.showNotification`
@@ -135,16 +447,16 @@ As far as the app is concerned, any state data that needs to be reset or carried
     
 - How reads happen in `FreeContractCallScreen.tsx`
   - ***Grabbing the input values for the read***
+    - Input values are defined by the contract call instance, and depending on the contract call an additional chained contract call instance. 
+    - Some of the calls such as withdraw history input interface is that of the ballot history because the original input value is the output value from the ballot history, and the inputs for ballot history are easier to keep track of. 
   - ***Chaining contract calls***
+    - Calling contract calls in FreeContractCallScreen are absolutely free and does not require any value or exc to fund the call. Therefore, we can chain the output of one call in to another to provide the end user with the most relevant information on the ui.
+      - For example: TODO
   - ***How input validation works***
+    - TODO: name the functions that validate inputs
   - ***How the request is made through the web3 provider***
+    - TODO: nodeLib usage
 
-
-TODO: Component structure within the governance tab
-- Explain what props are passed in to FreeContractCall/CostlyContractCall components
-- How the props are used
-- What components are reused from Contracts
-- How the components are then rendered
 
 ### UI/Functionality Changes
 TODO: Go over Chris's changes to match our design language various css style changes

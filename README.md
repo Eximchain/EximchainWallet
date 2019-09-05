@@ -529,6 +529,15 @@ The rest of the components are there to support the two contract call screens. R
   - Another feature that is utilized throughout the app is that when clicking to other tabs the wallet state is reset through `resetWallet`. Likewise when clicking on to the governance tab the wallet is reset to ensure that the wallet in use is capable of sending transactions.
   - Furthermore, when we return to the main button screen from any of the other contract call screens we make sure to `resetTransactionRequested` to sanitize the inputs when clicking another contract call button. 
 ### CostlyContractCallScreen
+- **Props** (The props passed in from the index.tsx not related to grabbing or changing values in the AppState)
+  - walletChangeComponent(A react Fragment for changing the wallet currently in use)
+  - selectedFunction(the ContractOption that refers to the contract function we are calling)
+  - contractCall(the ContractFuncName that refers to the contract function we are calling)
+  - chainedCalls(array of ContractFuncNames that we use for chained contract read calls)
+  - chainedFunctions(array of ContractOptions that we might want to pass along for chaining contract read calls)
+  - goBack(navigation function to head back to main screen)
+ContractOption is the data struct surrounding the data regarding a particular contract function call.
+ContractFuncNames is simply a defined name that we utilize throughout the Governance tab. Technically, ContractFuncNames is more of an artifact that was worked in to utilize button naming and page titles, ideally we would want to derive the names from the ContractOptions
 - **Actions** that are utilized by this component to set various props within the AppState:
   - `showNotification: notificationsActions.showNotification`
   - `setDataField: transactionFieldsActions.setDataField`
@@ -547,7 +556,7 @@ The rest of the components are there to support the two contract call screens. R
   - `currentTransactionIndex: transactionSignSelectors.getSignState(state)`
   - `broadcastState: transactionBroadcastSelectors.getBroadcastState(state)`
   - `isValidAddress: configSelectors.getIsValidAddressFn(state)`
-- ***How signing and submitting transaction works in `CostlyContractCallScreen.tsx`***
+- **Breakdown of `CostlyContractCallScreen.tsx`**
   - ***Grabbing the input values for the transaction***
     - Render the input fields based on the contract function call instance
     - The inputs are then set as inputs are entered by a designated setter based on input type.
@@ -564,6 +573,7 @@ The rest of the components are there to support the two contract call screens. R
     - For some of the validation the inputs are parsed into a chained function call by handleChainedCalls, which has the functionality of the most basic form of the freecontractcall. Then we use those values, for example, check if a particular address has been validated through our governance contract. 
     - The validation, while not necessary for a valid transaction, prevents a good chunk of "bad" transactions from going through that will just eventually enter a failure state.
     - Ideally in the future we should better generalize how the validation works for each transaction.
+    - Once the input has been validated we can encode the input per the spec of the call that is being made by using `selectedFunction.contract.encodeInput`
   - ***Setting gas price and gas limits***
     - Gas limits on our ethereum based chain has been set at 8 million, so that our contract will simply not run in to bottlenecks with how far the chain can process state. Likewise, we had to modify mycryptowallet's default gas limits to reflect our changes because it was using the gas limits set by the ethereum chain.
     - Gas Pricing for the sake of our users who might not be apt in the intricansies of gas pricing we made a simpler ui to switch from a high gas price for faster transactions and lower gas price for slower transactions.
@@ -579,20 +589,26 @@ The rest of the components are there to support the two contract call screens. R
     - The reducer takes values defined in the App State, which have already defined the web3/geth node url we want to use.
     
 ### FreeContractCallScreen
+- **Props** (passed in by the index.tsx not related to grabbing or changing values from the AppState)
+  - selectedFunction(same as in CostlyContractCallScreen)
+  - contractCall(same as in CostlyContractCallScreen)
+  - chainedCalls(same as in CostlyContractCallScreen)
+  - chainedFunctions(same as in CostlyContractCallScreen)
+  - goBack(same as in CostlyContractCallScreen)
 
-- ***Actions*** used by this component
+- **Actions** used by this component
   - `showNotification: notificationsActions.showNotification`
   - `setDataField: transactionFieldsActions.setDataField`
   - `resetTransactionRequested: transactionFieldsActions.resetTransactionRequested`
   - `setAsContractInteraction: transactionMetaActions.setAsContractInteraction`
   - `setAsViewAndSend: transactionMetaActions.setAsViewAndSend`
   - `setCurrentValue: transactionActions.setCurrentValue`
-- ***Selectors*** used by this component
+- **Selectors** used by this component
   - `nodeLib: configNodesSelectors.getNodeLib(state)`
   - `to: transactionFieldsSelectors.getTo(state)`
   - `dataExists: transactionSelectors.getDataExists(state)`
     
-- How reads happen in `FreeContractCallScreen.tsx`
+- Breakdown of `FreeContractCallScreen.tsx`
   - ***Grabbing the input values for the read***
     - Input values are defined by the contract call instance, and depending on the contract call an additional chained contract call instance. 
     - Some of the calls such as withdraw history input interface is that of the ballot history because the original input value is the output value from the ballot history, and the inputs for ballot history are easier to keep track of. 

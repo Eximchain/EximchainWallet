@@ -41,10 +41,279 @@ The main way any of the data within the app is interacted with is through the ap
       - addCustomNode
       - removeCustomNode
     - `staticNodes`
-      - 
     - `selectedNodes`
+      - changeNodeSucceeded
+      - changeNodeRequested
+      - changeNodeFailed
 #### actions
+  - CHANGE_REQUESTED = 'CONFIG_NODES_SELECTED_CHANGE_REQUESTED',
+  - CHANGE_SUCCEEDED = 'CONFIG_NODES_SELECTED_CHANGE_SUCCEEDED',
+  - CHANGE_FAILED = 'CONFIG_NODES_SELECTED_CHANGE_FAILED',
+  - CHANGE_REQUESTED_ONETIME = 'CONFIG_NODES_SELECTED_CHANGE_REQUESTED_ONETIME',
+  - CHANGE_FORCE = 'CONFIG_NODES_SELECTED_CHANGE_FORCE'
 #### selectors
+  - getNodes
+  - getSelectedNodes
+  - getPreviouslySelectedNode
+  - isNodeChanging
+  - getNodeId
+  
+### notifications
+#### reducers
+  - showNotification
+  - closeNotification
+#### actions
+  - SHOW = 'SHOW_NOTIFICATION',
+  - CLOSE = 'CLOSE_NOTIFICATION'
+#### selectors
+  NONE
+
+### onboarding
+#### reducers
+  - returns a state with onboardingState false
+  - returns the action.payload of a slide
+#### actions
+  - COMPLETE = 'ONBOARDING_COMPLETE',
+  - SET_SLIDE = 'ONBOARDING_SET_SLIDE'
+#### selectors
+  - getOnboarding
+  - getActive
+  - getSlide
+
+### wallet
+#### reducers
+  - setWallet
+  - resetWallet
+  - setBalancePending
+  - setBalanceFullfilled
+  - setBalanceRejected
+  - setWalletPending
+  - setTokenBalancesPending
+  - setTokenBalancesFulfilled
+  - setTokenBalancesRejected
+  - setTokenBalancePending
+  - setTokenBalanceFulfilled
+  - setTokenBalanceRejected
+  - scanWalletForTokens
+  - setWalletTokens
+  - setWalletConfig
+  - setPasswordPending
+#### actions
+  - UNLOCK_PRIVATE_KEY = 'WALLET_UNLOCK_PRIVATE_KEY',
+  - UNLOCK_KEYSTORE = 'WALLET_UNLOCK_KEYSTORE',
+  - UNLOCK_MNEMONIC = 'WALLET_UNLOCK_MNEMONIC',
+  - UNLOCK_WEB3 = 'WALLET_UNLOCK_WEB3',
+  - SET = 'WALLET_SET',
+  - SET_BALANCE_PENDING = 'WALLET_SET_BALANCE_PENDING',
+  - SET_BALANCE_FULFILLED = 'WALLET_SET_BALANCE_FULFILLED',
+  - SET_BALANCE_REJECTED = 'WALLET_SET_BALANCE_REJECTED',
+  - SET_TOKEN_BALANCES_PENDING = 'WALLET_SET_TOKEN_BALANCES_PENDING',
+  - SET_TOKEN_BALANCES_FULFILLED = 'WALLET_SET_TOKEN_BALANCES_FULFILLED',
+  - SET_TOKEN_BALANCES_REJECTED = 'WALLET_SET_TOKEN_BALANCES_REJECTED',
+  - SET_PENDING = 'WALLET_SET_PENDING',
+  - SET_NOT_PENDING = 'WALLET_SET_NOT_PENDING',
+  - SET_TOKEN_BALANCE_PENDING = 'WALLET_SET_TOKEN_BALANCE_PENDING',
+  - SET_TOKEN_BALANCE_FULFILLED = 'WALLET_SET_TOKEN_BALANCE_FULFILLED',
+  - SET_TOKEN_BALANCE_REJECTED = 'WALLET_SET_TOKEN_BALANCE_REJECTED',
+  - SCAN_WALLET_FOR_TOKENS = 'WALLET_SCAN_WALLET_FOR_TOKENS',
+  - SET_WALLET_TOKENS = 'WALLET_SET_WALLET_TOKENS',
+  - SET_CONFIG = 'WALLET_SET_CONFIG',
+  - RESET = 'WALLET_RESET',
+  - SET_PASSWORD_PENDING = 'WALLET_SET_PASSWORD_PENDING',
+  - REFRESH_ACCOUNT_BALANCE = 'WALLET_REFRESH_ACCOUNT_BALANCE',
+  - REFRESH_TOKEN_BALANCES = 'WALLET_REFRESH_TOKEN_BALANCES'
+#### selectors
+  - getWalletInst
+  - getWalletConfig
+  - isWalletFullyUnlocked
+  - getWallet
+  - getWalletTYpe
+  - isUnlocked
+  - isEtherBalancePending
+  - getEtherBalance
+  - getRecentAddresses
+  
+### deterministicWallets
+#### reducers
+  - returns state with modified wallets with a value from the action payload
+  - returns state with modified desiredToken with a value from the action payload
+  - returns state with modified wallets set by updateWalletValues
+#### actions
+  - GET = 'DETERMINISTIC_WALLETS_GET_WALLETS'
+  - SET = 'DETERMINISTIC_WALLETS_SET_WALLETS',
+  - SET_DESIRED_TOKEN = 'DETERMINISTIC_WALLETS_SET_DESIRED_TOKEN',
+  - UPDATE_WALLET = 'DETERMINISTIC_WALLETS_UPDATE_WALLET'
+#### selectors
+  - getWallets
+  - getDesiredToken
+
+### transaction
+#### reducers(combined reducers)
+  - transactionBroadcastReducer
+    - handleQueue
+    - handleSuccess
+    - handleFailure
+  - transactionFieldsReducer
+    - updateField('to')
+    - updateField('value')
+    - updateField('data')
+    - updateField('gasLimit')
+    - updateField('nonce')
+    - updateField('gasPrice')
+    - tokenToEther
+    - etherToToken
+    - tokenToToken
+    - reset
+  - transactionMetaReducer
+    - unitMeta
+    - updateMetaField('tokenValue')
+    - updateMetaField('tokenTo')
+    - updateMetaField('from')
+    - tokenToEtherMeta
+    - etherToTokenMeta
+    - tokenToTokenMeta
+    - returns the state with the isContractInteraction value to false
+    - returns the state with the isContractInteraction value is true
+  - transactionNetworkReducer
+    - getNextState(FIELD) where FIELD can be: gasEstimationStatus, getFromStatus, getNonceStatus
+  - transactionSignReducer
+    - signTransactionRequested
+    - signLocalTransactionSucceeded
+    - signWeb3TransactionSucceeded
+    - signTransactionFailed
+    - resetSign
+#### actions(separated by each of the reducer that was combined)
+  - broadcast
+    - WEB3_TRANSACTION_REQUESTED = 'BROADCAST_WEB3_TRANSACTION_REQUESTED',
+    - TRANSACTION_SUCCEEDED = 'BROADCAST_TRANSACTION_SUCCEEDED',
+    - LOCAL_TRANSACTION_REQUESTED = 'BROADCAST_LOCAL_TRANSACTION_REQUESTED',
+    - TRANSACTION_QUEUED = 'BROADCAST_TRANSACTION_QUEUED',
+    - TRANSACTION_FAILED = 'BROADCAST_TRANSACTION_FAILED'
+  - fields
+    - GAS_LIMIT_INPUT = 'GAS_LIMIT_INPUT',
+    - GAS_PRICE_INPUT = 'GAS_PRICE_INPUT',
+    - GAS_PRICE_INPUT_INTENT = 'GAS_PRICE_INPUT_INTENT',
+    - DATA_FIELD_INPUT = 'DATA_FIELD_INPUT',
+    - NONCE_INPUT = 'NONCE_INPUT',
+    - GAS_LIMIT_FIELD_SET = 'GAS_LIMIT_FIELD_SET',
+    - DATA_FIELD_SET = 'DATA_FIELD_SET',
+    - TO_FIELD_SET = 'TO_FIELD_SET',
+    - VALUE_FIELD_SET = 'VALUE_FIELD_SET',
+    - NONCE_FIELD_SET = 'NONCE_FIELD_SET',
+    - GAS_PRICE_FIELD_SET = 'GAS_PRICE_FIELD_SET'
+  - meta
+    - TOKEN_TO_META_SET = 'TOKEN_TO_META_SET',
+    - UNIT_META_SET = 'UNIT_META_SET',
+    - TOKEN_VALUE_META_SET = 'TOKEN_VALUE_META_SET',
+    - IS_CONTRACT_INTERACTION = 'IS_CONTRACT_INTERACTION',
+    - IS_VIEW_AND_SEND = 'IS_VIEW_AND_SEND'
+  - network
+    - ESTIMATE_GAS_REQUESTED = 'ESTIMATE_GAS_REQUESTED',
+    - ESTIMATE_GAS_SUCCEEDED = 'ESTIMATE_GAS_SUCCEEDED',
+    - ESTIMATE_GAS_FAILED = 'ESTIMATE_GAS_FAILED',
+    - ESTIMATE_GAS_TIMEDOUT = 'ESTIMATE_GAS_TIMEDOUT',
+    - GET_FROM_REQUESTED = 'GET_FROM_REQUESTED',
+    - GET_FROM_SUCCEEDED = 'GET_FROM_SUCCEEDED',
+    - GET_FROM_FAILED = 'GET_FROM_FAILED',
+    - GET_NONCE_REQUESTED = 'GET_NONCE_REQUESTED',
+    - GET_NONCE_SUCCEEDED = 'GET_NONCE_SUCCEEDED',
+    - GET_NONCE_FAILED = 'GET_NONCE_FAILED'
+  - sign
+    - SIGN_TRANSACTION_REQUESTED = 'SIGN_TRANSACTION_REQUESTED',
+    - SIGN_WEB3_TRANSACTION_SUCCEEDED = 'SIGN_WEB3_TRANSACTION_SUCCEEDED',
+    - SIGN_LOCAL_TRANSACTION_SUCCEEDED = 'SIGN_LOCAL_TRANSACTION_SUCCEEDED',
+    - SIGN_TRANSACTION_FAILED = 'SIGN_TRANSACTION_FAILED'
+#### selectors(separated by each of the reducer that was combined)
+  - broadcast
+    - getBroacastState
+    - getTransactionStatus
+  - fields
+    - getFields
+    - getTo
+    - getData
+    - getGasLimit
+    - getGasPrice
+    - getValue
+    - getNonce
+  - meta
+    - getMetaState
+    - getDecimal
+    - getTokenTo
+    - getTokenValue
+    - isContractInteraction
+  - network
+    - getNetworkStatus
+    - nonceRequestPending
+    - nonceRequestFailed
+    - isNetworkRequestPending
+    - getGasEstimationPending
+    - getGasLimitEstimationTimedOut
+  - sign
+    - getSignState
+    - getSignedTx
+    - getWeb3Tx
+
+### transactions
+#### reducers
+  - fetchTxData
+  - setTxData
+  - resetTxData
+  - addRecentTx
+#### actions
+  - FETCH_TRANSACTION_DATA = 'TransactionsActions_FETCH_TRANSACTION_DATA',
+  - SET_TRANSACTION_DATA = 'TransactionsActions_SET_TRANSACTION_DATA',
+  - SET_TRANSACTION_ERROR = 'TransactionsActions_SET_TRANSACTION_ERROR',
+  - RESET_TRANSACTION_DATA = 'TransactionsActions_RESET_TRANSACTION_DATA',
+  - ADD_RECENT_TRANSACTION = 'TransactionsActions_ADD_RECENT_TRANSACTION'
+#### selectors
+  - getTransactionDatas
+  - getRecentTransactions
+
+### addressBook
+#### reducers
+  - returns the state with addresses and labels updated by the action's payload
+  - returns the state with addresses and labels updated with an action's payload entry deleted
+  - returns the state with entries updated by the action's payload
+  - returns the state with a particular entry in entries deleted
+#### actions
+  - SET_LABEL = 'ADDRESS_BOOK_SET_LABEL',
+  - CLEAR_LABEL = 'ADDRESS_BOOK_CLEAR_LABEL',
+  - SET_LABEL_ENTRY = 'ADDRESS_BOOK_SET_LABEL_ENTRY',
+  - CHANGE_LABEL_ENTRY = 'ADDRESS_BOOK_CHANGE_LABEL_ENTRY',
+  - SAVE_LABEL_ENTRY = 'ADDRESS_BOOK_SAVE_LABEL_ENTRY',
+  - CLEAR_LABEL_ENTRY = 'ADDRESS_BOOK_CLEAR_LABEL_ENTRY',
+  - REMOVE_LABEL_ENTRY = 'ADDRESS_BOOK_REMOVE_LABEL_ENTRY'
+#### selectors
+  - getAddressLabels
+  - getLabelAddresses
+  - getAddressLabelEntry
+  - getAddressLabelEtnries
+  - getAddressBookTableEntry
+  - getAccountAddressEntry
+  - getAddressLabelEntryFromAddress
+  - getAddressLabelRows
+  - getNextAddressLabelId
+
+### gas
+#### reducers
+  - fetchGasEstimates
+  - setGasEstimates
+#### actions
+  - FETCH_ESTIMATES = 'GAS_FETCH_ESTIMATES',
+  - SET_ESTIMATES = 'GAS_SET_ESTIMATES'
+#### selectors
+  - getEstimates
+  - getIsEstimating
+
+### routing(uses react-router-redux)
+
+
+
+
+
+
+
+
 
 
 ### Eximchain Governance Tab

@@ -531,21 +531,6 @@ The rest of the components are there to support the two contract call screens. R
 ### CostlyContractCallScreen
 - **States**
   - stage(Describes the current stage of the contractcallscreen follows the single page model)
-    - CONSTRUCT_TRANSACTION_SCREEN
-      - The start screen for the costlyContractScreen
-      - Handles grabbing the input
-      - Handles input validation
-      - Handles chained contract calls
-      - Sets the data params in the AppState based on the inputs accordingly 
-    - SUBMIT_TRANSACTION_SCREEN
-      - Handles logging in to the wallet(if you haven't logged in already)
-      - Handles Gas Pricing/Gas Limits 
-      - Handles signing the transaction
-      - Handles submitting the transaction
-    - RESULT_SCREEN
-      - Handles the successful return value of the submitted transaction
-    - ERROR_SCREEN
-      - Handles the unsuccessful return value of a the submitted transaction
   -TODO:rest of the states
 - **Props** (The props passed in from the index.tsx not related to grabbing or changing values in the AppState)
   - walletChangeComponent(A react Fragment for changing the wallet currently in use)
@@ -575,6 +560,25 @@ ContractFuncNames is simply a defined name that we utilize throughout the Govern
   - `broadcastState: transactionBroadcastSelectors.getBroadcastState(state)`
   - `isValidAddress: configSelectors.getIsValidAddressFn(state)`
 - **Breakdown of `CostlyContractCallScreen.tsx`**
+
+  - Once in the view CostlyContractCallScreen the component's views are controlled in stages which are:
+    - CONSTRUCT_TRANSACTION_SCREEN
+      - The start screen for the costlyContractScreen
+      - Handles grabbing the input
+      - Handles input validation
+      - Handles chained contract calls
+      - Sets the data params in the AppState based on the inputs accordingly 
+    - SUBMIT_TRANSACTION_SCREEN
+      - Handles logging in to the wallet(if you haven't logged in already)
+      - Handles Gas Pricing/Gas Limits 
+      - Handles signing the transaction
+      - Handles submitting the transaction
+    - RESULT_SCREEN
+      - Handles the successful return value of the submitted transaction
+    - ERROR_SCREEN
+      - Handles the unsuccessful return value of a the submitted transaction
+
+  
   - ***Grabbing the input values for the transaction***
     - Render the input fields based on the contract function call instance
     - The inputs are then set as inputs are entered by a designated setter based on input type.

@@ -529,6 +529,24 @@ The rest of the components are there to support the two contract call screens. R
   - Another feature that is utilized throughout the app is that when clicking to other tabs the wallet state is reset through `resetWallet`. Likewise when clicking on to the governance tab the wallet is reset to ensure that the wallet in use is capable of sending transactions.
   - Furthermore, when we return to the main button screen from any of the other contract call screens we make sure to `resetTransactionRequested` to sanitize the inputs when clicking another contract call button. 
 ### CostlyContractCallScreen
+- **States**
+  - stage(Describes the current stage of the contractcallscreen follows the single page model)
+    - CONSTRUCT_TRANSACTION_SCREEN
+      - The start screen for the costlyContractScreen
+      - Handles grabbing the input
+      - Handles input validation
+      - Handles chained contract calls
+      - Sets the data params in the AppState based on the inputs accordingly 
+    - SUBMIT_TRANSACTION_SCREEN
+      - Handles logging in to the wallet(if you haven't logged in already)
+      - Handles Gas Pricing/Gas Limits 
+      - Handles signing the transaction
+      - Handles submitting the transaction
+    - RESULT_SCREEN
+      - Handles the successful return value of the submitted transaction
+    - ERROR_SCREEN
+      - Handles the unsuccessful return value of a the submitted transaction
+  -TODO:rest of the states
 - **Props** (The props passed in from the index.tsx not related to grabbing or changing values in the AppState)
   - walletChangeComponent(A react Fragment for changing the wallet currently in use)
   - selectedFunction(the ContractOption that refers to the contract function we are calling)

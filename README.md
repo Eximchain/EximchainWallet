@@ -3,13 +3,49 @@
 Eximchain wallet is a desktop wallet client that connects to the Eximchain network. We are currently still in beta, so if you see any issues, please report them to [support@eximchain.com](mailto:support@eximchain.com)
 
 
-## Major Changes From MyCryptoWallet
-This forked MyCryptoWallet contains some notable changes consisting of the following:
+## Overview
+This wallet is a forked version of MyCryptoWallet with some modifications specific to our very own Eximchain Network. Notably, we have added a governance tab that is used for interacting with the governance smart contract of our network, aesthetic changes to be on brand, and some ui/ux modifications for easier usage.
 
-- Eximchain Governance Tab
-- UI/Functionality Changes
-- Bug Patches/Fixes
-- Signing Releases
+
+
+## Data Mangement
+The main way any of the data within the app is interacted with is through the aptly named `AppState`, which describes the wallet app's state. The wallet utilizes the redux model of actions to signify a change that needs to happen, a reducer that will take the action and resolve it into a function that can modify the state, and selectors to get useful data from the state. Below are the relevant pieces of AppState that have been used in our changes or modified.
+
+### App State(Data Structure)
+  - `config` defines the chain config of the network you are connecting to,the blockexplorer url, and the web3/geth node url. Also, any other app related settings.
+  - `notifications` multipurpose notifications that can be utilized throughout the app to notify a successful/failed transaction or any other important information we see fit.
+  - `onboarding` modals that show how to use the app for the first time
+  - `wallet` the current actual wallet that is active
+  - `deterministicWallets` related to wallet but it can be used to describe a different dpath for a particular private key
+  - `transaction` the current transaction being constructed
+  - `transactions` a record of transaction history
+  - `addressBook` a local storage of mapping of human readable names to ethereum addresses
+  - `gas` keeps track of gas pricing and gas limits for a transaction
+  - `routing` routing across the app
+### config
+#### reducer
+  - `meta`
+    - changeLanguage(not in use)
+    - setOnline
+    - setOffline
+    - toggleAutoGasLimitEstimation(always turned off)
+    - setLatestBlock
+    - setTheme(not in use)
+  - `networks` combines the reducer for custom and static Networks
+    - customNetworks 
+      - addCustomNetwork
+      - removeCustomNetwork
+    - staticNetworks(Currently modified to just return back the current state, so it doesn't do anything)
+  - `nodes` combines the reducer of customNodes, staticNodes, and selectedNodes
+    - `customNodes`
+      - addCustomNode
+      - removeCustomNode
+    - `staticNodes`
+      - 
+    - `selectedNodes`
+#### actions
+#### selectors
+
 
 ### Eximchain Governance Tab
 

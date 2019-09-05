@@ -1,13 +1,184 @@
-
 # Eximchain Wallet
 
 Eximchain wallet is a desktop wallet client that connects to the Eximchain network. We are currently still in beta, so if you see any issues, please report them to [support@eximchain.com](mailto:support@eximchain.com)
 
+## [**⬇︎ Download the latest release**](https://github.com/Eximchain/EximchainWallet/releases)
+
+Table of Contents
+=================
+
+* [Overview](#overview)
+* [Requirements](#requirements)
+* [Running the App](#running-the-app)
+    * [Development](#development)
+      * [Handling HTTPS](#handling-https)
+    * [Build Releases](#build-releases)
+    * [Signing Releases](#signing-releases)
+    * [Address Derivation Checker:](#address-derivation-checker)
+      * [The derivation checker utility assumes that you have:](#the-derivation-checker-utility-assumes-that-you-have)
+      * [Docker setup instructions:](#docker-setup-instructions)
+      * [Run Derivation Checker](#run-derivation-checker)
+* [Folder structure:](#folder-structure)
+* [Data Mangement](#data-mangement)
+    * [App State(Data Structure)](#app-statedata-structure)
+    * [config](#config)
+    * [notifications](#notifications)
+    * [onboarding](#onboarding)
+    * [wallet](#wallet)
+    * [deterministicWallets](#deterministicwallets)
+    * [transaction](#transaction)
+    * [transactions](#transactions)
+    * [addressBook](#addressbook)
+    * [gas](#gas)
+    * [routing(uses react-router-redux)](#routinguses-react-router-redux)
+* [Eximchain Governance Tab](#eximchain-governance-tab)
+    * [Governance/Index.tsx](#governanceindextsx)
+    * [CostlyContractCallScreen](#costlycontractcallscreen)
+    * [FreeContractCallScreen](#freecontractcallscreen)
+* [Changelog](#changelog)
+    * [Refreshed UI/UX](#refreshed-uiux)
+    * [Bug Patches/Fixes](#bug-patchesfixes)
+    * [More information is available on the <a href="https://eximchain.zendesk.com/hc/en-us" rel="nofollow">Help Desk</a>](#more-information-is-available-on-the-help-desk)
+      
+
+Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 
 ## Overview
 This wallet is a forked version of MyCryptoWallet with some modifications specific to our very own Eximchain Network. Notably, we have added a governance tab that is used for interacting with the governance smart contract of our network, aesthetic changes to be on brand, and some ui/ux modifications for easier usage.
 
+## Requirements
 
+* Node 8.9.4\*
+* Yarn >= 1.7.0\*\*
+* Python 2.7.X\*\*\*
+
+<sub>\*Higher versions should work fine, but may cause inconsistencies. It's suggested you run 8.9.4 using `nvm`.</sub>
+<br/>
+<sub>**npm is NOT supported for package management. Eximchain Wallet uses yarn.lock to ensure sub-dependency versions are pinned, so yarn is required to install node_modules</sub>
+<br/>
+<sub>\***Python 3 is **not** supported, since our dependencies use `node-gyp`.</sub>
+
+## Running the App
+
+After `yarn`ing all dependencies you can run various commands depending on what you want to do:
+
+### Development
+
+```bash
+# run app in dev mode in browser, rebuild on file changes
+yarn dev
+```
+
+```bash
+# run app in dev mode in electron, rebuild on file changes
+yarn dev:electron
+```
+
+#### Handling HTTPS
+
+Some parts of the site, such as the Ledger wallet, require an HTTPS environment to work. To develop on HTTPS, do the following:
+
+1.  Create your own SSL Certificate (Heroku has a [nice guide here](https://devcenter.heroku.com/articles/ssl-certificate-self))
+2.  Move the `.key` and `.crt` files into `webpack_config/server.*`
+3.  Run the following command:
+
+```bash
+yarn dev:https
+```
+
+### Build Releases
+
+```bash
+# builds the production server app
+yarn build
+```
+
+```bash
+# builds the downloadable version of the site
+yarn build:downloadable
+```
+
+```bash
+# builds the electron apps
+yarn build:electron
+
+# builds only one OS's electron app
+yarn build:electron:(osx|linux|windows)
+```
+
+All of these builds are output to a folder in `dist/`.
+
+### Signing Releases
+There are some issues still withstanding with trying to utilize electron-builder's signing. 
+  - You can follow the steps outlined here(https://www.electron.build/code-signing).
+  - However, after one successfuly run I have been unable to once again get code-signing to work. 
+  - Windows signing is still not resolved.
+  - Ideally we mimic the set up that MyCrypto already uses with jenkins to handle the signed releases
+  - In the mean time I should work on getting something like a md5 checksum and update the hash in this readme so people can check they have the correct version. 
+
+
+### Address Derivation Checker:
+
+EthereumJS-Util previously contained a bug that would incorrectly derive addresses from private keys with a 1/128 probability of occurring. A summary of this issue can be found [here](https://www.reddit.com/r/ethereum/comments/48rt6n/using_myetherwalletcom_just_burned_me_for/d0m4c6l/).
+
+As a reactionary measure, the address derivation checker was created.
+
+To test for correct address derivation, the address derivation checker uses multiple sources of address derivation (EthereumJS and PyEthereum) to ensure that multiple official implementations derive the same address for any given private key.
+
+#### The derivation checker utility assumes that you have:
+
+1.  Docker installed/available
+2.  [dternyak/eth-priv-to-addr](https://hub.docker.com/r/dternyak/eth-priv-to-addr/) pulled from DockerHub
+
+#### Docker setup instructions:
+
+1.  Install docker (on macOS, [Docker for Mac](https://docs.docker.com/docker-for-mac/) is suggested)
+2.  `docker pull dternyak/eth-priv-to-addr`
+
+#### Run Derivation Checker
+
+The derivation checker utility runs as part of the integration test suite.
+
+```bash
+yarn test:int
+```
+
+## Folder structure:
+
+```
+│
+├── common
+│   ├── actions - Application actions
+│   ├── api - Services and XHR utils
+│   ├── assets - Images, fonts, etc.
+│   ├── components - Components according to "Redux philosophy"
+│   ├── config - Various config data and hard-coded json
+│   ├── containers - Containers according to "Redux philosophy" any major views will be inside containers
+│   │   ├── OnboardingModal
+│   │   ├── Tabs - breaks down the major pieces that the entire app is divided in to
+│   │   │   ├── ... - These tabs also include their own components folder which consists of
+│   │   │   ├── ... - the pieces that aren't being shared across the app.
+│   │   │   ├── Governance
+│   │   │   └── ... (BroadcastTx, CheckTransaction)
+│   │   └─ TabSection
+│   ├── libs - Framework-agnostic libraries and business logic
+│   ├── reducers - Redux reducers
+│   ├── sagas - Redux sagas
+│   ├── sass - SCSS styles, variables, mixins
+│   ├── selectors - Redux selectors
+│   ├── translations - Language JSON dictionaries
+│   ├── typescript - Typescript definition files
+│   ├── utils - Common use utility functions
+│   ├── index.tsx - Entry point for app
+│   ├── index.html - Html template file for html-webpack-plugin
+│   ├── Root.tsx - Root component for React
+│   └── store.ts - Redux reducer combiner and middleware injector
+├── electron-app - Code for the native electron app
+├── jest_config - Jest testing configuration
+├── spec - Jest unit tests, mirror's common's structure
+├── static - Files that don't get compiled, just moved to build
+└── webpack_config - Webpack configuration
+```
 
 ## Data Mangement
 The main way any of the data within the app is interacted with is through the aptly named `AppState`, which describes the wallet app's state. The wallet utilizes the redux model of actions to signify a change that needs to happen, a reducer that will take the action and resolve it into a function that can modify the state, and selectors to get useful data/components from the state. Below are the relevant pieces of AppState that have been used in our changes or modified.
@@ -341,6 +512,7 @@ The rest of the components are there to support the two contract call screens. R
     - Within the index file of the governance tab the functions that need be made available to the costlycontractcall or freecontractcall are defined. 
     - Filter through costlycontractcall defined functions and we create buttons based on the functions, we do the same for the freecontractcall defined functions. We do this by using the buildFunctionOptions which returns the button components that needs to be rendered.
     - When a button is clicked the instance of the function is passed through either to the costlycontractcall or freecontractcall component alongside additional props that is specific to each component.
+
 ### Governance/Index.tsx
 - Main child components/
   - CostlyContractCallScreen
@@ -458,7 +630,6 @@ The rest of the components are there to support the two contract call screens. R
   - One major bug that arrose, while working on this version of the wallet, was that ledger actually broke compatibility with MyCrypto with their firmware update. This would not be fixed by MyCrypto themselves, and I had to introduce my very own fix that is documented in this issue(https://github.com/MyCryptoHQ/MyCrypto/issues/2439) on MyCryptoWallet's repository.
   - Transaction history had been broken with the version of MyCryptoWallet we forked off of because the most up to date version at the time in the repo of MyCrypto is technically a development version. This is now fixed
   - Updated packages to keep in line with some of the npm packages that suffered security vulnerablities in line with github's suggestions
-
 
 ## Signing Releases
 There are some issues still withstanding with trying to utilize electron-builder's signing. 

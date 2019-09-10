@@ -196,24 +196,24 @@ The main way any of the data within the app is interacted with is through the ap
   - `routing` routing across the app
 ### config
 - reducer
-  - `meta`
+  - `meta`: Controls various app meta states such as the language, whether or not the app is connecting to a node, theme, latest block, and a universal toggle for gas estimation. 
     - changeLanguage(not in use)
     - setOnline
     - setOffline
     - toggleAutoGasLimitEstimation(always turned off)
     - setLatestBlock
     - setTheme(not in use)
-  - `networks` combines the reducer for custom and static Networks
-    - customNetworks 
+  - `networks`: combines the reducer for custom and static Networks
+    - customNetworks: Handles adding/removing a network config manually
       - addCustomNetwork
       - removeCustomNetwork
     - staticNetworks(Currently modified to just return back the current state, so it doesn't do anything)
   - `nodes` combines the reducer of customNodes, staticNodes, and selectedNodes
-    - `customNodes`
+    - `customNodes`: Handles adding/removing a node config manually
       - addCustomNode
       - removeCustomNode
     - `staticNodes`
-    - `selectedNodes`
+    - `selectedNodes`: Will maintain the state of the current node the app is connected to and any state regarding whether changing nodes was successful or not.
       - changeNodeSucceeded
       - changeNodeRequested
       - changeNodeFailed
@@ -231,7 +231,7 @@ The main way any of the data within the app is interacted with is through the ap
   - getNodeId
   
 ### notifications
-- reducers
+- reducers: Handles all notifications in the app by passing the payload of the notification's content to showNotifcaction which displays it, and you can close particular notification by passing the notification as a payload to closeNotification. 
   - showNotification
   - closeNotification
 - actions
@@ -241,7 +241,7 @@ The main way any of the data within the app is interacted with is through the ap
   NONE
 
 ### onboarding
-- reducers
+- reducers: Handles whether or not the onboarding modals should be displayed, and stores that status is the appState.
   - returns a state with onboardingState false
   - returns the action.payload of a slide
 - actions
@@ -253,8 +253,8 @@ The main way any of the data within the app is interacted with is through the ap
   - getSlide
 
 ### wallet
-- reducers
-  - setWallet
+- reducers: Basically setters for statuses and config values related to the wallet
+  - setWallet: Keypoint this setter also adds the wallet address to addRecentAddress for storage in the addressbook.
   - resetWallet
   - setBalancePending
   - setBalanceFullfilled
@@ -306,7 +306,7 @@ The main way any of the data within the app is interacted with is through the ap
   - getRecentAddresses
   
 ### deterministicWallets
-- reducers
+- reducers 
   - returns state with modified wallets with a value from the action payload
   - returns state with modified desiredToken with a value from the action payload
   - returns state with modified wallets set by updateWalletValues
@@ -321,11 +321,11 @@ The main way any of the data within the app is interacted with is through the ap
 
 ### transaction
 - reducers(combined reducers)
-  - transactionBroadcastReducer
+  - transactionBroadcastReducer: Handles queue a transaction for broadcasting, and once broadcasted whether the transaction was successful or failed
     - handleQueue
     - handleSuccess
     - handleFailure
-  - transactionFieldsReducer
+  - transactionFieldsReducer: Any action that changes or resets the fields for a transaction that is being constructed is handled here. It also handles exchange rates of various erc20 token to ether or erc20 token to erc20 token.
     - updateField('to')
     - updateField('value')
     - updateField('data')
@@ -336,7 +336,7 @@ The main way any of the data within the app is interacted with is through the ap
     - etherToToken
     - tokenToToken
     - reset
-  - transactionMetaReducer
+  - transactionMetaReducer: Handles the actions that declares that the transaction is a contractInteraction, and handles any other transaction meta data associated with contract interactions or erc20 tokens.
     - unitMeta
     - updateMetaField('tokenValue')
     - updateMetaField('tokenTo')
@@ -346,9 +346,9 @@ The main way any of the data within the app is interacted with is through the ap
     - tokenToTokenMeta
     - returns the state with the isContractInteraction value to false
     - returns the state with the isContractInteraction value is true
-  - transactionNetworkReducer
+  - transactionNetworkReducer: Maintains the status state for various transaction fields that can be retrieved by making calls to the node. IE. nonce or gas.
     - getNextState(FIELD) where FIELD can be: gasEstimationStatus, getFromStatus, getNonceStatus
-  - transactionSignReducer
+  - transactionSignReducer: Maintains the status state for whether a transaction was signed, and can also reset those states to null if a new transaction is being constructed and it hasn't been tried for signing yet.
     - signTransactionRequested
     - signLocalTransactionSucceeded
     - signWeb3TransactionSucceeded
@@ -426,7 +426,7 @@ The main way any of the data within the app is interacted with is through the ap
     - getWeb3Tx
 
 ### transactions
-- reducers
+- reducers: fetchTxData adds a txData entry regardless of a transaction has been mined. setTxData will generally be called after the transaction has been mined/confirmed or failed to set those fields for that particular transaction. resetTxData will reset the entire state of txData and recent. addRecentTx will add the payload(a transaction) to the array recent.  
   - fetchTxData
   - setTxData
   - resetTxData
@@ -467,8 +467,8 @@ The main way any of the data within the app is interacted with is through the ap
   - getNextAddressLabelId
 
 ### gas
-- reducers
-  - fetchGasEstimates
+- reducers: fetchGasEstimates just sets the status of gas calculation to true, and setGasEstimate will set the status to false and use the payload(which should be the gas estimates) to equal estimates.
+  - fetchGasEstimates 
   - setGasEstimates
 - actions
   - FETCH_ESTIMATES = 'GAS_FETCH_ESTIMATES',

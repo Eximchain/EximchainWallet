@@ -218,11 +218,11 @@ The main way any of the data within the app is interacted with is through the ap
       - changeNodeRequested
       - changeNodeFailed
 - actions
-  - CHANGE_REQUESTED = 'CONFIG_NODES_SELECTED_CHANGE_REQUESTED',
-  - CHANGE_SUCCEEDED = 'CONFIG_NODES_SELECTED_CHANGE_SUCCEEDED',
-  - CHANGE_FAILED = 'CONFIG_NODES_SELECTED_CHANGE_FAILED',
-  - CHANGE_REQUESTED_ONETIME = 'CONFIG_NODES_SELECTED_CHANGE_REQUESTED_ONETIME',
-  - CHANGE_FORCE = 'CONFIG_NODES_SELECTED_CHANGE_FORCE'
+  - changeNodeRequested: pass in the node to change to as a payload
+  - changeNodeSucceeded: pass in the node successfully connected to as a payload
+  - changeNodeFailed
+  - changeNodeRequestedOneTime: pass in the node to the saga that handles changing the node one time.
+  - changeNodeForce: pass in the node to change to as a payload to the saga that will keep trying to change the node.
 - selectors
   - getNodes
   - getSelectedNodes
@@ -235,8 +235,8 @@ The main way any of the data within the app is interacted with is through the ap
   - showNotification
   - closeNotification
 - actions
-  - SHOW = 'SHOW_NOTIFICATION',
-  - CLOSE = 'CLOSE_NOTIFICATION'
+  - showNotificationWithComponent: takes in the payload of {id, level, msg, rendersComponent:true, componentConfig, duration} for the reducer to handle(note this payload is not a form of the notification in the types folder of notifications)
+  - closeNotification: takes in notification as a payload to close a particular notification.
 - selectors
   NONE
 
@@ -245,8 +245,8 @@ The main way any of the data within the app is interacted with is through the ap
   - returns a state with onboardingState false
   - returns the action.payload of a slide
 - actions
-  - COMPLETE = 'ONBOARDING_COMPLETE',
-  - SET_SLIDE = 'ONBOARDING_SET_SLIDE'
+  - completeOnboarding: no payload
+  - setOnboardingSlide: passes in a payload of number type indicating the onboarding page number.
 - selectors
   - getOnboarding
   - getActive
@@ -270,30 +270,29 @@ The main way any of the data within the app is interacted with is through the ap
   - setWalletTokens
   - setWalletConfig
   - setPasswordPending
-- actions
-  - UNLOCK_PRIVATE_KEY = 'WALLET_UNLOCK_PRIVATE_KEY',
-  - UNLOCK_KEYSTORE = 'WALLET_UNLOCK_KEYSTORE',
-  - UNLOCK_MNEMONIC = 'WALLET_UNLOCK_MNEMONIC',
-  - UNLOCK_WEB3 = 'WALLET_UNLOCK_WEB3',
-  - SET = 'WALLET_SET',
-  - SET_BALANCE_PENDING = 'WALLET_SET_BALANCE_PENDING',
-  - SET_BALANCE_FULFILLED = 'WALLET_SET_BALANCE_FULFILLED',
-  - SET_BALANCE_REJECTED = 'WALLET_SET_BALANCE_REJECTED',
-  - SET_TOKEN_BALANCES_PENDING = 'WALLET_SET_TOKEN_BALANCES_PENDING',
-  - SET_TOKEN_BALANCES_FULFILLED = 'WALLET_SET_TOKEN_BALANCES_FULFILLED',
-  - SET_TOKEN_BALANCES_REJECTED = 'WALLET_SET_TOKEN_BALANCES_REJECTED',
-  - SET_PENDING = 'WALLET_SET_PENDING',
-  - SET_NOT_PENDING = 'WALLET_SET_NOT_PENDING',
-  - SET_TOKEN_BALANCE_PENDING = 'WALLET_SET_TOKEN_BALANCE_PENDING',
-  - SET_TOKEN_BALANCE_FULFILLED = 'WALLET_SET_TOKEN_BALANCE_FULFILLED',
-  - SET_TOKEN_BALANCE_REJECTED = 'WALLET_SET_TOKEN_BALANCE_REJECTED',
-  - SCAN_WALLET_FOR_TOKENS = 'WALLET_SCAN_WALLET_FOR_TOKENS',
-  - SET_WALLET_TOKENS = 'WALLET_SET_WALLET_TOKENS',
-  - SET_CONFIG = 'WALLET_SET_CONFIG',
-  - RESET = 'WALLET_RESET',
-  - SET_PASSWORD_PENDING = 'WALLET_SET_PASSWORD_PENDING',
-  - REFRESH_ACCOUNT_BALANCE = 'WALLET_REFRESH_ACCOUNT_BALANCE',
-  - REFRESH_TOKEN_BALANCES = 'WALLET_REFRESH_TOKEN_BALANCES'
+- actions(Will give a brief overview of what the payload is in each action if it has one.)
+  - unlockPrivateKey: payload is of type PrivateKeyUnlockParams
+  - unlockKeystore: payload is of type KeyStoreUnlockParams
+  - unlockMnemonic: payload is of type MnemonicUnlockParams
+  - unlockWeb3: no payload this is only used for the browser version of this app.
+  - setWallet: payload is the instance of the wallet.
+  - setBalancePending
+  - setBalanceFullfilled: payload is the value in Wei
+  - setBalanceRejected
+  - setTokenBalancesPending
+  - setTokenBalancesFulfilled: payload is of type `{[key:string]:{balance:TokenValue; error: string | null:}`
+  - setTokenBalancesRejected
+  - setWalletPending
+  - setTokenBalancesPending: payload is of type `{ tokenSymbol: string }`
+  - setTokenBalancesFulfilled: payload is of type `{[key:string]:{balance: TokenValue; error: string | null;}`
+  - setTokenBalancesRejected
+  - scanWalletForTokens: payload is an instance of the wallet
+  - setWalletTokens: payload is of type string[] representing token names
+  - setWalletConfig: payload is of type WalletConfig
+  - resetWallet
+  - setPasswordPrompt
+  - refreshAccountBalance
+  - refreshTokenBalances
 - selectors
   - getWalletInst
   - getWalletConfig
@@ -304,7 +303,6 @@ The main way any of the data within the app is interacted with is through the ap
   - isEtherBalancePending
   - getEtherBalance
   - getRecentAddresses
-  
 ### deterministicWallets
 - reducers 
   - returns state with modified wallets with a value from the action payload
@@ -356,23 +354,23 @@ The main way any of the data within the app is interacted with is through the ap
     - resetSign
 - actions(separated by each of the reducer that was combined)
   - broadcast
-    - WEB3_TRANSACTION_REQUESTED = 'BROADCAST_WEB3_TRANSACTION_REQUESTED',
-    - TRANSACTION_SUCCEEDED = 'BROADCAST_TRANSACTION_SUCCEEDED',
-    - LOCAL_TRANSACTION_REQUESTED = 'BROADCAST_LOCAL_TRANSACTION_REQUESTED',
-    - TRANSACTION_QUEUED = 'BROADCAST_TRANSACTION_QUEUED',
-    - TRANSACTION_FAILED = 'BROADCAST_TRANSACTION_FAILED'
+    - broadcastWeb3TransactionRequested
+    - broadcastTransactionSucceeded
+    - broadcastLocalTransactionRequested
+    - broadcastTransactionQueued
+    - broadcastTransactionFailed
   - fields
-    - GAS_LIMIT_INPUT = 'GAS_LIMIT_INPUT',
-    - GAS_PRICE_INPUT = 'GAS_PRICE_INPUT',
-    - GAS_PRICE_INPUT_INTENT = 'GAS_PRICE_INPUT_INTENT',
-    - DATA_FIELD_INPUT = 'DATA_FIELD_INPUT',
-    - NONCE_INPUT = 'NONCE_INPUT',
-    - GAS_LIMIT_FIELD_SET = 'GAS_LIMIT_FIELD_SET',
-    - DATA_FIELD_SET = 'DATA_FIELD_SET',
-    - TO_FIELD_SET = 'TO_FIELD_SET',
-    - VALUE_FIELD_SET = 'VALUE_FIELD_SET',
-    - NONCE_FIELD_SET = 'NONCE_FIELD_SET',
-    - GAS_PRICE_FIELD_SET = 'GAS_PRICE_FIELD_SET'
+    - inputGasLimit
+    - inputGasPrice
+    - inputGasPriceIntent
+    - inputData
+    - inputNonce
+    - setGasLimitField
+    - setDataField
+    - setToField
+    - setValueField
+    - setNonceField
+    - setGasPriceField
   - meta
     - TOKEN_TO_META_SET = 'TOKEN_TO_META_SET',
     - UNIT_META_SET = 'UNIT_META_SET',

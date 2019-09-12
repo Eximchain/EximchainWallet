@@ -359,40 +359,40 @@ The main way any of the data within the app is interacted with is through the ap
     - broadcastLocalTransactionRequested
     - broadcastTransactionQueued
     - broadcastTransactionFailed
-  - fields
+  - fields (all setters with payloads as the value to set to)
     - inputGasLimit
     - inputGasPrice
     - inputGasPriceIntent
     - inputData
     - inputNonce
-    - setGasLimitField
+    - setGasLimitField(Not quite sure what it is used for not imported anywhere)
     - setDataField
     - setToField
     - setValueField
     - setNonceField
     - setGasPriceField
   - meta
-    - TOKEN_TO_META_SET = 'TOKEN_TO_META_SET',
-    - UNIT_META_SET = 'UNIT_META_SET',
-    - TOKEN_VALUE_META_SET = 'TOKEN_VALUE_META_SET',
-    - IS_CONTRACT_INTERACTION = 'IS_CONTRACT_INTERACTION',
-    - IS_VIEW_AND_SEND = 'IS_VIEW_AND_SEND'
+    - setTokenTo: setter whose payload is the address of the token
+    - setTokenValue: setter for the value of token in eth payload is the TokenValue
+    - setUnitMeta: setter for the unit meta and the payload is a string representing the token
+    - setAsContractInteraction: sets the state of the App as contract interaction which gives you additional features to send data alongside the transaction.
+    - setAsViewAndSend: sets the state of the transaction as a regular transaction
   - network
-    - ESTIMATE_GAS_REQUESTED = 'ESTIMATE_GAS_REQUESTED',
-    - ESTIMATE_GAS_SUCCEEDED = 'ESTIMATE_GAS_SUCCEEDED',
-    - ESTIMATE_GAS_FAILED = 'ESTIMATE_GAS_FAILED',
-    - ESTIMATE_GAS_TIMEDOUT = 'ESTIMATE_GAS_TIMEDOUT',
-    - GET_FROM_REQUESTED = 'GET_FROM_REQUESTED',
-    - GET_FROM_SUCCEEDED = 'GET_FROM_SUCCEEDED',
-    - GET_FROM_FAILED = 'GET_FROM_FAILED',
-    - GET_NONCE_REQUESTED = 'GET_NONCE_REQUESTED',
-    - GET_NONCE_SUCCEEDED = 'GET_NONCE_SUCCEEDED',
-    - GET_NONCE_FAILED = 'GET_NONCE_FAILED'
+    - estimateGasRequested: payload is a simple boolean indicating the request for gas estimation
+    - estimateGasSucceeded: triggered when the gas estimation is successful
+    - estimateGasFailed: triggered when the gas estimation is not successful
+    - estimateGasTimedout: triggered when the gas estimation request doesn't return quickly enough.
+    - getFromRequested(Unsure what it is used for not imported anywhere)
+    - getFromSucceeded(Unsure what it is used for not imported anywhere)
+    - getFromFailed(Unsure what it is used for not imported anywhere)
+    - getNonceRequested: requests nonce calculation
+    - getNonceSucceeded: when nonce calucation is successful sends a payload of the nonce value
+    - getNonceFailed: triggered when nonce value is not succesfully returned
   - sign
-    - SIGN_TRANSACTION_REQUESTED = 'SIGN_TRANSACTION_REQUESTED',
-    - SIGN_WEB3_TRANSACTION_SUCCEEDED = 'SIGN_WEB3_TRANSACTION_SUCCEEDED',
-    - SIGN_LOCAL_TRANSACTION_SUCCEEDED = 'SIGN_LOCAL_TRANSACTION_SUCCEEDED',
-    - SIGN_TRANSACTION_FAILED = 'SIGN_TRANSACTION_FAILED'
+    - signTransactionRequested: Requests the payload of EthTx to be signed
+    - signWeb3TransactionSucceeded: triggered when succesffully signed with a web3 signer(only works on the browser version) with the payload of the signed transaction
+    - signLocalTransactionSucceeded: triggered when succesfully signed with a payload of the signed transaction
+    - signTransactionFailed: triggered when signing transaction fails
 - selectors(separated by each of the reducer that was combined)
   - broadcast
     - getBroacastState
@@ -430,11 +430,10 @@ The main way any of the data within the app is interacted with is through the ap
   - resetTxData
   - addRecentTx
 - actions
-  - FETCH_TRANSACTION_DATA = 'TransactionsActions_FETCH_TRANSACTION_DATA',
-  - SET_TRANSACTION_DATA = 'TransactionsActions_SET_TRANSACTION_DATA',
-  - SET_TRANSACTION_ERROR = 'TransactionsActions_SET_TRANSACTION_ERROR',
-  - RESET_TRANSACTION_DATA = 'TransactionsActions_RESET_TRANSACTION_DATA',
-  - ADD_RECENT_TRANSACTION = 'TransactionsActions_ADD_RECENT_TRANSACTION'
+  - fetchTransactionData: action to grab data related to the particular txhash sent as the payload.
+  - setTransactionData: setter for txhash, data, receipt, and error for a particular transaction
+  - resetTransactionData
+  - addRecentTransaction: adds recent transactions to the persistent transaction history with the payload being the array of transactions.
 - selectors
   - getTransactionDatas
   - getRecentTransactions
@@ -446,13 +445,13 @@ The main way any of the data within the app is interacted with is through the ap
   - returns the state with entries updated by the action's payload
   - returns the state with a particular entry in entries deleted
 - actions
-  - SET_LABEL = 'ADDRESS_BOOK_SET_LABEL',
-  - CLEAR_LABEL = 'ADDRESS_BOOK_CLEAR_LABEL',
-  - SET_LABEL_ENTRY = 'ADDRESS_BOOK_SET_LABEL_ENTRY',
-  - CHANGE_LABEL_ENTRY = 'ADDRESS_BOOK_CHANGE_LABEL_ENTRY',
-  - SAVE_LABEL_ENTRY = 'ADDRESS_BOOK_SAVE_LABEL_ENTRY',
-  - CLEAR_LABEL_ENTRY = 'ADDRESS_BOOK_CLEAR_LABEL_ENTRY',
-  - REMOVE_LABEL_ENTRY = 'ADDRESS_BOOK_REMOVE_LABEL_ENTRY'
+  - setAddressLabel: payload is address and the string label you want to link it with.
+  - clearAddressLabel: payload is the particular label entry you want to delete
+  - setAddressLabelEntry: payload is AddressLabelEntry which extends the AddressLabel with additional key values you might want to set.
+  - changeAddressLabelEntry: payload is the same as setAddressLabelEntry
+  - saveAddressLabelEntry: payload is the particular AddressLabelEntry keyed by id.
+  - clearAddressLabelEntry: payload is the particular AddressLabelEntry keyed by id.
+  - removeAddressLabelEntry: payload is the particular AddressLabelEntry keyed by id.
 - selectors
   - getAddressLabels
   - getLabelAddresses
@@ -573,7 +572,10 @@ ContractFuncNames is simply a defined name that we utilize throughout the Govern
     3. ERROR_SCREEN
         - Handles the unsuccessful return value of a the submitted transaction
 
-  
+  - Transitions
+    - Once the transaction is properly constructed the governance tab will let you start sending your transaction with a button. Which will trigger a stage change with handleStageChange from CONSTRUCT to SUBMIT
+    - In the submit screen we render the component GenerateTransaction.tsx, which is a shared component throughout the app. Which will carry you through the wallet step if you aren't logged in and gas price/gas limit nonce. All the way till the final submission of the transaction
+    - Finally, once the transaction has been triggered we utilize AppState to grab the currentTransactionFailed status to decide to transition to the error screen or the result screen. Conveniently, we have this check in the componenDidUpdate because all selectors for AppState variables are passed in as props to our component.
   - ***Grabbing the input values for the transaction***
     - Render the input fields based on the contract function call instance
     - The inputs are then set as inputs are entered by a designated setter based on input type.
